@@ -1,15 +1,16 @@
-# The Flaming Coders (courtesy to Joshua Wakefield). 
+# The Flaming Coders 
+###(courtesy to Joshua Wakefield). 
 
 ##**1. Positions**
 
 
-+Group Leader: Dorit Rein.
+       +Group Leader: Dorit Rein.
 
-+Graphics/Design Leader: Marlena Lui.
+       +Graphics/Design Leader: Marlena Lui.
 
-+Database Leader: Simon Chen.
+       +Database Leader: Simon Chen.
 
-+Middle Man: Joshua Wakefield.
+       +Middle Man: Joshua Wakefield.
 
 
 ##**2. The Vision**
