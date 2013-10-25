@@ -7,10 +7,10 @@ li {
 }
 a.nav {
 	text-decoration:none;
-	color:#000000;
+	color:black;
 	background:#e0ffff;
 	border:ridge #e0ffff;
-	text-align: center;
+	text-align:center;
 }
 a.nav:hover {
 	color:#FF0000;
@@ -18,4 +18,12 @@ a.nav:hover {
 p {
 	width:500px;
 	margin:10px auto 10px auto;
+}
+#login {
+	width:220px;
+	height:85px;
+	border:1px dashed black;
+	margin:0px auto;
+	padding:10px;
+	background:#eee;
 }
