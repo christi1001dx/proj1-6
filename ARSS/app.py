@@ -7,6 +7,9 @@ import utils
 app = Flask(__name__)
 app.secret_key = "abcd"
 
+def get_form_value(key):
+    return request.form[key].encode("ascii", "ignore")
+
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -19,8 +22,8 @@ def login():
     if (request.method == "GET"):
         return render_template("login.html")
     else:
-        username = request.form["username"].encode("ascii", "ignore")
-        password = request.form["password"].encode("ascii", "ignore")
+        username = get_form_value('username')
+        password = get_form_value('password')
         #check if username is valid
     
 @app.route('/register', methods = ['GET', 'POST'])
@@ -28,8 +31,8 @@ def register('/register'):
     if (request.method == "GET"):
         return render_template("register.html")
     else:
-        username = request.form["username"].encode("ascii", "ignore")
-        password = request.form["password"].encode("ascii", "ignore")
+        username = get_form_value('username')
+        password = get_form_value('password')
         #check if passwords match
         
 @app.route("/logout")
