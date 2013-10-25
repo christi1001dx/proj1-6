@@ -1,10 +1,10 @@
 # JEJA #
 
 ### Group Members: ###
-**Andrew Zarenberg** (Group Leader)\n
-Edric Huang\n
-Jared Yuen\n
-Jeffrey Yin\n
+**Andrew Zarenberg** (Group Leader)<br />
+Edric Huang<br />
+Jared Yuen<br />
+Jeffrey Yin<br />
 
 
 ### Back End: ###
