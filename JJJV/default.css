@@ -1,0 +1,16 @@
+body {
+background:#cff9fc url('bg.png') no-repeat center;
+}
+li {
+display:inline;
+text-align:center;
+}
+a.nav {
+text-decoration:none;
+margin:1px;
+border-style:solid;	
+border-color:black;
+}
+a.nav:hover {
+color:#FF0000;
+}
