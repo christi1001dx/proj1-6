@@ -9,7 +9,7 @@ def connect():
     comcol = mangodb.clu
 
 
-def login(username, password):
+def dlogin(username, password):
     if not username or not password:
         error = 'err0'
     found = logcol.find_one({"username":username, "password":password}, fields = {'_id':0})
@@ -20,7 +20,7 @@ def login(username, password):
     else:
         return found
 
-def register(username, password, stat):
+def dregister(username, password, stat):
     if not username or not password:
         error = 'err0'
     found = logcol.find_one({"username":username})
