@@ -6,10 +6,12 @@ import utils
 import helpers
 
 app = Flask(__name__)
-env = app.jinja_env
-env.globals.update(helpers=helpers)
 app.secret_key = "abcd"
 app.debug = True
+
+env = app.jinja_env
+env.globals.update(helpers=helpers)
+env.line_statement_prefix = '='
 
 def get_form_value(key):
     return request.form[key].encode("ascii", "ignore")
