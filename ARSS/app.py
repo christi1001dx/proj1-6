@@ -3,9 +3,13 @@
 from flask import Flask
 from flask import request, render_template, redirect, session, url_for
 import utils
+import helpers
 
 app = Flask(__name__)
+env = app.jinja_env
+env.globals.update(helpers=helpers)
 app.secret_key = "abcd"
+app.debug = True
 
 def get_form_value(key):
     return request.form[key].encode("ascii", "ignore")
@@ -16,6 +20,7 @@ def index():
 
 @app.route('/story')
 def story():
+    pass
     
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -27,7 +32,7 @@ def login():
         #check if username is valid
     
 @app.route('/register', methods = ['GET', 'POST'])
-def register('/register'):
+def register():
     if (request.method == "GET"):
         return render_template("register.html")
     else:
@@ -44,5 +49,4 @@ def logout():
         return redirect("/")
         
 if __name__ == '__main__':
-	app.debug = True
 	app.run(host='0.0.0.0')
