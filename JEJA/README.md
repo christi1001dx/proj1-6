@@ -4,13 +4,13 @@
 **Andrew Zarenberg** (Group Leader)<br />
 Edric Huang<br />
 Jared Yuen<br />
-Jeffrey Yin<br />
+Jeffrey Yin
 
 
 ### Back End: ###
-Jared Yuen
+Jared Yuen<br />
 Jeffrey Yin
 
 ### Front End: ###
-Andrew Zarenberg
+Andrew Zarenberg<br />
 Edric Huang
