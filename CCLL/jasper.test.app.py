@@ -54,9 +54,9 @@ def register():
                 print "Username Taken, Try Again"
                 return render_template("template.register.html")
 
-@app.route("/success")
-def success():
-    return "<h1> You have successfully logged in!</h1>"
+@app.route("/blog/<name>")
+def blog(name):
+    return render_template("template.blogposts.html",posts = utils.getPosts(name,db.posts))
 
 @app.route("/logout")
 def logout():

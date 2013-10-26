@@ -1,5 +1,7 @@
-{% for item in posts %}
-<h1>{{item.title}}</h1>
-<h3>{{item.username}} | {{item.date}}</h3>
-<p>{{item.text}}</p>
-{% endfor %}
+<body style = "text-align:center">
+    {% for item in posts %}
+    <h1>{{item.title}}</h1>
+    <h3>{{item.username}} | {{item.date}}</h3>
+    <p>{{item.text}}</p>
+    {% endfor %}
+</body>
