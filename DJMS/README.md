@@ -1,5 +1,5 @@
 # The Flaming Coders 
-###(Courtesy to Joshua Wakefield). 
+###(Name courtesy to Joshua Wakefield). 
 
 ##**1. Positions**
 
