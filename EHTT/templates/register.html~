@@ -1,0 +1,19 @@
+<html>
+
+  <head>
+    <title>
+      Register
+    </title>
+  </head>
+
+  <body>
+    <h1>Register</h1>
+    <h2>Join us for a great experience</h2>
+    <form method="POST">
+      Username: <input type="text" name="username"></input>
+      Password: <input type="password" name="password"></input>
+      <input type="submit" name="button" value="Submit"></input>
+    </form>
+  </body>
+
+</html>
