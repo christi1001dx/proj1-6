@@ -25,4 +25,34 @@ def makeStory(name, story):
     else:
         return "There is a story under that name"
 
+def editStory(name, addition):
+    db = work()
+    data = [x for x in db.DJMSStory.find({'storyname':name},fields={'_id':False})]
+    if(len(data)==0):
+        return "No Story found"
+    data = data[0]
+    newStory = data['story'] + addition
+    db.DJMSStory.update({'storyname':name},{'$set':{'story':newStory}})
+    
+def delStory(name):
+    db = work()
+    db.DJMSStory.remove({'name':{'$gt':name}})
+    
+def check(username,password):
+    db = work()
+    user = [x for x in db.DJMSStory.find({'username':username,'password':password},fields={'_id':False})]
+    if (len(user) == 0):
+        return "User Not Found"
+    user =  user[0]
+    if username == user['username'] and password == user['password']:
+        return True
+    else:
+        return False 
+
+           
+             
+            
+            
+            
+
 
