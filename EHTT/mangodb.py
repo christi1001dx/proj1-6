@@ -2,14 +2,16 @@ from pymongo import MongoClient
 from datetime import datetime
 
 def connect():
-    mango = MongoClient()
+    mango = MongoClient("db.stuy.cs")
+    db = mango.admin
+    db.authenticate('softdev', 'softdev')
     mangodb = mango.levenpoka
     logcol = mangodb.flynn
     postcol = mangodb.tron
     comcol = mangodb.clu
 
 
-def login(username, password):
+def dlogin(username, password):
     if not username or not password:
         error = 'err0'
     found = logcol.find_one({"username":username, "password":password}, fields = {'_id':0})
@@ -20,7 +22,7 @@ def login(username, password):
     else:
         return found
 
-def register(username, password, stat):
+def dregister(username, password, stat):
     if not username or not password:
         error = 'err0'
     found = logcol.find_one({"username":username})
@@ -37,7 +39,7 @@ def getpost(name):
         if not found:
             error = 'err4'
         else:
-            return name["id"]
+            return found["txt"]
 
 def getpostid(name): 
     found = postcol.find_one({"name":name})
@@ -70,6 +72,7 @@ def newpost(mcp, sark):
             found = find_one({"num"})
             postcol.insert({"name":mcp,"txt":sark, "id":found["num"]})
             postcol.update({"num":found["num"]}, {"$set": {"num":found["num"]+1}})
+            comcol.insert({"id" : found["num"], "coms":[]})
 
 def newcomment(clu, comet, usr):
     if not usr or not comet:
@@ -83,6 +86,25 @@ def newcomment(clu, comet, usr):
                                               "user":usr,
                                               "date":datetime.utcnow}})
 
+def removepost(name):
+    if not name:
+        error = 'err0'
+    else:
+        found = postcol.find_one({"name": mcp})
+        if not found:
+            error = 'err4'
+        else:
+            comcol.remove({"id":found["id"]}, True)
+            postcol.remove({"id":found["id"]}, True)
+
+def reset():
+    mangodb.drop("levanpolka")
+    mangodb = mango.levenpoka
+    mangodb = mango.levenpoka
+    logcol = mangodb.flynn
+    postcol = mangodb.tron
+    comcol = mangodb.clu
+    postcol.insert({"no":1})
+
+
 connect()
-            
-                     

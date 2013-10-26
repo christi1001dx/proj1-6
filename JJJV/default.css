@@ -1,0 +1,29 @@
+body {
+	background:#cff9fc url('bg.png') no-repeat center;
+}
+li {
+	display:inline;
+	text-align:center;
+}
+a.nav {
+	text-decoration:none;
+	color:black;
+	background:#e0ffff;
+	border:ridge #e0ffff;
+	text-align:center;
+}
+a.nav:hover {
+	color:#FF0000;
+}
+p {
+	width:500px;
+	margin:10px auto 10px auto;
+}
+#login {
+	width:220px;
+	height:85px;
+	border:1px dashed black;
+	margin:0px auto;
+	padding:10px;
+	background:#eee;
+}
