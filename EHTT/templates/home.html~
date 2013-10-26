@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>
+      's Home Page
+    </title>
+  </head>
+  <body>
+    <h1>Welcome to 's Blog</h1>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <a href="/posts">Posts</a>
+  </body>
+</html>
