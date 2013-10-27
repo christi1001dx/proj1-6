@@ -10,8 +10,8 @@ app.secret_key = "abcd"
 app.debug = True
 
 env = app.jinja_env
-env.globals.update(helpers=helpers)
 env.line_statement_prefix = '='
+env.globals.update(helpers=helpers)
 
 def get_form_value(key):
     return request.form[key].encode("ascii", "ignore")
@@ -33,8 +33,12 @@ def index():
 @app.route('/story')
 def story():
     pass
+<<<<<<< HEAD
 >>>>>>> d3f80253968d8ee691921ada844138bd2a63d6d9
     
+=======
+
+>>>>>>> 41ef0b179a7eef8f60d581ded501be48b9e9adfe
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if (request.method == "GET"):
@@ -56,7 +60,7 @@ def register('/register'):
         username = get_form_value('username')
         password = get_form_value('password')
         #check if username is valid
-    
+
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     if (request.method == "GET"):
@@ -65,8 +69,12 @@ def register():
         username = get_form_value('username')
         password = get_form_value('password')
         #check if passwords match
+<<<<<<< HEAD
         
 >>>>>>> d3f80253968d8ee691921ada844138bd2a63d6d9
+=======
+
+>>>>>>> 41ef0b179a7eef8f60d581ded501be48b9e9adfe
 @app.route("/logout")
 def logout():
     if "username" in sesson:
@@ -74,7 +82,7 @@ def logout():
         return render_template("logout.html")
     else:
         return redirect("/")
-        
+
 if __name__ == '__main__':
 <<<<<<< HEAD
 	app.debug = True
