@@ -71,6 +71,26 @@ header .title {
 	text-align:justify;
 	font-size:12px;
 }
+#cards .goto {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:23px;
+	background:#aaa;
+	cursor:pointer;
+}
+#cards .goto .text {
+	position:absolute;
+	right:12px;
+	top:3px;
+	font-size:12px;
+}
+#cards .goto:hover {
+	background:#ccc;
+}
+#cards .goto:hover .text {
+	color:#444;
+}
 
 
 
