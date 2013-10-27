@@ -8,21 +8,39 @@ header {
 	width:100%;
 	height:400px;
 	background:#aaa;
+	z-index:999;
 }
 header > div {
 	width:100%;
 	height:100%;
 }
 
-.middle {
+header .middle {
 	display:table;
 }
-.title {
+header .title {
 	width:100%;
 	height:100%;
 	text-align:center;
 	display:table-cell;
 	vertical-align:middle;
+}
+
+
+#cards {
+	position:absolute;
+	top:440px;
+	left:0;
+}
+#cards .title {
+	position:absolute;
+	width:100%;
+	height:35px;
+	background:#aaa;
+}
+#cards .title .text {
+	margin:9px 0 0 10px;
+	font-size:13px;
 }
 
 

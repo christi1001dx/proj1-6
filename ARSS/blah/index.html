@@ -8,6 +8,18 @@
 		<script src="js/landing.js"></script>
 	</head>
 	<body>
+		<script>
+			var stories = [];
+			for(var i=0;i<20;i++) {
+				var li = loremipsum[Math.floor(Math.random()*loremipsum.length)];
+				var ind = Math.floor(Math.random()*50);
+				stories.push({
+					edits : 1 + Math.floor(Math.random()*30),
+					title : li.substring(ind, ind+25),
+					text : li
+				});
+			}
+		</script>
     	<header class="t3">
 			<div class="middle">
 				<div class="title">
@@ -17,7 +29,9 @@
 			</div>
 		</header>
 		
-		<div style="position:absolute;top:2000px;">Something</div>
+		<div id="cards">
+			
+		</div>
 		
 	</body>
 </html>
