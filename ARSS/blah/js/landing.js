@@ -27,7 +27,10 @@ $(function() {
 			$("<div></div>").attr("id","box"+i).addClass("box t3").css({
 				//opacity : 0
 			}).html(
-				"<div class='title'><div class='text'>"+stories[i].title+"</div></div>"
+				"<div class='title'><div class='text'>"+stories[i].title+"</div></div>"+
+				"<div class='author'>by "+stories[i].author+"</div>"+
+				"<div class='edits'><img src='img/edit.png' />"+stories[i].edits+"</div>"+
+				"<div class='story'>"+stories[i].text+"</div>"
 			)
 		);
 		
