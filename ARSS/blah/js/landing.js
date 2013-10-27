@@ -20,11 +20,23 @@ function calcheader() {
 		.css("opacity", (hh>HEADSIZE[1]/2)?1:0).css("display", (hh>HEADSIZE[1]/4)?"block":"none");
 }
 
+var pre = ["","-moz-","-o-","-webkit-","-ms-"];
 $(function() {
+	$.fn.extend({
+		css3 : function(obj) {
+			for(var i in obj) {
+				for(var j in pre) {
+					this.css(pre[j]+i,obj[i]);
+				}
+			}
+			return this;
+		}
+	});
 	for(var i=0;i<stories.length;i++) {
+		stories[i].shown = false;
 		s.push(i);
 		$("#cards").append(
-			$("<div></div>").attr("id","box"+i).addClass("box t3").css({
+			$("<div></div>").attr("id","box"+i).addClass("box").css({
 				//opacity : 0
 			}).html(
 				"<div class='title'><div class='text'>"+stories[i].title+"</div></div>"+
@@ -32,9 +44,10 @@ $(function() {
 				"<div class='edits' title='"+stories[i].edits+" edits'><img src='img/edit.png' />"+stories[i].edits+"</div>"+
 				"<div class='story'>"+stories[i].text+"</div>"+
 				"<div class='goto'><div class='text'>Go to Story &rarr;</div></div>"
-			)
+			).css("opacity",0).css3({
+				"transform-origin" : "50% 50%"
+			})
 		);
-		
 	}
 	
 	$(window).resize(blocks).scroll(blocks).resize();
@@ -42,7 +55,7 @@ $(function() {
 
 function blocks() {
 	var bw = $(window).width(), bh = $(window).height();
-	var st = $(window).scrollTop();
+	var st = $(window).scrollTop(), ct = $("#cards").position().top;
 	
 	coln = 10;
 	while ((contw = coln*BLOCK + (coln+1)*PAD) > bw) coln--;
@@ -57,8 +70,23 @@ function blocks() {
 			width : blockw,
 			height : blockw
 		});
+		if (!b.shown && ct + PAD + (PAD+blockw)*y + blockw / 3 < st + bh) {
+			b.shown = true;
+			$("#box"+s[i]).css3({
+				transform : "rotateY(180deg)"
+			}).css("opacity",0).animate({
+				opacity : 1
+			}, {
+				step:function(now, fx) {
+					$(this).css3({transform:"rotateY("+(220+140*now)+"deg)"});
+				},
+				duration : 1000
+			});
+		}
 		if (++x >= coln) y += (x=0)+1;
 	}
+	
+	$("#cards").css("height", 100+(y+1)*(blockw+PAD));
 	
 }
 
