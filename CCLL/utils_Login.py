@@ -1,17 +1,16 @@
 from pymongo import MongoClient
 connection = MongoClient('db.stuycs.org')
-SQL_Users=connection.admin
+SQL_Users = connection.admin
 SQL_Users.authenticate('softdev','softdev')
 #SQL_Users.createcollection("login_info")
 
 def userNameExist (username):
     ans = 0
-    try:
-        SQL_Users.login_info.find ({'username' : username})
-        print 'user does not exist'
-    except:
+    if SQL_Users.login_info.find_one ({'username' : username}):
         print 'user exists'
         ans = 1
+    else:
+        print 'user does not exist'
     return ans
 
 def authenticate (username, password):
@@ -21,9 +20,9 @@ def authenticate (username, password):
     try: 
         db.find ({'username' : username}, {'password' : password})
         print 'sucess!' 
+        ans = 1
     except:
         print 'Failed Attempt!'
-        ans = 1
     print 'authentication compelete'
     return ans
 
