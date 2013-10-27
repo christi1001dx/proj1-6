@@ -79,6 +79,7 @@ header .title {
 	height:23px;
 	background:#aaa;
 	cursor:pointer;
+	z-index:500;
 }
 #cards .goto .text {
 	position:absolute;

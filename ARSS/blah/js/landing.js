@@ -86,8 +86,6 @@ function blocks() {
 		if (++x >= coln) y += (x=0)+1;
 	}
 	
-	$("#cards").css("height", 100+(y+1)*(blockw+PAD));
-	
 }
 
 
