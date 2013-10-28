@@ -1,0 +1,1 @@
+# variables for Flask app
