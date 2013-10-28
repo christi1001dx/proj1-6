@@ -30,11 +30,11 @@ def check(username,password):
         return False 
 
 #Story stuff -----------------------------------------------------------------------
-def makeStory(name, story):
+def makeStory(name, story, username):
     db = work()
     chk = db.DJMSStory.find_one({'storyname' :name})
     if(chk == None):
-        db.DJMSStory.insert({'storyname':name, 'story' :story})
+        db.DJMSStory.insert({'storyname':name, 'story':story, 'author':username})
     else:
         return "There is a story under that name"
 
