@@ -51,9 +51,14 @@ def delStory(name):
     db = work()
     db.DJMSStory.remove({'name':{'$gt':name}})
     
+def returnAuthor(name):
+    db = work()
+    data = [x for x in db.DJMSStory.find({'storyname':name},fields={'_id':False})]
+    return data['author']
+    
 def returnStory(name)
     db = work(name)
-    story = db.story.find({'story':story})
+    story = db.story.find({'story':story},fields={'_id':False})
     return story
 
 
