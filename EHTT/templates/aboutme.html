@@ -21,6 +21,9 @@
             <li><a href="/login" class="button">Login</a></li>
             {% else %}
             <li><a href="#" class="button">{{ name }}</a></li>
+                {% if {{ name }} == "Herman" %}
+                    <li><a href="/createpost" class="button">Create Post</a></li>
+                {% endif %}
             {% endif %}
           </ul>
         </div>
@@ -66,6 +69,9 @@
             <li><a href="/login">Login</a></li>
             {% else %}
             <li><a href="#">{{ name }}</a></li>
+                {% if {{ name }} == "Herman" %}
+                    <li><a href="/createpost">Create Post</a></li>
+                {% endif %}
             {% endif %}
           </ul>
         </div>
