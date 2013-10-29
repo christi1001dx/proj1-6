@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>{{post.title}}</title>
+        <link href="static/PostStyle.css" ret="stylesheet" type="text/css" media="screen"/>
+    </head>
+    <body>
+        <div id="NavigationMenu">
+            <nav>
+                <ul>
+                    <li><a href="#"><span>SPORTS</span></a></li>
+                    <li><a href="#"><span>ARTS/ENT</span></a></li>
+                    <li><a href="#"><span>OPINION</span></a></li>
+                    <li><a href="#"><span>HUMOR</span></a></li>
+                    <li><a href="#"><span>ACADEMICS</span></a></li>
+                </ul>
+            </nav>
+        
+        </div>
+        <div id="Title">
+        {{post.title}}
+        </div>
+        <div id="Content">
+            {{post.content}}
+        </div>
+        <div id="Author">
+            By {{post.author}}
+        </div>
+        <ul>
+        {{ for c in comments }}
+        <li id="Comment">
+        <div>{{c.comment}}</div>
+        <span>{{c.author}}</span>
+        </li>
+        {{ endfor }}
+        </ul>
+        <form method="POST">
+            <input type="text" name="comment">Enter your comment below</input>
+            <input type="submit" name="button" value="submit"></input>
+        </form>
+    </body>
+</html>

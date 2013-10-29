@@ -1,0 +1,38 @@
+<h1>Blog Posts</h1>
+
+<h3> View by genre </h3>
+<form name="section" action="index.py" method="POST"> 
+    Sports <input type="radio" name="genre" value="Sports"></input>
+    Humor <input type="radio" name="genre" value="Humor"></input>
+    News <input type="radio" name="genre" value="News"></input>
+    <input type="submit" value="Submit"></input>
+</form>
+
+<!-- Display each individual blog post>
+
+<ul>
+{% for post in headlines %}
+<li class="Headline" onmouseover="Preview"><a class="HeadTitle" href="/posts/{{post.link}} </a>
+<p> By {{post.author}} </p>
+</li>
+{% endfor %}
+</ul>
+
+function Preview()
+{
+    if(this.style.fontSize < 24) {
+        this.style.fontSize = this.style.fontSize + 1;
+    }
+}
+
+.Headline {
+    display:inline
+    border:solid
+    padding:5
+    font-size:100%
+}
+.Headline:hover {
+    display:inline
+    border:solid
+    padding:5
+}

@@ -8,38 +8,38 @@ app.secret_key = "abcd"
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html",session["username"])
 
 @app.route("/login", methods = ['GET', 'POST'])
-def login():
+def login()
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template("login.html",session["username"])
     else:
         username = request.form["username"].encode("ascii","ignore")
         password = request.form["password"].encode("ascii","ignore")
-        a = mongodb.dlogin(username, password)
-        if (a == "ok")
+        if mongodb.dlogin(username, password):
             session["username"] = username
+            b = 1;
             return redirect("/")
         else:
-            return render_template("register.html", error = a)
+            return render_template("register.html",session["username"])
 
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
     if request.method == "GET":
-        return render_template("register.html") 
+        return render_template("register.html",session["username"]) 
     else:
         username = request.form["username"].encode("ascii", "ignore")
         password = request.form["password"].encode("ascii", "ignore")
-        a = mangodb.dregister(username, password)
-        if (a == "ok"):
-            return redirect("/login")
+        confirmpassword = request.form["confirmpassword"].encode("ascii", "ignore")
+        if a = mangodb.dregister(username, password, confirmpassword, 0):
+            return redirect("/login", error = a)
         else:
-            return render_template("register.html", error = a)
+            return render_template("register.html",session["username"])
 
 @app.route("/aboutme")
 def aboutme():
-    return render_template("aboutme")
+    return render_template("aboutme",session["username"])
 
 @app.route("/logout")
 def logout():
@@ -47,20 +47,20 @@ def logout():
         session.pop('username', None)
     return redirect("/")
 
-@app.route("/makepost")
-def makepost():
+@app.route("/createpost")
+def createpost():
      if request.method == "GET":
-        return render_template("makepost.html")
+        return render_template("createpost.html",session["username"])
     else:
-        name = request.form["name"]
-        text = request.form["text"]
+        name = request.form["title"]
+        text = request.form["post"]
         mongodb.newpost(name, text)
         return redirect("/")
 
 @app.route("/removepost")
 def removepost():
      if request.method == "GET":
-        return render_template("removepost.html")
+        return render_template("removepost.html",session["username"])
     else:
         name = request.form["name"]
         mongodb.removepost(name)
@@ -72,12 +72,12 @@ def posts(post_name):
     d = {'text' : mongodb.getpost(post_name),
          'name' : post_name,
          'comments' : getpostcom(post_name)}
-    return render_template("posts", d = d)
+    return render_template("posts",session["username"],d = d)
 
 @app.route("/posts/<post_name>/comment")   
 def comment(post_name):
     if request.method == "GET":
-        return render_template("comment.html")
+        return render_template("comment.html",session["username"])
     else:
         text = request.form["text"]
         mongodb.newcomment(mongodb.getpostid(post_name), text, session["username"])
