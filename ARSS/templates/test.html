@@ -1,0 +1,41 @@
+= extends "layout.html"
+= block head
+	<style id="scroll-style"></style>
+	<script>
+		var $window = $(window);
+		var pxPerMs = 3;
+
+		$(document).ready(function() {
+			$('#test-footer a').click(function() {
+				$this = $(this);
+				var target = $($this.attr('data-target'));
+				console.log(target);
+				console.log(target.position())
+				/*
+				var w = $window.width();
+				console.log($this.attr('data-target'));
+				$("#scroll-viewport").scrollTo($($this.attr('data-target')), { duration: w / pxPerMs });
+				*/
+			});
+		});
+
+	</script>
+= endblock
+= block body
+	<div id="scroll-container">
+		<div id="1" class="scroll-section">
+			One
+		</div>
+		<div id="2" class="scroll-section">
+			Two
+		</div>
+		<div id="3" class="scroll-section">
+			Three
+		</div>
+	</div>
+	<div id="test-footer">
+		<a href="#" data-target=".scroll-section:nth-child(1)">one</a>
+		<a href="#" data-target=".scroll-section:nth-child(2)">two</a>
+		<a href="#" data-target=".scroll-section:nth-child(3)">three</a>
+	</div>
+= endblock

@@ -22,7 +22,7 @@ def login():
     else:
 	button = request.form['button']
 	print "yo"
-	if button == 'Login':
+	if button == 'Submit':
 	    print "hiiiii"
             username = request.form['username'].encode ('ascii',"ignore")
 	    password = request.form['password'].encode ('ascii',"ignore")
@@ -33,9 +33,6 @@ def login():
             else:
                 return redirect ("/login")
                 print 'login attempt failed. Try again.'
-	else:
-	    print "didn't og in "
-	    return redirect("/register")
         
 @app.route("/register",methods = ["GET","POST"])
 def register():
@@ -48,15 +45,34 @@ def register():
 	    password = request.form['password'].encode ('ascii',"ignore")
             if not utils.auth(username,password,db.login):
 		utils.addUser(username,password,db.login)
-                print "Account Created"
                 return redirect("/login")
             else:
-                print "Username Taken, Try Again"
                 return render_template("template.register.html")
 
 @app.route("/blog/<name>")
 def blog(name):
-    return render_template("template.blogposts.html",posts = utils.getPosts(name,db.posts))
+    b = 0
+    if session['username'] == name:
+	b = 1
+    return render_template("template.blogposts.html",posts = utils.getPosts(name,db.posts), mypage = b, name = name)
+
+@app.route("/blog/<name>/submit", methods = ["GET","POST"])
+def submit(name):
+    if request.method=="GET":
+	return render_template("template.submit.html")
+    else:
+	button = request.form['button']
+	if button == "Submit":
+	    title = request.form['title'].encode('ascii',"ignore")
+	    text = request.form['text']
+	    genre = request.form['genre']
+	    if title and text:
+		utils.addPost (session['username'], title, genre, text, db.posts)
+		return redirect("/blog/" + session['username'])
+	    else:
+		return render_template("template.submit.html")
+	else:
+	    return render_template("template.submit.html")
 
 @app.route("/logout")
 def logout():
