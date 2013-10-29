@@ -1,4 +1,3 @@
-
 <html>
 
   <link rel="stylesheet" href="css/normalize.css">
@@ -6,7 +5,7 @@
   <link rel="stylesheet" href="css/grid-5.css">
 
   <head>
-    <title>Herman's Blog</title>
+    <title>Herman's Blog | {{ d.name }}</title>
   </head>
   <body>
 
@@ -18,7 +17,15 @@
             <li><a href="/index" class="button">Home</a></li>
             <li><a href="/aboutme" class="button">About Me</a></li>
             <li><a href="/posts" class="button">Posts</a></li>
+            {% if {{ username }} == "" %}
             <li><a href="/login" class="button">Login</a></li>
+            {% else %}
+            <li><a href="#" class="button">{{ username }}</a></li>
+                {% if {{ username }} == "Herman" %}
+                    <li><a href="/createpost" class="button">Create Post</a></li>
+                {% endif %}
+            <li><a href="/logout" class="button">Logout</a></li>
+            {% endif %}
           </ul>
         </div>
         <h2>Herman's Blog <small>Herp Derp</small></h2>
@@ -35,13 +42,13 @@
     <div class="large-9 columns" role="content">
       
       <article>
-	
-        <h3><a href="#">Blog Post Title</a></h3>
-        <h6>Written on DATE</h6>
-	
+        
+        <h3>{{ d.name }}</h3>
+        <h6>{{ d.date }}</h6>
+        
         <div class="row">
           <div class="large-6 columns">
-           <!-- Body of Post goes here -->
+           {{ d.text }}
           </div>
         
  
@@ -71,7 +78,12 @@
             <li><a href="/index">Home</a></li>
             <li><a href="aboutme">About Me</a></li>
             <li><a href="posts">Posts</a></li>
-            <li><a href="login">Login</a></li>
+            {% if {{ error }} != "ok" %}
+            <li><a href="/login">Login</a></li>
+            {% else %}
+            <li><a href="#">{{ name }}</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

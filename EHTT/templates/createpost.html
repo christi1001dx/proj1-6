@@ -1,4 +1,3 @@
-
 <html>
 
   <link rel="stylesheet" href="css/normalize.css">
@@ -6,7 +5,7 @@
   <link rel="stylesheet" href="css/grid-5.css">
 
   <head>
-    <title>Herman's Blog</title>
+    <title>Herman's Blog | Create Post</title>
   </head>
   <body>
 
@@ -18,6 +17,15 @@
             <li><a href="/index" class="button">Home</a></li>
             <li><a href="/aboutme" class="button">About Me</a></li>
             <li><a href="/posts" class="button">Posts</a></li>
+            {% if {{ username }} == "" %}
+            <li><a href="/login" class="button">Login</a></li>
+            {% else %}
+            <li><a href="#" class="button">{{ username }}</a></li>
+                {% if {{ username }} == "Herman" %}
+                    <li><a href="/createpost" class="button">Create Post</a></li>
+                {% endif %}
+            <li><a href="/logout" class="button">Logout</a></li>
+            {% endif %}
           </ul>
         </div>
         <h2>Herman's Blog <small>Herp Derp</small></h2>
@@ -33,23 +41,27 @@
       <!-- Main Blog Content -->
       <div class="large-9 columns" role="content">
       
-	<form>
+              {% if {{ username }} == "Herman" }
+        <form>
           <h3>Blog Post Title</h3>
-	  <input type="text" name="title"> </br>
-	  <h4>Post</h4>
-	  <textarea rows="50" cols="10" name="post"></textarea>
-    
-	
-	<!-- End Main Content -->
+          <input type="text" name="title"> </br>
+          <h4>Post</h4>
+          <textarea rows="50" cols="10" name="post"></textarea>
+            </form>
+            
+            {% else %}
+            <h1>You have no rights here</h1>
+        
+        <!-- End Main Content -->
  
-	<!-- End Main Content and Sidebar -->
+        <!-- End Main Content and Sidebar -->
       
       
       <!-- Footer -->
       
       <footer class="row">
-	<div class="large-12 columns">
-	  <hr />
+        <div class="large-12 columns">
+          <hr />
       <div class="row">
         <div class="large-6 columns">
           <p>&copy; Copyright Stuyvesant High School Students</p>
@@ -57,8 +69,17 @@
         <div class="large-6 columns">
           <ul class="inline-list right">
             <li><a href="/index">Home</a></li>
-            <li><a href="aboutme">About Me</a></li>
-            <li><a href="posts">Posts</a></li>
+            <li><a href="/aboutme">About Me</a></li>
+            <li><a href="/posts">Posts</a></li>
+            {% if {{ username }} == "" %}
+            <li><a href="/login">Login</a></li>
+            {% else %}
+            <li><a href="#">{{ username }}</a></li>
+                {% if {{ username }} == "Herman" %}
+                    <li><a href="/createpost">Create Post</a></li>
+                {% endif %}
+            <li><a href="/logout">Logout</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
