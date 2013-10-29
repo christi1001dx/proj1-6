@@ -33,7 +33,7 @@ def register():
         password = request.form["password"].encode("ascii", "ignore")
         a = mangodb.dregister(username, password)
         if (a == "ok"):
-            return redirect("/login")
+            return redirect("/login", error = a)
         else:
             return render_template("register.html", error = a)
 
@@ -50,10 +50,10 @@ def logout():
 @app.route("/makepost")
 def makepost():
      if request.method == "GET":
-        return render_template("makepost.html")
+        return render_template("createpost.html")
     else:
-        name = request.form["name"]
-        text = request.form["text"]
+        name = request.form["title"]
+        text = request.form["post"]
         mongodb.newpost(name, text)
         return redirect("/")
 
