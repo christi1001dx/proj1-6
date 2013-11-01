@@ -55,7 +55,7 @@ def register():
         elif button == "Cancel":
             return render_template("register.html")
 
-@app.route("/     ", methods =["GET", "POST"])
+#@app.route("/     ", methods =["GET", "POST"])
 
 
 
@@ -64,3 +64,8 @@ def register():
 def logout():
     session.pop("username", None)
     return redirect("/")
+    
+    
+if __name__ == "__main__":
+    app.debug = True
+    app.run(host = '0.0.0.0', port = 5000)
