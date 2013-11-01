@@ -17,10 +17,10 @@ def addPost(title, author, content,date):
     db = client['JEJA']
     
     #Create a unique ID for each post
-    #Lazy way: generate IDs until you get a unique one
-    id = randrange(000000,999999)
-    while db.Posts.find({'ID':id}).count() != 0:
-        num = randrange(0000000,999999)
+    #sort ids in descending order
+    #grab highest ID, add 1
+    currentIDs = db.Posts.find().sort("ID", -1)
+    newID = currentIDs[0]['ID'] + 1
     
     db.Posts.insert({'Title':title,'Author':author,'Content':content,'Date':date,'ID': id})
     return id
