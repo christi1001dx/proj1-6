@@ -16,6 +16,10 @@ env.globals.update(helpers=helpers)
 def get_form_value(key):
     return request.form[key].encode("ascii", "ignore")
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
 @app.route('/')
 def index():
     return render_template("index.html")

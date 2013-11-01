@@ -7,27 +7,26 @@
     </head>
 
     <body>
-	<div id="Top"></div> 
-	<div id="Setup">LOGIN 
-	    <img src="LOCK.png" /> 
-	    <br>
-	    <a href = 'register'>Want to Register?</a>
-	</div>
+	<form action="#" method="post">
+	    <div id="Top"></div> 
+	    <div id="Setup">LOGIN 
+		<img src="static/LOCK.png" /> 
+		<br>
+		<a href="register">Want To Register?</a>
+	    </div>
 
-	<br>
-	<input type = "submit" value = "Register" name = "button" style = "display:none"/>
-	<form method="POST">
+	    <br>
 	    <div id="LoginID">User ID:</div>
 	    <fieldset>
-	      <input type="text" id="ID" value="username" name = "username" placeholder="Enter ID" />
+		<input type="text" id="ID" name = "username"placeholder="Enter ID" />
 	    </fieldset>
 	    <br>
 	    <div id="LoginP">Password:</div>
 	    <fieldset>
-	       <input type="text" id="Password" value="password" name = "password"  placeholder="Enter Password" />
+		<input type="password" id="Password" name = "password" placeholder="Enter Password" />
 		<br>
 		<br>
-		<input type="submit" value="Login" name = "button" /> 
+		<input type="submit" value="Submit" name = "button" /> 
 		<br>
 	    </fieldset>
 	</form>
