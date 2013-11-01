@@ -12,16 +12,9 @@ body {
 #NavigationMenu {
     position:relative;
     width:1100px;
-    height:120px;
-    top:5%;
-}
-
-#LoginRegister {
-    position:relative;
-    height:50px;
-    width:400px;
-    float:right;
-    right:11%;
+    height:160px;
+    padding-top:10px;
+    border:5px solid black;
 }
 
 .btn {
@@ -112,14 +105,30 @@ nav ul li a:hover span {
     color: #00ffff;
     }
 
+#SectionOne {
+    position:relative;
+    height:210px;
+    width:100%;
+    min-width:1280px;
+    border:5px solid black;
+}
+
+#SectionTwo {
+    position:relative;
+    height:210px;
+    width:100%;
+    min-width:1280px;
+    border:5px solid black;
+}
+
 #Featured {
     position:relative;
-    height:100px;
+    border: 5px solid white;
+    height:200px;
     width:600px;
     font-size:40px;
     color:white;
-    left:3%;
-    top:10%;
+    float:left;
 }
 
 #Featured span {
@@ -131,12 +140,12 @@ nav ul li a:hover span {
 
 #Sports {
     position:relative;
-    height:100px;
-    width:300px;
+    height:200px;
+    width:320px;
     font-size:25px;
     color:white;
-    left:3%;
-    top:35%;
+    border:5px solid blue;
+    float:left;
 }
 
 #Sports span {
@@ -145,12 +154,23 @@ nav ul li a:hover span {
 
 #Arts-Ent {
     position:relative;
+    height:200px;
+    width:320px;
+    font-size:25px;
+    color:white;
+    border:5px solid green;
+    float:left;
+    display:block;
+}
+
+#Humor {
+    position:relative;
     height:100px;
     width:300px;
     font-size:25px;
     color:white;
-    left:27%;
-    top:19%;
+    border:5px solid black;
+    float:right;
 }
 
 #Arts-Ent span {
@@ -160,25 +180,26 @@ nav ul li a:hover span {
 #Opinion {
     position:relative;
     height:200px;
-    width:200px;
+    width:415px;
     font-size:25px;
     color:white;
-    left:51%;
-    top:-35.5%;
+    border:5px solid red;
+    float:left;
 }
 
 #Opinion span {
     font-size:15px;
 }
 
-#Lab {
+#Humor {
     position:relative;
-    height:20px;
-    width:400px;
+    height:200px;
+    width:415px;
     font-size:25px;
     color:white;
-    left:68%;
-    top:-67%;
+    border:5px solid yellow;
+    float:left;
+
 }
 
 #Lab span {
@@ -187,14 +208,15 @@ nav ul li a:hover span {
 
 #Academics {
     position:relative;
-    height:130px;
-    width:400px;
+    height:200px;
+    width:415px;
     font-size:25px;
     color:white;
-    left:68%;
-    bottom:32%;
+    border:5px solid orange;
+    float:left;
 }
 
 #Academics span {
     font-size:15px;
 }
+

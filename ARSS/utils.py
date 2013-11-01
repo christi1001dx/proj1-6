@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 def mongo_init():
     client = MongoClient()
-    db=client.AARS
+    db=client.ARSS
     return db
 
 #####STORY FUNCTIONS######

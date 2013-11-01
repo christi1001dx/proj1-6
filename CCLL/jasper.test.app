@@ -11,10 +11,8 @@ app.secret_key = 'maroon5'
 
 @app.route("/")
 def home():
-    if 'username'  in session:
-        return render_template("template.index.html")
-    else: 
-        return redirect("/login")
+    return redirect("/login")
+#    return render_template("template.blogposts.html",posts=utils.getPosts('jasper',db.posts))
 
 @app.route("/login",methods=['GET','POST'])
 def login():

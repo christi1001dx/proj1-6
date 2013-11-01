@@ -3,10 +3,10 @@ from flask.ext import shelve
 from flask import session,url_for,request,redirect,render_template
 
 from pymongo import MongoClient
-connection = MongoClient('db.stuycs.org')
-#connection = MongoClient ()
-SQL_Users=connection.admin
-SQL_Users.authenticate('softdev','softdev')
+#connection = MongoClient('db.stuycs.org')
+connection = MongoClient ()
+#SQL_Users=connection.admin
+#SQL_Users.authenticate('softdev','softdev')
 print (connection.database_names())
 import utils_Login
 import utils
@@ -82,7 +82,7 @@ def newPost ():
 	if button == 'submit':
             title = request.form['title'].encode ('ascii',"ignore")
 	    genre = request.form['genre'].encode ('ascii',"ignore")
-	    blog = request.form['Blog'].encode ('ascii',"ignore")
+	    blog = request.form['blog'].encode ('ascii',"ignore")
             username = session['username']           
             utils. addPost (username, title, blog, genre)
 	else:
