@@ -49,6 +49,8 @@ def post(user, post):
         return False
 
 
-def comment(user, comment):
+def comment(user, comment,post):
     collection = db.comments
-    
+    db.comments.insert( {"name":user, "comment":comment, "post"=post} )
+    return True
+
