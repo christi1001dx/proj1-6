@@ -2,7 +2,9 @@ from pymongo import MongoClient
 from datetime import datetime
 
 def connect():
-    mango = MongoClient()
+    mango = MongoClient("db.stuy.cs")
+    db = mango.admin
+    db.authenticate('softdev', 'softdev')
     mangodb = mango.levenpoka
     logcol = mangodb.flynn
     postcol = mangodb.tron
