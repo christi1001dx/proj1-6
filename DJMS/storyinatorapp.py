@@ -22,4 +22,7 @@ def login():
        username = request.form["username"].encode("ascii","ignore")
         password = request.form["password"].encode("ascii","ignore")
 
-        
+@app.route("/logout")
+def logout():
+    session.pop("username", None)
+    return redirect("/")
