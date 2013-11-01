@@ -1,5 +1,6 @@
 # JRBS - Interface with the SQLite database
 
+import hashlib
 import sqlite3
 
 SCHEMA_FILE = "schema.sql"
@@ -61,7 +62,14 @@ class Database(object):
             return conn.execute(query, *args).fetchall()
 
     def login(self, username, password):
-        pass
+        """Returns one of "no user", "bad password", "ok"."""
+        r = self._execute("SELECT * FROM users WHERE user_name = ?", username)
+        if not r:
+            return "no user"
+        user = User(*r[0])
+        if user.password_hash != hashlib.sha256(password).hexdigest():
+            return "bad password"
+        return "ok"
 
     def register(self, username, display_name, password):
         pass
