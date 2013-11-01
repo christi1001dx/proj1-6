@@ -12,8 +12,23 @@ posts = db.posts
 def formatPosts():
 	# retrieve posts for main page
 
+def posts():
+	return posts.find()
+
 def post(post):
-	# retrieve post by number
+	return posts.find({ "id" : post })
+
+def profiles():
+	return users.find()
 
 def profile(username):
+	return users.find({ "username" : username })
 
+def authenticate(username, passwordj):
+	user = users.find_one({ "username" : username})
+	if user is not None and password = user["password"]:
+		return True
+	return False
+
+def login(username):
+	session["username"] = username
