@@ -20,12 +20,13 @@
         {{post.title}}
         </div>
         <div id="Content">
-            {{post.content}}
+            {{post.text}}
         </div>
         <div id="Author">
-            By {{post.author}}
+            By {{post.username}}
         </div>
         <ul>
+
         {{ for c in comments }}
         <li id="Comment">
         <div>{{c.comment}}</div>
