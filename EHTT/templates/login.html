@@ -21,6 +21,13 @@
             <li><a href="/login" class="button">Login</a></li>
             {% else %}
             <li><a href="#" class="button">{{ name }}</a></li>
+<<<<<<< HEAD
+=======
+                    {% if {{ username }} == "Herman" %}
+                    <li><a href="/createpost" class="button">Create Post</a></li>
+                {% endif %}
+            <li><a href="/logout" class="button">Logout</a></li>
+>>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a
             {% endif %}
           </ul>
         </div>
@@ -35,6 +42,7 @@
       
       <!-- Main Blog Content -->
       <div class="large-9 columns" role="content">
+<<<<<<< HEAD
 	
 	{% if {{ error }} != "ok" %}
 	
@@ -51,6 +59,24 @@
 	<a href="/index" class = "button">Home</a>
 	{% endif %}
 	
+=======
+        
+        {% if {{ error }} != "ok" %}
+        
+        <h1>Login</h1>
+        <form method="POST">
+          Username: <input type="text" name="username"></input>
+          Password: <input type="password" name="password"></input>
+          <input type="submit" name="button" value="submit"></input>
+        </form>
+        <p>Access to special privileges for registered users only</p>
+        <a href="/register" class = "button">Register</a>
+        
+        {% else %}
+        <a href="/index" class = "button">Home</a>
+        {% endif %}
+        
+>>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a
       </div>
       
       <!-- End Main Content -->
@@ -64,8 +90,8 @@
     
     <footer class="row">
       <div class="large-12 columns">
-	<hr />
-	<div class="row">
+        <hr />
+        <div class="row">
           <div class="large-6 columns">
             <p>&copy; Copyright Stuyvesant High School Students</p>
           </div>
@@ -74,10 +100,21 @@
             <li><a href="/index">Home</a></li>
             <li><a href="/aboutme">About Me</a></li>
             <li><a href="/posts">Posts</a></li>
+<<<<<<< HEAD
             {% if {{ error }} != "ok" %}
             <li><a href="/login">Login</a></li>
             {% else %}
             <li><a href="#">{{ name }}</a></li>
+=======
+            {% if {{ username }} == "" %}
+            <li><a href="/login">Login</a></li>
+            {% else %}
+            <li><a href="#">{{ name }}</a></li>
+                    {% if {{ username }} == "Herman" %}
+                    <li><a href="/createpost">Create Post</a></li>
+                {% endif %}
+            <li><a href="/logout">Logout</a></li>
+>>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a
             {% endif %}
           </ul>
         </div>
