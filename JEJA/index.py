@@ -17,16 +17,20 @@ def authorLinksHTML():
     <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
     '''
 
+def formatComments(data):
+    r = ""
+    for x in range(0,len(data)):
+        r += formatComment(data[x])
+        
+    return r
 
 def formatComment(data):
     # data:
     # username = username
     # content = comment content
-    return '''
-    	      <tr>
-		<td><a href="#">%(username)s</a><br />%(content)s</td>
-	      </tr>
-'''%(data)
+    return '''              <tr>
+                <td><a href="#">%(username)s</a><br />%(content)s</td>
+              </tr>'''%(data)
 
 def formatPost(data):
     # data:
@@ -48,12 +52,15 @@ def formatPost(data):
 	  <td colspan="2">
 	    <table class="table comments">
               %(comments)s
+              <tr class="commentTr">
+                <td><form action="#" method="post"><strong>Add new comment:</strong><br /><input name="comment" type="text" size="100" /></form></td>
+              </tr>
 	    </table>
 	  </td>
 	</tr>
 	<tr class="active">
 	  <td class="links left">
-	    <a href="#" class="btn btn-primary">Comment</a>
+	    <a href="#" class="btn btn-primary commentLink">Comment</a>
 	    <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
 	  </td>
 	  <td class="links right">

@@ -13,7 +13,7 @@
 	 \_____\/       \/_____/   \/_______/   \/_______/         
 															   
 
-*	Severyn Kozak
-*	Jane Argodale
-*	Derek Tang
-*	Jae Ahn
+*	Severyn Kozak (*Group Leader*): back-end
+*	Derek Tang: back-end
+*	Jane Argodale: front-end
+*	Jae Ahn: front-end
