@@ -78,6 +78,19 @@ def submit(name):
 def logout():
     return redirect(url_for('home'))
 
+@app.poute("/blogPost")
+def individualPostPage (title, comment, author, comments):
+    if request.method=="GET":
+	return render_template("post.htm"l, title = title, author = author, comments = comments)
+    else:
+        newcomment = request.form['comment'].encode ('ascii',"ignore")
+        finalComments = comments.append (newcomment)
+        name = session['username']
+        utils.addComments (name, comments)
+        
+
+        
+
 if __name__=="__main__":
     app.debug=True
     app.run(host='0.0.0.0',port=5000)
