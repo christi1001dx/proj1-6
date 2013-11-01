@@ -74,6 +74,10 @@ def submit(name):
 	else:
 	    return render_template("template.submit.html")
 
+@app.route("/post/<_id>")
+def post(_id):
+    return render_template("template.post.html", post = utils.getPost(_id, db.posts))
+
 @app.route("/logout")
 def logout():
     return redirect(url_for('home'))
