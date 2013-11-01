@@ -11,7 +11,15 @@ def register(user, pword):
     else:
         db.info.insert( {"username":user, "password":pword, "admin":0} )
         return True
-    
+
+def addAdmin(user,pword):
+    collection = db.users
+    if ( (db.users.find({username:user}) ) ).count() > 0:
+        return False
+    else:
+        db.info.insert( {"username":user, "password":pword, "admin":1} )
+        return True
+
 def unregister(user, pword):
     collection = db.users
     db.users.remove( {"user":user, "pword":pword} )
