@@ -23,9 +23,12 @@ def archive():
 def posts():
     return "<h1> should be able to navigate through posts, comments, etc. </h1>"
 
+<<<<<<< HEAD
+=======
 # @app.route("/posts/user")
 # def user():
 #     return """
 # <h1> navigation of users should go here </h1>
 # <h2> /posts/user/userid should take you to a user's posts </h2>
 # """
+>>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a

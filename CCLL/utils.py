@@ -13,3 +13,8 @@ def addPost (user, title, genre, text, coll):
 def getPosts (user, coll):
     return [x for x in coll.find({'username':user}).sort([('date',-1)])]
 
+def getPostsGenre(genre, coll):
+    return [x for x in coll.find({'genre':genre}).sort([('date',-1)])]
+
+def getPost(_id, coll):
+    return [x for x in coll.find('_id':id)]

@@ -14,10 +14,10 @@ def home():
     return render_template("index.html", recentposts = recentposts)
 
 
-@app.route("/newpost", methods = ['GET', 'POST'])
+@app.route("/new-post", methods = ['GET', 'POST'])
 def newPost():
     if request.method == "GET":
-        return render_template("newpost.html")
+        return render_template("newPost.html")
     elif request.form['button'] == "Cancel":
         return redirect("/")
     else:
@@ -28,7 +28,7 @@ def newPost():
         id = utils.addPost(title, session['username'], content, datetime.datetime.now())
         return redirect("/getpost?id="+id)
 
-@app.route("/getpost")
+@app.route("/post")
 def getPost():
     id = request.args.get("id")
     if utils.auth(id, session["username"]):

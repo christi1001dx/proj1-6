@@ -1,10 +1,11 @@
-
-
 <html>
   <head>
     <title>Bootstrap Template</title>
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="/static/jquery.js"></script>
+    <script type="text/javascript" src="/static/stuff.js"></script>
 
     <style type="text/css">
       a.postTitle { font-size:25px; }
@@ -27,50 +28,23 @@
   </head>
   <body>
 
-    <h1>Blog</h1>
+    <h1 style="text-align:center">Blog</h1>
 
     <div class="col-md-2">&nbsp;</div>
     <div id="main" class="col-md-8">
 
       <div class="options">
-	<a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Create New Post</a>
+	<a href="/new-post" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Create New Post</a>
       </div>
-
-      <table class="table post">
-	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="#">Title</a><div class="postAuthor">Posted by <a href="#">User</a></div></td></tr>
-	<tr class="active"><td colspan="2">Content<br /><br />stuff</br /><br />stuff</td></tr>
-	<tr class="active">
-	  <td colspan="2" class="likes">
-	    <span class="glyphicon glyphicon-thumbs-up"></span> <a href="#">User</a>, <a href="#">User 2</a>
-	  </td>
-	</tr>
-	<tr class="active">
-	  <td colspan="2">
-	    <table class="table comments">
-	      <tr>
-		<td><a href="#">User</a><br />Comment comment</td>
-	      </tr>
-	      <tr>
-		<td><a href="#">User2</a><br />Comment comment</td>
-	      </tr>
-	    </table>
-	  </td>
-	</tr>
-	<tr class="active">
-	  <td class="links left">
-	    <a href="#" class="btn btn-primary">Comment</a>
-	    <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-	  </td>
-	  <td class="links right">
-	    <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-	    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-	  </td>
-	</tr>
-      </table>
     </div>
+
+    {{data|safe}}
 
     <div class="col-md-2">&nbsp;</div>
 	
+
+
+    <script type="text/javascript" src="/static/stuff.js"></script>
 
 
   </body>
