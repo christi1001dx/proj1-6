@@ -1,0 +1,10 @@
+Jia:
+Login needs to be done.
+Register needs to be done.
+Post linking needs to be done (will personally update later)
+Title Post needs to be done (db/python end?)
+comment linking comment submitting needs to be done
+Priority: Max 
+
+Search
+Priority: None
