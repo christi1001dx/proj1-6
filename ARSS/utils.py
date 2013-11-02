@@ -96,3 +96,13 @@ def account_exists(username, password):
         return True
     else:
         return False
+
+# used to change password to password2
+def change_password(username, password, password2):
+    if (password.__len__() < 4):
+        return "too short"
+    elif (password != password2):
+        return "retype: password mismatch"
+    else:
+        get_collection().update({'username': username}, {'$set':{'password': password}})
+        return "successfully changed password" 
