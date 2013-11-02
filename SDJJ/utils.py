@@ -16,25 +16,26 @@ def query(query):
 	# returns dictionary with keys {"posts", "profiles", "comments"}
 	# values are arrays containing query results for each
 	# querying should be conducted with a regex match on the query string
+    return
 
 # post should contain author, title, data, subjet line, body, comments
 def post(post):
 	return posts.find({ "id" : post })
 
 def userpost(username, post):
-    temp = [x for x in users.find({'username':username},fields={'_id':False})]
-    temp =  temp[0]['posts']
+    temp = users.find_one({'username':username})
+    temp =  temp['posts']
     postsize = posts.count()
     temp.extend([postsize + 1]) #new postid
     users.update({'username':username},{'$set':{'posts':temp}}) #adds the postid of new post in the user's list of postids theyve written
     posts.insert({'postid':postsize + 1,'user':username,'post':post,'comments':[]}) #adds new post
 
 def usercomment(username, post, comment):
-    temp = [x for x in posts.find({'post':post},fields={'_id':False})]
-    postnum = temp[0][postid]
-    temp = temp[0]['comments']
-    temp.extend[comment] 
-    commentid = temp.len() + 1 
+    temp = posts.find_one({'post':post})
+    postnum = temp['postid']
+    temp = temp['comments']
+    temp = temp + [comment] 
+    commentid = len(temp) + 1
     posts.update({'post':post},{'$set':{'comments':temp}}) #updates new comment to post's list of comments
     temp = [x for x in users.find({'username':username},fields={'_id':False})]
     temp = temp[0]['comments']
@@ -63,7 +64,7 @@ def register(username,password):
     db = work()
     chk = db.user.find_one({'username':username})
     if(chk == None):
-       db.accounts.insert({'username':username,'password':password,'posts':[],'comments':[]})
+       users.insert({'username':username,'password':password,'posts':[],'comments':[]})
        return True
     else:
         return False
