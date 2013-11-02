@@ -3,7 +3,7 @@
 Profiles
 {% endblock %}
 {% block content %}
-	{% for username in profiles %}
-          do something
+         {% for profile in profiles %}
+    <p id="username">{{ profile.username }}</p>
         {% endfor %}
 {% endblock %}
