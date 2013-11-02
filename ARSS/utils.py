@@ -68,6 +68,11 @@ def return_all_lines(title):
     lineslist = list(db.lines.find({'title':title}))
     return lineslist
 
+#####LOGIN FUNCTIONS######
 
+from pymongo import MongoClient
 
-
+def get_collection():
+    connection = MongoClient()
+    db = connection.login.users
+    return db
