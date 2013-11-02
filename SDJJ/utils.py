@@ -25,21 +25,21 @@ def userpost(username, post):
     temp = [x for x in users.find({'username':username},fields={'_id':False})]
     temp =  temp[0]['posts']
     postsize = posts.count()
-    temp.extend([postsize])
-    user.update({'username':username},{'$set':{'posts':temp}})
-    posts.insert({'postid':postsize + 1,'user':username,'post':post,'comments':[]})
+    temp.extend([postsize + 1]) #new postid
+    users.update({'username':username},{'$set':{'posts':temp}}) #adds the postid of new post in the user's list of postids theyve written
+    posts.insert({'postid':postsize + 1,'user':username,'post':post,'comments':[]}) #adds new post
 
 def usercomment(username, post, comment):
-    temp = [x for x in users.find({'post':post},fields={'_id':False})]
+    temp = [x for x in posts.find({'post':post},fields={'_id':False})]
     postnum = temp[0][postid]
     temp = temp[0]['comments']
-    temp.extend[comment]
-    commentid = temp.len() + 1
-    posts.update({'post':post},{'$set':{'comments':temp}})
-    temp = [x for x in user.find({'username':username},fields={'_id':False})]
+    temp.extend[comment] 
+    commentid = temp.len() + 1 
+    posts.update({'post':post},{'$set':{'comments':temp}}) #updates new comment to post's list of comments
+    temp = [x for x in users.find({'username':username},fields={'_id':False})]
     temp = temp[0]['comments']
-    temp.extend([postnum*31415 + commentid*27182])
-    user.update({'username':username},{'$set':{'comments':temp}})
+    temp.extend([postnum*31415 + commentid*27182]) #arbitrary for now
+    users.update({'username':username},{'$set':{'comments':temp}}) #udates user's list of comments with arbitrary comment id
 
 
 

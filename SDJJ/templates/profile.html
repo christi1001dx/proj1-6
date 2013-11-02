@@ -1,4 +1,10 @@
 {% extends "layout.html" %}
+{% block pagename %}
+{{profile.username}}
+{% endblock %}
 {% block content %}
-	<!--content here-->
+<h3>Posts</h3>
+{{profile.posts}}
+<h3>Comments</h3>
+{{profile.comments}}
 {% endblock %}

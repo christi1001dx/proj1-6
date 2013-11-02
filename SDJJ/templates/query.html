@@ -1,4 +1,13 @@
 {% extends "layout.html" %}
+{% block pagename %}
+Search Results
+{% endblock %}
 {% block content %}
-	<!--content here-->
+<h3>Posts</h3>
+	{{results.posts}}
+<h3>Profiles</h3>
+	{{results.profiles}}
+<h3>Comments</h3>
+	{{results.comments}}
+
 {% endblock %}

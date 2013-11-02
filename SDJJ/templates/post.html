@@ -1,4 +1,9 @@
 {% extends "layout.html" %}
+{% block pagename %}
+{{post.title}}
+{% endblock %}
+<h3>by {{post.user}}</h3>
 {% block content %}
-	<!--content here-->
+{{post.post}}
+{{post.comments}}
 {% endblock %}
