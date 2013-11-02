@@ -21,6 +21,28 @@ def query(query):
 def post(post):
 	return posts.find({ "id" : post })
 
+def userpost(username, post):
+    temp = [x for x in users.find({'username':username},fields={'_id':False})]
+    temp =  temp[0]['posts']
+    postsize = posts.count()
+    temp.extend([postsize])
+    user.update({'username':username},{'$set':{'posts':temp}})
+    posts.insert({'postid':postsize + 1,'user':username,'post':post,'comments':[]})
+
+def usercomment(username, post, comment):
+    temp = [x for x in users.find({'post':post},fields={'_id':False})]
+    postnum = temp[0][postid]
+    temp = temp[0]['comments']
+    temp.extend[comment]
+    commentid = temp.len() + 1
+    posts.update({'post':post},{'$set':{'comments':temp}})
+    temp = [x for x in user.find({'username':username},fields={'_id':False})]
+    temp = temp[0]['comments']
+    temp.extend([postnum*31415 + commentid*27182])
+    user.update({'username':username},{'$set':{'comments':temp}})
+
+
+
 def profiles():
 	return users.find()
 
@@ -30,12 +52,18 @@ def profile(username):
 
 def authenticate(username, passwordj):
 	user = users.find_one({ "username" : username})
-	if user is not None and password = user["password"]:
+	if user is not None and password == user["password"]:
 		return True
 	return False
 
 def login(username):
 	session["username"] = username
 
-def register(username, password):
-	# insert username, password pair into db
+def register(username,password):
+    db = work()
+    chk = db.user.find_one({'username':username})
+    if(chk == None):
+       db.accounts.insert({'username':username,'password':password,'posts':[],'comments':[]})
+       return True
+    else:
+        return False
