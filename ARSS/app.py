@@ -21,12 +21,16 @@ def get_form_value(key):
 def test():
     return render_template('test.html')
 
+@app.route('/story')
+def story():
+    return render_template('story.html')
+
 @app.route('/')
 def index():
     return render_template("index.html")
 
 @app.route('/story/<name>', methods = ['GET'])
-def story(name):
+def stor(name):
     return json.dumps(utils.return_all_lines(name))
 
 @app.route('/login', methods = ['GET', 'POST'])
