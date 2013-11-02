@@ -1,1 +1,9 @@
-/* stylesheet for all templates */
+@font-face
+{
+font-family: Arbutus;
+src: url(http://fonts.googleapis.com/css?family=Arbutus);
+}
+
+h1
+{font-family: Arbutus;
+}
