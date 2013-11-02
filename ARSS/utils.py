@@ -68,6 +68,41 @@ def return_all_lines(title):
     lineslist = list(db.lines.find({'title':title}))
     return lineslist
 
+#####LOGIN FUNCTIONS######
 
+from pymongo import MongoClient
 
+def get_collection():
+    connection = MongoClient()
+    db = connection.login.users
+    return db
 
+# used for register
+# user must type password 2 times to make account
+def add_user(username, password, password2):
+    if (get_collection().find_one({'username': username}, fields = {'_id': False})):
+        return "copy"
+    elif (password.__len__() < 4):
+        return "short password"
+    elif (password != password2):
+        return "retype: passwords mismatch"
+    else:
+        get_collection().insert({'username': username, 'password': password})
+        return "good job"
+
+# used to validate login
+def account_exists(username, password):
+    for x in get_collection().find({'username': username, 'password': password}):
+        return True
+    else:
+        return False
+
+# used to change password to password2
+def change_password(username, password, password2):
+    if (password.__len__() < 4):
+        return "too short"
+    elif (password != password2):
+        return "retype: password mismatch"
+    else:
+        get_collection().update({'username': username}, {'$set':{'password': password}})
+        return "successfully changed password" 
