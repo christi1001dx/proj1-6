@@ -16,10 +16,10 @@ def login():
     else:
         username = request.form["name"].encode("ascii", "ignore")
         password = request.form["password"].encode("ascii", "ignore")
-        verify = Database(name, password)
-        answer = verify.login()
-        if not answer == "ok":
-            return render_template("login.html", message = "Username does not exist or incorrect user/pw combination")
+        verify = Database(name, password) #not sure if this is the correct way of calling Database
+        answer = verify.login() #http://stackoverflow.com/questions/7965114/calling-a-function-from-class-in-python-different-way
+        if not answer == "ok": #used ^^^^^^ to try and help with this.
+            return render_template("login.html", message = "Username does not exist or incorrect user/pw combination.")
         else:
             redirect(url_for('posts'))
 
@@ -36,11 +36,13 @@ def signup():
         box = request.form["acceptTerms"]
         if button == "Register":
             if not box:                
-                return render_template("register.html", message = "you need to check the box first")
-            elif stuff.check(username) : #check will return true if  username is not found, false otherwise
+                return render_template("register.html", message = "Please accept the terms and conditions.")
+            elif not password1 == password2:
+                return render_template("register.html", message = "Your passwords do not match!")
+            elif stuff.check(username) : #check should return true if  username is not found, false otherwise
                 session["name"] = username
-                add = Database(username, password)
-                add.register()
+                add = Database(username, displayname, password) #same problem as with login; don't know if this
+                add.register()  #is the correct way of calling Database, so I'll just leave this in place for now.
                 return redirect(url_for('posts'))
         
 @app.route("/new")
@@ -54,7 +56,8 @@ def new():
     elif button1:
         return redirect(url_for('posts'))
     elif button2:
-        #add = Post() *****what to add in the parenthese...hmmmm....
+        #add = Post() *****don't know how to do this...hmmmm....******
+        #possibly create a Post and add it to db? coming back to this later.
         return redirect(url_for('posts'))
 
 #@app.route("/archive")
@@ -76,15 +79,17 @@ def posts():
             user_id = stuff.getUser()
             return redirect(url_for('posts/user/{user_id}' % user_id))
         else
-            page_number = page #don't think this works, but putting it here anyway
-            return redirect(url_for('posts/{page_number}' % page)
+            page_number = page 
+            return redirect(url_for('posts/{page_number}' % page) #don't think this works, but putting it here anyway
 
 @app.route("/posts/{page_number}")
 def posts():
     button = request.form["home"]
     page = request.form["pagenumber"]
-    if request.method=="GET":
-        return render_template("posts") #dunno what to do here, maybe use databse to create the page?
+    if request.method=="GET":           #don't know how to make the page based on pg # here....
+        return render_template("posts") #so I'll just leave what I was trying to do below.
+        #pg = Database(None, page)
+        #return render_template("posts", posts = pg.get_posts()) ****get_posts() is from database.py******
     elif button == "home"
         return redirect(url_for('posts')
     else
@@ -120,3 +125,7 @@ def logout():
     if 'username' in session:
         session.pop('username', None)
     return redirect('posts')
+    
+if __name__=="__main__":
+    app.debug=True
+    app.run()
