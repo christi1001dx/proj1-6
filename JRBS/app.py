@@ -18,7 +18,7 @@ def signup():
         password2 = request.form["password2"].encode("ascii", "ignore")
         button = request.form["button"]
         box = request.form["acceptTerms"]
-        if button == "Login":
+        if button == "Register":
             if not box:                
                 return render_template("register.html", message = "you need to check the box first")
             elif stuff.check(username) :
@@ -46,7 +46,7 @@ def new():
 #        return render_template
 
 #@app.route("/admin") ******leaving this blank for now. saving for later.*****
-#def admin():
+#def admin(): *****admin should be able to delete posts and stuff here****
 
 @app.route("/posts")
 def posts():
@@ -59,18 +59,41 @@ def posts():
             user_id = stuff.getUser()
             return redirect(url_for('posts/user/{user_id}'))
         else
-            page_number = page
+            page_number = page #don't think this works, but putting it here anyway
             return redirect(url_for('posts/{page_number}')
 
 @app.route("/posts/{page_number}")
 def posts():
     button = request.form["home"]
+    page = request.form["pagenumber"]
     if request.method=="GET":
-        return render_template("users")
-    else 
-        return "<h1> should be able to navigate through posts, comments, etc. </h1>"
+        return render_template("posts") #dunno what to do here, maybe use databse to create the page?
+    elif button == "home"
+        return redirect(url_for('posts')
+    else
+        page_number = page
+        return redirect(url_for('posts/{page_number}')
     
 @app.route("/posts/user/{user_id}")
+def posts():
+    button = request.form["home"]
+    page = request.form["pagenumber"]
+    if request.method=="GET":
+        return render_template("posts") #same as above
+    elif button == "home"
+        return redirect(url_for('posts')
+    else 
+        page_number = page
+        return redirect(url_for('posts/user/{user_id}/{page_number}'))
 
 @app.route("/posts/user/{user_id}/{page_number}")
-
+def posts():
+    button = request.form["home"]
+    page = request.form["pagenumber"]
+    if request.method=="GET":
+        return render_template("posts") # same as above
+    elif button == "home"
+        return redirect(url_for('posts')
+    else
+        page_number = page
+        return redirect(url_for('posts/user/{user_id}/{page_number}'))
