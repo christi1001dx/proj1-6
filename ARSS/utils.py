@@ -89,3 +89,10 @@ def add_user(username, password, password2):
     else:
         get_collection().insert({'username': username, 'password': password})
         return "good job"
+
+# used to validate login
+def account_exists(username, password):
+    for x in get_collection().find({'username': username, 'password': password}):
+        return True
+    else:
+        return False
