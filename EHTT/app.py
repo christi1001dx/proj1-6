@@ -42,7 +42,7 @@ def register():
 
 @app.route("/aboutme")
 def aboutme():
-    return render_template("aboutme",username = session["username"])
+    return render_template("aboutme.html",username = session["username"])
 
 @app.route("/logout")
 def logout():
