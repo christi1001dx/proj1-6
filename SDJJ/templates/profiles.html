@@ -1,4 +1,9 @@
 {% extends "layout.html" %}
+{% block pagename %}
+Profiles
+{% endblock %}
 {% block content %}
-	<!--content here-->
+	{% for username in profiles %}
+          do something
+        {% endfor %}
 {% endblock %}
