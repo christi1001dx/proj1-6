@@ -4,113 +4,51 @@
     <style type="text/css">
       h1 {color:red}
     </style>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
     
-    <meta name="description" content="Welcome to BLoginator" />
-    <meta name="keywords" contents="Chicken" />
-    <meta name="author" content="Everybody" />
+    <meta name="description" content="Welcome to Bloginator">
+    <meta name="keywords" contents="Chicken">
+    <meta name="author" content="Everybody">
 					  
     <title> Welcome fellow Bloginator </title>
   </head>
   
-  <body>
-    <h1> this is header </h1>
-    <abbr title="As soon as possible">ASAP</abbr>
-    <acronym title="Be right back">BRB</acronym>
-    <p>
-      <b> this is bold text</b>
-    <p>
-      <big> this is big text</big>
-    <p>
-      <blockquote>this is a block quote</blockquote>
-    <p>
-      <center>this is a center(the center)</center>
-    <p>
-      <i>this is italics</i>
-    <p>
-      This is an image
-    <p>
-      <img src="http://google.com" />
-    <p>
-      <dl>
-	<dt>Bicycle</dt>
-	<dd>has two wheels</dd>
-      </dl>
-    <p>
-      <ol>
-	<li>Car</li>
-	<li>Truck</li>
-      </ol>
-    <p>   
-      <select name="selectinput">
-	<option value="loveselect">I love</option>
-	<option value="hateselect">I hate</option>
-      </select>
-    <p>
-      
-      <form>
-	First name: <input type="text" name="firstname"><br>
-	Last name: <input type="text" name="lastname"><br>
-	Password: <input type="password" name="password"><br>
+  <div id="registration">
+    <h2>Create an Account</h2>
+    
+    <form id="RegisterUserForm" action="" method="post">
+      <fieldset>
 	<p>
-	  Are you male or female?<br>
-	  <input type="radio" name="sex" value="male">Male<br>
-	  <input type="radio" name="sex" vaule="female">Female<br>
+	  <label for="name">Name:</label>
 	<p>
-	  Check the languages you know<br>
-	  <input type="checkbox" name="language" value="HTML">HTML<br>
-	  <input type="checkbox" name="language" value="PHP">PHP<br>
-	  <input type="checkbox" name="language" value="C">C<br>
+	  <input id="name" name="name" type="text" class="text" placeholder="Username">
 	<p>
-	  <input type="submit" name="submit" value="submit"><br>
+	  <label for="email">Email:</label>
+	<p>
+	  <input id="email" name="email" type="email" class="text" placeholder="sample@example.com">
+	<p>
+	  <label for="password">Password:</label>
+	<p>
+	  <input id="password" name="password1" class="text" type="password" placeholder="*****">
+	<p>
+	  <label for="password">Re-enter Password:</label>
+	<p>
+	  <input id="password" name="password2" class="text" type="password" placeholder="*****">
+	<p>
+	  <input id="acceptTerms" name="acceptTerms" type="checkbox">
+	  <label for="acceptTerms">I agree to the Terms and Conditions and Privacy Policy</label>	
+	<p>
+	  <button id="registerNew" type="submit">Register</button>
+	  <button id="cancel" type="submit">Cancel</button>
 	  
-      </form>
-
-<br><br><br><br><br><br><br><br>
-
-
-      <div id="registration">
-	<h2>Create an Account</h2>
-	
-	<form id="RegisterUserForm" action="" method="post">
-	  <fieldset>
-	    <p>
-	      <label for="name">Name</label>
-	      <input id="name" name="name" type="text" class="text" value="" />
-	    </p>
-	    
-	    <p>
-	      <label for="tel">Phone Number</label>
-	      <input id="tel" name="tel" type="tel" class="text" value="" />
-	    </p>
-	    
-	    <p>
-	      <label for="email">Email</label>
-	      <input id="email" name="email" type="email" class="text" value="" />
-	    </p>
-	    
-	    <p>
-	      <label for="password">Password</label>
-	      <input id="password" name="password" class="text" type="password" />
-	    </p>
-	    
-	    <p><input id="acceptTerms" name="acceptTerms" type="checkbox" />
-	      <label for="acceptTerms">
-		I agree to the <a href="">Terms and Conditions</a> and <a href="">Privacy Policy</a>
-	      </label>
-	    </p>
-	    
-	    <p>
-	      <button id="registerNew" type="submit">Register</button>
-	    </p>
-	  </fieldset>
-	  
-	</form>
-      </div>
+      </fieldset>
       
-      
-      
-
-      
-  </body>
+    </form>
+  </div>
+  
+  
+  
+  
+  
+</body>
 </html>

@@ -47,9 +47,15 @@ def logout():
         session.pop('username', None)
     return redirect("/")
 
+<<<<<<< HEAD
 @app.route("/makepost")
 def makepost():
     if request.method == "GET":
+=======
+@app.route("/createpost")
+def createpost():
+     if request.method == "GET":
+>>>>>>> e9222e05a25e1ec080eec5b69744e1a811cae6cf
         return render_template("createpost.html",session["username"])
     else:
         name = request.form["title"]

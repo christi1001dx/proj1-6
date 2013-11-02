@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>StuySpecBlog</title>
+    <meta charset="utf-8" />
+    <link href="../static/IndexStyle.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body>
+    <div id="NavigationMenu">
+        <nav>
+            <ul>
+                <li><a href="#"><span>SPORTS</span></a></li>
+                <li><a href="#"><span>ARTS/ENT</span></a></li>
+                <li><a href="#"><span>OPINION</span></a></li>
+                <li><a href="#"><span>HUMOR</span></a></li>
+                <li><a href="#"><span>ACADEMICS</span></a></li>
+                <br> <br> <br> <br> <br>
+                <a href="Login.html" class="btn">Login</a>
+                <a href="#" class="btn">Register</a>
+            </ul>
+        </nav>
+    </div>
+    <div id="SectionOne">
+        <span id="Featured">
+            <a id="title" href={featured.link}>{{featured.title}}</a>
+            <span>{{featured.preview}}</span>
+            <span>By {{featured.author}}</span>
+        </span>
+        <span id="Sports">
+            {% for post in sports %}
+            <a id="title" href={{post.link}}>{{post.title}}</a>
+                <br>
+                {{post.preview}}
+                by {{post.author}}
+                {% endfor %}
+        </span> 
+        <span id="Arts-Ent">
+            {% for post in artsent %}
+            <a id="title" href={{post.link}}>{{post.title}}</a>  
+            <br>
+                {{post.preview}}
+                by {{post.author}}
+                {% endfor %}
+        </span>
+    </div>
+    <div id="SectionTwo">
+        <span id="Opinion">
+            {% for post in opinions %}
+            <a id="title" href={{post.link}}>{{post.title}}</a> 
+                <br>
+                {{post.preview}}
+                by {{post.author}}
+                {% endfor %}
+        </span> 
+        <span id="Humor">
+            {% for post in humor %}
+            <a id="title" href={{post.link}}>{{post.title}}</a>  
+                <br>
+                {{post.preview}}
+                by {{post.author}}
+                {% endfor %}
+        </span> 
+        <span id="Academics">
+            {% for post in humor %}
+            <a id="title" href={{post.link}}>{{post.title}}</a>  
+                <br>
+                {{post.preview}}
+                by {{post.author}}
+                {% endfor %}
+        </span> 
+    </div>
+</body>
+
+</html>

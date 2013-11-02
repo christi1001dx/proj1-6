@@ -22,6 +22,7 @@ CREATE TABLE posts (
     post_user INTEGER,
     post_date DATETIME,
     post_text TEXT,
+    post_summary TEXT,
     post_slug TEXT
 );
 

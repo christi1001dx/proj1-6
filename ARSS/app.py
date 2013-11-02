@@ -4,6 +4,7 @@ from flask import Flask
 from flask import request, render_template, redirect, session, url_for
 import utils
 import helpers
+import json
 
 app = Flask(__name__)
 app.secret_key = "abcd"
@@ -24,9 +25,9 @@ def test():
 def index():
     return render_template("index.html")
 
-@app.route('/story')
-def story():
-    pass
+@app.route('/story/<name>', methods = ['GET'])
+def story(name):
+    return json.dumps(utils.return_all_lines(name))
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
