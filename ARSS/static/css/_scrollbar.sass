@@ -1,0 +1,12 @@
+$scrollbarTrackColor: #EBEBEB
+$scrollbarThumbColor: #AFAFAF
+
+::-webkit-scrollbar
+	width: 16px
+::-webkit-scrollbar-track
+	background-color: $scrollbarTrackColor
+::-webkit-scrollbar-thumb
+	@include vendor(border-radius, 20px)
+	@include vendor(box-shadow, inset 0 0 6px rgba(0, 0, 0, 0.2))
+	background-color: $scrollbarThumbColor
+	border: 4px solid $scrollbarTrackColor
