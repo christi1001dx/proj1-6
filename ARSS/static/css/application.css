@@ -24,8 +24,6 @@
     line-height: 0; }
   .sidebar:after {
     clear: both; }
-  .sidebar:hover .sidebar-body {
-    opacity: 1; }
 
 .sidebar-label {
   float: left;
@@ -75,6 +73,8 @@
   width: 250px;
   height: 100%;
   padding: 10px;
+  font-size: 22px;
+  font-family: Oxygen;
   color: white; }
 
 body {
@@ -84,6 +84,13 @@ body {
   -o-transition: padding 0.5s;
   transition: padding 0.5s;
   padding-left: 35px; }
+
+.login-container {
+  text-align: center; }
+  .login-container h3 {
+    margin-bottom: 5px; }
+  .login-container input {
+    margin-bottom: 7px; }
 
 ::-webkit-scrollbar {
   width: 16px;
@@ -105,6 +112,40 @@ body {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   background-color: #afafaf;
   border: 4px solid #ebebeb; }
+
+input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 0.2s;
+  -moz-transition: box-shadow 0.2s;
+  -ms-transition: box-shadow 0.2s;
+  -o-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  display: block;
+  padding: 6px 10px;
+  width: 100%;
+  border: 1px solid #d2d9dc;
+  font-weight: 300;
+  font-size: 14px; }
+  input:focus {
+    -webkit-box-shadow: 0 0 3px #74d2ff;
+    -moz-box-shadow: 0 0 3px #74d2ff;
+    -ms-box-shadow: 0 0 3px #74d2ff;
+    -o-box-shadow: 0 0 3px #74d2ff;
+    box-shadow: 0 0 3px #74d2ff;
+    outline: none;
+    border: 1px solid #74d2ff; }
+
+.button {
+  display: block;
+  padding: 0.1em 0 0.2em;
+  text-align: center;
+  background-color: white;
+  color: black;
+  cursor: pointer; }
 
 .story-container {
   max-width: 900px;
@@ -135,8 +176,8 @@ body {
   text-indent: 2em;
   margin: 1em 0; }
 
-#story-newline:hover {
+#story-new-line:hover {
   border-bottom: 1px dotted; }
-#story-newline:focus {
+#story-new-line:focus {
   outline: none;
   border-bottom: 1px solid; }

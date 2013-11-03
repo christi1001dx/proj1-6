@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Blog</title>
+
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="/static/jquery.js"></script>
+    <!--<script type="text/javascript" src="/static/stuff.js"></script>-->
+
+    <style type="text/css">
+      a.postTitle { font-size:25px; }
+      div.postAuthor {
+         float:right;
+         margin-top:10px;
+      }
+      table.post { border:1px solid rgb(221,221,221); }
+
+      td.links a { margin:0 10px; }
+      
+      .right { text-align:right; }
+
+      div.options {
+         margin: 10px;
+         text-align:center;
+      }
+    </style>
+
+  </head>
+  <body>
+    {{head|safe}}
+    <h1 style="text-align:center">Are you sure you wish to delete this post?</h1>
+    
+    <form method="post">
+      <input type="hidden" name="pid" value="{{post.id}}" />
+      <table class="table">
+	<tr class="active">
+	  <td><input type="submit" value="Yes, delete this post" class="btn btn-danger" /></td>
+	</tr>
+	<tr class="active">
+	  <td><a href="/post?id={{post.id}}">No, take me back to the post</a></td>
+	</tr>
+      </table>
+    </form>
+  </body>
+</html>
+    
+    

@@ -10,8 +10,34 @@
 
 @import scrollbar
 @import sidebar
+@import login
+
 
 @include scrollbar
+
+$blue: #74D2FF
+
+input
+	@include vendor(box-sizing, border-box)
+	@include vendor(transition, box-shadow 0.2s)
+	display: block
+	padding: 6px 10px
+	width: 100%
+	border: 1px solid #D2D9DC
+	font-weight: 300
+	font-size: 14px
+	&:focus
+		@include vendor(box-shadow, 0 0 3px $blue)
+		outline: none
+		border: 1px solid $blue
+
+.button
+	display: block
+	padding: 0.1em 0 0.2em
+	text-align: center
+	background-color: white
+	color: black
+	cursor: pointer
 
 .story-container
 	max-width: 900px
@@ -44,7 +70,7 @@
 	text-indent: 2em
 	margin: 1em 0
 
-#story-newline
+#story-new-line
 	&:hover
 		border-bottom: 1px dotted
 	&:focus

@@ -162,6 +162,8 @@ input[type=submit] {
       width:120px;
       height:120px;
       position:absolute;
+      left:60px;
+      top:80px;
     }
 #home:hover {
     background-color:#00ffff;

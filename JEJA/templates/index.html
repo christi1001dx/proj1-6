@@ -1,11 +1,11 @@
 <html>
   <head>
-    <title>Bootstrap Template</title>
+    <title>Blog</title>
 
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
 
     <script type="text/javascript" src="/static/jquery.js"></script>
-    <script type="text/javascript" src="/static/stuff.js"></script>
+    <!--<script type="text/javascript" src="/static/stuff.js"></script>-->
 
     <style type="text/css">
       a.postTitle { font-size:25px; }
@@ -27,8 +27,8 @@
 
   </head>
   <body>
-
-    <h1 style="text-align:center">Blog</h1>
+    {{head|safe}}
+    <h1 style="text-align:center"><a href="/">Blog</a></h1>
 
     <div class="col-md-2">&nbsp;</div>
     <div id="main" class="col-md-8">
@@ -36,10 +36,20 @@
       <div class="options">
 	<a href="/new-post" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Create New Post</a>
       </div>
+
+      {% if type == '1' %}
+      <div class="alert alert-success"><strong>Success</strong>: Post edited</div>
+      {% elif type == '2' %}
+      <div class="alert alert-success"><strong>Success</strong>: You have been logged in</div>
+      {% elif type == '3' %}
+      <div class="alert alert-success"><strong>Success</strong>: You have been logged out</div>
+      {% elif type == '3' %}
+      <div class="alert alert-success"><strong>Success</strong>: Post deleted</div>
+      {% endif %}
+      
+      {{data|safe}}
+
     </div>
-
-    {{data|safe}}
-
     <div class="col-md-2">&nbsp;</div>
 	
 

@@ -1,28 +1,27 @@
 <!DOCTYPE html> 
 
-<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-<script src="static/bootstrap/js/bootstrap.min.js"></script>
 
 <html>
 
+  <head>
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <title>Create New Post</title>
+  </head>
   <body>
+
+    {{head|safe}}
 
     <div class = "container">
       <div class = "text-center">
 	<h1><b> Edit Post </b></h1> 
       </div>
       
-      <form role="form"> 
+      <form method="post">
+	<input type="hidden" name="pid" value="{{post.id}}" />
 	<div class = "form-group">
 	  
-	  <input type="post-title"
-		 class="form-control"
-		 id="inputTitle"
-		 placeholder="Enter a creative title here!"
-		 value={{title}} >
-	  <input type="hidden"
-		 nsme="id"
-		 value="%POST_ID_HERE%">
+	  <input class="form-control" name="title" value="{{post.title}}" tabindex="1" />
 	</div>
 	
 	<div class = "btn-group"> 
@@ -63,24 +62,19 @@
 	  </ul>
 	</div>
 
-	<textarea type="content"
-		  class="form-control"
-		  id="inputContent"
-		  rows="10">
-	  {{content}}
-	</textarea>
+	<textarea name="content" class="form-control" tabindex="2" rows="10">{{post.content}}</textarea>
 
 	<br>
 
 	<div class = "row">
 	  <div class = "col-md-4">
-	    <button type="submit" class="btn btn-primary btn-md"> Create Post! </button>
+	    <input type="submit" name="submit" class="btn btn-primary btn-md" tabindex="3" value="Edit Post" />
 	  </div>
 	  <div class = "col-md-4">
-	    <button type="save" class="btn btn-primary btn-md"> Save Draft! </button>
+	    <input type="submit" name="submit" class="btn btn-primary btn-md" tabindex="3" value="Save Draft" />
 	  </div>
 	  <div class = "col-md-4">
-	    <button type="cancel" class="btn btn-primary btn-md"> Delete </button>
+	    <input type="submit" name="submit" class="btn btn-primary btn-md" tabindex="3" value="Cancel" />
 	  </div>
 	</div>
 	
