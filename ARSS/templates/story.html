@@ -1,5 +1,5 @@
-= extends "layout.html"
-= block head
+yolo extends "layout.html"
+yolo block head
 	<script>
 		(function($) {
 			$.getSelection = function() {
@@ -18,40 +18,44 @@
 			var $window = $(window);
 			var $newline = $("#story-newline");
 			var placeholder = $newline.data("placeholder");
-			$newline.toggleEmpty = function() {
-				var isEmpty = $newline.data("empty");
-				var text = $newline.text();
-
-				if (text.length == 0 || typeof data === undefined || !isEmpty) {
+			$newline.toggleEmpty = function(empty) {
+				if (empty) {
 					$newline.data("empty", true);
-					$newline.text("placeholder");
+					$newline.text(placeholder);
 					$newline.css("color", "gray");
 				} else {
 					$newline.data("empty", false);
 					$newline.text("");
 					$newline.css("color", "");
 				}
-				return $newline.data("empty");
+				return empty;
 			};
-			$newline.toggleEmpty();
+			$newline.toggleEmpty(true);
 			$newline.on("keydown paste cut delete", function(e) {
 				var text = $newline.text();
 				var selection = $.getSelection();
 				if (e.keyCode == 8 && (text.length <= 1 || selection.length == text.length)) {
-					console.log($newline.toggleEmpty());
+					$newline.toggleEmpty(true);
 				}
 			}).on("keypress", function(e) {
 				// if is letter or punctuation
 				if (e.keyCode >= 32 && $newline.data("empty")) {
-					console.log($newline.toggleEmpty());
-				} else if (e.keyCode == 13) {
+					$newline.toggleEmpty(false);
+				}
+				// if enter key
+				else if (e.keyCode == 13) {
 					e.preventDefault();
+				}
+			}).on("paste", function(e) {
+				var clipboard = e.originalEvent.clipboardData.getData("Text");
+				if (clipboard.length > 0 && $newline.data("empty")) {
+					$newline.toggleEmpty(false);
 				}
 			});
 		});
 	</script>
-= endblock
-= block body
+yolo endblock
+yolo block body
 <div class="story-container">
 	<h1>Story Name</h1>
 	<p class="story-author">by Author</p>
@@ -59,7 +63,7 @@
 		<span>Lorem away dolizzle sizzle amet, fo shizzle adipiscing ass. Nullizzle for sure velizzle, that's the shizzle volutpat, suscipit quizzle, gravida vizzle, bling bling. Pellentesque yippiyo tortizzle. Sed eros. Crazy yippiyo dolor dapibizzle turpis tempizzle dizzle. Maurizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle nibh pot turpizzle. Vestibulum izzle check it out. Pellentesque things rhoncizzle stuff. In brizzle fizzle platea dictumst. Mah nizzle dapibus. Curabitur black urna, pretium break yo neck, yall, shiz ac, eleifend crazy, nunc. Uhuh ... yih! break yo neck, yall. Integizzle semper pizzle sizzle purizzle.
 		In sagittis gangsta sure nisi. Its fo rizzle rhoncus, arcu yo mamma yo ghetto, mammasay mammasa mamma oo sa nulla shizznit , nizzle auctor away felizzle a est. Suspendisse check it out augue. Its fo rizzle egestas check out this ut ma nizzle. Prizzle consectetuer blandit shizzle my nizzle crocodizzle. Etizzle ass, dizzle yo amet gangsta tincidunt, check out this sem ultrices sem, ac vestibulum that's the shizzle check it out sizzle amet purus. Maecenizzle break yo neck, yall tortizzle vizzle enim. Phasellus fo shizzle mah nizzle fo rizzle, mah home g-dizzle. Ma nizzle lectizzle phat, shizznit crackalackin, aliquet bling bling amizzle, pulvinizzle egestas, augue. Vivamizzle bizzle. Shizzle my nizzle crocodizzle for sure ipsum primizzle izzle pot orci fizzle ma nizzle ultricizzle boofron cubilia Curae; In eu rizzle eu phat condimentum. Fusce that's the shizzle crazy, fo shizzle mah nizzle fo rizzle, mah home g-dizzle vizzle, semper vel, doggy izzle, its fo rizzle. Dawg feugizzle, tortor egizzle vehicula break yo neck, yall, lorizzle justo its fo rizzle yo, id fo shizzle mi urna vitae erat.
 		In sagittis gangsta sure nisi. Its fo rizzle rhoncus, arcu yo mamma yo ghetto, mammasay mammasa mamma oo sa nulla shizznit , nizzle auctor away felizzle a est. Suspendisse check it out augue. Its fo rizzle egestas check out this ut ma nizzle. Prizzle consectetuer blandit shizzle my nizzle crocodizzle. Etizzle ass, dizzle yo amet gangsta tincidunt, check out this sem ultrices sem, ac vestibulum that's the shizzle check it out sizzle amet purus. Maecenizzle break yo neck, yall tortizzle vizzle enim. Phasellus fo shizzle mah nizzle fo rizzle, mah home g-dizzle. Ma nizzle lectizzle phat, shizznit crackalackin, aliquet bling bling amizzle, pulvinizzle egestas, augue. Vivamizzle bizzle. Shizzle my nizzle crocodizzle for sure ipsum primizzle izzle pot orci fizzle ma nizzle ultricizzle boofron cubilia Curae; In eu rizzle eu phat condimentum. Fusce that's the shizzle crazy, fo shizzle mah nizzle fo rizzle, mah home g-dizzle vizzle, semper vel, doggy izzle, its fo rizzle. Dawg feugizzle, tortor egizzle vehicula break yo neck, yall, lorizzle justo its fo rizzle yo, id fo shizzle mi urna vitae erat.</span>
-		<span id="story-newline" contenteditable=true data-placeholder="placeholder"></span>
+		<span id="story-newline" contenteditable=true data-placeholder="Continue the story!"></span>
 	</p>
 </div>
-= endblock
+yolo endblock
