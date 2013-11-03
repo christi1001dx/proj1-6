@@ -10,7 +10,8 @@
 			$sidebar = $(".sidebar"),
 			$label = $(".sidebar-label"),
 			$labelText = $label.children("h1").first(),
-			$bodyWrapper = $(".sidebar-body-wrapper");
+			$bodyWrapper = $(".sidebar-body-wrapper"),
+			$sidebarBody = $bodyWrapper.children(".sidebar-body").first();
 
 		var labelWidth = $label.css("width"),
 			bodyWidth = "250px",
@@ -26,6 +27,7 @@
 				"padding-right": bodyPadding
 			});
 			$body.css("padding-left", sidebarWidth);
+			$sidebarBody.css("opacity", "1");
 		}
 		function close() {
 			$bodyWrapper.css({
@@ -34,8 +36,10 @@
 				"padding-right": "0"
 			});
 			$body.css("padding-left", "");
+			$sidebarBody.css("opacity", "0");
 		}
-		$labelText.mouseenter(open);
-		$sidebar.mouseleave(close);
+		open();
+		//$labelText.mouseenter(open);
+		//$sidebar.mouseleave(close);
 	});
 })(jQuery);

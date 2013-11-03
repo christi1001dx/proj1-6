@@ -10,6 +10,8 @@
 
 @import scrollbar
 @import sidebar
+@import login
+
 
 @include scrollbar
 
@@ -18,7 +20,7 @@ $blue: #74D2FF
 input
 	@include vendor(box-sizing, border-box)
 	@include vendor(transition, box-shadow 0.2s)
-	margin-bottom: 15px
+	display: block
 	padding: 6px 10px
 	width: 100%
 	border: 1px solid #D2D9DC
@@ -31,7 +33,7 @@ input
 
 .button
 	display: block
-	padding: 0.3em 0 0.1em
+	padding: 0.1em 0 0.2em
 	text-align: center
 	background-color: white
 	color: black
