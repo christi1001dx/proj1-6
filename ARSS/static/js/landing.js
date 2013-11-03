@@ -101,7 +101,7 @@ $(function() {
 				"<div class='author'>by "+stories[i].author+"</div>"+
 				"<div class='edits' title='"+stories[i].edits+" edits'><img src='"+dir+"img/edit.png' />"+stories[i].edits+"</div>"+
 				"<div class='story'>"+stories[i].text+"</div>"+
-				"<div class='goto'><div class='text' onclick=''>Go to Story &rarr;</div></div>"
+				"<div class='goto'><div class='text' onclick='openStory("+i+")'>Go to Story &rarr;</div></div>"
 			).css("opacity",0).css3({
 				"transform-origin" : "50% 50%"
 			})
@@ -111,6 +111,26 @@ $(function() {
 	$(window).resize(blocks).scroll(blocks).resize();
 	setInterval(showBlocks, 100);
 });
+
+function openStory(i) {
+	$("#story").css("display","block")
+	.css("left", $(window).width())
+	.animate({
+		left : sideneg
+	},500);
+	$("#stories").animate({
+		left : -bw
+	},500,function() {
+		$(this).css("display","none");
+	});
+	$("header").animate({
+		top : -400
+	},500);
+	var s = stories[i];
+	$(".story-author").html("by "+s.author);
+	$(".story-container h1").html(s.title);
+	$(".story-text .text").html(s.text);
+}
 
 function showBlocks() {
 	bw = $(window).width() - sideneg; bh = $(window).height();

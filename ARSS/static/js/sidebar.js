@@ -1,19 +1,37 @@
 (function($) {
-	function add(a, b) {
-		return parseInt(a, 10) + parseInt(b, 10) + "px";
+	function add(unit, a, b) {
+		var s = 0;
+		for (var i = 1; i < arguments.length; i++)
+			s += parseInt(arguments[i], 10);
+		return s + unit;
 	}
 	$(document).ready(function() {
-		var $body = $("body");
-		var sidebarLabelWidth = $(".sidebar-label").css("width");
-		var sidebarBodyWidth = "250px";
-		// total width
-		var sidebarWidth = add(sidebarLabelWidth, sidebarBodyWidth);
+		var $body = $("body"),
+			$sidebar = $(".sidebar"),
+			$label = $(".sidebar-label"),
+			$bodyWrapper = $(".sidebar-body-wrapper");
 
-		$(".sidebar").hover(function() {
-			$(".sidebar-body-wrapper").css("width", sidebarBodyWidth)
+		var labelWidth = $label.css("width"),
+			bodyWidth = "250px",
+			bodyPadding = "7px",
+			bodyTotalWidth = add("px", bodyWidth, bodyPadding, bodyPadding);
+			// total width
+			sidebarWidth = add("px", labelWidth, bodyTotalWidth);
+
+		console.log(sidebarWidth);
+		$sidebar.hover(function() {
+			$bodyWrapper.css({
+				width: bodyTotalWidth,
+				"padding-left": bodyPadding,
+				"padding-right": bodyPadding
+			});
 			$body.css("padding-left", sidebarWidth);
 		}, function() {
-			$(".sidebar-body-wrapper").css("width", "")
+			$bodyWrapper.css({
+				width: "",
+				"padding-left": "0",
+				"padding-right": "0"
+			});
 			$body.css("padding-left", "");
 		});
 	});

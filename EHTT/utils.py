@@ -12,11 +12,10 @@ def login(username,password):
 def register(username,password):
     c = MongoClient()
     db = c['blogdb']
-    try:
-        db.users.find({'username':username})
+    x = db.users.find({'username':username})
+    if x:
         return False
-    except:
-        db.users.insert({'username':username, 'password':password})
+    else:
         return True
 
 def getAllPosts():
