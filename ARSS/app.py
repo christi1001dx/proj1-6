@@ -27,7 +27,7 @@ def story_test():
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
 @app.route('/story/<name>', methods = ['GET'])
 def get_story(name):
@@ -57,7 +57,7 @@ def register():
         if (utils.add_user(username, password, password2) == "good job"):
             return redirect("/login.html")
         else:
-            return render_template("register.html")
+            return render_template("register.html", error = utils.add_user(username, password, password2))
 
 @app.route("/logout")
 def logout():
