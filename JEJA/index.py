@@ -50,7 +50,9 @@ def formatData2(uid, post, comments):
     post["date"] = post["date"].strftime("%m/%d/%y %H:%M:%S")
     post["likes"] = utils2.getLikes(post["id"])
 
-    if utils2.userLikesPost(uid,post["id"]):
+    if uid == post["uid"]:
+        post["ynlike"] = ""
+    elif utils2.userLikesPost(uid,post["id"]):
         post["ynlike"] = '<a href="like?id='+str(post["id"])+'" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>'
     else:
         post["ynlike"] = '<a href="like?id='+str(post["id"])+'" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>'
@@ -113,11 +115,9 @@ def formatPost(data,guest):
     if not guest:
         r += '''
 	<tr class="active">
-	  <td class="links left">
+	  <td class="links left" colspan="2">
 %(ynlike)s
-	  </td>
-	  <td class="links right">
-            %(authorHTML)s
+	            %(authorHTML)s
 	  </td>
 	</tr>'''%(data)
 
