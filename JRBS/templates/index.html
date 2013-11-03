@@ -10,14 +10,15 @@
 <body>
   <div class="container">
     <!--Top Horizontal Menu-->
-    <div id="top" class="ui fixed transparent main menu">
+    <div id="top" class="ui teal inverted fixed main menu">
+
       <div class="right menu">
 	<div class="item">
 	  <div class="ui small button">Login</div>
 	</div>
 	
 	<div class="item">
-	  <div class="ui teal small button">Sign up</div>
+	  <div class="ui blue small button">Sign up</div>
 	</div>
 	<a class="large item">Help</a>
       </div>
@@ -31,6 +32,17 @@
 	<i class="huge black pencil icon"></i>Post
       </a>  
     </div>
+    <!-- Post Box-->
+    <div class="ui piled segment">
+      {% for post in posts %}
+      <div class="ui blue segment">
+	<h1>post.title</h1>
+	<h2> post.author </h2>
+	<p>post.content</p> 
+      </div>
+      {% endfor %}
+    </div>
+
     <!--Bottom Menu-->
     <div class="ui borderless pagination menu">
       <div class="bottom menu">
@@ -43,8 +55,8 @@
 	</a>
       </div>
     </div>
+
   </div>
-  
 </body>
 
 </html>
