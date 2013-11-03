@@ -13,6 +13,22 @@ ul.login{
     overflow: hidden;
 }
 
+#top{
+    position: relative;
+    align: center;
+}
+#left{ 
+    position: absolute;
+    left:5 px;
+    top: 100px; 
+    font-size: large; 
+}
+
+div.bottom{
+    position: absolute;
+    bottom: 0;
+    right: 300px;
+}
 
 #PostBox {
     left: 10cm;
