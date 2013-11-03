@@ -6,12 +6,17 @@
 @import url("http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Libre+Baskerville:400,700,400italic");
 @import url("http://fonts.googleapis.com/css?family=ABeeZee:400,400italic|Gudea:400,700,400italic|Oxygen:400,700,300|Sintony:400,700");
 .sidebar {
+  *zoom: 1;
   -webkit-transition: width 0.5s;
   -moz-transition: width 0.5s;
   -ms-transition: width 0.5s;
   -o-transition: width 0.5s;
   transition: width 0.5s;
-  *zoom: 1;
+  -webkit-box-shadow: inset -19px 0px 17px -20px black;
+  -moz-box-shadow: inset -19px 0px 17px -20px black;
+  -ms-box-shadow: inset -19px 0px 17px -20px black;
+  -o-box-shadow: inset -19px 0px 17px -20px black;
+  box-shadow: inset -19px 0px 17px -20px black;
   position: fixed;
   overflow: hidden;
   width: 35px;
@@ -27,18 +32,33 @@
     clear: both; }
   .sidebar:hover {
     width: 300px; }
+    .sidebar:hover .sidebar-label {
+      color: #26e2fc; }
+    .sidebar:hover .sidebar-body {
+      opacity: 1; }
 
 .sidebar-label {
+  -webkit-transition: color 0.5s;
+  -moz-transition: color 0.5s;
+  -ms-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
+  color: #727272;
   float: left;
   width: 35px;
   height: 100%;
   padding-top: 20px;
   text-align: center;
-  color: #26e2fc;
   background-color: #303030;
   font-family: Gudea; }
 
 .sidebar-body {
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  opacity: 0;
   height: 100%;
   margin-left: 35px;
   padding: 20px;

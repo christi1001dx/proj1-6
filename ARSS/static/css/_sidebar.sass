@@ -1,8 +1,9 @@
 $sidebarLabelWidth: 35px
 
 .sidebar
-	@include vendor(transition, width 0.5s)
 	@include clearfix
+	@include vendor(transition, width 0.5s)
+	@include vendor(box-shadow, inset -19px 0px 17px -20px #000)
 	position: fixed
 	overflow: hidden
 	width: $sidebarLabelWidth
@@ -13,18 +14,27 @@ $sidebarLabelWidth: 35px
 
 	&:hover
 		width: 300px
+		.sidebar-label
+			color: #26E2FC
+		.sidebar-body
+			opacity: 1
 
 .sidebar-label
+	@include vendor(transition, color 0.5s)
+	color: #727272
+
 	float: left
 	width: $sidebarLabelWidth
 	height: 100%
 	padding-top: 20px
 	text-align: center
-	color: #26E2FC
 	background-color: #303030
 	font-family: Gudea
 
 .sidebar-body
+	@include vendor(transition, opacity 0.5s)
+	opacity: 0
+
 	height: 100%
 	margin-left: $sidebarLabelWidth
 	padding: 20px
