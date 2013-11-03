@@ -8,11 +8,13 @@ db = MongoClient().db
 
 app = Flask(__name__)
 app.secret_key = 'maroon5'
+utils.addPost("admin","WELCOME!","Other","Please make an account and begin blogging!",db.posts)
 
 @app.route("/")
 def home():
     if 'username'  in session:
-        return render_template("template.index.html", featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
+	print utils.getRandPost(db.posts)
+        return render_template("template.index.html", featured = utils.getRandPost(db.posts)[0], sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
     else:
         return redirect("/login")
 
@@ -25,7 +27,6 @@ def login():
 	button = request.form['button']
 	print "yo"
 	if button == 'Submit':
-	    print "hiiiii"
             username = request.form['username'].encode ('ascii',"ignore")
 	    password = request.form['password'].encode ('ascii',"ignore")
             if utils.auth(username,password,db.login):
@@ -90,7 +91,7 @@ def post(_id):
 
 @app.route("/genre/<genre>")
 def genre():
-    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts)) 
+    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts))
 
 @app.route("/logout")
 def logout():
