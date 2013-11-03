@@ -28,11 +28,11 @@
             <br>
             <span id="Post">
                 <span id="Content">
-                    {{post.content}}
+                    {{post.text}}
                 </span>
                 <br>
                 <span id="Author">
-                    By {{post.author}}
+                    By {{post.username}}
                 </span>
             </span>
             
@@ -44,16 +44,12 @@
             </form>
             <div id="Comment">
             <ul>
-                {{ for c in comments }}
                 <li>
                 <div> 
-                {{c.comment}}
                 <br>
-                {{c.author}}
                 </div>
                 </li>
                 <br>
-                {{ endfor }}
             </ul>
             </div> 
         </span>
