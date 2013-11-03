@@ -9,14 +9,21 @@ db = client.SDJJbloginator
 users = db.users
 posts = db.posts
 
+
 def posts():
 	return posts.find()
 
 def query(query):
+	# application will receive it from a post in a search URL 
+	# search all posts and all comments for matches
+	temp = db.posts.find({ "posts" : { '$regex':{'query':'posts'}}})
+	temp2 = db.users.find({"users" : {'$regex':{'query':'users'}}})
+		# you want to use a regex - regular expressions; find patterns of words 
+	return "posts" + temp;
+	return "users" + temp2;
 	# returns dictionary with keys {"posts", "profiles", "comments"}
 	# values are arrays containing query results for each
 	# querying should be conducted with a regex match on the query string
-    return
 
 # post should contain author, title, data, subjet line, body, comments
 def post(post):
