@@ -57,17 +57,30 @@ def register():
 
 @app.route("/<storytitle>", methods = ["GET", "POST"])
 def story(title = storytitle):
+     if request.method == "GET" :
+        return render_template("story.html")
+     else:
+        Addition = request.form['addition'].encode("ascii","ignore")
+        button = request.form['button']
+        if button = "Delete":
+            delStory(title)
+            return redirect("/storylist")
+        if button = "Edit":
+            editStory(title, addition)
+            return render_template("story.html")
+                
     
+
     
 @app.route("/createstory", methods = ["GET", "POST"])
 def make():
     if request.method == "GET" :
         return render_template("createstory.html")
         else:
-            author == request.form['username'].encode("ascii","ignore")
-            password == request.form['password'].encode("ascii","ignore")
-            title == request.form['title'].encode("ascii","ignore")
-            story == request.form['story'].encode("ascii","ignore")
+            author = request.form['username'].encode("ascii","ignore")
+            password = request.form['password'].encode("ascii","ignore")
+            title = request.form['title'].encode("ascii","ignore")
+            story = request.form['story'].encode("ascii","ignore")
             button = request.form['button']
             if button == "Submit":
                if (author == '' or password == '' or story == ''):
@@ -80,14 +93,6 @@ def make():
             elif button == "Cancel"
                 return render_template("createstory.html")
                     
-
-                
-            
-    
-        
-
-
-
 
 @app.route("/logout")
 def logout():
