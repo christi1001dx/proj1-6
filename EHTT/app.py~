@@ -41,8 +41,8 @@ def register():
         username = request.form["username"].encode("ascii", "ignore")
         password = request.form["password"].encode("ascii", "ignore")
         confirmpassword = request.form["cpassword"].encode("ascii", "ignore")
-        if password == confirmpassword:
-            mangodb.dregister(username, password, 0)
+        if password == conformpassword:
+            mangodb.dregister(username, password, 0):
             return redirect("/login")
         else:
             return render_template("register.html",username = session["username"])
