@@ -39,6 +39,11 @@
   background-color: white; }
 
 .sidebar-body-wrapper {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-transition: width 0.5s, padding 0.5s;
   -moz-transition: width 0.5s, padding 0.5s;
   -ms-transition: width 0.5s, padding 0.5s;
@@ -52,7 +57,7 @@
   width: 0;
   height: 100%;
   margin-left: 35px;
-  padding: 10px 0; }
+  padding: 7px 0; }
 
 .sidebar-body {
   -webkit-box-sizing: border-box;

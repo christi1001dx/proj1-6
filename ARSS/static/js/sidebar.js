@@ -13,14 +13,15 @@
 
 		var labelWidth = $label.css("width"),
 			bodyWidth = "250px",
-			bodyPadding = "10px",
+			bodyPadding = "7px",
+			bodyTotalWidth = add("px", bodyWidth, bodyPadding, bodyPadding);
 			// total width
-			sidebarWidth = add("px", labelWidth, bodyWidth, bodyPadding, bodyPadding);
+			sidebarWidth = add("px", labelWidth, bodyTotalWidth);
 
 		console.log(sidebarWidth);
 		$sidebar.hover(function() {
 			$bodyWrapper.css({
-				width: bodyWidth,
+				width: bodyTotalWidth,
 				"padding-left": bodyPadding,
 				"padding-right": bodyPadding
 			});
