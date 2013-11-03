@@ -34,7 +34,11 @@
     <div id="main" class="col-md-8">
 
       <div class="options">
+	{% if uid == -1 %}
+	<div class="alert alert-warning">Welcome <strong>Guest!</strong>  Please <a href="login">login</a> to create posts.  If you don't have an account then you can <a href="register">register</a> a new account.</div>
+	{% else %}
 	<a href="/new-post" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Create New Post</a>
+	{% endif %}
       </div>
 
       {% if type == '1' %}

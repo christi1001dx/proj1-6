@@ -28,7 +28,7 @@ def home():
     for x in posts:
         r += str(index.formatData(uid,x))
     
-    return render_template("index.html", data=r,head=h,type=request.args.get("type"))
+    return render_template("index.html", data=r,head=h,type=request.args.get("type"),uid=uid)
 
 @app.route("/register",methods=['GET','POST'])
 def register():
@@ -91,7 +91,7 @@ def getPost():
     pid = int(request.args.get("id"))
     post = utils2.getPost(pid)
     post = str(index.formatData(uid,post))
-    return render_template("index.html",data=post,head=h,type=request.args.get("type"))
+    return render_template("index.html",data=post,head=h,type=request.args.get("type"),uid=uid)
 
 @app.route("/edit",methods=['GET','POST'])
 def editPost():
