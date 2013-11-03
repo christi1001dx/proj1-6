@@ -62,7 +62,7 @@ def getpostcom(tron):
 
 def getallposts():
     l = [];
-    for x in poscol.find("f":"toe"):
+    for x in poscol.find({"f":"toe"}):
         l.insert(x)
     return l
 
