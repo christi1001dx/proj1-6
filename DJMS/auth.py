@@ -15,8 +15,9 @@ def register(username, password):
     chk = db.DJMSStory.find_one({'username' :username})
     if(chk == None):
         db.DJMSStory.insert({'username':username, 'password' :password})
+        return True
     else:
-        return "Account Registered"
+        return False
         
 def check(username,password):
     db = work()

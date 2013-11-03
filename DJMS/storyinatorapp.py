@@ -40,7 +40,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         confirmpassword = request.form['confirmpassword'].encode("ascii","ignore")
-        button = request.form['button']
+        button = request.form['submit']
         if button == "Submit":
             if (username == '' or password == '' or confirmpassword == ''):
                 return render_template("register.html", message = "Please fill empty fields")
@@ -49,11 +49,12 @@ def register():
             else:
                 if(auth.register(username,password)):
                     session["name"] = username    
-                    return redirect("/login")
+                    return redirect("/storylist")
                 else:
                     return render_template("register.html", message = "There is already an account under your name.")
         elif button == "Cancel":
                     return redirect("/login")
+
 
 @app.route("/<storytitle>", methods = ["GET", "POST"])
 def story(title = None):

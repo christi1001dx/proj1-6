@@ -33,6 +33,15 @@ def index():
 def get_story(name):
     return json.dumps(utils.return_all_lines(name))
 
+@app.route('/addline', methods=['POST'])
+def add_line():
+    if not "username" in session:
+	    return "login"
+    author = session["username"]
+    title = get_form_value('title')
+    line = get_form_value('line')
+    return add_line(line, title, author)
+
 @app.route('/makestory', methods=['POST'])
 def make_story():
     if not "username" in session:

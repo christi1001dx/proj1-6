@@ -32,6 +32,30 @@ $(function() {
 			opacity:1
 		},500);
 		sideopen = 2;
+	})
+	$("#sidebar").mouseout(function() {
+		if (sideopen != 1) return;
+		$(this).find(".label").css("display","block").animate({
+			opacity : 1
+		},{
+			duration : 500,
+			complete : function() {
+				sideopen = 0;
+				calcheader();
+				blocks();
+			},
+			step : function() {
+				calcheader();
+				blocks();
+			}
+		});
+		$(this).animate({
+			left:30-$(this).width()
+		},500);
+		$(this).find(".stuff").animate({
+			opacity:0
+		},500);
+		sideopen = 2;
 	});
 });
 
