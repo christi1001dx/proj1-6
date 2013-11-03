@@ -49,7 +49,7 @@ def register():
             else:
                 if(auth.register(username,password)):
                     session["name"] = username    
-                    return redirect("/login")
+                    return redirect("/storylist")
                 else:
                     return render_template("register.html", message = "There is already an account under your name.")
         elif button == "Cancel":
