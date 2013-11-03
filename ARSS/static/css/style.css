@@ -30,11 +30,12 @@ body {
 	left:-100%;
 	z-index:99999;
 	background:#def;
+	display:none;
 }
 #sidebar {
 	z-index:999990;
 	position:fixed;
-	right:0;
+	left:-220px;
 	top:0;
 	width:250px;
 	height:100%;
@@ -44,7 +45,7 @@ body {
 #sidebar .label {
 	position:absolute;
 	top:0;
-	left:0;
+	right:0;
 	width:30px;
 	height:100%;
 	text-align:center;

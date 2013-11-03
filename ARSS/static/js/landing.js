@@ -5,7 +5,6 @@ var s = [];
 var sideneg = 30, sideopen = 0;
 
 $(function() {
-	$("#sidebar").css("left", $(window).width() - sideneg);
 	$(window).resize(calcheader).scroll(calcheader).resize();
 	
 	$("#sidebar .label").mouseover(function() {
@@ -27,7 +26,7 @@ $(function() {
 		});
 		var $side = $(this).parent();
 		$side.animate({
-			left: $(window).width() - $side.width()
+			left: 0
 		},500)
 		sideopen = 2;
 	});
@@ -36,9 +35,7 @@ $(function() {
 function calcheader() {
 	bw = $(window).width(); bh = $(window).height();
 	var st = $(window).scrollTop();
-	
-	sideneg = bw - $("#sidebar").position().left;
-	$("#sidebar").css("left", bw - sideneg);
+	sideneg = $("#sidebar").width() + $("#sidebar").position().left;
 	bw -= sideneg;
 	
 	var hh = Math.max(HEADSIZE[1] - st, HEADSIZE[0]);
@@ -48,7 +45,10 @@ function calcheader() {
 	$(".title .sub").css("font-size", fsr * 40)
 		.css("opacity", (hh>HEADSIZE[1]/2)?1:0).css("display", (hh>HEADSIZE[1]/4)?"block":"none");
 	
-	$("header, .container").css("width", bw);
+	$("header, .container").css({
+		"width": bw,
+		left : sideneg
+	});
 }
 
 var pre = ["","-moz-","-o-","-webkit-","-ms-"];

@@ -53,7 +53,7 @@ def register():
                 else:
                     return render_template("register.html", message = "There is already an account under your name.")
         elif button == "Cancel":
-                    return render_template("register.html")
+                    return redirect("/login")
 
 @app.route("/<storytitle>", methods = ["GET", "POST"])
 def story(title = None):
@@ -84,6 +84,7 @@ def make():
         author = request.form['username'].encode("ascii","ignore")
         password = request.form['password'].encode("ascii","ignore")
         title = request.form['title'].encode("ascii","ignore")
+        summary = request.form['summary'].encode("ascii","ignore")
         story = request.form['story'].encode("ascii","ignore")
         button = request.form['button']
         if button == "Submit":
