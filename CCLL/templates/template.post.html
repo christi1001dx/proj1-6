@@ -19,38 +19,40 @@
             </ul>
             </nav>
         </div>
-        <div id="Title">
-            {{post.title}}
-        </div>
-        <div id="Post">
-        <div id="Content">
-            {{post.content}}
-        </div>
-        <br>
-        <div id="Author">
-            By {{post.author}}
-        </div>
-        </div>
-        <div id="Comment">
-        <ul>
-            {{ for c in comments }}
-            <li>
-            <div> 
-            {{c.comment}}
+        <span id="LEFT"> <!--
+            <span id="Title">
+                {{post.title}}
+            </span>
+            <span id="Post">
+                <span id="Content">
+                    {{post.content}}
+                </span>
+                <br>
+                <span id="Author">
+                    By {{post.author}}
+                </span>
+            </span>
             <br>
-            <span>{{c.author}}</span>
-            </div>
-            </li>
-            <br>
-            {{ endfor }}
-        </ul>
-        </div>
-        <form method="POST" id="Sub">
-            <div>Enter your comment below</div>
-            <textarea name="comment"></textarea>
-            <input type="submit" name="button" value="submit"></input>
-        </form>
-        <div {height:200;}>
-        </div>
+            <span id="Comment">
+            <ul>
+                {{ for c in comments }}
+                <li>
+                <span> 
+                {{c.comment}}
+                <br>
+                {{c.author}}
+                </span>
+                </li>
+                <br>
+                {{ endfor }}
+            </ul>
+            </span>
+            <form method="POST" id="Sub">
+                <span>Enter your comment below</span>
+                <textarea name="comment"></textarea>
+                <input type="submit" name="button" value="submit"></input>
+            </form>
+            -->
+        </span>
     </body>
 </html>
