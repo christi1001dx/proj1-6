@@ -1,11 +1,12 @@
 $sidebarLabelWidth: 35px
 $sidebarTransitionTime: 0.5s
+
 .sidebar
 	@include clearfix
 	@include vendor(transition, width $sidebarTransitionTime)
 	position: fixed
 	overflow: hidden
-	width: $sidebarLabelWidth
+	//width: $sidebarLabelWidth
 	height: 100%
 	top: 0
 	left: 0
@@ -27,19 +28,22 @@ $sidebarTransitionTime: 0.5s
 	color: black
 	background-color: white
 
-
-@include scrollbar
+.sidebar-body-wrapper
+	@include vendor(transition, width $sidebarTransitionTime)
+	width: 0
+	height: 100%
+	margin-left: $sidebarLabelWidth
 
 .sidebar-body
 	@include vendor(box-sizing, border-box)
-	@include vendor(box-shadow, (inset -18px 0px 17px -20px #000, inset 16px 0px 20px -20px #000))
 	@include vendor(transition, opacity $sidebarTransitionTime)
+	@include vendor(box-shadow, (inset -18px 0px 17px -20px #000, inset 16px 0px 20px -20px #000))
 	opacity: 0
-	height: 100%
-	margin-left: $sidebarLabelWidth
-	padding: 20px
-	color: white
 	overflow: auto
+	width: 250px
+	height: 100%
+	padding: 10px
+	color: white
 
 body
 	@include vendor(transition, padding $sidebarTransitionTime)

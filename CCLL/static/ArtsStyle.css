@@ -3,7 +3,7 @@
 }
 
 body {
-    overflow:hidden;
+ /*   overflow:hidden; */
     background: #728eaa;
     background: -moz-linear-gradient(top, #25303C, 0%, #728EAA, 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%, #728EAA));
@@ -11,12 +11,11 @@ body {
 
 #NavigationMenu {
     position:relative;
-    width:1100px;
-    height:160px;
+    width:1200px;
+    height:120px;
     padding-top:10px;
-    border:5px solid black;
+    bottom:5px solid black;
 }
-
 .btn {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -43,7 +42,6 @@ body {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
-
 nav ul {
     list-style: none; overflow: hidden; position: relative;
 }
@@ -78,10 +76,14 @@ nav ul li a {
         background-color: #00ffff;
         background-position: 0px 0px;
     }
-
+    nav ul li:nth-child(6) a {
+      background-image: url(NavBar/Shop.png); background-repeat:no-repeat;
+        background-color:#E0C2FF;
+        background-position:0px 0px;
+    }
 nav ul li a span {
     font: 50px sans-serif, Times; text-transform: uppercase;
-    position: absolute; left: 770px; top: 29px; 
+    position: absolute; left: 900px; top: 29px; 
     display:none;
 }
 
@@ -104,129 +106,107 @@ nav ul li a:hover span {
     nav ul li:nth-child(5) a span {
     color: #00ffff;
     }
+    nav ul li:nth-child(6) a span {
+    color:#E0C2FF;
+    }
 
-a:link {
-    text-decoration:none;
+#Section {
+    position:relative;
+    padding-left:25px;
+    /*padding:20px;*/
+    float:center;
+    font-size:60px;
+    color:#00ff99;
 }
 
-a:hover {
+#Headline {
+    width:600px;
+    height:200px;
+    color:black;
+    border:solid;
+
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+}
+
+#tit {
+    font-size:50px;
+    text-decoration:none;
+    color:black;
+}
+#tit:hover {
     color:#00ffff;
 }
-
-a {
-    color:white;
-    cursor:text;
+#Auth {
+    font-size:24px;
+    font-style:italic;
 }
-
-#SectionOne {
-    position:relative;
-    height:210px;
-    width:100%;
-    min-width:1280px;
-    border:5px solid black;
+#Line2 {
+    white-space:nowrap;
 }
-
-#SectionTwo {
-    position:relative;
-    height:210px;
-    width:100%;
-    min-width:1280px;
-    border:5px solid black;
+#Line1 {
+    white-space:nowrap;
 }
-
-#Featured {
-    position:relative;
-    border: 5px solid white;
+#Post1 {
+    width:400px;
     height:200px;
-    width:600px;
-    font-size:40px;
     color:white;
-    float:left;
-}
+    display:inline-block;
+    border:solid;
+    vertical-align:top;
+    white-space:normal;
 
-#Featured span {
-    font-size:15px;
 }
-
-#Sports {
-    position:relative;
+#Post2 {
+    width:350px;
     height:200px;
-    width:320px;
-    font-size:25px;
-    color:white;
-    border:5px solid blue;
-    float:left;
-}
+    border:solid;
+    color:blue;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
 
-#Sports span {
-    font-size:15px;
 }
-
-#Arts-Ent {
-    position:relative;
+#Post3 {
+    width:350px;
     height:200px;
-    width:320px;
-    font-size:25px;
-    color:white;
-    border:5px solid green;
-    float:left;
-    display:block;
+    border:solid;
+    color:orange;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+
 }
 
-#Humor {
-    position:relative;
-    height:100px;
-    width:300px;
-    font-size:25px;
-    color:white;
-    border:5px solid black;
-    float:right;
-}
-
-#Arts-Ent span {
-    font-size:15px;
-}
-
-#Opinion {
-    position:relative;
+#Post4 {
+    width:350px;
     height:200px;
-    width:415px;
-    font-size:25px;
-    color:white;
-    border:5px solid red;
-    float:left;
-}
-
-#Opinion span {
-    font-size:15px;
-}
-
-#Humor {
-    position:relative;
-    height:200px;
-    width:415px;
-    font-size:25px;
-    color:white;
-    border:5px solid yellow;
-    float:left;
+    border:solid;
+    color:red;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
 
 }
-
-#Lab span {
-    font-size:15px;
+#Title {
+    font-size:36px;
+    color:black;
+    text-decoration:none;
+}
+#Title:hover {
+    color:#00ffff;
+}
+#Author {
+    font-size:24px;
+    color:black;
+    font-style:italic;
 }
 
-#Academics {
-    position:relative;
-    height:200px;
-    width:415px;
-    font-size:25px;
-    color:white;
-    border:5px solid orange;
-    float:left;
-}
 
-#Academics span {
-    font-size:15px;
-}
+
+
+
+
+
 

@@ -33,6 +33,23 @@ def index():
 def get_story(name):
     return json.dumps(utils.return_all_lines(name))
 
+@app.route('/addline', methods=['POST'])
+def add_line():
+    if not "username" in session:
+	    return "login"
+    author = session["username"]
+    title = get_form_value('title')
+    line = get_form_value('line')
+    return add_line(line, title, author)
+
+@app.route('/makestory', methods=['POST'])
+def make_story():
+    if not "username" in session:
+	    return "login"
+    author = session["username"]
+    title = get_form_value('title')
+    return str(utils.make_story(title, author, False))
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if (request.method == "GET"):
@@ -42,9 +59,9 @@ def login():
         password = get_form_value('password')
         if (utils.account_exists(username, password)):
             session["username"] = username
-            return redirect("/index.html")
+            return "success,"+username.decode("utf-8")
         else:
-            return redirect("/register.html")
+            return "fail,"
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -54,18 +71,19 @@ def register():
         username = get_form_value('username')
         password = get_form_value('password')
         password2 = get_form_value('password2')
-        if (utils.add_user(username, password, password2) == "good job"):
-            return redirect("/login.html")
+        registertry = utils.add_user(username, password, password2)
+        if (registertry == "good job"):
+            return "success,"+username.decode("utf-8")
         else:
-            return render_template("register.html", error = utils.add_user(username, password, password2))
+            return registertry
 
 @app.route("/logout")
 def logout():
-    if "username" in sesson:
+    if "username" in session:
         session.pop("username")
-        return render_template("logout.html")
+        return "success"
     else:
-        return redirect("/")
+        return "ok"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

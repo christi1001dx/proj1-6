@@ -1,42 +1,72 @@
 <html>
     <head>
         <title>{{post.title}}</title>
-        <link href="static/PostStyle.css" ret="stylesheet" type="text/css" media="screen"/>
+        <link href="../static/PostStyle.css" rel="stylesheet" type="text/css" media="screen"/>
     </head>
     <body>
         <div id="NavigationMenu">
             <nav>
-                <ul>
-                    <li><a href="#"><span>SPORTS</span></a></li>
-                    <li><a href="#"><span>ARTS/ENT</span></a></li>
-                    <li><a href="#"><span>OPINION</span></a></li>
-                    <li><a href="#"><span>HUMOR</span></a></li>
-                    <li><a href="#"><span>ACADEMICS</span></a></li>
-                </ul>
+            <ul>
+                <li><a href="template.sports.html"><span>SPORTS</span></a></li>
+                <li><a href="template.arts.html"><span>ARTS/ENT</span></a></li>
+                <li><a href="template.opinion.html"><span>OPINION</span></a></li>
+                <li><a href="template.humor.html"><span>HUMOR</span></a></li>
+                <li><a href="template.academics.html"><span>ACADEMICS</span></a></li>
+                <li><a href="template.index.html"><span>HOME</span></a></li>
+                <br> <br> <br> <br> <br>
+                <a href="Login.html" class="btn">Login</a>
+                <a href="#" class="btn">Register</a>
+            </ul>
             </nav>
-        
         </div>
-        <div id="Title">
-        {{post.title}}
-        </div>
-        <div id="Content">
-            {{post.text}}
-        </div>
-        <div id="Author">
-            By {{post.username}}
-        </div>
-        <ul>
-
-        {{ for c in comments }}
-        <li id="Comment">
-        <div>{{c.comment}}</div>
-        <span>{{c.author}}</span>
-        </li>
-        {{ endfor }}
+        <span id="LEFT"> <!--
+            <span id="Title">
+                {{post.title}}
+            </span>
+            <span id="Post">
+                <span id="Content">
+                    {{post.content}}
+                </span>
+                <br>
+                <span id="Author">
+                    By {{post.author}}
+                </span>
+            </span>
+            <br>
+<<<<<<< HEAD
+            <span id="Comment">
+            <ul>
+                {{ for c in comments }}
+                <li>
+                <span> 
+                {{c.comment}}
+                <br>
+                {{c.author}}
+                </span>
+                </li>
+                <br>
+                {{ endfor }}
+            </ul>
+            </span>
+            <form method="POST" id="Sub">
+                <span>Enter your comment below</span>
+                <textarea name="comment"></textarea>
+                <input type="submit" name="button" value="submit"></input>
+            </form>
+            -->
+        </span>
+=======
+            {{ endfor }}
         </ul>
-        <form method="POST">
-            <input type="text" name="comment">Enter your comment below</input>
+        </div>
+        <form method="POST" id="Sub">
+            <div>Enter your comment below</div>
+            <textarea name="comment"></textarea>
+            <br>
             <input type="submit" name="button" value="submit"></input>
         </form>
+        <div {height:200;}>
+        </div>
+>>>>>>> c502b92a72b2fb4f19aa56e49467dd945d0dcf67
     </body>
 </html>

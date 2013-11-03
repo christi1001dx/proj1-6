@@ -11,7 +11,7 @@ body {
 
 #NavigationMenu {
     position:relative;
-    width:1100px;
+    width:1200px;
     height:120px;
     padding-top:10px;
     bottom:5px solid black;
@@ -77,9 +77,15 @@ nav ul li a {
         background-position: 0px 0px;
     }
 
+    nav ul li:nth-child(6) a {
+      background-image: url(NavBar/Shop.png); background-repeat:no-repeat;
+        background-color:#E0C2FF;
+        background-position:0px 0px;
+    }
+
 nav ul li a span {
     font: 50px sans-serif, Times; text-transform: uppercase;
-    position: absolute; left: 770px; top: 29px; 
+    position: absolute; left: 900px; top: 29px; 
     display:none;
 }
 
@@ -102,15 +108,21 @@ nav ul li a:hover span {
     nav ul li:nth-child(5) a span {
     color: #00ffff;
     }
+    nav ul li:nth-child(6) a span {
+    color:#E0C2FF;
+    }
 
-
+#LEFT {
+  position:relative;
+  height:800px;
+  width:800px;
+}
 
 #Title {
   /*position:absolute;
   margin:left;*/
   position:relative;
-  height:130px;
-  float:center;
+  height:100px;
   /* left:50% */
   font-size:60px;
   text-align:center; 
@@ -130,6 +142,9 @@ nav ul li a:hover span {
  color:white;
  /*width:800px;*/
  border:solid;
+ width:80%;
+ margin-left:10%;
+ margin-right:10%;
 
 }
 #Content {
@@ -140,27 +155,28 @@ nav ul li a:hover span {
 
 }
 ul {
-  list-style= none;
+  list-style;none;
 }
 #Comment li {
-  position=relative;
+  position:relative;
   float:top;
-
 }
-#Comment div {
+
+#Comment {
   color:#8888C2;
   border:solid 2px;
   color:white;
   padding:2px;
   width:500px;
   font-size:16px;
+  margin-left:10%;
 }
+
 #Comment div #Com {
   color:white;
 }
 #Comment span {
   color:orange;
-  text-style:italics;
 }
 #Sub {
   width:80%;
@@ -177,6 +193,29 @@ ul {
 }
 #Sub input:hover {
     color:white;
+}
+input[type=submit] {
+    width: 100px; height: 50px; padding: 10px 15px; margin: 0 15px 0 0;
+    -moz-box-shadow: 0px 0px 5px #999;-webkit-box-shadow: 0px 0px 5px #999;
+    border: 1px solid #556f8c;
+    /* IE10 Consumer Preview */ 
+    background-image: -ms-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* Mozilla Firefox */ 
+    background-image: -moz-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* Opera */ 
+    background-image: -o-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FAFAFA), color-stop(1, #2B2B2B));
+
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* W3C Markup, IE10 Release Preview */ 
+    background-image: linear-gradient(to bottom, #FAFAFA 0%, #2B2B2B 100%);
+    cursor: pointer;
 }
 textarea {
     width:800px;
