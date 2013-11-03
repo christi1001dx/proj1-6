@@ -84,6 +84,7 @@ def make():
         author = request.form['username'].encode("ascii","ignore")
         password = request.form['password'].encode("ascii","ignore")
         title = request.form['title'].encode("ascii","ignore")
+        summary = request.form['summary'].encode("ascii","ignore")
         story = request.form['story'].encode("ascii","ignore")
         button = request.form['button']
         if button == "Submit":
