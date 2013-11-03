@@ -21,13 +21,20 @@ color: white;
 font-size:400%
 }
 
+h3
+{
+letter-spacing: 2px;
+font-family:"Avantgarde", sans-serif;
+color: black;
+
+}
+
 .container
 {
 border-style: dotted;
 position: relative;
-top: 250px;
-left: -50px;
-
+top: 260px;
+width:50%
 
 }
 
@@ -41,3 +48,4 @@ height:40%;
 background-color: 000033;
 z-index:-1;
 }
+
