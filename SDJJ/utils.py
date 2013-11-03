@@ -1,6 +1,9 @@
 import pymongo
 from bson.objectid import ObjectId
+
+import app
 import config as conf
+
 
 client = pymongo.MongoClient(conf.db)
 db = client.SDJJbloginator
@@ -22,7 +25,16 @@ def getPost(postTitle):
 	post = posts.find_one({ "title" : postTitle })
 	if post is not None:
 		post["comments"] = comments.find({ "postTitle" : post["title"] })
+	else:
+		app.session["error"] = "noPost"
 	return post
+
+def titleAvailable(postTitle):
+	if posts.find_one({ "title" : postTitle }) == None:
+		return True
+	else:
+		app.session["error"] = "postFail"
+		return False
 
 def getUsers():
 	return users.find()
@@ -32,15 +44,31 @@ def getUser(username):
 	if user is not None:
 		user["posts"] = posts.find({ "author" : username })
 		user["comments"] = comments.find({ "author" : username })
+	else:
+		app.session["error"] = "noUser"
 	return user
 
 def authenticate(username, password):
 	user = users.find_one({ "username" : username })
-	return user is not None and user["password"] == password
+	if user is not None and user["password"] == password:
+		return True
+	else:
+		app.session["error"] = "loginFail"
+		return False
 
-def register(username, password):
-	if users.find_one({"username" : username}) is None:
+def register(username, password, passRetype):
+	if password != passRetype:
+		app.session["error"] = "passMismatch"
+	elif users.find_one({"username" : username}) is None:
 		users.insert({ "username" : username, "password" : password })
 		return True
 	else:
+		app.session["error"] = "userExists"
+	return False
+
+def loggedIn():
+	if "username" in app.session:
+		return True
+	else:
+		app.session["error"] = "mustLogin"
 		return False

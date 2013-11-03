@@ -17,7 +17,7 @@ def post(postTitle):
 	post = utils.getPost(postTitle)
 	if post is not None:
 		return render_template("post.html", post = post)
-	return error("noPost")
+	return error()
 
 @app.route("/users")
 def users():
@@ -28,7 +28,7 @@ def user(username):
 	user = utils.getUser(username)
 	if user is not None:
 		return render_template("user.html", user = user) 
-	return error("noUser")
+	return error()
 	
 @app.route("/submit_post", methods = ["GET", "POST"])
 def submitPost():
@@ -36,23 +36,19 @@ def submitPost():
 		return render_template("submit_post.html")
 
 	title = request.form["title"]
-	if "username" in session:
-		if utils.getPost(title) == None:
+	if utils.loggedIn() and utils.titleAvailable(title):
 			body = request.form["body"]
 			author = session["username"]
 			utils.submitPost(title, body, author)
 			return redirect(url_for("home"))
-		else: 
-			return error("mustLogin")
-
 	else:
-		return error("postFail")
+		return error()
 
 
 @app.route("/post/<postTitle>/submit_comment", methods = ["GET", "POST"])
 def submitComment(postTitle):
 	body = request.form["body"]
-	if "username" in session:
+	if utils.loggedIn():
 		author = session["username"]
 	else:
 		author = None
@@ -64,13 +60,13 @@ def login():
 	if request.method == "GET":
 		return render_template("login.html")
 
-	elif "username" not in session:
+	elif not utils.loggedIn():
 		username = request.form["username"]
 		password = request.form["password"]
 		if utils.authenticate(username, password):
 			session["username"] = username
 		else:
-			return error("loginFail")
+			return error()
 	return redirect(url_for("home"))
 
 @app.route("/logout")
@@ -83,23 +79,21 @@ def register():
 	if request.method == "GET":
 		return render_template("register.html")
 
-	elif "username" not in session:
+	elif not utils.loggedIn():
 		username = request.form["username"]
 		password = request.form["password"]
 		passRetype = request.form["passRetype"]
 
-		if password == passRetype:
-			if utils.register(username, password):
-				return redirect(url_for("home"))
-			else: 
-				return error("registerFail")
+		if utils.register(username, password, passRetype):
+			return redirect(url_for("home"))
 		else:
-			return error("passMismatch")
+			return error()
 	else:
 		return redirect(url_for("home"))
 	
-def error(msg):
-	return render_template("error.html", msg = msg)
+def error():
+	error = session["error"]
+	return render_template("error.html", error = error)
 
 if __name__ == "__main__":
 	app.run(debug = True)
