@@ -55,7 +55,14 @@ def register():
         elif button == "Cancel":
             return render_template("register.html")
 
-#@app.route("/     ", methods =["GET", "POST"])
+@app.route("/<storytitle>", methods = ["GET", "POST"])
+def story(title = storytitle):
+    
+    
+@app.route("/createstory", methods = ["GET", "POST"])
+def make():
+    
+        
 
 
 
