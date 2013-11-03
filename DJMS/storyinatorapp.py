@@ -61,6 +61,26 @@ def story(title = storytitle):
     
 @app.route("/createstory", methods = ["GET", "POST"])
 def make():
+    if request.method == "GET" :
+        return render_template("createstory.html")
+        else:
+            author == request.form['username'].encode("ascii","ignore")
+            password == request.form['password'].encode("ascii","ignore")
+            title == request.form['title'].encode("ascii","ignore")
+            story == request.form['story'].encode("ascii","ignore")
+            button = request.form['button']
+            if button == "Submit":
+               if (author == '' or password == '' or story == ''):
+                    return render_template("createstory.html", message = "Please fill empty fields")
+               elif (!(auth.check(author,password))):
+                    return render_template("createstory.html", message = "Username and Password do not match. Please try again")
+               else:
+                   makeStory(title, story, author)
+                   return redirect("/<title>")
+                    
+
+                
+            
     
         
 
