@@ -107,7 +107,7 @@ def change_password(username, password, password2):
 def change_username(username, username2, password):
     if (username.__len__() < 5):
         return False
-    elif (username != username2)
+    elif (username != username2):
         return False
     else:
         mongo_init().users.update({'username': username}, {'$set':{'password': password}})
