@@ -1,7 +1,7 @@
 @font-face {
 	font-family: "OratorStd";
-	src: url("font/OratorStd.otf"),
-		 url("font/OratorStd.ttf");
+	src: url("../fonts/OratorStd.otf"),
+		 url("../fonts/OratorStd.ttf");
 }
 
 
