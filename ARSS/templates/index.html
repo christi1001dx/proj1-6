@@ -1,6 +1,5 @@
 yolo extends "layout.html"
 yolo block head
-	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/landing.css') }}>
 	<script src="{{ url_for('static', filename='js/landing.js') }}"></script>
     <script>
 		var dir = "{{ url_for('static', filename='') }}";
@@ -18,6 +17,9 @@ yolo block body
 	</div>
 	<div id="story" class="container">
 		yolo include 'story.html'
+	</div>
+	<div id="sidebar">
+		yolo include 'sidebar.html'
 	</div>
 	
 yolo endblock

@@ -1,16 +1,34 @@
-var blockw = BLOCK = 300, PAD = 20, contw;
+var blockw = BLOCK = 300, PAD = 20, contw, bw, bh;
 var HEADSIZE = [60, 400];
 var s = [];
 
-
+var sideneg = 30, sideopen = 0;
 
 $(function() {
 	$(window).resize(calcheader).scroll(calcheader).resize();
+	
+	$("#sidebar .label").mouseover(function() {
+		if (!!sideopen) return;
+		$(this).animate({
+			opacity : 0
+		},500,function() {
+			sideopen = 1;
+			$(this).css("display","none");
+		});
+		var $side = $(this).parent();
+		$side.animate({
+			left: $(window).width() - $side.width()
+		},500)
+		sideopen = 2;
+	});
 });
 
 function calcheader() {
-	var bw = $(window).width(), bh = $(window).height();
+	bw = $(window).width(); bh = $(window).height();
 	var st = $(window).scrollTop();
+	
+	if (!sideopen) $("#sidebar").css("left", bw - sideneg);
+	bw -= sideneg;
 	
 	var hh = Math.max(HEADSIZE[1] - st, HEADSIZE[0]);
 	$("header").css("height", hh);
@@ -18,6 +36,8 @@ function calcheader() {
 	$(".title h1").css("font-size", fsr * 130 + 45);
 	$(".title .sub").css("font-size", fsr * 40)
 		.css("opacity", (hh>HEADSIZE[1]/2)?1:0).css("display", (hh>HEADSIZE[1]/4)?"block":"none");
+	
+	$("header, .container").css("width", bw);
 }
 
 var pre = ["","-moz-","-o-","-webkit-","-ms-"];
@@ -55,7 +75,7 @@ $(function() {
 });
 
 function showBlocks() {
-	var bw = $(window).width(), bh = $(window).height();
+	bw = $(window).width() - sideneg; bh = $(window).height();
 	var st = $(window).scrollTop(), ct = $("#cards").position().top;
 	var x=0, y=0;
 	for(var i=0;i<s.length;i++) {
@@ -78,7 +98,7 @@ function showBlocks() {
 	}
 }
 function blocks() {
-	var bw = $(window).width(), bh = $(window).height();
+	bw = $(window).width() - sideneg; bh = $(window).height();
 	var st = $(window).scrollTop(), ct = $("#cards").position().top;
 	
 	coln = 10;
