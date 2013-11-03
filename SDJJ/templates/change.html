@@ -1,9 +1,11 @@
-{% extends "layout.html" %}
+﻿{% extends "layout.html" %}
 {% block content %}
-<form class="registerForm" action=" {{ url_for('register')}} " method="post">
+<form class="changeForm" action=" {{ url_for('change')}} " method="post">
+    <h3>{{message}}</h3>
 	<input type="text" name="username" size="20" placeholder="Username"/><br>
-	<input type="password" name="password" size="20" placeholder="Password"/><br>
-	<input type="password" name="passRetype" size="20" placeholder="Retype Password"/><br>
+    <input type="password" name="oldpassword" size="20" placeholder="Old Password"/><br>
+	<input type="password" name="newpassword" size="20" placeholder="New Password"/><br>
+    <input type="password" name="confirmnewpassword" size="20" placeholder="Retype New Password"/><br>
     <select name = "security">
       <option value='' disabled selected style='display:none;'>Please Choose</option>
       <option value="First">Who's your favorite teacher at stuy?</option>
@@ -18,3 +20,4 @@
 	</div>
 </form>
 {% endblock %}
+

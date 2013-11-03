@@ -1,9 +1,8 @@
-{% extends "layout.html" %}
+﻿{% extends "layout.html" %}
 {% block content %}
-<form class="registerForm" action=" {{ url_for('register')}} " method="post">
+<form class="recoverForm" action=" {{ url_for('recover')}} " method="post">
+    <h3>{{message}}</h3>
 	<input type="text" name="username" size="20" placeholder="Username"/><br>
-	<input type="password" name="password" size="20" placeholder="Password"/><br>
-	<input type="password" name="passRetype" size="20" placeholder="Retype Password"/><br>
     <select name = "security">
       <option value='' disabled selected style='display:none;'>Please Choose</option>
       <option value="First">Who's your favorite teacher at stuy?</option>
@@ -18,3 +17,6 @@
 	</div>
 </form>
 {% endblock %}
+
+
+

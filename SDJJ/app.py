@@ -40,7 +40,8 @@ def submitPost():
         if utils.loggedIn() and utils.titleAvailable(title):
                         body = request.form["body"]
                         author = session["username"]
-                        utils.submitPost(title, body, author, datetime.datetime.now())
+                        date = datetime.datetime.now()
+                        utils.submitPost(title, body, author, date.replace(second=0, microsecond=0))
                         return redirect(url_for("home"))
         else:
                 return error()
@@ -53,7 +54,8 @@ def submitComment(postTitle):
                 author = session["username"]
         else:
                 author = None
-        utils.submitComment(postTitle, body, author, datetime.datetime.now())
+        date = datetime.datetime.now()
+        utils.submitComment(postTitle, body, author, date.replace(second=0, microsecond=0))
         return redirect(url_for("post", postTitle = postTitle))
 
 @app.route("/login", methods = ["GET", "POST"])
@@ -110,6 +112,29 @@ def recover():
                 return render_template("recover.html", message = utils.recover(username,security,answer))
         elif button == "Cancel":
             return render_template("recover.html")
+
+
+@app.route("/change", methods=["GET", "POST"])
+def change():
+    if request.method == "GET" :
+        return render_template("change.html")
+    else:
+        password = request.form['oldpassword']
+        newpassword = request.form['newpassword']
+        confirmnewpassword = request.form['confirmnewpassword']
+        security = request.form['security']
+        answer = request.form['answer']
+        button = request.form['button']
+        if button == "Submit":
+            if (password == '' or newpassword == '' or confirmnewpassword == '' or answer == ''):
+                return render_template("change.html", message = "Please fill empty fields")
+            elif newpassword != confirmnewpassword:
+                return render_template("change.html", message = "Please enter the same passwords.")
+            else:
+                if(utils.change(session["name"],newpassword)):   
+                    return redirect("/members")
+        elif button == "Cancel":
+            return render_template("change.html")
 
 
 def error():

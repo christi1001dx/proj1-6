@@ -12,11 +12,11 @@ users = db.users
 posts = db.posts
 comments = db.comments
 
-def submitPost(title, body, author):
-	posts.insert({ "title" : title, "body" : body, "author" : author })
+def submitPost(title, body, author, date):
+	posts.insert({ "title" : title, "body" : body, "author" : author, "date" : date })
 
-def submitComment(postTitle, body, author):
-	comments.insert({ "postTitle" : postTitle, "body" : body, "author" : author })
+def submitComment(postTitle, body, author, date):
+	comments.insert({ "postTitle" : postTitle, "body" : body, "author" : author, "date" : date })
 
 def getPosts():
 	return posts.find()
@@ -56,15 +56,30 @@ def authenticate(username, password):
 		app.session["error"] = "loginFail"
 		return False
 
-def register(username, password, passRetype):
+def register(username, password, passRetype, security, answer):
 	if password != passRetype:
 		app.session["error"] = "passMismatch"
 	elif users.find_one({"username" : username}) is None:
-		users.insert({ "username" : username, "password" : password })
+		users.insert({ "username" : username, "password" : password, "security" : security, "answer" : answer })
 		return True
 	else:
 		app.session["error"] = "userExists"
 	return False
+
+def changepass(username, newpassword):
+    users.update({'username':username},{'$set':{'password':newpassword}})
+    return True
+
+def recover(username, security, answer):
+    user = users.find_one({'username':username},fields={'_id':False})
+    if(answer == user['answer'] and security == user['security']):
+        return ("Your password is: " + user['password'])
+    else:
+        return ("Your username and security answer do not match. Please try again.")
+
+def change(username,newpassword):
+    users.update({'username':username},{'$set':{'password':newpassword}})
+    return True
 
 def loggedIn():
 	if "username" in app.session:

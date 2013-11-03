@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 	<h3 id="title">{{ post.title }}</h3>
+    <h4 id="date">{{ post.date }}</h4>
 	<a href="/user/{{ post.author}}">{{ post.author }}</a>
 
 	<p id="body">
@@ -11,6 +12,7 @@
 	{% for comment in post.comments %}
 		<p>{{ comment.body }}</p>
 		<p>by {{ comment.author }}</p>
+        <p>at {{ comment.date }}</p>
 	{% endfor %}
 
 	<form id="commentForm" action="/post/{{ post.title }}/submit_comment" method="post">
