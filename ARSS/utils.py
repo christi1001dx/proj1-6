@@ -91,12 +91,25 @@ def account_exists(username, password):
     else:
         return False
 
-# used to change password to password2
+# used to change password 
+# type in new password two times
 def change_password(username, password, password2):
-    if (password.__len__() < 4):
+    if (password.__len__() < 5):
         return False
     elif (password != password2):
         return False
     else:
         mongo_init().users.update({'username': username}, {'$set':{'password': password}})
         return True
+
+# used to change username 
+# type in new username two times
+def change_username(username, username2, password):
+    if (username.__len__() < 5):
+        return False
+    elif (username != username2)
+        return False
+    else:
+        mongo_init().users.update({'username': username}, {'$set':{'password': password}})
+        return True
+
