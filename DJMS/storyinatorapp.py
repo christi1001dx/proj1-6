@@ -56,7 +56,7 @@ def register():
                     return render_template("register.html")
 
 @app.route("/<storytitle>", methods = ["GET", "POST"])
-def story(title = storytitle):
+def story(title = None):
     if request.method == "GET" :
         return render_template("story.html")
     else:
@@ -69,6 +69,10 @@ def story(title = storytitle):
                 editStory(title, addition)
                 return render_template("story.html")
                 
+@app.route("/storylist", methods = ["GET", "POST"])
+def storylist():
+    if request.method == "GET":
+        return render_template("storylist.html")
     
 
     
