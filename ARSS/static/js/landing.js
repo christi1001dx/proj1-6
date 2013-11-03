@@ -43,7 +43,7 @@ $(function() {
 				"<div class='author'>by "+stories[i].author+"</div>"+
 				"<div class='edits' title='"+stories[i].edits+" edits'><img src='"+dir+"img/edit.png' />"+stories[i].edits+"</div>"+
 				"<div class='story'>"+stories[i].text+"</div>"+
-				"<div class='goto'><div class='text'>Go to Story &rarr;</div></div>"
+				"<div class='goto'><div class='text' onclick=''>Go to Story &rarr;</div></div>"
 			).css("opacity",0).css3({
 				"transform-origin" : "50% 50%"
 			})
@@ -68,7 +68,7 @@ function showBlocks() {
 				opacity : 1
 			}, {
 				step:function(now, fx) {
-					$(this).css3({transform:"rotateY("+(220+140*now)+"deg) scale("+(0.2+0.8*now)+")"});
+					$(this).css3({transform:"rotateY("+(220+140*now)+"deg) scale("+(0.5+0.5*now)+")"});
 				},
 				duration : 1000
 			});
