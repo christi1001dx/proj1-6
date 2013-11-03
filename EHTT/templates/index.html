@@ -1,8 +1,8 @@
 <html>
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/foundation.min.css">
-  <link rel="stylesheet" href="css/grid-5.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
 
   <head>
     <title>Herman's Blog</title>
@@ -14,20 +14,17 @@
       <div class="large-12 columns">
         <div class="nav-bar right">
           <ul class="button-group">
-            <li><a href="/index" class="button">Home</a></li>
+            <li><a href="/" class="button">Home</a></li>
             <li><a href="/aboutme" class="button">About Me</a></li>
-            <li><a href="/posts" class="button">Posts</a></li>
-            {% if {{ username }} == "" %}
+            {% if not username %}
             <li><a href="/login" class="button">Login</a></li>
+	    <li><a href="/register" class="button">Register</a></li>
             {% else %}
             <li><a href="#" class="button">{{ username }}</a></li>
-                {% if {{ username }} == "Herman" %}
+                {% if username == "Herman" %}
                     <li><a href="/createpost" class="button">Create Post</a></li>
                 {% endif %}
-<<<<<<< HEAD
-=======
             <li><a href="/logout" class="button">Logout</a></li>
->>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a
             {% endif %}
           </ul>
         </div>
@@ -41,20 +38,18 @@
       
       <!-- Overview of the Blog -->
       <div class="large-9 columns" role="content">
-<<<<<<< HEAD
-	Stuff
-=======
-        Stuff
->>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a
+	{% for x in posts %}
+	{{ x.name }}
+	{% endfor %}
       </div>
       
       <!--sidebar-->
       <aside class="large-3 columns">
-<<<<<<< HEAD
+
 	<div class="panel">
-=======
+
         <div class="panel">
->>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a
+
           <h5>Featured Post</h5>
           <p></p>
           <a href="#">Read More &rarr;</a>
@@ -72,20 +67,17 @@
         </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
-            <li><a href="/index">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/aboutme">About Me</a></li>
-            <li><a href="/posts">Posts</a></li>
-            {% if {{ username }} == "" %}
+            {% if not username %}
             <li><a href="/login">Login</a></li>
+	    <li><a href="/register">Register</a></li>
             {% else %}
             <li><a href="#">{{ username }}</a></li>
-                {% if {{ username }} == "Herman" %}
+                {% if username == "Herman" %}
                     <li><a href="/createpost">Create Post</a></li>
                 {% endif %}
-<<<<<<< HEAD
-=======
             <li><a href="/logout">Logout</a></li>
->>>>>>> d7cf8048a244f55339180eb51a4e2e4e28a8af7a
             {% endif %}
           </ul>
         </div>

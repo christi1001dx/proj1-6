@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>{{post.title}}</title>
+        <link href="../static/PostStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+    </head>
+    <body>
+        <div id="NavigationMenu">
+            <nav>
+            <ul>
+                <li><a href="template.sports.html"><span>SPORTS</span></a></li>
+                <li><a href="template.arts.html"><span>ARTS/ENT</span></a></li>
+                <li><a href="template.opinion.html"><span>OPINION</span></a></li>
+                <li><a href="template.humor.html"><span>HUMOR</span></a></li>
+                <li><a href="template.academics.html"><span>ACADEMICS</span></a></li>
+                <li><a href="template.index.html"><span>HOME</span></a></li>
+                <br> <br> <br> <br> <br>
+                <a href="Login.html" class="btn">Login</a>
+                <a href="#" class="btn">Register</a>
+                <a href="template.submit.html" class="btn">New Post<a>
+            </ul>
+            </nav>
+        </div>
+        <br> <br>
+        <span id="LEFT">
+            <span id="Title">
+                {{post.title}}
+            </span>
+            <br>
+            <span id="Post">
+                <span id="Content">
+                    {{post.content}}
+                </span>
+                <br>
+                <span id="Author">
+                    By {{post.author}}
+                </span>
+            </span>
+            
+            
+            <form method="POST" id="Sub">
+                <span>Enter your comment below</span>
+                <textarea name="comment"></textarea>
+                <input type="submit" name="button" value="submit"></input>
+            </form>
+            <div id="Comment">
+            <ul>
+                {{ for c in comments }}
+                <li>
+                <div> 
+                {{c.comment}}
+                <br>
+                {{c.author}}
+                </div>
+                </li>
+                <br>
+                {{ endfor }}
+            </ul>
+            </div> 
+        </span>
+        <span id="RIGHT">
+        </span>
+    </body>
+</html>

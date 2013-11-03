@@ -10,26 +10,27 @@
     <div id="NavigationMenu">
         <nav>
             <ul>
-                <li><a href="#"><span>SPORTS</span></a></li>
-                <li><a href="#"><span>ARTS/ENT</span></a></li>
-                <li><a href="#"><span>OPINION</span></a></li>
-                <li><a href="#"><span>HUMOR</span></a></li>
-                <li><a href="#"><span>ACADEMICS</span></a></li>
+                <li><a href="template.sports.html"><span>SPORTS</span></a></li>
+                <li><a href="template.arts.html"><span>ARTS/ENT</span></a></li>
+                <li><a href="template.opinion.html"><span>OPINION</span></a></li>
+                <li><a href="template.humor.html"><span>HUMOR</span></a></li>
+                <li><a href="template.academics.html"><span>ACADEMICS</span></a></li>
                 <br> <br> <br> <br> <br>
-                <a href="Login.html" class="btn">Login</a>
-                <a href="#" class="btn">Register</a>
+                <a href="Template.Login.html" class="btn">Login</a>
+                <a href="Template.Register.html" class="btn">Register</a>
+                <a href="template.submit.html" class="btn">New Post<a>
             </ul>
         </nav>
     </div>
     <div id="SectionOne">
         <span id="Featured">
-            <a id="title" href={featured.link}>{{featured.title}}</a>
+            <a id="Title" href={featured.link}>{{featured.title}}</a>
             <span>{{featured.preview}}</span>
             <span>By {{featured.author}}</span>
         </span>
         <span id="Sports">
             {% for post in sports %}
-            <a id="title" href={{post.link}}>{{post.title}}</a>
+            <a id="Title" href={{post.link}}>{{post.title}}</a>
                 <br>
                 {{post.preview}}
                 by {{post.author}}
@@ -37,7 +38,7 @@
         </span> 
         <span id="Arts-Ent">
             {% for post in artsent %}
-            <a id="title" href={{post.link}}>{{post.title}}</a>  
+            <a id="Title" href={{post.link}}>{{post.title}}</a>  
             <br>
                 {{post.preview}}
                 by {{post.author}}
@@ -47,7 +48,7 @@
     <div id="SectionTwo">
         <span id="Opinion">
             {% for post in opinions %}
-            <a id="title" href={{post.link}}>{{post.title}}</a> 
+            <a id="Title" href={{post.link}}>{{post.title}}</a> 
                 <br>
                 {{post.preview}}
                 by {{post.author}}
@@ -55,7 +56,7 @@
         </span> 
         <span id="Humor">
             {% for post in humor %}
-            <a id="title" href={{post.link}}>{{post.title}}</a>  
+            <a id="Title" href={{post.link}}>{{post.title}}</a>  
                 <br>
                 {{post.preview}}
                 by {{post.author}}
@@ -63,7 +64,7 @@
         </span> 
         <span id="Academics">
             {% for post in humor %}
-            <a id="title" href={{post.link}}>{{post.title}}</a>  
+            <a id="Title" href={{post.link}}>{{post.title}}</a>  
                 <br>
                 {{post.preview}}
                 by {{post.author}}

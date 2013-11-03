@@ -47,14 +47,11 @@ def checkAdmin(user):
     else:
         return False
 
-def post(user, post):
+def post(user, title, post):
     collection = db.posts
-    if(checkAdmin(user)):
-#checkAdmin should actually happen earlier - when someone tries to post, not when they write a post and then attempt to upload it
-        (db.posts.insert( {"name":"admin", "post":post} ))
-        return True
-    else:
-        return False
+    #make sure only admins have option to post
+    db.posts.insert( {"name":"admin", "title":title, "post":post} )
+    return True
 
 
 def comment(user, comment,post):

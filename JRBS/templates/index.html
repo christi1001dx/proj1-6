@@ -1,29 +1,49 @@
+<!doctype html>
 <html>
 <head> 
-
+  <meta charset="utf-8">
   <title> Bloginator! </title>
-  <h1> link directing back to home</h1>
-  <link rel="stylesheet" type ="text/css" href="CSS/style.css">
+  <link rel="stylesheet" type="text/css" class="ui" href="CSS/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 
-<body> 
-<div id ="Navigation">
-  <ul class="navigation">
-   <li><a href="post.html"><span>Posts</span></a>
-   <li><a href="archive.html"><span>Archive</span></a>
-   </ul>
-</div>
- 
-<div id="Login"> 
-  <ul class ="login">
-    <li> login
-   </ul>
-</div>
-<div id="PostBox">
-  <p> this is where the posts should go </p>
-</div>
-
-
+<body>
+  <div class="container">
+    <!--Top Horizontal Menu-->
+    <div id="top" class="ui fixed transparent main menu">
+      <div class="right menu">
+	<div class="item">
+	  <div class="ui small button">Login</div>
+	</div>
+	
+	<div class="item">
+	  <div class="ui teal small button">Sign up</div>
+	</div>
+	<a class="large item">Help</a>
+      </div>
+    </div>
+    <!--Vertical Menu-->
+    <div id="left" class="ui fixed vertical text menu">
+      <a class="item">
+	<i class="huge teal home icon"></i>Home<br>
+      </a>
+      <a class="item">
+	<i class="huge black pencil icon"></i>Post
+      </a>  
+    </div>
+    <!--Bottom Menu-->
+    <div class="ui borderless pagination menu">
+      <div class="bottom menu">
+	<a class="item">
+	  <i class="icon left arrow"></i> Previous
+	</a>
+	<a class="item">1</a>
+	<a class="item">
+	  Next <i class="icon right arrow"></i>
+	</a>
+      </div>
+    </div>
+  </div>
   
 </body>
 

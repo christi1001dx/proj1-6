@@ -1,1 +1,24 @@
-STORIES
+<script>
+	var stories = [];
+	for(var i=0;i<23;i++) {
+		var li = loremipsum[Math.floor(Math.random()*loremipsum.length)];
+		var ind = Math.floor(Math.random()*50);
+		stories.push({
+			edits : 1 + Math.floor(Math.random()*30),
+			title : li.substring(ind, ind+25),
+			author : authors[Math.floor(Math.random()*authors.length)],
+			text : li
+		});
+	}
+</script>
+<header class="">
+	<div class="middle t2">
+		<div class="title t2">
+			<h1 class="t2">ARSS</h1>
+			<div class="sub t2">A collaborative story writing site.</div>
+		</div>
+	</div>
+</header>
+<div id="cards">
+	
+</div>

@@ -1,0 +1,243 @@
+* {
+    font-family:sans-serif;
+}
+
+body {
+ /*   overflow:hidden; */
+    background: #728eaa;
+    background: -moz-linear-gradient(top, #25303C, 0%, #728EAA, 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%, #728EAA));
+    white-space:nowrap;
+}
+
+#NavigationMenu {
+    position:relative;
+    width:1300px;
+    height:120px;
+    padding-top:10px;
+    bottom:5px solid black;
+}
+.btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+nav ul {
+    list-style: none; overflow: hidden; position: relative;
+}
+
+    nav ul li {
+        float: left; margin: 0px 20px 0px 0px;
+    }
+
+nav ul li a {
+    display: block; width: 120px; height: 120px;
+    background-image: url(NavBar/Icons.png); background-repeat: no-repeat;
+}
+
+    nav ul li:nth-child(1) a {
+        background-color: #3366ff;
+        background-position:0px -570px;
+    }
+    nav ul li:nth-child(2) a {
+        background-color: #00ff99;
+        background-position: 0px -425px;
+    }
+    nav ul li:nth-child(3) a {
+        background-color: #ff0000;
+        background-position: 0px -280px;
+    }
+    nav ul li:nth-child(4) a {
+        background-color: #ff9900;
+        background-position: 0px -140px;
+    }
+
+    nav ul li:nth-child(5) a {
+        background-color: #00ffff;
+        background-position: 0px 0px;
+    }
+
+    nav ul li:nth-child(6) a {
+      background-image: url(NavBar/Shop.png); background-repeat:no-repeat;
+        background-color:#E0C2FF;
+        background-position:0px 0px;
+    }
+
+nav ul li a span {
+    font: 50px sans-serif, Times; text-transform: uppercase;
+    position: absolute; left: 900px; top: 29px; 
+    display:none;
+}
+
+nav ul li a:hover span {
+    display: block;
+}
+
+    nav ul li:nth-child(1) a span {
+    color: #3366ff;
+    }
+    nav ul li:nth-child(2) a span {
+    color: #00ff99;
+    }
+    nav ul li:nth-child(3) a span {
+    color: #ff0000;
+    }
+    nav ul li:nth-child(4) a span {
+    color: #ff9900;
+    }
+    nav ul li:nth-child(5) a span {
+    color: #00ffff;
+    }
+    nav ul li:nth-child(6) a span {
+    color:#E0C2FF;
+    }
+
+#LEFT {
+  position:relative;
+  border:5px solid white;
+  height:750px;
+  width:880px;
+  min-width:880px;
+  float:left;
+}
+
+#RIGHT {
+  position:relative;
+  border:5px solid #728EAA;
+  height:750px;
+  width:362px;
+  min-width:362px;
+  display:inline-block;
+  overflow:scroll;
+}
+
+#Title {
+  /*position:absolute;
+  margin:left;*/
+  position:relative;
+  width:850px;
+  /* left:50% */
+  font-size:60px;
+  text-align:center; 
+  color:orange;
+  border:5px solid orange;
+  display:inline-block;
+}
+
+#Author {
+  color:orange;
+  width:800px;
+  display:inline-block;
+
+}
+
+#Post {
+ color:white;
+ border:5px solid #E0C2FF;
+ width:850px;
+ display:inline-block;
+
+}
+#Content {
+ width:800px;
+ font-size:16px;
+ color:white;
+ padding:2px;
+ overflow:scroll;
+
+}
+ul {
+  list-style;none;
+}
+#Comment li {
+  position:relative;
+}
+
+#Comment {
+  color:#8888C2;
+  border:solid 5px;
+  color:white;
+  width:600px;
+  height:400px;
+  font-size:16px;
+  margin-left:25px;
+  overflow:scroll;
+  min-width:600px;
+}
+
+#Comment div #Com {
+  color:white;
+}
+#Comment span {
+  color:orange;
+}
+#Sub {
+  width:80%;
+  font-size:16px;
+  color:white;
+  margin-left:20px;
+}
+
+#Sub input {
+    background-color:orange;
+    border:none;
+    color:black;
+}
+#Sub input:hover {
+    color:white;
+}
+input[type=submit] {
+    width: 100px; height: 40px; padding: 10px 15px; margin: 10px 15px 0 20;
+    -moz-box-shadow: 0px 0px 5px #999;-webkit-box-shadow: 0px 0px 5px #999;
+    border: 1px solid #556f8c;
+    /* IE10 Consumer Preview */ 
+    background-image: -ms-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* Mozilla Firefox */ 
+    background-image: -moz-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* Opera */ 
+    background-image: -o-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FAFAFA), color-stop(1, #2B2B2B));
+
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-linear-gradient(top, #FAFAFA 0%, #2B2B2B 100%);
+
+    /* W3C Markup, IE10 Release Preview */ 
+    background-image: linear-gradient(to bottom, #FAFAFA 0%, #2B2B2B 100%);
+      border-radius: 5px;
+
+    cursor: pointer;
+}
+textarea {
+    width:700px;
+    display:block;
+    border: 2px solid #999;
+    height: 80;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}

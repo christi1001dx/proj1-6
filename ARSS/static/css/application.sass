@@ -1,31 +1,76 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,800,300)
-@import url(http://fonts.googleapis.com/css?family=EB+Garamond)
-@import url(http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic)
-@import url(http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,900italic,400,700,900)
-@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic)
-@import url(http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Libre+Baskerville:400,700,400italic)
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,800,300")
+@import url("http://fonts.googleapis.com/css?family=EB+Garamond")
+@import url("http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic")
+@import url("http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,900italic,400,700,900")
+@import url("http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic")
+@import url("http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Libre+Baskerville:400,700,400italic")
+@import url("http://fonts.googleapis.com/css?family=ABeeZee:400,400italic|Gudea:400,700,400italic|Oxygen:400,700,300|Sintony:400,700")
 
 @import mixins
-@import scroll
+
+@import scrollbar
+@import sidebar
+
+@include scrollbar
+
+$blue: #74D2FF
+
+input
+	@include vendor(box-sizing, border-box)
+	@include vendor(transition, box-shadow 0.2s)
+	margin-bottom: 15px
+	padding: 6px 10px
+	width: 100%
+	border: 1px solid #D2D9DC
+	font-weight: 300
+	font-size: 14px
+	&:focus
+		@include vendor(box-shadow, 0 0 3px $blue)
+		outline: none
+		border: 1px solid $blue
+
+.button
+	display: block
+	padding: 0.3em 0 0.1em
+	text-align: center
+	background-color: white
+	color: black
+	cursor: pointer
 
 .story-container
-	width: 900px
-	margin: 20px auto 0
+	max-width: 900px
+	margin: 0 auto
+	padding: 0 20px
+	overflow-y: auto
 
 	h1
 		display: inline-block
-		margin: 0.4em 0 0.3em
+		margin: 0.4em 0 0
 		border-top: 7px solid #000
-		font-family: 'Lora'
+		font-family: Lora
 		font-size: 70px
 		font-style: italic
 		font-weight: normal
 
 	p
-		font-family: 'EB Garamond', serif
+		font-family: "EB Garamond", serif
 		font-size: 25px
-		margin: 0.4em 0
 
-p.author
+.story-author
+	display: inline-block
+	margin: 0
+	margin-left: 20px
+	color: #202020
 	font-family: Lora, serif
 	font-style: italic
+
+.story-text
+	text-indent: 2em
+	margin: 1em 0
+
+#story-new-line
+	&:hover
+		border-bottom: 1px dotted
+	&:focus
+		outline: none
+		border-bottom: 1px solid

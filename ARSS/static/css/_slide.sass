@@ -1,0 +1,32 @@
+html, body
+	width: 100%
+	height: 100%
+	margin: 0
+	padding: 0
+
+//#slide-viewport
+	width: 100%
+	height: 100%
+	overflow: hidden
+
+#slide-container
+	position: relative
+	overflow: hidden
+	width: 100%
+	height: 100%
+
+.slide-section
+	width: 50%
+	height: 100%
+	overflow: auto
+	float: left
+
+	&:nth-child(odd)
+		background-color: green
+	&:nth-child(even)
+		background-color: red
+
+
+#test-footer
+	position: fixed
+	bottom: 0

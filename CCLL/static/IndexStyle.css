@@ -105,6 +105,19 @@ nav ul li a:hover span {
     color: #00ffff;
     }
 
+a:link {
+    text-decoration:none;
+}
+
+a:hover {
+    color:#00ffff;
+}
+
+a {
+    color:white;
+    cursor:text;
+}
+
 #SectionOne {
     position:relative;
     height:210px;
