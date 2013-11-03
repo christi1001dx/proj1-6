@@ -55,6 +55,14 @@ def editStory(name, addition):
     data = data[0]
     newStory = data['story'] + addition
     db.DJMSStory.update({'storyname':name},{'$set':{'story':newStory}})
+
+def chkStoryName(name):
+    db = work()
+    data = [x for x in db.DJMSStory.find({'storyname':name},fields={'_id':False})]
+    if(len(data)==0):
+        return "No Story found"
+    else:
+        return "Story found"
     
 def delStory(name):
     db = work()
