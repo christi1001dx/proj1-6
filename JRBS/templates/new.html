@@ -2,7 +2,7 @@
 
   <head>
     <style type="text/css">
-      h1 {color:red}
+      .center {text-align:center}
     </style>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     
@@ -13,21 +13,17 @@
     <title> Bloginator! </title>
   </head>
   
-  <div id="registration">
+  <div>
     <h2>Poster</h2>
     
     <form id="RegisterUserForm" action="" method="post">
       <fieldset>
-	  <label for="title">Post Title</label>
+	Post Title: <br><input name="title" type="text" size="30" class="text" placeholder="Message Title.">
 	<p>
-	  <input name="title" type="text" class="text" placeholder="Message Title.">
+	Post Content: <br><input name="post" type="text" size="30" class="text" placeholder="Post your message here.">
 	<p>
-	  <label for="post">Email:</label>
-	<p>
-	  <input name="post" type="text" class="text" placeholder="Post your message here.">
-	<p>
-	  <button id="registerNew" type="submit">Post</button>
-	  <button id="cancel" type="submit">Cancel</button>
+	  <input type="submit" name="Post" value="Post">
+	  <input type="submit" name="Cancel" value="Cancel">
 	  
       </fieldset>
       

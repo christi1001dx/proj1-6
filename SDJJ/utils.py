@@ -23,8 +23,7 @@ def post(post):
 	return posts.find({ "id" : post })
 
 def userpost(username, post):
-    temp = users.find_one({'username':username})
-    temp =  temp['posts']
+    temp = users.find_one({'username':username})['posts']
     postsize = posts.count()
     temp.extend([postsize + 1]) #new postid
     users.update({'username':username},{'$set':{'posts':temp}}) #adds the postid of new post in the user's list of postids theyve written
@@ -35,13 +34,29 @@ def usercomment(username, post, comment):
     postnum = temp['postid']
     temp = temp['comments']
     temp = temp + [comment] 
-    commentid = len(temp) + 1
+    commentid = len(temp) - 1
     posts.update({'post':post},{'$set':{'comments':temp}}) #updates new comment to post's list of comments
     temp = [x for x in users.find({'username':username},fields={'_id':False})]
     temp = temp[0]['comments']
     temp.extend([postnum*31415 + commentid*27182]) #arbitrary for now
     users.update({'username':username},{'$set':{'comments':temp}}) #udates user's list of comments with arbitrary comment id
 
+
+def deletepost(username, post): #is it neccessary to edit all postids proceeding the deleted post? 
+    postnum = posts.find_one({'post':post})['postid']
+    posts.remove({'post':post})
+    temp = users.find_one({'username':username})['posts'].remove(postnum)
+    users.update({'username':username},{'$set':{'comments':temp['posts']}})
+
+def deletecomment(username, post, comment):
+    temp = posts.find_one({'post':post})
+    postnum = temp['postid']
+    commentid = temp['comments'].index(comment)
+    temp['comments'].remove(comment)
+    posts.update({'post':post},{'$set':{'comments':temp['comments']}})
+    temp = users.find_one({'username':username})
+    temp['comments'].remove(postnum*31415 + commentid*27182)
+    users.update({'username':username},{'$set':{'comments':temp['comments']}})
 
 
 def profiles():
@@ -61,8 +76,7 @@ def login(username):
 	session["username"] = username
 
 def register(username,password):
-    db = work()
-    chk = db.user.find_one({'username':username})
+    chk = users.find_one({'username':username})
     if(chk == None):
        users.insert({'username':username,'password':password,'posts':[],'comments':[]})
        return True
