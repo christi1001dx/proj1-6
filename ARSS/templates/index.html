@@ -3,7 +3,11 @@ yolo block head
 	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/landing.css') }}>
 	<script src="{{ url_for('static', filename='js/landing.js') }}"></script>
     <script>
-		
+		function showStory() {
+			$("#story").animate({
+				left : '0%'
+			}, 500);
+		}
     </script>
 yolo endblock
 yolo block body
