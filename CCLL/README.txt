@@ -6,7 +6,7 @@ Goal: 1.Create a blogging website for the Stuyvesant Spectator.
 
 Roles: 1. Team Leader + Flask Implementation: David Cahn
        2. Front-end: Jing Lin and Aaron Copa
-       3. MongoDB Implementation: Jasper Lu
+       3. MongoDB/Flask Implementation: Jasper Lu
 
 PROPOSAL:
 	1. Input Page: HTML Template for text input (title, text, drop down menu for genre, submit buttom, clear button). DATE: 10/24
