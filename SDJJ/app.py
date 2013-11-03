@@ -100,41 +100,31 @@ def register():
 def recover():
     if request.method == "GET" :
         return render_template("recover.html")
-    else:
+    elif not utils.loggedIn():
         username = request.form['username']
         security = request.form['security']
         answer = request.form['answer']
-        button = request.form['button']
-        if button == "Submit":
-            if (username == '' or answer == ''):
-                return render_template("recover.html", message = "Please fill empty fields")
-            else:   
-                return render_template("recover.html", message = utils.recover(username,security,answer))
-        elif button == "Cancel":
-            return render_template("recover.html")
+        
+        if utils.recover(username,security,answer):
+            return render_template("home.html", message = "Your password is: " + utils.getpass(username))
+    else:
+        return error()
 
 
 @app.route("/change", methods=["GET", "POST"])
 def change():
-    if request.method == "GET" :
-        return render_template("change.html")
-    else:
-        password = request.form['oldpassword']
-        newpassword = request.form['newpassword']
-        confirmnewpassword = request.form['confirmnewpassword']
-        security = request.form['security']
-        answer = request.form['answer']
-        button = request.form['button']
-        if button == "Submit":
-            if (password == '' or newpassword == '' or confirmnewpassword == '' or answer == ''):
-                return render_template("change.html", message = "Please fill empty fields")
-            elif newpassword != confirmnewpassword:
-                return render_template("change.html", message = "Please enter the same passwords.")
-            else:
-                if(utils.change(session["name"],newpassword)):   
-                    return redirect("/members")
-        elif button == "Cancel":
+        if request.method == "GET" :
             return render_template("change.html")
+        elif utils.loggedIn():
+            password = request.form['oldpassword']
+            newpassword = request.form['newpassword']
+            confirmpassword = request.form['confirmnewpassword']
+            if(utils.changepass(session["username"], password, newpassword, confirmpassword)):   
+                return redirect(url_for("home"))
+            else:
+                return error()
+        else:
+            return redirect(url_for("home"))
 
 
 def error():

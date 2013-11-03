@@ -66,20 +66,32 @@ def register(username, password, passRetype, security, answer):
 		app.session["error"] = "userExists"
 	return False
 
-def changepass(username, newpassword):
-    users.update({'username':username},{'$set':{'password':newpassword}})
-    return True
+def changepass(username, password, newpassword, confirmnewpassword):
+    user = users.find_one({'username':username})
+    if (password == '' or newpassword == '' or confirmnewpassword == ''):
+        app.session["error"] = "emptyField"
+        return False
+    elif (newpassword != confirmnewpassword or password != user['password']):
+        app.session["error"] = "passMismatch"
+    else:
+        users.update({'username':username},{'$set':{'password':newpassword}})
+        return True
 
 def recover(username, security, answer):
-    user = users.find_one({'username':username},fields={'_id':False})
-    if(answer == user['answer'] and security == user['security']):
-        return ("Your password is: " + user['password'])
+    user = users.find_one({'username':username})
+    if (username == '' or answer == ''):
+        app.session["error"] = "emptyField"
+        return False
+    elif (security != user['security'] or answer != user['answer']):
+        app.session["error"] = "securityMismatch"
+        return False
     else:
-        return ("Your username and security answer do not match. Please try again.")
+        return True 
+    
+def getpass(username):
+    user = users.find_one({'username':username})
+    return user['password']
 
-def change(username,newpassword):
-    users.update({'username':username},{'$set':{'password':newpassword}})
-    return True
 
 def loggedIn():
 	if "username" in app.session:
