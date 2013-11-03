@@ -39,7 +39,7 @@ def register():
     else:
         username = request.form['username']
         password = request.form['password']
-        confirmpassword = request.form['confirmpassword'].encode("ascii","ignore")
+        confirmpassword = request.form['confirmpassword']
         button = request.form['button']
         if button == "Submit":
             if (username == '' or password == '' or confirmpassword == ''):
