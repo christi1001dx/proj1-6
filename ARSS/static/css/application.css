@@ -75,6 +75,7 @@
   width: 250px;
   height: 100%;
   padding: 10px;
+  font-size: 22px;
   color: white; }
 
 body {
@@ -105,6 +106,40 @@ body {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   background-color: #afafaf;
   border: 4px solid #ebebeb; }
+
+input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 0.2s;
+  -moz-transition: box-shadow 0.2s;
+  -ms-transition: box-shadow 0.2s;
+  -o-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  margin-bottom: 15px;
+  padding: 6px 10px;
+  width: 100%;
+  border: 1px solid #d2d9dc;
+  font-weight: 300;
+  font-size: 14px; }
+  input:focus {
+    -webkit-box-shadow: 0 0 3px #74d2ff;
+    -moz-box-shadow: 0 0 3px #74d2ff;
+    -ms-box-shadow: 0 0 3px #74d2ff;
+    -o-box-shadow: 0 0 3px #74d2ff;
+    box-shadow: 0 0 3px #74d2ff;
+    outline: none;
+    border: 1px solid #74d2ff; }
+
+.button {
+  display: block;
+  padding: 0.3em 0 0.1em;
+  text-align: center;
+  background-color: white;
+  color: black;
+  cursor: pointer; }
 
 .story-container {
   max-width: 900px;
