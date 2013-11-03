@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Arts/Ent</title>
+        <link href="../static/ArtsStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+    </head>
+    <body>
+        <div id="NavigationMenu">
+            <nav>
+            <ul>
+                <li><a href="template.sports.html"><span>SPORTS</span></a></li>
+                <li><a href="template.arts.html"><span>ARTS/ENT</span></a></li>
+                <li><a href="template.opinion.html"><span>OPINION</span></a></li>
+                <li><a href="template.humor.html"><span>HUMOR</span></a></li>
+                <li><a href="template.academics.html"><span>ACADEMICS</span></a></li>
+                <li><a href="template.index.html"><span>HOME</span></a></li>
+                <br> <br> <br> <br> <br>
+                <a href="template.login.html" class="btn">Login</a>
+                <a href="template.register.html" class="btn">Register</a>
+                <a href="template.submit.html" class="btn">New Post<a>
+            </ul>
+            </nav>
+        </div>
+        <br>
+        <div id="Section">ARTS & ENTERTAINMENT</div>
+        <div id="Line1">
+        <div id="Headline">
+            <a id="tit" href={{headline.link}}>{{headline.title}}</a>
+            <br>
+            <div id="Auth">By {{headline.author}}</div>
+        </div>
+        <div id="Post1">
+            <a id="Title" href={{posts[0].link}}>{{posts[0].title}}</a>
+            <br>
+            <div id="Author">By {{posts[0].author}}</div>
+        </div>
+        </div>
+        <div id="Line2">
+        <div id="Post2">
+            <a id="Title" href={{posts[1].link}}>{{posts[1].title}}</a>
+            <br>
+            <div id="Author">By {{posts[1].author}}</div>
+        </div>
+
+        <div id="Post3">
+            <a id="Title" href={{posts[2].link}}>{{posts[2].title}}</a>
+            <br>
+            <div id="Author">By {{posts[2].author}}</div>
+        </div>
+
+        <div id="Post4">
+            <a id="Title" href={{posts[3].link}}>{{posts[3].title}}</a>
+            <br>
+            <div id="Author">By {{posts[3].author}}</div>
+        </div>
+    </div>
+    </body>
+</html>
