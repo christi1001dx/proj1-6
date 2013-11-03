@@ -1,8 +1,6 @@
 body {
  font-family:"Times New Roman";
  color: black;
- background-image: -webkit-linear-gradient(top, #534AC5, #6086EF 100%);
-
 }
 
 div.content{
@@ -17,7 +15,6 @@ ul.login{
 
 
 #PostBox {
-    background-color: #6C5BDC;
     left: 10cm;
     position:relative;
     width: 700px;
