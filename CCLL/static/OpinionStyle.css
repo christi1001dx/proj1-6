@@ -142,7 +142,7 @@ nav ul li a:hover span {
     white-space:nowrap;
 }
 #Post1 {
-    width:510px;
+    width:400px;
     height:200px;
     color:white;
     display:inline-block;
@@ -152,7 +152,7 @@ nav ul li a:hover span {
 
 }
 #Post2 {
-    width:370px;
+    width:350px;
     height:200px;
     border:solid;
     color:blue;
@@ -162,7 +162,7 @@ nav ul li a:hover span {
 
 }
 #Post3 {
-    width:360px;
+    width:350px;
     height:200px;
     border:solid;
     color:orange;
@@ -173,7 +173,7 @@ nav ul li a:hover span {
 }
 
 #Post4 {
-    width:370px;
+    width:350px;
     height:200px;
     border:solid;
     color:red;
