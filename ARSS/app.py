@@ -40,7 +40,11 @@ def login():
     else:
         username = get_form_value('username')
         password = get_form_value('password')
-        #check if username is valid
+        if (utils.account_exists(username, password)):
+            session["username"] = username
+            return redirect("/index.html")
+        else:
+            return redirect("/register.html")
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -49,7 +53,11 @@ def register():
     else:
         username = get_form_value('username')
         password = get_form_value('password')
-        #check if passwords match
+        password2 = get_form_value('password2')
+        if (utils.add_user(username, password, password2) == "good job"):
+            return redirect("/login.html")
+        else:
+            return render_template("register.html")
 
 @app.route("/logout")
 def logout():
