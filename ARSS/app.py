@@ -23,7 +23,7 @@ def test():
 
 @app.route('/story')
 def story_test():
-    return render_template('story.html')
+    return render_template('story_test.html')
 
 @app.route('/')
 def index():
