@@ -19,7 +19,12 @@ def getRecent():
 
 def addPost(title, uid, content, date):
     db = c.posts
-    pid = db.Collections.find({}).sort("id",-1).limit(1)[0]["id"]+1
+    if db.Collections.count() == 0:
+        pid = 1
+    else:
+        pid = db.Collections.find({}).sort("id",-1).limit(1)[0]["id"]+1
+
+
     db.Collections.insert({"id":pid,"title":title,"uid":uid,"content":content,"date":date})
     return pid
 

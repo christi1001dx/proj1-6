@@ -47,6 +47,7 @@ def formatData2(uid, post, comments):
 
         
     post["comments"] = r
+    post["date"] = post["date"].strftime("%m/%d/%y %H:%M:%S")
 
     post["author"] = utils2.uidToUsername(post["uid"])
 
@@ -76,8 +77,9 @@ def formatComment(data):
     # data:
     # username = username
     # content = comment content
+    data["date"] = data["date"].strftime("%m/%d/%y %H:%M:%S")
     return '''              <tr>
-                <td><a href="#">%(username)s</a><br />%(content)s</td>
+                <td><a href="#">%(username)s</a> <span class="time">(%(date)s)</span><br />%(content)s</td>
               </tr>'''%(data)
 
 def formatPost(data,guest):
@@ -89,7 +91,7 @@ def formatPost(data,guest):
     # authorLinksHTML = if user == author display edit/delete links, call function authorLinksHTML()
     r = '''
       <table class="table post">
-	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="post?id=%(id)s">%(title)s</a><div class="postAuthor">Posted by <a href="#">%(author)s</a></div></td></tr>
+	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="post?id=%(id)s">%(title)s</a><div class="postAuthor">Posted by <a href="#">%(author)s</a></div><div class="time">%(date)s</div></td></tr>
 	<tr class="active"><td colspan="2">%(content)s</td></tr>
 	<tr class="active">
 	  <td colspan="2" class="likes">
