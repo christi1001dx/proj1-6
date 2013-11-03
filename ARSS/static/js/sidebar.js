@@ -35,7 +35,7 @@
 			});
 			$body.css("padding-left", "");
 		}
-		$labelText.mouseenter(open).mouseout(close);
-		$sidebar.mouseout(close);
+		$labelText.mouseenter(open);
+		$sidebar.mouseleave(close);
 	});
 })(jQuery);
