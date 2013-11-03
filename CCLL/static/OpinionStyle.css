@@ -3,7 +3,7 @@
 }
 
 body {
- /*   overflow:hidden; */
+    overflow:hidden;
     background: #728eaa;
     background: -moz-linear-gradient(top, #25303C, 0%, #728EAA, 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%, #728EAA));
@@ -140,7 +140,7 @@ nav ul li a:hover span {
     white-space:nowrap;
 }
 #Post1 {
-    width:400px;
+    width:510px;
     height:200px;
     color:white;
     display:inline-block;
@@ -150,7 +150,7 @@ nav ul li a:hover span {
 
 }
 #Post2 {
-    width:350px;
+    width:370px;
     height:200px;
     border:solid;
     color:blue;
@@ -160,7 +160,7 @@ nav ul li a:hover span {
 
 }
 #Post3 {
-    width:350px;
+    width:360px;
     height:200px;
     border:solid;
     color:orange;
@@ -171,7 +171,7 @@ nav ul li a:hover span {
 }
 
 #Post4 {
-    width:350px;
+    width:370px;
     height:200px;
     border:solid;
     color:red;
