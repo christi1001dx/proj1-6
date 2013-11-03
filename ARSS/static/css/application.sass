@@ -10,12 +10,14 @@
 @import slide
 
 .story-container
-	width: 900px
-	margin: 20px auto 0
+	max-width: 900px
+	margin: 0 auto
+	padding: 0 20px
+	overflow-y: auto
 
 	h1
 		display: inline-block
-		margin: 0.4em 0 0.3em
+		margin: 0.4em 0 0
 		border-top: 7px solid #000
 		font-family: Lora
 		font-size: 70px
@@ -25,8 +27,15 @@
 	p
 		font-family: "EB Garamond", serif
 		font-size: 25px
-		margin: 0.4em 0
 
-p.author
+.story-author
+	display: inline-block
+	margin: 0
+	margin-left: 20px
+	color: #202020
 	font-family: Lora, serif
 	font-style: italic
+
+.story-text
+	text-indent: 2em
+	margin: 1em 0
