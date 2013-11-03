@@ -46,6 +46,11 @@
 				else if (e.keyCode == 13) {
 					e.preventDefault();
 				}
+			}).on("paste", function(e) {
+				var clipboard = e.originalEvent.clipboardData.getData("Text");
+				if (clipboard.length > 0 && $newline.data("empty")) {
+					$newline.toggleEmpty(false);
+				}
 			});
 		});
 	</script>
