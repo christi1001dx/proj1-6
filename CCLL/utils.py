@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from time import strftime
+from bson.objectid import ObjectId
 
 def auth (user, passwd, coll):
     return [x for x in coll.find({'username': user, 'password': passwd})] != []
@@ -17,11 +18,11 @@ def getPostsGenre(genre, coll):
     return [x for x in coll.find({'genre':genre}).sort([('date',-1)])]
 
 def getPost(_id, coll):
-    return [x for x in coll.find({'_id':_id})]
+    return [x for x in coll.find({'_id':ObjectId(_id)})]
 
 def addComment(_id, user, text, coll):
-    comments = coll.find({'_id':_id}).comments
+    comments = coll.find({'_id': ObjectId(_id)}).comments
     comments.append([user,text,coll])
 
 def getComments(_id, coll):
-    return [x for x in coll.find({'_id':_id}).comments]
+    return [x for x in coll.find({'_id': ObjectId(_id)}).comments]
