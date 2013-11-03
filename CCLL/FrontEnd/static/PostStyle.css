@@ -110,16 +110,17 @@ nav ul li a:hover span {
   margin:left;*/
   position:relative;
   height:130px;
-  padding:20px;
   float:center;
   /* left:50% */
   font-size:60px;
   text-align:center; 
   color:orange;
+  padding-top:30px;
 }
 #Author {
     color:orange;
     width:800px;
+    text-style:italic;
 
 }
 
@@ -127,14 +128,16 @@ nav ul li a:hover span {
 #Post {
  /*color:#8888C2;*/
  color:white;
- width:800px;
+ /*width:800px;*/
  border:solid;
+
 }
 #Content {
  width:800px;
  font-size:16px;
  color:white;
  padding:2px;
+
 }
 ul {
   list-style= none;
@@ -157,6 +160,7 @@ ul {
 }
 #Comment span {
   color:orange;
+  text-style:italics;
 }
 #Sub {
   width:80%;

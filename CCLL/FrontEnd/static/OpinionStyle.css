@@ -105,7 +105,7 @@ nav ul li a:hover span {
 
 #Section {
     position:relative;
-    height:150px;
+    padding-left:25px;
     /*padding:20px;*/
     float:center;
     font-size:60px;
@@ -114,8 +114,64 @@ nav ul li a:hover span {
 
 #Headline {
     position:relative;
+    float:left;
+    width:600px;
+    height:200px;
     border:solid
 }
+#tit {
+    font-size:50px;
+}
+#tit:hover {
+    color:#00ffff;
+}
+#Auth {
+    font-size:24px;
+    font-style:italic;
+}
+
+#Post1 {
+    float:left;
+    width:400px;
+    height:200px;
+    border:solid;
+    color:white;
+    padding-left:5px;
+}
+#Post2 {
+    float:left;
+    width:400px;
+    height:200px;
+    border:solid;
+    color:white;
+    padding-left:5px;
+    padding-top:5px;
+}
+#Post3 {
+    float:left;
+    width:400px;
+    height:200px;
+    border:solid;
+    color:black;
+    padding-top:5px;
+    padding-left:5px;
+}
+#Title {
+    font-size:36px;
+    color:black;
+}
+#Title:hover {
+    color:#00ffff;
+}
+#Author {
+    font-size:24px;
+    color:black;
+    font-style:italic;
+}
+
+
+
+
 
 
 
