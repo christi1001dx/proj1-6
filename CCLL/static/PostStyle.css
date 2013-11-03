@@ -112,6 +112,11 @@ nav ul li a:hover span {
     color:#E0C2FF;
     }
 
+#LEFT {
+  position:relative;
+  height:800px;
+  width:800px;
+}
 
 #Title {
   /*position:absolute;
@@ -138,8 +143,8 @@ nav ul li a:hover span {
  /*width:800px;*/
  border:solid;
  width:80%;
- margin-left:auto;
- margin-right:auto;
+ margin-left:10%;
+ margin-right:10%;
 
 }
 #Content {
@@ -150,27 +155,28 @@ nav ul li a:hover span {
 
 }
 ul {
-  list-style= none;
+  list-style;none;
 }
 #Comment li {
-  position=relative;
+  position:relative;
   float:top;
-
 }
-#Comment div {
+
+#Comment {
   color:#8888C2;
   border:solid 2px;
   color:white;
   padding:2px;
   width:500px;
   font-size:16px;
+  margin-left:10%;
 }
+
 #Comment div #Com {
   color:white;
 }
 #Comment span {
   color:orange;
-  text-style:italics;
 }
 #Sub {
   width:80%;
