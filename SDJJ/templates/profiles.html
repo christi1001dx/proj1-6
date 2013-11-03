@@ -1,4 +1,11 @@
 {% extends "layout.html" %}
+{% block pagename %}
+Profiles
+{% endblock %}
 {% block content %}
-	<!--content here-->
+         {% for profile in profiles %}
+                <p id="username"><a href="/profiles/{{profile.username}}">
+             {{ profile.username }}
+                </href></p>
+        {% endfor %}
 {% endblock %}

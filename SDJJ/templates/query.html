@@ -4,10 +4,28 @@ Search Results
 {% endblock %}
 {% block content %}
 <h3>Posts</h3>
-	{{results.posts}}
+{% for posts in results %}
+	{% for post in posts %}
+        <p id ="title"><a href="posts/{{post.title}}">
+            {{ post.title }}
+           </a></p>
+        {% endfor %} 
+{% endfor %}
 <h3>Profiles</h3>
-	{{results.profiles}}
+{% for profiles in results %}
+	{% for profile in profiles %}
+        <p id ="title"><a href="profiles/{{profile.username}}">
+            {{ profile.username }}
+           </a></p>
+        {% endfor %} 
+{% endfor %}
+	
 <h3>Comments</h3>
-	{{results.comments}}
-
+{% for post in posts %}
+     {% for comments in post %}
+<p id = "title"><a href="posts/{{post.title}}">
+     {{post.title}}
+     </a></p>
+      {% endfor %}
+{% endfor %} 
 {% endblock %}

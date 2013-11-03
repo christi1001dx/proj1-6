@@ -7,3 +7,10 @@ src: url(http://fonts.googleapis.com/css?family=Arbutus);
 h1
 {font-family: Arbutus;
 }
+
+ul
+{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
