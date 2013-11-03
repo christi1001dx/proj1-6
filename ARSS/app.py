@@ -33,6 +33,14 @@ def index():
 def get_story(name):
     return json.dumps(utils.return_all_lines(name))
 
+@app.route('/makestory', methods=['POST'])
+def make_story():
+    if not "username" in session:
+	    return "login"
+    author = session["username"]
+    title = get_form_value('title')
+    return str(utils.make_story(title, author, False))
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if (request.method == "GET"):
@@ -62,7 +70,7 @@ def register():
 
 @app.route("/logout")
 def logout():
-    if "username" in sesson:
+    if "username" in session:
         session.pop("username")
         return "success"
     else:
