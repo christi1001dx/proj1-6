@@ -1,12 +1,12 @@
 (function($) {
 	$(document).ready(function() {
 		var $body = $("body");
-		var sidebarWidth = "300px";
+		var sidebarWidth = "250px";
 		$(".sidebar").hover(function() {
-			$(this).css("width", sidebarWidth)
-			$body.css("padding-left", sidebarWidth);
+			$(".sidebar-body-wrapper").css("width", sidebarWidth)
+			$body.css("padding-left", "285px");
 		}, function() {
-			$(this).css("width", "")
+			$(".sidebar-body-wrapper").css("width", "")
 			$body.css("padding-left", "");
 		});
 	});
