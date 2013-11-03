@@ -62,6 +62,7 @@ def add_line(line, title, user):
     entry['user'] = user
     db.lines.insert(entry)
     increment_lines(title)
+    return True
 
 def return_all_lines(title):
     db = mongo_init()
@@ -74,19 +75,21 @@ def return_all_lines(title):
 # used for register
 # user must type password 2 times to make account
 def add_user(username, password, password2):
-    if (mongo_init().users.find_one({'username': username}, fields = {'_id': False})):
+    db = mongo_init()
+    if (db.users.find_one({'username': username}, fields = {'_id': False})):
         return "User Already Exists."
     elif (password.__len__() < 4):
         return "Password too short."
     elif (password != password2):
         return "Passwords do not match."
     else:
-        mongo_init().users.insert({'username': username, 'password': password})
+        db.users.insert({'username': username, 'password': password})
         return "good job"
 
 # used to validate login
 def account_exists(username, password):
-    for x in mongo_init().users.find({'username': username, 'password': password}):
+    db = mongo_init()
+    for x in db.users.find({'username': username, 'password': password}):
         return True
     else:
         return False
@@ -94,22 +97,23 @@ def account_exists(username, password):
 # used to change password 
 # type in new password two times
 def change_password(username, password, password2):
+    db = mongo_init()
     if (password.__len__() < 5):
         return False
     elif (password != password2):
         return False
     else:
-        mongo_init().users.update({'username': username}, {'$set':{'password': password}})
+        db.users.update({'username': username}, {'$set':{'password': password}})
         return True
 
 # used to change username 
 # type in new username two times
 def change_username(username, username2, password):
+    db = mongo_init()
     if (username.__len__() < 5):
         return False
     elif (username != username2):
         return False
     else:
-        mongo_init().users.update({'username': username}, {'$set':{'password': password}})
+        db.users.update({'username': username}, {'$set':{'password': password}})
         return True
-

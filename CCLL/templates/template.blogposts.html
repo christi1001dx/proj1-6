@@ -11,9 +11,8 @@
 	<ul>
 	    {% for item in posts %}
 	    <li>
-	    <h1>{{item.title}}</h1>
+	    <h1><a href = "/post/{{item._id}}">{{item.title}}</a></h1>
 	    <h3>{{item.username}} | {{item.date}}</h3>
-	    <p>{{item.text}}</p>
 	    <h5>{{item.genre}}</h5>
 	    </li>
 	    {% endfor %}

@@ -29,6 +29,23 @@ def getPost(postTitle):
 		app.session["error"] = "noPost"
 	return post
 
+def deletePost(title, author):
+    post = posts.find_one({"title" : title})
+    if (author == post['author']):
+        posts.remove({"title" : title, "author" :author})
+        comments.remove({"postTitle" : title})
+        return True
+    else:
+        return
+
+def deleteComment(title, date, author):
+    comment = comments.find_one({"postTitle" : title, "date" : date})
+    if (author == comment['author'] ):
+        comments.remove({"postTitle" : title, "author" :author, "date" : date})
+        return True
+    else:
+        return
+    
 def titleAvailable(postTitle):
 	if posts.find_one({ "title" : postTitle }) == None:
 		return True

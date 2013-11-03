@@ -10,17 +10,20 @@
 
 	<div id="SubmitForm">
 	    <h1>Submit Blog</h1>
+            <a id="home" href="template.index.html"><img src="../static/NavBar/Shop.png" /></a>
 	    <form action="#" method="post">
 		<fieldset>
 		    <label for="Title">Title:</label>
 		    <input type="text" id="Title" name = "title" placeholder="Enter Blog Title" />
 
 		    <label for="Genre">Genre:</label>
-		    <input type="Genre" id="Genre" name = "genre" placeholder="Enter Genre" />
-		    <div id="Clarification">
-			&#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 &#160 
-			(SPORTS, ARTS/ENT., OP ED, HUMOR, PHILOS., OR ACADEMICS)
-		    </div>
+		    <select name = "genre" placeholder = "Select One">
+			<option value = "Academics">Academics<option>
+			<option value = "Arts">Arts<option>
+			<option value = "Humor">Humor<option>
+			<option value = "Opinion">Opinion<option>
+			<option value = "Sports">Sports<option>
+		    </select>
 		    <br> <br>
 		    <label for="Blog">Blog:</label>
 		    <textarea id="Blog" name = "text" placeholder="Enter Blog"></textarea>

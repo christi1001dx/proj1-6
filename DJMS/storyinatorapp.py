@@ -35,25 +35,22 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET" :
-        return render_template("register.html")
+        return render_template("register.html",message = "Please register")
     else:
         username = request.form['username']
         password = request.form['password']
         confirmpassword = request.form['confirmpassword']
-        button = request.form['button']
-        if button == "Register":
-            if (username == '' or password == '' or confirmpassword == ''):
-                return render_template("register.html", message = "Please fill empty fields")
-            elif password != confirmpassword:
-                return render_template("register.html", message = "Please enter the same passwords.")
+        if (username == '' or password == '' or confirmpassword == ''):
+            return render_template("register.html", message = "Please fill empty fields")
+        elif password != confirmpassword:
+            return render_template("register.html", message = "Please enter the same passwords.")
+        else:
+            if(auth.register(username,password)):
+                session["name"] = username    
+                return redirect("/storylist")
             else:
-                if(auth.register(username,password)):
-                    session["name"] = username    
-                    return redirect("/storylist")
-                else:
-                    return render_template("register.html", message = "There is already an account under your name.")
-        elif button == "Cancel":
-                    return redirect("/login")
+                return render_template("register.html", message = "There is already an account under your name.")
+        
 
 
 @app.route("/<storytitle>", methods = ["GET", "POST"])

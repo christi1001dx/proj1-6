@@ -8,12 +8,14 @@ db = MongoClient().db
 
 app = Flask(__name__)
 app.secret_key = 'maroon5'
+utils.addPost("admin","WELCOME!","Other","Please make an account and begin blogging!",db.posts)
 
 @app.route("/")
 def home():
     if 'username'  in session:
-        return render_template("template.index.html")
-    else: 
+	print utils.getRandPost(db.posts)
+        return render_template("template.index.html", featured = utils.getRandPost(db.posts)[0], sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
+    else:
         return redirect("/login")
 
 @app.route("/login",methods=['GET','POST'])
@@ -25,7 +27,6 @@ def login():
 	button = request.form['button']
 	print "yo"
 	if button == 'Submit':
-	    print "hiiiii"
             username = request.form['username'].encode ('ascii',"ignore")
 	    password = request.form['password'].encode ('ascii',"ignore")
             if utils.auth(username,password,db.login):
@@ -79,13 +80,18 @@ def submit(name):
 @app.route("/post/<_id>")
 def post(_id):
     if request.method=="GET":
-        return render_template("template.post.html", post = utils.getPost(_id, db.posts))
+	print utils.getPost(_id, db.posts)
+        return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
     else:
         newcomment = request.form['comment'].encode ('ascii',"ignore")
         finalComments = comments.append (newcomment)
         name = session['username']
         utils.addComments (_id,name, finalComments, db.posts)
-        return render_template("template.post.html", post = utils.getPost(_id, db.posts))
+        return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
+
+@app.route("/genre/<genre>")
+def genre():
+    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts))
 
 @app.route("/logout")
 def logout():

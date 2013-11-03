@@ -12,6 +12,14 @@ def register(user, pword):
         db.info.insert( {"username":user, "password":pword, "admin":0} )
         return True
 
+def checkUser(user):
+    collection = db.users
+    if ( ( db.users.find( {"username":user} )).count() >0){
+        return False
+    }
+    else:
+        return True
+    
 def addAdmin(user,pword):
     collection = db.users
     if ( (db.users.find({username:user}) ) ).count() > 0:
@@ -50,4 +58,6 @@ def comment(user, comment,post):
     collection = db.comments
     db.comments.insert( {"name":user, "comment":comment, "post"=post} )
     return True
+
+    
 

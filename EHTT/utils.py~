@@ -3,20 +3,19 @@ from pymongo import MongoClient
 def login(username,password):
     c = MongoClient()
     db = c['blogdb']
-    try:
-        db.users.find({'username':username, 'password':password})
+    x = db.users.find({'username':username, 'password':password})
+    if x:
         return True
-    except:
+    else:
         return False
 
 def register(username,password):
     c = MongoClient()
     db = c['blogdb']
-    try:
-        db.users.find({'username':username})
+    x = db.users.find({'username':username})
+    if x:
         return False
-    except:
-        db.users.insert({'username':username, 'password':password})
+    else:
         return True
 
 def getAllPosts():

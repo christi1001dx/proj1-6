@@ -4,35 +4,39 @@
         <link href="../static/PostStyle.css" rel="stylesheet" type="text/css" media="screen"/>
     </head>
     <body>
-        <div id="NavigationMenu">
-            <nav>
+    <div id="NavigationMenu">
+        <nav>
             <ul>
-                <li><a href="template.sports.html"><span>SPORTS</span></a></li>
-                <li><a href="template.arts.html"><span>ARTS/ENT</span></a></li>
-                <li><a href="template.opinion.html"><span>OPINION</span></a></li>
-                <li><a href="template.humor.html"><span>HUMOR</span></a></li>
-                <li><a href="template.academics.html"><span>ACADEMICS</span></a></li>
-                <li><a href="template.index.html"><span>HOME</span></a></li>
+                <li><a href="/genre/sports"><span>SPORTS</span></a></li>
+                <li><a href="/genre/sports"><span>ARTS/ENT</span></a></li>
+                <li><a href="/genre/opinion"><span>OPINION</span></a></li>
+                <li><a href="/genre/humor"><span>HUMOR</span></a></li>
+                <li><a href="/genre/academics"><span>ACADEMICS</span></a></li>
+		<li><a href="/"><span>HOME</span></a></li>
                 <br> <br> <br> <br> <br>
-                <a href="Login.html" class="btn">Login</a>
-                <a href="#" class="btn">Register</a>
+                <a href="/login" class="btn">Login</a>
+                <a href="/register" class="btn">Register</a>
+                <a href="" class="btn">New Post</a>
             </ul>
-            </nav>
-        </div>
+        </nav>
+    </div>
         <br> <br>
-        <div id="LEFT">
-            <div id="Title">
+        <span id="LEFT">
+            <span id="Title">
                 {{post.title}}
-            </div>
-            <div id="Post">
-                <div id="Content">
-                    {{post.content}}
-                </div>
+            </span>
+            <br>
+            <span id="Post">
+                <span id="Content">
+                    {{post.text}}
+                </span>
                 <br>
-                <div id="Author">
-                    By {{post.author}}
-                </div>
-            </div>
+                <span id="Author">
+                    By {{post.username}}
+                </span>
+            </span>
+            
+            
             <form method="POST" id="Sub">
                 <span>Enter your comment below</span>
                 <textarea name="comment"></textarea>
@@ -40,20 +44,16 @@
             </form>
             <div id="Comment">
             <ul>
-                {{ for c in comments }}
                 <li>
                 <div> 
-                {{c.comment}}
                 <br>
-                {{c.author}}
                 </div>
                 </li>
                 <br>
-                {{ endfor }}
             </ul>
-            </div>
-        </div>
-        <div id="RIGHT">
-        </div>
+            </div> 
+        </span>
+        <span id="RIGHT">
+        </span>
     </body>
 </html>

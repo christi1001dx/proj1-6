@@ -1,24 +1,26 @@
 <!DOCTYPE html> 
 
-<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-<script src="static/bootstrap/js/bootstrap.min.js"></script>
 
 <html>
 
+  <head>
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <title>Create New Post</title>
+  </head>
   <body>
+
+    {{head|safe}}
 
     <div class = "container">
       <div class = "text-center">
 	<h1><b> Create New Post </b></h1> 
       </div>
       
-      <form role="form"> 
+      <form method="post">
 	<div class = "form-group">
 	  
-	  <input type="title"
-		 class="form-control"
-		 id="title"
-		 placeholder="Enter a creative title here!">
+	  <input class="form-control" name="title" placeholder="Enter a creative title here!" tabindex="1" />
 	</div>
 	
 	<div class = "btn-group"> 
@@ -59,24 +61,13 @@
 	  </ul>
 	</div>
 
-	<textarea type="content"
-		  class="form-control"
-		  id="content"
-		  rows="10">
-	</textarea>
+	<textarea name="content" class="form-control" tabindex="2" rows="10"></textarea>
 
 	<br>
 
-	<div class = "row">
-	  <div class = "col-md-4">
-	    <button type="submit" class="btn btn-primary btn-md"> Create Post! </button>
-	  </div>
-	  <div class = "col-md-4">
-	    <button type="save" class="btn btn-primary btn-md"> Save Draft! </button>
-	  </div>
-	  <div class = "col-md-4">
-	    <button type="cancel" class="btn btn-primary btn-md"> Delete </button>
-	  </div>
+	<div class = "row" style="text-align:center">
+	  <input type="submit" name="submit" class="btn btn-primary btn-md" tabindex="3" value="Create Post" />
+	  <input type="submit" name="submit" class="btn btn-primary btn-md" tabindex="3" value="Cancel" />
 	</div>
 	
       </form>
