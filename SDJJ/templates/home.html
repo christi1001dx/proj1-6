@@ -1,4 +1,9 @@
 {% extends "layout.html" %}
+{% block pagename %}
+Home
+{% endblock %}
 {% block content %}
-	<!--content here-->
+	{% for post in posts %}
+    <p id="title">{{ post.title }}</p>
+        {% endfor %}
 {% endblock %}
