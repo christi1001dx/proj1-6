@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-from random import randrange
 
 #Database structure:
 #Database is called JEJA
@@ -34,16 +33,17 @@ def createUser(username, password):
 def addPost(title, author, content,date):
     #pretend I've sanitized inputs here
     con = MongoClient()
-    db = client['JEJA']
+    db = con.Posts
     
     #Create a unique ID for each post
     #sort ids in descending order
     #grab highest ID, add 1
-    currentIDs = db.Posts.find().sort("ID", -1)
-    id = currentIDs[0]['ID'] + 1
+    currentIDs = len(db.find())
+    print(currentIDs)
+    #id = currentIDs[0]['ID'] + 1
     
-    db.Posts.insert({'Title':title,'Author':author,'Content':content,'Date':date,'ID': id})
-    return id
+    #db.Posts.insert({'Title':title,'Author':author,'Content':content,'Date':date,'ID': id})
+    #return id
 
 def getPost(id):
     con = MongoClient()
