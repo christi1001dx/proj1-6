@@ -1,17 +1,33 @@
-$sidebarWidth: 40px
+$sidebarLabelWidth: 35px
 
 .sidebar
+	@include vendor(transition, width 0.5s)
+	@include clearfix
 	position: fixed
-	width: $sidebarWidth
+	overflow: hidden
+	width: $sidebarLabelWidth
 	height: 100%
 	top: 0
 	left: 0
 	background-color: #383838
 
-	& > h1
-		margin-top: 20px
-		text-align: center
-		color: #26E2FC
+	&:hover
+		width: 300px
+
+.sidebar-label
+	float: left
+	width: $sidebarLabelWidth
+	height: 100%
+	padding-top: 20px
+	text-align: center
+	color: #26E2FC
+	background-color: #303030
+
+.sidebar-body
+	height: 100%
+	margin-left: $sidebarLabelWidth
+	padding: 20px
+	color: white
 
 body
-	padding-left: $sidebarWidth
+	padding-left: $sidebarLabelWidth

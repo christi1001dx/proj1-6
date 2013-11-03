@@ -5,19 +5,45 @@
 @import url("http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic");
 @import url("http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Libre+Baskerville:400,700,400italic");
 .sidebar {
+  -webkit-transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -ms-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  transition: width 0.5s;
+  *zoom: 1;
   position: fixed;
-  width: 40px;
+  overflow: hidden;
+  width: 35px;
   height: 100%;
   top: 0;
   left: 0;
   background-color: #383838; }
-  .sidebar > h1 {
-    margin-top: 20px;
-    text-align: center;
-    color: #26e2fc; }
+  .sidebar:before, .sidebar:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+  .sidebar:after {
+    clear: both; }
+  .sidebar:hover {
+    width: 300px; }
+
+.sidebar-label {
+  float: left;
+  width: 35px;
+  height: 100%;
+  padding-top: 20px;
+  text-align: center;
+  color: #26e2fc;
+  background-color: #303030; }
+
+.sidebar-body {
+  height: 100%;
+  margin-left: 35px;
+  padding: 20px;
+  color: white; }
 
 body {
-  padding-left: 40px; }
+  padding-left: 35px; }
 
 .story-container {
   max-width: 900px;
