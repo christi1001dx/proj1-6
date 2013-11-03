@@ -1,54 +1,39 @@
-<html>
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>DemoWebsite</title>
 
-  <head>
-    <style type="text/css">
-      h1 {color:red}
-    </style>
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    
-    <meta name="description" content="Welcome to Bloginator">
-    <meta name="keywords" contents="Chicken">
-    <meta name="author" content="Everybody">
-					  
-    <title> Welcome fellow Bloginator </title>
-  </head>
-  
-  <div id="registration">
-    <h2>Create an Account</h2>
-    
-    <form id="RegisterUserForm" action="" method="post">
-      <fieldset>
-	<p>
-	  <label for="name">Name:</label>
-	<p>
-	  <input id="name" name="name" type="text" class="text" placeholder="Username">
-	<p>
-	  <label for="email">Email:</label>
-	<p>
-	  <input id="email" name="email" type="email" class="text" placeholder="sample@example.com">
-	<p>
-	  <label for="password">Password:</label>
-	<p>
-	  <input id="password" name="password1" class="text" type="password" placeholder="*****">
-	<p>
-	  <label for="password">Re-enter Password:</label>
-	<p>
-	  <input id="password" name="password2" class="text" type="password" placeholder="*****">
-	<p>
-	  <input id="acceptTerms" name="acceptTerms" type="checkbox">
-	  <label for="acceptTerms">I agree to the Terms and Conditions and Privacy Policy</label>	
-	<p>
-	  <button id="registerNew" type="submit">Register</button>
-	  <button id="cancel" type="submit">Cancel</button>
-	  
-      </fieldset>
-      
-    </form>
-  </div>
-  
-  
-  
-  
-  
+  <link rel="stylesheet" link href="CSS/semantic.min.css" type="text/css"/>
+</head>
+<body>
+
+  <div class="container"> 
+  <h1>Register Now</h1>
+
+  <div class="ui form segment">  
+      <div class="field">
+        <label for="Full Name"> Full Name</label>
+        <input id="Full Name" placeholder="Full Name" type="text" />
+      </div>
+
+    <div class="field">
+      <label for="Username">Username</label>
+      <input id="Username" placeholder="Username" type="text">
+    </div>
+
+    <div class="field">
+      <label for="Password">Password</label>
+      <input id="Password" type="password">
+    </div>
+
+    <div class="field">
+      <label for="PasswordConfirm">Password Confirm</label>
+      <input id="PasswordConfirm" type="password">
+    </div>
+
+    <button class="ui blue button">Submit</button> 
+</div>
+
 </body>
+
 </html>
