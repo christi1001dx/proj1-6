@@ -55,6 +55,10 @@ def editStory(name, addition):
     data = data[0]
     newStory = data['story'] + addition
     db.DJMSStory.update({'storyname':name},{'$set':{'story':newStory}})
+def printAll():
+    db = work()
+    storylist = list(db.storynames)
+    return storylist
 
 def chkStoryName(name):
     db = work()
