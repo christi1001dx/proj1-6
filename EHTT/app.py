@@ -1,19 +1,22 @@
 from flask import Flask
 from flask import session,url_for, request, redirect, render_template
 from pymongo import MongoClient
-import mangodb.py
+import mangodb
 
 app = Flask(__name__)
 app.secret_key = "abcd"
 
 @app.route("/")
 def index():
-    return render_template("index.html",session["username"])
+    if 'username' in session:
+        return render_template("index.html",username = session["username"])
+    else:
+        return render_template("index.html")
 
 @app.route("/login", methods = ['GET', 'POST'])
-def login()
+def login():
     if request.method == "GET":
-        return render_template("login.html",session["username"])
+        return render_template("login.html",username = session["username"])
     else:
         username = request.form["username"].encode("ascii","ignore")
         password = request.form["password"].encode("ascii","ignore")
@@ -22,24 +25,24 @@ def login()
             b = 1;
             return redirect("/")
         else:
-            return render_template("register.html",session["username"])
+            return render_template("register.html",username = session["username"])
 
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
     if request.method == "GET":
-        return render_template("register.html",session["username"]) 
+        return render_template("register.html",username = session["username"]) 
     else:
         username = request.form["username"].encode("ascii", "ignore")
         password = request.form["password"].encode("ascii", "ignore")
         confirmpassword = request.form["confirmpassword"].encode("ascii", "ignore")
-        if a = mangodb.dregister(username, password, confirmpassword, 0):
+        if a == mangodb.dregister(username, password, confirmpassword, 0):
             return redirect("/login", error = a)
         else:
-            return render_template("register.html",session["username"])
+            return render_template("register.html",username = session["username"])
 
 @app.route("/aboutme")
 def aboutme():
-    return render_template("aboutme",session["username"])
+    return render_template("aboutme.html",username = session["username"])
 
 @app.route("/logout")
 def logout():
@@ -47,44 +50,51 @@ def logout():
         session.pop('username', None)
     return redirect("/")
 
+
+#@app.route("/makepost")
+#def makepost():
+ #   if request.method == "GET"
+    
+        
 @app.route("/createpost")
 def createpost():
-     if request.method == "GET":
-        return render_template("createpost.html",session["username"])
+    if request.method == "GET":
+        return render_template("createpost.html",username = session["username"])
     else:
         name = request.form["title"]
         text = request.form["post"]
         mangodb.newpost(name, text)
-        return redirect("/")
+        return redirect("/", username = session["username"])
 
 @app.route("/removepost")
 def removepost():
-     if request.method == "GET":
-        return render_template("removepost.html",session["username"])
+    if request.method == "GET":
+        return render_template("removepost.html",username = session["username"])
     else:
         name = request.form["name"]
         mangodb.removepost(name)
-        return redirect("/")
+        return redirect("/", username = session["username"])
 
 @app.route("/posts/<post_name>")
 def posts(post_name):
  
-    d = {'text' : mangodb.getpost(post_name),
+    d = {'text' : mangodb.getpost(post_name).txt,
          'name' : post_name,
-         'comments' : getpostcom(post_name)}
-    return render_template("posts",session["username"],d = d)
+         'comments' : getpostcom(post_name),
+         'date': mangodb.getpost(post_name).date}
+    return render_template("indipost.html",username = session["username"],d = d)
 
 @app.route("/posts/<post_name>/comment")   
 def comment(post_name):
     if request.method == "GET":
-        return render_template("comment.html",session["username"])
+        return render_template("comment.html",username = session["username"])
     else:
         text = request.form["text"]
         mangodb.newcomment(mangodb.getpostid(post_name), text, session["username"])
-        return redirect("/posts/<post_name>")
+        return redirect("/posts/<post_name>", username = session["username"])
     
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host = "0.0.0.0", port = 5000)
+    app.run(host = "0.0.0.0", port = 5001)
 

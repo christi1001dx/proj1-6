@@ -2,9 +2,7 @@ from pymongo import MongoClient
 from datetime import datetime
 
 def connect():
-    mango = MongoClient("db.stuy.cs")
-    db = mango.admin
-    db.authenticate('softdev', 'softdev')
+    mango = MongoClient()
     mangodb = mango.levenpoka
     logcol = mangodb.flynn
     postcol = mangodb.tron
@@ -31,6 +29,7 @@ def dregister(username, password, stat):
     else:
         logcol.insert({"username":username, "password":password, "type": stat})
 
+#####################################################################################
 def getpost(name):
     if not name:
         error = 'err0'
@@ -61,6 +60,13 @@ def getpostcom(tron):
     else:
         return getcom(getpostid(tron))
 
+def getallposts():
+    l = [];
+    for x in poscol.find({"f":"toe"}):
+        l.insert(x)
+    return l
+
+###################################################################################
 def newpost(mcp, sark):
     if not mcp or not sark:
         error = 'err0'
@@ -86,6 +92,7 @@ def newcomment(clu, comet, usr):
                                               "user":usr,
                                               "date":datetime.utcnow}})
 
+#####################################################################################
 def removepost(name):
     if not name:
         error = 'err0'
@@ -106,5 +113,5 @@ def reset():
     comcol = mangodb.clu
     postcol.insert({"no":1})
 
-
+######################################################################################
 connect()

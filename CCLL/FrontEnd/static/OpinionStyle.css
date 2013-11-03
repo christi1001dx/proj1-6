@@ -1,0 +1,202 @@
+* {
+    font-family:sans-serif;
+}
+
+body {
+ /*   overflow:hidden; */
+    background: #728eaa;
+    background: -moz-linear-gradient(top, #25303C, 0%, #728EAA, 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%, #728EAA));
+}
+
+#NavigationMenu {
+    position:relative;
+    width:1100px;
+    height:120px;
+    padding-top:10px;
+    bottom:5px solid black;
+}
+.btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+nav ul {
+    list-style: none; overflow: hidden; position: relative;
+}
+
+    nav ul li {
+        float: left; margin: 0px 20px 0px 0px;
+    }
+
+nav ul li a {
+    display: block; width: 120px; height: 120px;
+    background-image: url(NavBar/Icons.png); background-repeat: no-repeat;
+}
+
+    nav ul li:nth-child(1) a {
+        background-color: #3366ff;
+        background-position:0px -570px;
+    }
+    nav ul li:nth-child(2) a {
+        background-color: #00ff99;
+        background-position: 0px -425px;
+    }
+    nav ul li:nth-child(3) a {
+        background-color: #ff0000;
+        background-position: 0px -280px;
+    }
+    nav ul li:nth-child(4) a {
+        background-color: #ff9900;
+        background-position: 0px -140px;
+    }
+
+    nav ul li:nth-child(5) a {
+        background-color: #00ffff;
+        background-position: 0px 0px;
+    }
+
+nav ul li a span {
+    font: 50px sans-serif, Times; text-transform: uppercase;
+    position: absolute; left: 770px; top: 29px; 
+    display:none;
+}
+
+nav ul li a:hover span {
+    display: block;
+}
+
+    nav ul li:nth-child(1) a span {
+    color: #3366ff;
+    }
+    nav ul li:nth-child(2) a span {
+    color: #00ff99;
+    }
+    nav ul li:nth-child(3) a span {
+    color: #ff0000;
+    }
+    nav ul li:nth-child(4) a span {
+    color: #ff9900;
+    }
+    nav ul li:nth-child(5) a span {
+    color: #00ffff;
+    }
+
+#Section {
+    position:relative;
+    padding-left:25px;
+    /*padding:20px;*/
+    float:center;
+    font-size:60px;
+    color:red;
+}
+
+#Headline {
+    width:600px;
+    height:200px;
+    color:black;
+    border:solid;
+
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+}
+
+#tit {
+    font-size:50px;
+}
+#tit:hover {
+    color:#00ffff;
+}
+#Auth {
+    font-size:24px;
+    font-style:italic;
+}
+#Line2 {
+    white-space:nowrap;
+}
+#Line1 {
+    white-space:nowrap;
+}
+#Post1 {
+    width:400px;
+    height:200px;
+    color:white;
+    display:inline-block;
+    border:solid;
+    vertical-align:top;
+    white-space:normal;
+
+}
+#Post2 {
+    width:350px;
+    height:200px;
+    border:solid;
+    color:blue;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+
+}
+#Post3 {
+    width:350px;
+    height:200px;
+    border:solid;
+    color:orange;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+
+}
+
+#Post4 {
+    width:350px;
+    height:200px;
+    border:solid;
+    color:red;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+
+}
+#Title {
+    font-size:36px;
+    color:black;
+}
+#Title:hover {
+    color:#00ffff;
+}
+#Author {
+    font-size:24px;
+    color:black;
+    font-style:italic;
+}
+
+
+
+
+
+
+
+

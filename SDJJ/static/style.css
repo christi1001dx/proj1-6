@@ -1,1 +1,13 @@
-/* stylesheet for all templates */
+#center {
+	position:relative;
+	left:10%;
+}
+
+#menu, #container {
+	float:left;
+}
+
+#menu {
+	width:200px;
+	height:700px;
+}

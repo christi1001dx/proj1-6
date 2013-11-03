@@ -1,4 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-	<!--content here-->
+	{% for post in posts %}
+		<a href="/post/{{ post.title }}">{{ post.title }}</a>
+	{% endfor %}
 {% endblock %}
