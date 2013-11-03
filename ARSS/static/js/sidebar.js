@@ -38,8 +38,7 @@
 			$body.css("padding-left", "");
 			$sidebarBody.css("opacity", "0");
 		}
-		open();
-		//$labelText.mouseenter(open);
-		//$sidebar.mouseleave(close);
+		$labelText.mouseenter(open);
+		$sidebar.mouseleave(close);
 	});
 })(jQuery);
