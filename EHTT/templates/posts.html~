@@ -3,10 +3,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
-  
+<link rel="stylesheet" href="{{ url_for('static', filename='foundation.css') }}">
 
   <head>
-    <title>Herman's Blog | About Me</title>
+    <title>Herman's Blog</title>
   </head>
   <body>
 
@@ -19,10 +19,10 @@
             <li><a href="/aboutme" class="button">About Me</a></li>
             {% if not username %}
             <li><a href="/login" class="button">Login</a></li>
-	    <li><a href="/register" class="button">Register</a></li>
+            <li><a href="/register" class="button">Register</a></li>
             {% else %}
             <li><a href="#" class="button">{{ username }}</a></li>
-                {% if username == "Herman" %}
+                    {% if username == "Herman" %}
                     <li><a href="/createpost" class="button">Create Post</a></li>
                 {% endif %}
             <li><a href="/logout" class="button">Logout</a></li>
@@ -41,14 +41,15 @@
  
     <!-- Main Blog Content -->
     <div class="large-9 columns" role="content">
-      <h1>About Me</h1>
-      <p>Beating up cheating spouses, saving relationshipos, performing therapy, there is nothing I can't do.</p>
-      <p><font size = 2px>Side note: This Herman is in no way affliated with real life Hermans. All stories are fictitious; any correspondence with actual events or people are purely coincidental.</font></p>
+      
+
+
     </div>
     
     <!-- End Main Content -->
  
  
+    
   </div>
  
   <!-- End Main Content and Sidebar -->
@@ -72,7 +73,7 @@
 	    <li><a href="/register">Register</a></li>
             {% else %}
             <li><a href="#">{{ username }}</a></li>
-                {% if username == "Herman" %}
+                    {% if username == "Herman" %}
                     <li><a href="/createpost">Create Post</a></li>
                 {% endif %}
             <li><a href="/logout">Logout</a></li>

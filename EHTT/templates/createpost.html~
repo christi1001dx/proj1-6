@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
-
+ <link rel="stylesheet" href="{{ url_for('static', filename='foundation.css') }}">
 
   <head>
     <title>Herman's Blog | Create Post</title>
@@ -20,7 +20,8 @@
 	    {% if not username %}
 	    <li><a href="/login" class="button">Login</a></li>
 	    <li><a href="/register" class="button">Register</a></li>
-                 {% if username == "Herman" %}
+            {% else %}
+	         {% if username == "Herman" %}
 	         <li><a href="#" class="button">Herman</a></li>
                  <li><a href="/createpost" class="button">Create Post</a></li>
 	         <li><a href="/logout" class="button">Logout</a></li>
@@ -44,12 +45,13 @@
       <!-- Main Blog Content -->
       <div class="large-9 columns" role="content">
       
-        {% if username == "Herman" }
+        {% if username == "Herman" %}
         <form>
           <h3>Blog Post Title</h3>
 	  <input type="text" name="title"> </br>
 	  <h4>Post</h4>
 	  <textarea rows="50" cols="10" name="post"></textarea>
+	  <input type="submit" class="button" value="submit" name="submit"></input>
     	</form>
 
         

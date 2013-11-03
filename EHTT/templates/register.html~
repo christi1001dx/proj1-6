@@ -3,6 +3,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='foundation.css') }}">
 
   <head>
     <title>Herman's Blog</title>
@@ -23,8 +24,9 @@
             <li><a href="#">{{ username }}</a></li>
                     {% if username == "Herman" %}
                     <li><a href="/createpost" class="button">Create Post</a></li>
-                {% endif %}
+                    {% endif %}
             <li><a href="/logout" class="button">Logout</a></li>
+	    {% endif %}
           </ul>
         </div>
         <h2>Herman's Blog <small>Herp Derp</small></h2>
@@ -82,9 +84,10 @@
             <li><a href="#">{{ username }}</a></li>
                     {% if username == "Herman" %}
                     <li><a href="/createpost">Create Post</a></li>
-                {% endif %}
+                    {% endif %}
             <li><a href="/logout">Logout</a></li>
-          </ul>
+            {% endif %}
+	  </ul>
         </div>
       </div>
     </div>

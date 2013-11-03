@@ -38,6 +38,8 @@ def register():
                 return redirect("/login?type=2")
             else:
                 return render_template("register.html",type=1)
+        else:
+            return render_template("register.html",type=2)
     else:
         return render_template("register.html")
 @app.route("/logout")

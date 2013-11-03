@@ -3,10 +3,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
-  
+ <link rel="stylesheet" href="{{ url_for('static', filename='foundation.css') }}">
+
 
   <head>
-    <title>Herman's Blog | About Me</title>
+    <title>Herman's Blog | {{ name }}</title>
   </head>
   <body>
 
@@ -33,7 +34,7 @@
         <hr />
       </div>
     </div>
-    
+        
 
   <!-- Main Page Content and Sidebar -->
  
@@ -41,15 +42,31 @@
  
     <!-- Main Blog Content -->
     <div class="large-9 columns" role="content">
-      <h1>About Me</h1>
-      <p>Beating up cheating spouses, saving relationshipos, performing therapy, there is nothing I can't do.</p>
-      <p><font size = 2px>Side note: This Herman is in no way affliated with real life Hermans. All stories are fictitious; any correspondence with actual events or people are purely coincidental.</font></p>
+      
+      <article>
+	
+        <h3>{{ name }}</h3>
+        <h6>{{ date }}</h6>
+
+        <div class="row">
+          <div class="large-6 columns">
+           {{ text }}
+          </div>
+        
+ 
+      </article>
+      
+      {% if username %}
+      <form>
+          <textarea rows="50" cols="10" name="comment"></textarea>    
+      </form>
+      {% endif %}
+
     </div>
     
     <!-- End Main Content -->
  
- 
-  </div>
+   </div>
  
   <!-- End Main Content and Sidebar -->
  
