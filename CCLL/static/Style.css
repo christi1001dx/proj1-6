@@ -113,3 +113,12 @@ input[type=reset] {
 #Genre {
     margin:0px;
 }
+#home {
+      background-position:center;
+      width:120px;
+      background-color:#c9d0de;     
+      height:120px;
+      position:absolute;
+      left:-250px;
+      top:50px;
+    }
