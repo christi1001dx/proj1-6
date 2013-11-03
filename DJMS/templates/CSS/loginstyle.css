@@ -1,8 +1,43 @@
 body
-{background-color:#CCFFFF}
+{
+background-color: e0e0e0
+}
 
 h1
-{letter-spacing:2px ; color:#6633FF}
+{
+letter-spacing:3px;
+text-align: center;
+font-family:"Avantgarde", sans-serif;
+color: white;
+font-size:80%
+}
 
 h2
-{font-size:25px}
+{
+letter-spacing:3px;
+text-align: center;
+font-family:"Avantgarde", sans-serif;
+color: white;
+font-size:400%
+}
+
+.container
+{
+border-top-style:solid;
+border-right-style: dotted;
+border-bottom-style: solid;
+border-left-style: dotted;
+
+
+}
+
+.top
+{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:60%;
+background-color: 000033;
+z-index:-1;
+}
