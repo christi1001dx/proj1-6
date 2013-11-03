@@ -16,13 +16,16 @@
                 <br> <br> <br> <br> <br>
                 <a href="Login.html" class="btn">Login</a>
                 <a href="#" class="btn">Register</a>
+                <a href="template.submit.html" class="btn">New Post<a>
             </ul>
             </nav>
         </div>
-        <span id="LEFT"> <!--
+        <br> <br>
+        <span id="LEFT">
             <span id="Title">
                 {{post.title}}
             </span>
+            <br>
             <span id="Post">
                 <span id="Content">
                     {{post.content}}
@@ -32,41 +35,29 @@
                     By {{post.author}}
                 </span>
             </span>
-            <br>
-<<<<<<< HEAD
-            <span id="Comment">
-            <ul>
-                {{ for c in comments }}
-                <li>
-                <span> 
-                {{c.comment}}
-                <br>
-                {{c.author}}
-                </span>
-                </li>
-                <br>
-                {{ endfor }}
-            </ul>
-            </span>
+            
+            
             <form method="POST" id="Sub">
                 <span>Enter your comment below</span>
                 <textarea name="comment"></textarea>
                 <input type="submit" name="button" value="submit"></input>
             </form>
-            -->
+            <div id="Comment">
+            <ul>
+                {{ for c in comments }}
+                <li>
+                <div> 
+                {{c.comment}}
+                <br>
+                {{c.author}}
+                </div>
+                </li>
+                <br>
+                {{ endfor }}
+            </ul>
+            </div> 
         </span>
-=======
-            {{ endfor }}
-        </ul>
-        </div>
-        <form method="POST" id="Sub">
-            <div>Enter your comment below</div>
-            <textarea name="comment"></textarea>
-            <br>
-            <input type="submit" name="button" value="submit"></input>
-        </form>
-        <div {height:200;}>
-        </div>
->>>>>>> c502b92a72b2fb4f19aa56e49467dd945d0dcf67
+        <span id="RIGHT">
+        </span>
     </body>
 </html>

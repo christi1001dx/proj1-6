@@ -7,11 +7,12 @@ body {
     background: #728eaa;
     background: -moz-linear-gradient(top, #25303C, 0%, #728EAA, 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%, #728EAA));
+    white-space:nowrap;
 }
 
 #NavigationMenu {
     position:relative;
-    width:1200px;
+    width:1300px;
     height:120px;
     padding-top:10px;
     bottom:5px solid black;
@@ -114,37 +115,48 @@ nav ul li a:hover span {
 
 #LEFT {
   position:relative;
-  height:800px;
-  width:800px;
+  border:5px solid white;
+  height:750px;
+  width:880px;
+  min-width:880px;
+  float:left;
+}
+
+#RIGHT {
+  position:relative;
+  border:5px solid #728EAA;
+  height:750px;
+  width:362px;
+  min-width:362px;
+  display:inline-block;
+  overflow:scroll;
 }
 
 #Title {
   /*position:absolute;
   margin:left;*/
   position:relative;
-  height:100px;
+  width:850px;
   /* left:50% */
   font-size:60px;
   text-align:center; 
   color:orange;
-  padding-top:30px;
+  border:5px solid orange;
+  display:inline-block;
 }
+
 #Author {
-    color:orange;
-    width:800px;
-    text-style:italic;
+  color:orange;
+  width:800px;
+  display:inline-block;
 
 }
-
 
 #Post {
- /*color:#8888C2;*/
  color:white;
- /*width:800px;*/
- border:solid;
- width:80%;
- margin-left:10%;
- margin-right:10%;
+ border:5px solid #E0C2FF;
+ width:850px;
+ display:inline-block;
 
 }
 #Content {
@@ -152,6 +164,7 @@ nav ul li a:hover span {
  font-size:16px;
  color:white;
  padding:2px;
+ overflow:scroll;
 
 }
 ul {
@@ -159,17 +172,18 @@ ul {
 }
 #Comment li {
   position:relative;
-  float:top;
 }
 
 #Comment {
   color:#8888C2;
-  border:solid 2px;
+  border:solid 5px;
   color:white;
-  padding:2px;
-  width:500px;
+  width:600px;
+  height:400px;
   font-size:16px;
-  margin-left:10%;
+  margin-left:25px;
+  overflow:scroll;
+  min-width:600px;
 }
 
 #Comment div #Com {
@@ -182,10 +196,9 @@ ul {
   width:80%;
   font-size:16px;
   color:white;
+  margin-left:20px;
 }
-#Sub div {
-    color:orange;
-}
+
 #Sub input {
     background-color:orange;
     border:none;
@@ -195,7 +208,7 @@ ul {
     color:white;
 }
 input[type=submit] {
-    width: 100px; height: 50px; padding: 10px 15px; margin: 0 15px 0 0;
+    width: 100px; height: 40px; padding: 10px 15px; margin: 10px 15px 0 20;
     -moz-box-shadow: 0px 0px 5px #999;-webkit-box-shadow: 0px 0px 5px #999;
     border: 1px solid #556f8c;
     /* IE10 Consumer Preview */ 
@@ -215,10 +228,12 @@ input[type=submit] {
 
     /* W3C Markup, IE10 Release Preview */ 
     background-image: linear-gradient(to bottom, #FAFAFA 0%, #2B2B2B 100%);
+      border-radius: 5px;
+
     cursor: pointer;
 }
 textarea {
-    width:800px;
+    width:700px;
     display:block;
     border: 2px solid #999;
     height: 80;

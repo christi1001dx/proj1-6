@@ -15,7 +15,7 @@ body {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%,#728EAA)); /* webkit */
 }
 
-a {
+form a {
     font-size:12px;
     width:10%;
     height:20%;
@@ -156,4 +156,13 @@ input[type=submit] {
     background-image: linear-gradient(to bottom, #FAFAFA 0%, #2B2B2B 100%);
     cursor: pointer;
 }
-
+#home {
+      background-position:center;
+      background-color:#E0C2FF;
+      width:120px;
+      height:120px;
+      position:absolute;
+    }
+#home:hover {
+    background-color:#00ffff;
+}
