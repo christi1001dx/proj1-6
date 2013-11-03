@@ -79,13 +79,17 @@ def submit(name):
 @app.route("/post/<_id>")
 def post(_id):
     if request.method=="GET":
-        return render_template("template.post.html", post = utils.getPost(_id, db.posts))
+	print utils.getPost(_id, db.posts)
+        return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
     else:
         newcomment = request.form['comment'].encode ('ascii',"ignore")
         finalComments = comments.append (newcomment)
         name = session['username']
         utils.addComments (_id,name, finalComments, db.posts)
-        return render_template("template.post.html", post = utils.getPost(_id, db.posts))
+        return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
+
+@app.route("/genre/<genre>")
+    return render_template("template."+genre+".html", posts = utils.getPostsGenre(genre, db.posts)) 
 
 @app.route("/logout")
 def logout():
