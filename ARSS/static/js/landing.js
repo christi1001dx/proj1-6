@@ -108,10 +108,25 @@ $(function() {
 		);
 	}
 	
+	$(".back-button").click(hideStory);
+	
 	$(window).resize(blocks).scroll(blocks).resize();
 	setInterval(showBlocks, 100);
 });
 
+function hideStory() {
+	$("#story").animate({
+		left:$(window).width()
+	},500,function() {
+		$(this).css("display","none");
+	});
+	$("#stories").css("display","block").css("left",-$(window).width()).animate({
+		left : sideneg
+	},500);
+	$("header").animate({
+		top : 0
+	},500);
+}
 function openStory(i) {
 	$("#story").css("display","block")
 	.css("left", $(window).width())
