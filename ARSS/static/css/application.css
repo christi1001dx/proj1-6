@@ -135,8 +135,8 @@ body {
   text-indent: 2em;
   margin: 1em 0; }
 
-#story-newline:hover {
+#story-new-line:hover {
   border-bottom: 1px dotted; }
-#story-newline:focus {
+#story-new-line:focus {
   outline: none;
   border-bottom: 1px solid; }
