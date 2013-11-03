@@ -41,7 +41,7 @@ $(function() {
 			}).html(
 				"<div class='title'><div class='text'>"+stories[i].title+"</div></div>"+
 				"<div class='author'>by "+stories[i].author+"</div>"+
-				"<div class='edits' title='"+stories[i].edits+" edits'><img src='img/edit.png' />"+stories[i].edits+"</div>"+
+				"<div class='edits' title='"+stories[i].edits+" edits'><img src='"+dir+"img/edit.png' />"+stories[i].edits+"</div>"+
 				"<div class='story'>"+stories[i].text+"</div>"+
 				"<div class='goto'><div class='text'>Go to Story &rarr;</div></div>"
 			).css("opacity",0).css3({
