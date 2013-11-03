@@ -19,54 +19,41 @@
             </ul>
             </nav>
         </div>
-        <span id="LEFT"> <!--
-            <span id="Title">
+        <br> <br>
+        <div id="LEFT">
+            <div id="Title">
                 {{post.title}}
-            </span>
-            <span id="Post">
-                <span id="Content">
+            </div>
+            <div id="Post">
+                <div id="Content">
                     {{post.content}}
-                </span>
+                </div>
                 <br>
-                <span id="Author">
+                <div id="Author">
                     By {{post.author}}
-                </span>
-            </span>
-            <br>
-<<<<<<< HEAD
-            <span id="Comment">
-            <ul>
-                {{ for c in comments }}
-                <li>
-                <span> 
-                {{c.comment}}
-                <br>
-                {{c.author}}
-                </span>
-                </li>
-                <br>
-                {{ endfor }}
-            </ul>
-            </span>
+                </div>
+            </div>
             <form method="POST" id="Sub">
                 <span>Enter your comment below</span>
                 <textarea name="comment"></textarea>
                 <input type="submit" name="button" value="submit"></input>
             </form>
-            -->
-        </span>
-=======
-            {{ endfor }}
-        </ul>
+            <div id="Comment">
+            <ul>
+                {{ for c in comments }}
+                <li>
+                <div> 
+                {{c.comment}}
+                <br>
+                {{c.author}}
+                </div>
+                </li>
+                <br>
+                {{ endfor }}
+            </ul>
+            </div>
         </div>
-        <form method="POST" id="Sub">
-            <div>Enter your comment below</div>
-            <textarea name="comment"></textarea>
-            <br>
-            <input type="submit" name="button" value="submit"></input>
-        </form>
-        <div {height:200;}>
+        <div id="RIGHT">
         </div>
->>>>>>> c502b92a72b2fb4f19aa56e49467dd945d0dcf67
     </body>
 </html>

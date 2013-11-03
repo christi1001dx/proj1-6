@@ -27,15 +27,17 @@ $sidebarTransitionTime: 0.5s
 	background-color: white
 
 .sidebar-body-wrapper
-	@include vendor(transition, width $sidebarTransitionTime)
+	@include vendor(box-sizing, border-box)
+	@include vendor(transition, (width $sidebarTransitionTime, padding $sidebarTransitionTime))
+	@include vendor(box-shadow, (inset -18px 0px 17px -20px #000, inset 16px 0px 20px -20px #000))
 	width: 0
 	height: 100%
 	margin-left: $sidebarLabelWidth
+	padding: 7px 0
 
 .sidebar-body
 	@include vendor(box-sizing, border-box)
 	@include vendor(transition, opacity $sidebarTransitionTime)
-	@include vendor(box-shadow, (inset -18px 0px 17px -20px #000, inset 16px 0px 20px -20px #000))
 	opacity: 0
 	overflow: auto
 	width: 250px
