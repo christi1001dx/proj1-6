@@ -5,15 +5,25 @@ var s = [];
 var sideneg = 30, sideopen = 0;
 
 $(function() {
+	$("#sidebar").css("left", $(window).width() - sideneg);
 	$(window).resize(calcheader).scroll(calcheader).resize();
 	
 	$("#sidebar .label").mouseover(function() {
 		if (!!sideopen) return;
 		$(this).animate({
 			opacity : 0
-		},500,function() {
-			sideopen = 1;
-			$(this).css("display","none");
+		},{
+			duration : 500,
+			complete : function() {
+				sideopen = 1;
+				$(this).css("display","none");
+				calcheader();
+				blocks();
+			},
+			step : function() {
+				calcheader();
+				blocks();
+			}
 		});
 		var $side = $(this).parent();
 		$side.animate({
@@ -27,7 +37,8 @@ function calcheader() {
 	bw = $(window).width(); bh = $(window).height();
 	var st = $(window).scrollTop();
 	
-	if (!sideopen) $("#sidebar").css("left", bw - sideneg);
+	sideneg = bw - $("#sidebar").position().left;
+	$("#sidebar").css("left", bw - sideneg);
 	bw -= sideneg;
 	
 	var hh = Math.max(HEADSIZE[1] - st, HEADSIZE[0]);

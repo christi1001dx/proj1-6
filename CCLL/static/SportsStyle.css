@@ -109,7 +109,7 @@ nav ul li a:hover span {
     /*padding:20px;*/
     float:center;
     font-size:60px;
-    color:red;
+    color:#3366ff;
 }
 
 #Headline {
@@ -125,6 +125,8 @@ nav ul li a:hover span {
 
 #tit {
     font-size:50px;
+    text-decoration:none;
+    color:black;
 }
 #tit:hover {
     color:#00ffff;
@@ -183,6 +185,7 @@ nav ul li a:hover span {
 #Title {
     font-size:36px;
     color:black;
+    text-decoration:none;
 }
 #Title:hover {
     color:#00ffff;
