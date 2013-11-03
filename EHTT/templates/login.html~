@@ -1,9 +1,9 @@
 <html>
-
+  
   <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
-
+  
   <head>
     <title>Herman's Blog</title>
   </head>
@@ -18,12 +18,12 @@
             <li><a href="/aboutme" class="button">About Me</a></li>
             {% if not username %}
             <li><a href="/login" class="button">Login</a></li>
-	    <li><a href="/register" class="button">Register</a></li>
+            <li><a href="/register" class="button">Register</a></li>
             {% else %}
             <li><a href="#" class="button">{{ username }}</a></li>
-                {% if username == "Herman" %}
-                    <li><a href="/createpost" class="button">Create Post</a></li>
-                {% endif %}
+               {% if username == "Herman" %}
+                  <li><a href="/createpost" class="button">Create Post</a></li>
+               {% endif %}
             <li><a href="/logout" class="button">Logout</a></li>
             {% endif %}
           </ul>
@@ -33,38 +33,44 @@
       </div>
     </div>
     
+    <!-- Main Page Content and Sidebar -->
     
     <div class="row">
       
-      <!-- Overview of the Blog -->
+      <!-- Main Blog Content -->
       <div class="large-9 columns" role="content">
-	{% for x in posts %}
-	{{ x.name }}
-	{% endfor %}
+	
+	<h1>Login</h1>
+	<form method="POST">
+	  Username: <input type="text" name="username"></input>
+	  Password: <input type="password" name="password"></input>
+	  <input type="submit" name="button" value="submit"></input>
+	</form>
+	<p>Access to special privileges for registered users only</p>
+	<a href="/register" class = "button">Register</a>
+	
+	{% else %}
+	<a href="/" class = "button">Home</a>
+	{% endif %}
+        
       </div>
       
-      <!--sidebar-->
-      <aside class="large-3 columns">
-
-	<div class="panel">
-
-        <div class="panel">
-
-          <h5>Featured Post</h5>
-          <p></p>
-          <a href="#">Read More &rarr;</a>
-      </div>
-        
-      </aside>
+      <!-- End Main Content -->
+      
     </div>
     
+    <!-- End Main Content and Sidebar -->
+    
+    
+    <!-- Footer -->
+    
     <footer class="row">
-    <div class="large-12 columns">
-      <hr />
-      <div class="row">
-        <div class="large-6 columns">
-          <p>&copy; Copyright Stuyvesant High School Students</p>
-        </div>
+      <div class="large-12 columns">
+        <hr />
+        <div class="row">
+          <div class="large-6 columns">
+            <p>&copy; Copyright Stuyvesant High School Students</p>
+          </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
             <li><a href="/">Home</a></li>
@@ -74,9 +80,9 @@
 	    <li><a href="/register">Register</a></li>
             {% else %}
             <li><a href="#">{{ username }}</a></li>
-                {% if username == "Herman" %}
+                    {% if username == "Herman" %}
                     <li><a href="/createpost">Create Post</a></li>
-                {% endif %}
+                    {% endif %}
             <li><a href="/logout">Logout</a></li>
             {% endif %}
           </ul>
@@ -85,5 +91,6 @@
     </div>
   </footer>
 
-  </body>
+
+ </body>
 </html>
