@@ -24,8 +24,6 @@
     line-height: 0; }
   .sidebar:after {
     clear: both; }
-  .sidebar:hover .sidebar-body {
-    opacity: 1; }
 
 .sidebar-label {
   float: left;
@@ -74,8 +72,9 @@
   overflow: auto;
   width: 250px;
   height: 100%;
-  padding: 10px;
+  padding: 5px;
   font-size: 22px;
+  font-family: Oxygen;
   color: white; }
 
 body {
@@ -118,7 +117,7 @@ input {
   -ms-transition: box-shadow 0.2s;
   -o-transition: box-shadow 0.2s;
   transition: box-shadow 0.2s;
-  margin-bottom: 15px;
+  display: block;
   padding: 6px 10px;
   width: 100%;
   border: 1px solid #d2d9dc;
@@ -135,11 +134,30 @@ input {
 
 .button {
   display: block;
-  padding: 0.3em 0 0.1em;
+  padding: 0.1em 0 0.2em;
   text-align: center;
   background-color: white;
   color: black;
   cursor: pointer; }
+
+.back-button {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer; }
+
+.login-container, .register-container {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: #2e2e2e;
+  text-align: center; }
+  .login-container h3, .register-container h3 {
+    margin-bottom: 5px; }
+  .login-container input, .register-container input {
+    margin-bottom: 7px; }
 
 .story-container {
   max-width: 900px;

@@ -39,10 +39,23 @@ def formatData(uid, post):
 def formatData2(uid, post, comments):
     r = ""
     for x in comments:
-        x["username"] = utils2.uidToUsername(x["uid"])
+        if x["uid"] == -1:
+            x["username"] = "Guest"
+        else:
+            x["username"] = utils2.uidToUsername(x["uid"])
         r += formatComment(x)
+
         
     post["comments"] = r
+    post["date"] = post["date"].strftime("%m/%d/%y %H:%M:%S")
+    post["likes"] = utils2.getLikes(post["id"])
+
+    if uid == post["uid"]:
+        post["ynlike"] = ""
+    elif utils2.userLikesPost(uid,post["id"]):
+        post["ynlike"] = '<a href="like?id='+str(post["id"])+'" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>'
+    else:
+        post["ynlike"] = '<a href="like?id='+str(post["id"])+'" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>'
 
     post["author"] = utils2.uidToUsername(post["uid"])
 
@@ -51,7 +64,7 @@ def formatData2(uid, post, comments):
     else:
         post["authorHTML"] = ""
 
-    return formatPost(post)
+    return formatPost(post,uid==-1)
 
 
 
@@ -72,26 +85,43 @@ def formatComment(data):
     # data:
     # username = username
     # content = comment content
+    data["date"] = data["date"].strftime("%m/%d/%y %H:%M:%S")
+    if data["uid"] == -1:
+        user = "<em>Guest</em>"
+    else:
+        user = "<strong>"+data["username"]+"</strong>"
     return '''              <tr>
-                <td><a href="#">%(username)s</a><br />%(content)s</td>
+                <td>'''+user+''' <span class="time">(%(date)s)</span><br />%(content)s</td>
               </tr>'''%(data)
 
-def formatPost(data):
+def formatPost(data,guest):
     # data:
     # title = title
     # author = author username
     # content = post content
     # comments = HTML comments (run each comment through formatComment() and put into one variable)
     # authorLinksHTML = if user == author display edit/delete links, call function authorLinksHTML()
-    return '''
+    r = '''
       <table class="table post">
-	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="#">%(title)s</a><div class="postAuthor">Posted by <a href="#">%(author)s</a></div></td></tr>
+	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="post?id=%(id)s">%(title)s</a><div class="postAuthor">Posted by <strong>%(author)s</strong></div><div class="time">%(date)s</div></td></tr>
 	<tr class="active"><td colspan="2">%(content)s</td></tr>
 	<tr class="active">
 	  <td colspan="2" class="likes">
-	    <span class="glyphicon glyphicon-thumbs-up"></span> <a href="#">User</a>, <a href="#">User 2</a>
+%(likes)s
+<!--	    <span class="glyphicon glyphicon-thumbs-up"></span> <a href="#">User</a>, <a href="#">User 2</a-->
 	  </td>
-	</tr>
+	</tr>'''%(data)
+
+    if not guest:
+        r += '''
+	<tr class="active">
+	  <td class="links left" colspan="2">
+%(ynlike)s
+	            %(authorHTML)s
+	  </td>
+	</tr>'''%(data)
+
+    r += '''
 	<tr class="active">
 	  <td colspan="2">
 	    <table class="table comments">
@@ -102,16 +132,8 @@ def formatPost(data):
 	    </table>
 	  </td>
 	</tr>
-	<tr class="active">
-	  <td class="links left">
-	    <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-	  </td>
-	  <td class="links right">
-            %(authorHTML)s
-	  </td>
-	</tr>
-      </table>
-'''%(data)
+      </table>'''%(data)
+    return r
 
 
 if __name__ == "__main__":

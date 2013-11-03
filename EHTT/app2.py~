@@ -51,7 +51,7 @@ def register():
 
 @app.route("/aboutme")
 def aboutme():
-    if username in session:
+    if 'username' in session:
         return render_template("aboutme.html",username = session["username"])
     else:
         return render_template("aboutme.html")
@@ -65,7 +65,7 @@ def logout():
 @app.route("/createpost")
 def createpost():
     if request.method == "GET":
-        if username in session:
+        if 'username' in session:
             return render_template("createpost.html",username = session["username"])
         else:
             return render_template("createpost.html")
@@ -91,7 +91,7 @@ def posts(post_name):
     date = utils.getPost(post_name).date
     comments = utils.getAllComments(post_name)
     if request.method =="GET":
-        if username in session:
+        if 'username' in session:
             return render_template("indipost.html",username = session["username"],text=text,name=name,date=date,comments=comments)
         else:
             return render_template("indipost.html",text=text,name=name,date=date,comments=comments)

@@ -21,6 +21,8 @@
 
       {% if type == 1 %}
       <div class="alert alert-danger"><strong>Error</strong>: Username is already in use</div>
+      {% elif type == 2 %}
+      <div class="alert alert-danger"><strong>Error</strong>: Passwords don't match</div>
       {% endif %}
 
       <form method="post">

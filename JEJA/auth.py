@@ -4,7 +4,7 @@ c = MongoClient()
 db = c.users
 
 def authorize(username, password):
-    user = db.Collections.find_one({'username':username, 'password':password})
+    user = db.Collections.find_one({'username':username.lower(), 'password':password})
     if user:
         return user["id"]
     else:
@@ -14,7 +14,7 @@ def userExists(username):
 def createUser(username, password):
     if not userExists(username):
         ui = db.Collections.count()+1
-        db.Collections.insert({'id':ui,'username':username, 'password':password})
+        db.Collections.insert({'id':ui,'username':username.lower(), 'password':password})
         return True
     else:
         return False
