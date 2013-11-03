@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from time import strftime
 from bson.objectid import ObjectId
+import random
 
 def auth (user, passwd, coll):
     return [x for x in coll.find({'username': user, 'password': passwd})] != []
@@ -19,6 +20,10 @@ def getPostsGenre(genre, coll):
 
 def getPost(_id, coll):
     return [x for x in coll.find({'_id':ObjectId(_id)})]
+
+def getRandPost(coll):
+    r = [x for x in coll.find()]
+    return r[int(random.random() * coll.count())]
 
 def addComment(_id, user, text, coll):
     comments = coll.find({'_id': ObjectId(_id)}).comments

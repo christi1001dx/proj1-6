@@ -12,8 +12,8 @@ app.secret_key = 'maroon5'
 @app.route("/")
 def home():
     if 'username'  in session:
-        return render_template("template.index.html")
-    else: 
+        return render_template("template.index.html", featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
+    else:
         return redirect("/login")
 
 @app.route("/login",methods=['GET','POST'])
@@ -89,7 +89,8 @@ def post(_id):
         return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
 
 @app.route("/genre/<genre>")
-    return render_template("template."+genre+".html", posts = utils.getPostsGenre(genre, db.posts)) 
+def genre():
+    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts)) 
 
 @app.route("/logout")
 def logout():
