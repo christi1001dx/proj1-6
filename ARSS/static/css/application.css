@@ -4,6 +4,7 @@
 @import url("http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,900italic,400,700,900");
 @import url("http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic");
 @import url("http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Libre+Baskerville:400,700,400italic");
+@import url("http://fonts.googleapis.com/css?family=ABeeZee:400,400italic|Gudea:400,700,400italic|Oxygen:400,700,300|Sintony:400,700");
 .sidebar {
   -webkit-transition: width 0.5s;
   -moz-transition: width 0.5s;
@@ -34,7 +35,8 @@
   padding-top: 20px;
   text-align: center;
   color: #26e2fc;
-  background-color: #303030; }
+  background-color: #303030;
+  font-family: Gudea; }
 
 .sidebar-body {
   height: 100%;
