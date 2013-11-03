@@ -27,7 +27,10 @@ $(function() {
 		var $side = $(this).parent();
 		$side.animate({
 			left: 0
-		},500)
+		},500);
+		$side.find(".stuff").animate({
+			opacity:1
+		},500);
 		sideopen = 2;
 	});
 });
