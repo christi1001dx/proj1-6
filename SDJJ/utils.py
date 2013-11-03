@@ -30,11 +30,14 @@ def post(post):
 	return posts.find({ "id" : post })
 
 def userpost(username, post):
-    temp = users.find_one({'username':username})['posts']
-    postsize = posts.count()
-    temp.extend([postsize + 1]) #new postid
+    temp = users.find_one({'username':username})
+    temp =  temp['posts']
+    postid = posts.find()
+    postid = postid[posts.count() - 1]
+    postid = postid['postid'] + 1
+    temp.extend([postid]) #new postid
     users.update({'username':username},{'$set':{'posts':temp}}) #adds the postid of new post in the user's list of postids theyve written
-    posts.insert({'postid':postsize + 1,'user':username,'post':post,'comments':[]}) #adds new post
+    posts.insert({'postid':postid,'user':username,'post':post,'comments':[]}) #adds new post
 
 def usercomment(username, post, comment):
     temp = posts.find_one({'post':post})
@@ -50,10 +53,14 @@ def usercomment(username, post, comment):
 
 
 def deletepost(username, post): #is it neccessary to edit all postids proceeding the deleted post? 
-    postnum = posts.find_one({'post':post})['postid']
+    postnum = posts.find_one({'post':post})
+    postnum = postnum['postid']
     posts.remove({'post':post})
-    temp = users.find_one({'username':username})['posts'].remove(postnum)
-    users.update({'username':username},{'$set':{'comments':temp['posts']}})
+    postnum = posts.find_one({'post':postnum})
+    temp = users.find_one({'username':username})
+    temp = temp['posts'].remove(postnum)
+    users.update({'username':username},{'$set':{'comments':temp}})
+ 
 
 def deletecomment(username, post, comment):
     temp = posts.find_one({'post':post})
