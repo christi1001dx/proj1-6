@@ -1,0 +1,50 @@
+
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+  </head>
+  <body>
+<nav class="navbar navbar-default">
+<div class="navbar-header">
+<a class="navbar-brand" href="/">Home</a>
+<ul class="nav navbar-nav">
+<li class="active"><a href="login">Login</a></li>
+<li><a href="register">Register</a></li>
+</ul>
+
+</div>
+</nav>
+    <div style="width:400px;margin-left:auto;margin-right:auto;">
+
+      <h1 style="text-align:center">Login</h1>
+
+      {% if type == 1 %}
+      <div class="alert alert-danger"><strong>Error</strong>: Username/Password combination does not exist</div>
+      {% elif type == 2 %}
+      <div class="alert alert-success"><strong>Success</strong>: Registration successful</div>
+      {% endif %}
+
+      <form method="post">
+	<table class="table" style="border:1px solid rgb(221,221,221)">
+	  <tr class="active">
+	    <th>Username</th>
+	    <td><input name="username" size="20" class="form-control" tabindex="1" /></td>
+	  </tr>
+	  <tr class="active">
+	    <th>Password</th>
+	    <td><input name="password" type="password" size="20" class="form-control" tabindex="2" /></td>
+	  </tr>
+	  <tr class="active">
+	    <td colspan="2" style="text-align:center"><a href="register">Create New Account</a></td>
+	  </tr>
+	  <tr class="active">
+	    <td colspan="2" style="text-align:center"><input type="submit" value="Login" class="btn btn-primary" tabindex="3" /></td>
+	  </tr>
+	</table>
+      </form>
+
+    </div>
+
+  </body>
+</html>
