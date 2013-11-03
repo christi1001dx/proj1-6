@@ -25,10 +25,8 @@
     line-height: 0; }
   .sidebar:after {
     clear: both; }
-  .sidebar:hover {
-    width: 300px; }
-    .sidebar:hover .sidebar-body {
-      opacity: 1; }
+  .sidebar:hover .sidebar-body {
+    opacity: 1; }
 
 .sidebar-label {
   float: left;
