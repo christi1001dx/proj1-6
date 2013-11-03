@@ -1,13 +1,13 @@
 (function($) {
 	$(document).ready(function() {
+		var $body = $("body");
+		var sidebarWidth = "300px";
 		$(".sidebar").hover(function() {
-			$(this).animate({
-				width: "500px"
-			});
+			$(this).css("width", sidebarWidth)
+			$body.css("padding-left", sidebarWidth);
 		}, function() {
-			$(this).animate({
-				width: ""
-			});
+			$(this).css("width", "")
+			$body.css("padding-left", "");
 		});
 	});
 })(jQuery);

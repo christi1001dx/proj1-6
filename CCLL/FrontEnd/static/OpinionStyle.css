@@ -113,12 +113,16 @@ nav ul li a:hover span {
 }
 
 #Headline {
-    position:relative;
-    float:left;
     width:600px;
     height:200px;
-    border:solid
+    color:black;
+    border:solid;
+
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
 }
+
 #tit {
     font-size:50px;
 }
@@ -129,32 +133,52 @@ nav ul li a:hover span {
     font-size:24px;
     font-style:italic;
 }
-
+#Line2 {
+    white-space:nowrap;
+}
+#Line1 {
+    white-space:nowrap;
+}
 #Post1 {
-    float:left;
     width:400px;
     height:200px;
-    border:solid;
     color:white;
-    padding-left:5px;
+    display:inline-block;
+    border:solid;
+    vertical-align:top;
+    white-space:normal;
+
 }
 #Post2 {
-    float:left;
-    width:400px;
+    width:350px;
     height:200px;
     border:solid;
-    color:white;
-    padding-left:5px;
-    padding-top:5px;
+    color:blue;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+
 }
 #Post3 {
-    float:left;
-    width:400px;
+    width:350px;
     height:200px;
     border:solid;
-    color:black;
-    padding-top:5px;
-    padding-left:5px;
+    color:orange;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+
+}
+
+#Post4 {
+    width:350px;
+    height:200px;
+    border:solid;
+    color:red;
+    display:inline-block;
+    vertical-align:top;
+    white-space:normal;
+
 }
 #Title {
     font-size:36px;

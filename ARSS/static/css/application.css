@@ -25,27 +25,19 @@
     line-height: 0; }
   .sidebar:after {
     clear: both; }
-  .sidebar:hover {
-    width: 300px; }
-    .sidebar:hover .sidebar-label {
-      color: #26e2fc; }
-    .sidebar:hover .sidebar-body {
-      opacity: 1; }
+  .sidebar:hover .sidebar-body {
+    opacity: 1; }
 
 .sidebar-label {
-  -webkit-transition: color 0.5s;
-  -moz-transition: color 0.5s;
-  -ms-transition: color 0.5s;
-  -o-transition: color 0.5s;
-  transition: color 0.5s;
-  color: black;
   float: left;
   width: 35px;
   height: 100%;
   padding-top: 20px;
   text-align: center;
   background-color: #303030;
-  font-family: Gudea; }
+  font-family: Gudea;
+  color: black;
+  background-color: white; }
 
 .sidebar-body {
   -webkit-box-shadow: inset -18px 0px 17px -20px black, inset 16px 0px 20px -20px black;
@@ -65,6 +57,11 @@
   color: white; }
 
 body {
+  -webkit-transition: padding 0.5s;
+  -moz-transition: padding 0.5s;
+  -ms-transition: padding 0.5s;
+  -o-transition: padding 0.5s;
+  transition: padding 0.5s;
   padding-left: 35px; }
 
 .story-container {
