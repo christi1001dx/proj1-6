@@ -55,7 +55,7 @@ def formatData2(uid, post, comments):
     else:
         post["authorHTML"] = ""
 
-    return formatPost(post)
+    return formatPost(post,uid==-1)
 
 
 
@@ -80,14 +80,14 @@ def formatComment(data):
                 <td><a href="#">%(username)s</a><br />%(content)s</td>
               </tr>'''%(data)
 
-def formatPost(data):
+def formatPost(data,guest):
     # data:
     # title = title
     # author = author username
     # content = post content
     # comments = HTML comments (run each comment through formatComment() and put into one variable)
     # authorLinksHTML = if user == author display edit/delete links, call function authorLinksHTML()
-    return '''
+    r = '''
       <table class="table post">
 	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="post?id=%(id)s">%(title)s</a><div class="postAuthor">Posted by <a href="#">%(author)s</a></div></td></tr>
 	<tr class="active"><td colspan="2">%(content)s</td></tr>
@@ -105,7 +105,10 @@ def formatPost(data):
               </tr>
 	    </table>
 	  </td>
-	</tr>
+	</tr>'''%(data)
+
+    if not guest:
+        r += '''
 	<tr class="active">
 	  <td class="links left">
 	    <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
@@ -113,9 +116,9 @@ def formatPost(data):
 	  <td class="links right">
             %(authorHTML)s
 	  </td>
-	</tr>
-      </table>
-'''%(data)
+	</tr>'''%(data)
+    r += '</table>'
+    return r
 
 
 if __name__ == "__main__":
