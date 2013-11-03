@@ -18,6 +18,12 @@
 			{% elif error == "mustLogin" %}
 				You must login.	
 
+            {% elif error == "emptyField" %}
+				You must fill in all fields.	
+
+            {% elif error == "securityMismatch" %}
+				Security question and answer do not match.
+
 			{% elif error == "passChangeSuccess" %}
 				Password changed successfully.
 

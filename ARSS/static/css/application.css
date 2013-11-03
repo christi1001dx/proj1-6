@@ -14,7 +14,6 @@
   transition: width 0.5s;
   position: fixed;
   overflow: hidden;
-  width: 35px;
   height: 100%;
   top: 0;
   left: 0;
@@ -39,6 +38,16 @@
   color: black;
   background-color: white; }
 
+.sidebar-body-wrapper {
+  -webkit-transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -ms-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  transition: width 0.5s;
+  width: 0;
+  height: 100%;
+  margin-left: 35px; }
+
 .sidebar-body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -50,11 +59,17 @@
   -ms-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s;
+  -webkit-box-shadow: inset -18px 0px 17px -20px black, inset 16px 0px 20px -20px black;
+  -moz-box-shadow: inset -18px 0px 17px -20px black, inset 16px 0px 20px -20px black;
+  -ms-box-shadow: inset -18px 0px 17px -20px black, inset 16px 0px 20px -20px black;
+  -o-box-shadow: inset -18px 0px 17px -20px black, inset 16px 0px 20px -20px black;
+  box-shadow: inset -18px 0px 17px -20px black, inset 16px 0px 20px -20px black;
   opacity: 0;
+  overflow: auto;
+  width: 250px;
   height: 100%;
   padding: 10px;
-  color: white;
-  overflow: auto; }
+  color: white; }
 
 body {
   -webkit-transition: padding 0.5s;
