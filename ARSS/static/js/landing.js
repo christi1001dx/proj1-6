@@ -114,7 +114,10 @@ $(function() {
 	setInterval(showBlocks, 100);
 });
 
+var isopen = false;
 function hideStory() {
+	if (!isopen) return;
+	isopen = false;
 	$("#story").animate({
 		left:$(window).width()
 	},500,function() {
@@ -128,6 +131,8 @@ function hideStory() {
 	},500);
 }
 function openStory(i) {
+	if (isopen) return;
+	isopen = true;
 	$("#story").css("display","block")
 	.css("left", $(window).width())
 	.animate({
