@@ -130,6 +130,17 @@ def delPost():
             utils2.delPost(pid)
             return redirect("/?type=4")
 
+@app.route("/like")
+def likePost():
+    uid = getUID()
+    pid = int(request.args.get("id"))
+    post = utils2.getPost(pid)
+
+    # Of course you like your own post!
+    if uid != -1 and uid != post["uid"]:
+        utils2.likePost(uid,pid)
+    return redirect("post?id="+str(pid))
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0', port = 5000)

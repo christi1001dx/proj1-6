@@ -41,6 +41,33 @@ def delPost(pid):
     db = c.posts
     db.Collections.remove({"id":pid})
 
+def likePost(uid,pid):
+    db = c.likes
+    if db.Collections.find({"pid":pid,"uid":uid}).count() == 0:
+        db.Collections.insert({"pid":pid,"uid":uid})
+    else:
+        db.Collections.remove({"pid":pid,"uid":uid})
+
+
+def getLikes(pid):
+    db = c.likes
+    lik = db.Collections.find({"pid":pid})
+
+    r = ""
+
+    count = lik.count()
+    for x in range(0,count):
+        if x == 0:
+            r += '<span class="glyphicon glyphicon-thumbs-up"></span>'
+        r += ' <strong>'+uidToUsername(lik[x]["uid"])+'</strong>'
+        if x+1 != count:
+            r += ','
+    return r
+
+def userLikesPost(uid,pid):
+    db = c.likes
+    return db.Collections.find({"pid":pid,"uid":uid}).count()
+
 def uidToUsername(uid):
     db = c.users
     user = db.Collections.find_one({"id":uid})
