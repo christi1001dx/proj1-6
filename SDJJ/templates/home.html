@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
     <h3>{{message}}</h3>
-	{% for post in posts %}
-		<a href="/post/{{ post.title }}">{{ post.title }}</a>
-	{% endfor %}
+	<ul>
+		{% for post in posts %}
+			<li>
+				<a href="/post/{{ post.title }}">{{ post.title }}</a>
+			</li>
+		{% endfor %}
+	</ul>
 {% endblock %}
