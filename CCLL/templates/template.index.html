@@ -18,17 +18,16 @@
                 <br> <br> <br> <br> <br>
                 <a href="/login" class="btn">Login</a>
                 <a href="/register" class="btn">Register</a>
-                <a href="" class="btn">New Post<a>
+                <a href="" class="btn">New Post</a>
             </ul>
         </nav>
     </div>
     <div id="SectionOne">
-        <span id="Featured">
-	    {% for featured in features %}
-            <a id="Title" href={featured.link}>{{featured.title}}</a>
-            <span>{{featured.preview}}</span>
-            <span>By {{featured.author}}</span>
-	    {% endfor %}
+	<span id="Featured">
+            <a id="Title" href={featured._id}>{{featured.title}}</a>
+	    <br>
+	    <span>{{featured.text}}</span>
+            <span>By {{featured.username}}</span>
         </span>
         <span id="Sports">
             {% for post in sports %}
