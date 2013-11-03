@@ -40,7 +40,10 @@ def add_line():
     author = session["username"]
     title = get_form_value('title')
     line = get_form_value('line')
-    return add_line(line, title, author)
+    if utils.add_line(line, title, author):
+	    return "success"
+    else:
+        return "error"
 
 @app.route('/makestory', methods=['POST'])
 def make_story():

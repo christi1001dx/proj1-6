@@ -39,8 +39,12 @@ def formatData(uid, post):
 def formatData2(uid, post, comments):
     r = ""
     for x in comments:
-        x["username"] = utils2.uidToUsername(x["uid"])
+        if x["uid"] == -1:
+            x["username"] = "Guest"
+        else:
+            x["username"] = utils2.uidToUsername(x["uid"])
         r += formatComment(x)
+
         
     post["comments"] = r
 
@@ -85,7 +89,7 @@ def formatPost(data):
     # authorLinksHTML = if user == author display edit/delete links, call function authorLinksHTML()
     return '''
       <table class="table post">
-	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="#">%(title)s</a><div class="postAuthor">Posted by <a href="#">%(author)s</a></div></td></tr>
+	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="post?id=%(id)s">%(title)s</a><div class="postAuthor">Posted by <a href="#">%(author)s</a></div></td></tr>
 	<tr class="active"><td colspan="2">%(content)s</td></tr>
 	<tr class="active">
 	  <td colspan="2" class="likes">
