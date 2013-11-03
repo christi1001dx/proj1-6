@@ -27,15 +27,19 @@ $sidebarTransitionTime: 0.5s
 	color: black
 	background-color: white
 
+
+@include scrollbar
+
 .sidebar-body
+	@include vendor(box-sizing, border-box)
 	@include vendor(box-shadow, (inset -18px 0px 17px -20px #000, inset 16px 0px 20px -20px #000))
 	@include vendor(transition, opacity $sidebarTransitionTime)
 	opacity: 0
-
 	height: 100%
 	margin-left: $sidebarLabelWidth
 	padding: 20px
 	color: white
+	overflow: auto
 
 body
 	@include vendor(transition, padding $sidebarTransitionTime)
