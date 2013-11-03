@@ -21,6 +21,7 @@
 					by <a href="/user/{{ comment.author}}">{{ comment.author }}</a>
 					on {{ comment.date }}
 				</div>
+                <a href ="/post/{{ post.title }}/{{ comment.date }}/delete_comment">delete comment</a>
 			</li>
 		{% endfor %}
 	</ul>

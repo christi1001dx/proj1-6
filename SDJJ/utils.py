@@ -37,6 +37,14 @@ def deletePost(title, author):
         return True
     else:
         return
+
+def deleteComment(title, date, author):
+    comment = comments.find_one({"postTitle" : title, "date" : date})
+    if (author == comment['author'] ):
+        comments.remove({"postTitle" : title, "author" :author, "date" : date})
+        return True
+    else:
+        return
     
 def titleAvailable(postTitle):
 	if posts.find_one({ "title" : postTitle }) == None:
