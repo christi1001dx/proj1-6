@@ -11,7 +11,7 @@ app.secret_key = "abcd"
 app.debug = True
 
 env = app.jinja_env
-env.line_statement_prefix = '='
+env.line_statement_prefix = 'yolo'
 env.globals.update(helpers=helpers)
 
 def get_form_value(key):
