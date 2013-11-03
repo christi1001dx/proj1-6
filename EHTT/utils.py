@@ -49,8 +49,15 @@ def getAllComments(post):
     comments = [username,text,date]
     return comments
     
-def getPost(name):
+def getPostText(name):
     c = MongoClient()
     db = c['blogdb']
-    post = db.posts.find({'name':name},{'_id':False})
+    post = db.posts.find({'name':name}).date
     return post
+
+def getPostDate(name):
+    c = MongoClient()
+    db = c['blogdb']
+    post = db.posts.find({'name':name}).date
+    return post
+

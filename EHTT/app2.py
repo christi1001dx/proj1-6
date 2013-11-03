@@ -86,9 +86,9 @@ def removepost():
 '''
 @app.route("/<post_name>")
 def posts(post_name):
-    text = utils.getPost(post_name).text
-    name = utils.getPost(post_name).name
-    date = utils.getPost(post_name).date
+    text = utils.getPostText(post_name)
+    name = post_name
+    date = utils.getPostDate(post_name)
     comments = utils.getAllComments(post_name)
     if request.method =="GET":
         if 'username' in session:
