@@ -11,88 +11,88 @@ app.secret_key = conf.SECRET_KEY
 
 @app.route("/")
 def home():
-	return render_template("home.html", posts = utils.getPosts())
+        return render_template("home.html", posts = utils.getPosts())
 
 @app.route("/post/<postTitle>")
 def post(postTitle):
-	post = utils.getPost(postTitle)
-	if post is not None:
-		return render_template("post.html", post = post)
-	return error()
+        post = utils.getPost(postTitle)
+        if post is not None:
+                return render_template("post.html", post = post)
+        return error()
 
 @app.route("/users")
 def users():
-	return render_template("users.html", users = utils.getUsers())
-	
+        return render_template("users.html", users = utils.getUsers())
+        
 @app.route("/user/<username>")
 def user(username):
-	user = utils.getUser(username)
-	if user is not None:
-		return render_template("user.html", user = user) 
-	return error()
-	
+        user = utils.getUser(username)
+        if user is not None:
+                return render_template("user.html", user = user) 
+        return error()
+        
 @app.route("/submit_post", methods = ["GET", "POST"])
 def submitPost():
-	if request.method == "GET":
-		return render_template("submit_post.html")
+        if request.method == "GET":
+                return render_template("submit_post.html")
 
-	title = request.form["title"]
-	if utils.loggedIn() and utils.titleAvailable(title):
-			body = request.form["body"]
-			author = session["username"]
-			utils.submitPost(title, body, author, datetime.datetime.now())
-			return redirect(url_for("home"))
-	else:
-		return error()
+        title = request.form["title"]
+        if utils.loggedIn() and utils.titleAvailable(title):
+                        body = request.form["body"]
+                        author = session["username"]
+                        utils.submitPost(title, body, author, datetime.datetime.now())
+                        return redirect(url_for("home"))
+        else:
+                return error()
 
 
 @app.route("/post/<postTitle>/submit_comment", methods = ["GET", "POST"])
 def submitComment(postTitle):
-	body = request.form["body"]
-	if utils.loggedIn():
-		author = session["username"]
-	else:
-		author = None
-	utils.submitComment(postTitle, body, author, datetime.datetime.now())
-	return redirect(url_for("post", postTitle = postTitle))
+        body = request.form["body"]
+        if utils.loggedIn():
+                author = session["username"]
+        else:
+                author = None
+        utils.submitComment(postTitle, body, author, datetime.datetime.now())
+        return redirect(url_for("post", postTitle = postTitle))
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
-	if request.method == "GET":
-		return render_template("login.html")
+        if request.method == "GET":
+                return render_template("login.html")
 
-	elif not utils.loggedIn():
-		username = request.form["username"]
-		password = request.form["password"]
-		if utils.authenticate(username, password):
-			session["username"] = username
-		else:
-			return error()
-	return redirect(url_for("home"))
+        elif not utils.loggedIn():
+                username = request.form["username"]
+                password = request.form["password"]
+                if utils.authenticate(username, password):
+                        session["username"] = username
+                else:
+                        return error()
+        return redirect(url_for("home"))
 
 @app.route("/logout")
 def logout():
-	session.pop("username")
-	return redirect(url_for("home"))
+        session.pop("username")
+        return redirect(url_for("home"))
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():
-	if request.method == "GET":
-		return render_template("register.html")
+        if request.method == "GET":
+                return render_template("register.html")
 
-	elif not utils.loggedIn():
-		username = request.form["username"]
-		password = request.form["password"]
-		passRetype = request.form["passRetype"]
-		security = request.form["security"]
-        answer = request.form["answer"]
+        elif not utils.loggedIn():
+                username = request.form["username"]
+                password = request.form["password"]
+                passRetype = request.form["passRetype"]
+                security = request.form["security"]
+                answer = request.form["answer"]
 
-		if utils.register(username, password, passRetype, security, answer):
-			return redirect(url_for("home"))
-		else:
-			return error()
-	else:
-		return redirect(url_for("home"))
+                if utils.register(username, password, passRetype, security, answer):
+                        return redirect(url_for("home"))
+                else:
+                        return error()
+        else:
+                return redirect(url_for("home"))
 
 @app.route("/recover", methods=["GET", "POST"])
 def recover():
@@ -113,8 +113,8 @@ def recover():
 
 
 def error():
-	error = session["error"]
-	return render_template("error.html", error = error)
+        error = session["error"]
+        return render_template("error.html", error = error)
 
 if __name__ == "__main__":
-	app.run(debug = True)
+        app.run(debug = True)
