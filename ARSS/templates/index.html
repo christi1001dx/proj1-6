@@ -3,30 +3,16 @@ yolo block head
 	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/landing.css') }}>
 	<script src="{{ url_for('static', filename='js/landing.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            var pxPerMs = 3;
-            var $window = $(window);
-            $('#stories').click(function() {
-                var w = $window.width();
-                $("#viewport").scrollTo('#story', { duration: w / pxPerMs });
-            });
-            $('#story').click(function() {
-                var w = $window.width();
-                $("#viewport").scrollTo('#stories', { duration: w / pxPerMs });
-            });
-        });
+		
     </script>
 yolo endblock
 yolo block body
 	
-    <div id="scroll-viewport">
-        <div id="scroll-container">
-            <div id="stories" class="scroll-section">
-                yolo include 'stories.html'
-            </div>
-            <div id="story" class="scroll-section">
-                yolo include 'story.html'
-            </div>
-        </div>
-    </div>
+    <div id="stories" class="container">
+		yolo include 'stories.html'
+	</div>
+	<div id="story" class="container">
+		yolo include 'story.html'
+	</div>
+	
 yolo endblock
