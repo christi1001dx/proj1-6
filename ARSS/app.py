@@ -42,9 +42,9 @@ def login():
         password = get_form_value('password')
         if (utils.account_exists(username, password)):
             session["username"] = username
-            return redirect("/index.html")
+            return "success,"+username.decode("utf-8")
         else:
-            return redirect("/register.html")
+            return "fail,"
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -54,18 +54,19 @@ def register():
         username = get_form_value('username')
         password = get_form_value('password')
         password2 = get_form_value('password2')
-        if (utils.add_user(username, password, password2) == "good job"):
-            return redirect("/login.html")
+        registertry = utils.add_user(username, password, password2)
+        if (registertry == "good job"):
+            return "success,"+username.decode("utf-8")
         else:
-            return render_template("register.html", error = utils.add_user(username, password, password2))
+            return registertry
 
 @app.route("/logout")
 def logout():
     if "username" in sesson:
         session.pop("username")
-        return render_template("logout.html")
+        return "success"
     else:
-        return redirect("/")
+        return "ok"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
