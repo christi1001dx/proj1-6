@@ -3,7 +3,6 @@ $sidebarLabelWidth: 35px
 .sidebar
 	@include clearfix
 	@include vendor(transition, width 0.5s)
-	@include vendor(box-shadow, inset -19px 0px 17px -20px #000)
 	position: fixed
 	overflow: hidden
 	width: $sidebarLabelWidth
@@ -21,7 +20,7 @@ $sidebarLabelWidth: 35px
 
 .sidebar-label
 	@include vendor(transition, color 0.5s)
-	color: #727272
+	color: black
 
 	float: left
 	width: $sidebarLabelWidth
@@ -32,6 +31,7 @@ $sidebarLabelWidth: 35px
 	font-family: Gudea
 
 .sidebar-body
+	@include vendor(box-shadow, (inset -18px 0px 17px -20px #000, inset 16px 0px 20px -20px #000))
 	@include vendor(transition, opacity 0.5s)
 	opacity: 0
 
