@@ -16,23 +16,27 @@
                 <br> <br> <br> <br> <br>
                 <a href="Login.html" class="btn">Login</a>
                 <a href="#" class="btn">Register</a>
+                <a href="template.submit.html" class="btn">New Post<a>
             </ul>
             </nav>
         </div>
         <br> <br>
-        <div id="LEFT">
-            <div id="Title">
+        <span id="LEFT">
+            <span id="Title">
                 {{post.title}}
-            </div>
-            <div id="Post">
-                <div id="Content">
+            </span>
+            <br>
+            <span id="Post">
+                <span id="Content">
                     {{post.content}}
-                </div>
+                </span>
                 <br>
-                <div id="Author">
+                <span id="Author">
                     By {{post.author}}
-                </div>
-            </div>
+                </span>
+            </span>
+            
+            
             <form method="POST" id="Sub">
                 <span>Enter your comment below</span>
                 <textarea name="comment"></textarea>
@@ -51,9 +55,9 @@
                 <br>
                 {{ endfor }}
             </ul>
-            </div>
-        </div>
-        <div id="RIGHT">
-        </div>
+            </div> 
+        </span>
+        <span id="RIGHT">
+        </span>
     </body>
 </html>

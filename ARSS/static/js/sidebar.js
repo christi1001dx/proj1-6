@@ -9,6 +9,7 @@
 		var $body = $("body"),
 			$sidebar = $(".sidebar"),
 			$label = $(".sidebar-label"),
+			$labelText = $label.children("h1").first(),
 			$bodyWrapper = $(".sidebar-body-wrapper");
 
 		var labelWidth = $label.css("width"),
@@ -18,21 +19,23 @@
 			// total width
 			sidebarWidth = add("px", labelWidth, bodyTotalWidth);
 
-		console.log(sidebarWidth);
-		$sidebar.hover(function() {
+		function open() {
 			$bodyWrapper.css({
 				width: bodyTotalWidth,
 				"padding-left": bodyPadding,
 				"padding-right": bodyPadding
 			});
 			$body.css("padding-left", sidebarWidth);
-		}, function() {
+		}
+		function close() {
 			$bodyWrapper.css({
 				width: "",
 				"padding-left": "0",
 				"padding-right": "0"
 			});
 			$body.css("padding-left", "");
-		});
+		}
+		$labelText.mouseenter(open).mouseout(close);
+		$sidebar.mouseout(close);
 	});
 })(jQuery);

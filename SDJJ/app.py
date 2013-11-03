@@ -53,10 +53,17 @@ def submitComment(postTitle):
         if utils.loggedIn():
                 author = session["username"]
         else:
-                author = None
+                author = "Guest"
         date = datetime.datetime.now()
         utils.submitComment(postTitle, body, author, date.replace(second=0, microsecond=0))
         return redirect(url_for("post", postTitle = postTitle))
+
+
+@app.route("/post/<postTitle>/delete_post", methods = ["GET","POST"])
+def deletepost(postTitle):
+        user = session["username"]
+        utils.deletePost(postTitle, user)
+        return redirect(url_for("home"))
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():

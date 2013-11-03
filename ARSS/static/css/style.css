@@ -27,8 +27,8 @@ body {
 	background:#fff;
 }
 #story {
-	left:-100%;
-	z-index:99999;
+	left:100%;
+	z-index:99;
 	background:#def;
 	display:none;
 }
