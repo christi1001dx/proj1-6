@@ -1,11 +1,6 @@
 {% extends "layout.html" %}
-{% block pagename %}
-Home
-{% endblock %}
 {% block content %}
 	{% for post in posts %}
-           <p id="title"> <a href="posts/{{post.title}}">
-            {{ post.title }}
-           </a></p>
-        {% endfor %}
+		<a href="/post/{{ post.title }}">{{ post.title }}</a>
+	{% endfor %}
 {% endblock %}

@@ -11,7 +11,7 @@ app.secret_key = "abcd"
 app.debug = True
 
 env = app.jinja_env
-env.line_statement_prefix = '='
+env.line_statement_prefix = 'yolo'
 env.globals.update(helpers=helpers)
 
 def get_form_value(key):
@@ -22,15 +22,15 @@ def test():
     return render_template('test.html')
 
 @app.route('/story')
-def story():
-    return render_template('story.html')
+def story_test():
+    return render_template('story_test.html')
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
 @app.route('/story/<name>', methods = ['GET'])
-def stor(name):
+def get_story(name):
     return json.dumps(utils.return_all_lines(name))
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -57,7 +57,7 @@ def register():
         if (utils.add_user(username, password, password2) == "good job"):
             return redirect("/login.html")
         else:
-            return render_template("register.html")
+            return render_template("register.html", error = utils.add_user(username, password, password2))
 
 @app.route("/logout")
 def logout():

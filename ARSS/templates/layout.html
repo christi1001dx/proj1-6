@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/application.css') }}>
-    <script src={{ url_for('static', filename='js/jquery.min.js') }}></script>
-    <script src={{ url_for('static', filename='js/jquery.scrollTo.min.js') }}></script>
-    <script src={{ url_for('static', filename='js/jquery.fittext.js') }}></script>
-    = block head
-    = endblock
-</head>
-<body>
-    = block body
-    = endblock
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>{{ title }}</title>
+		<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/application.css') }}>
+		<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/style.css') }}>
+		<script src={{ url_for('static', filename='js/jquery.min.js') }}></script>
+		<script src={{ url_for('static', filename='js/jquery.scrollTo.min.js') }}></script>
+		<script src={{ url_for('static', filename='js/jquery.fittext.js') }}></script>
+        <script src={{ url_for('static', filename='js/story.js') }}></script>
+		yolo block head
+		yolo endblock
+	</head>
+	<body>
+		yolo block body
+		yolo endblock
+	</body>
 </html>
