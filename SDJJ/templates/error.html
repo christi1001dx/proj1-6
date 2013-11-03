@@ -1,16 +1,33 @@
 {% extends "layout.html" %}
-{% block pagename}
-Error
-{% endblock %}
 {% block content %}
-{% if message == "RegisterFail" %}
-<p>Registration failed. <a href="{{ url_for('register') }}">Go back and
-try again.</a> </p>
-{% endif %}
+	{% if msg %}
+		<p class="error">
+			<br>
+			{% if msg == "loginFail" %}
+				Login failed.
 
-{% if message == "LoginFail" %}
-<p>Login failed. <a href="{{ url_for('login') }}">Go back and
-try again.</a> </p>
-{% endif %}
+			{% elif msg == "postFail" %}
+				Post with same title exists.
 
+			{% elif msg == "noPost" %}
+				No such post.
+
+			{% elif msg == "noUser" %}
+				No such user.
+
+			{% elif msg == "mustLogin" %}
+				You must login.	
+
+			{% elif msg == "passChangeSuccess" %}
+				Password changed successfully.
+
+			{% elif msg == "passMismatch" %}
+				Password mismatch.
+
+			{% elif msg == "registerFail" %}
+				Username already exists.
+
+			{% endif %}
+		</p>	
+	{% endif %}
 {% endblock %}

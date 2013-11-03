@@ -1,16 +1,13 @@
-@font-face
-{
-font-family: Arbutus;
-src: url(http://fonts.googleapis.com/css?family=Arbutus);
+#center {
+	position:relative;
+	left:10%;
 }
 
-h1
-{font-family: Arbutus;
+#menu, #container {
+	float:left;
 }
 
-ul
-{
-margin: 0;
-padding: 0;
-list-style-type: none;
+#menu {
+	width:200px;
+	height:700px;
 }
