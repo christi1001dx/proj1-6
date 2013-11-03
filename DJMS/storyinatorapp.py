@@ -55,6 +55,11 @@ def register():
         elif button == "Cancel":
                     return redirect("/login")
 
+@app.route("/storylist", methods=["GET", "POST"])
+def storylist():
+    page = """ This is the StoryList"""
+    return page
+
 @app.route("/<storytitle>", methods = ["GET", "POST"])
 def story(title = None):
     if request.method == "GET" :
