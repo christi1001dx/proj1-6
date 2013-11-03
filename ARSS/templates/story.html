@@ -18,11 +18,8 @@
 			var $window = $(window);
 			var $newline = $("#story-newline");
 			var placeholder = $newline.data("placeholder");
-			$newline.toggleEmpty = function() {
-				var isEmpty = $newline.data("empty");
-				var text = $newline.text();
-
-				if (text.length == 0 || typeof data === undefined || !isEmpty) {
+			$newline.toggleEmpty = function(empty) {
+				if (empty) {
 					$newline.data("empty", true);
 					$newline.text("placeholder");
 					$newline.css("color", "gray");
@@ -31,21 +28,28 @@
 					$newline.text("");
 					$newline.css("color", "");
 				}
-				return $newline.data("empty");
+				return empty;
 			};
-			$newline.toggleEmpty();
+			$newline.toggleEmpty(true);
 			$newline.on("keydown paste cut delete", function(e) {
 				var text = $newline.text();
 				var selection = $.getSelection();
 				if (e.keyCode == 8 && (text.length <= 1 || selection.length == text.length)) {
-					console.log($newline.toggleEmpty());
+					$newline.toggleEmpty(true);
 				}
 			}).on("keypress", function(e) {
 				// if is letter or punctuation
 				if (e.keyCode >= 32 && $newline.data("empty")) {
-					console.log($newline.toggleEmpty());
-				} else if (e.keyCode == 13) {
+					$newline.toggleEmpty(false);
+				}
+				// if enter key
+				else if (e.keyCode == 13) {
 					e.preventDefault();
+				}
+			}).on("paste", function(e) {
+				var clipboard = e.originalEvent.clipboardData.getData("Text");
+				if (clipboard.length > 0 && $newline.data("empty")) {
+					$newline.toggleEmpty(false);
 				}
 			});
 		});
