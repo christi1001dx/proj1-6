@@ -4,6 +4,7 @@ from flask import session, request
 
 import config as conf
 import utils
+import datetime
 
 app = Flask(__name__)
 app.secret_key = conf.SECRET_KEY
@@ -39,7 +40,7 @@ def submitPost():
 	if utils.loggedIn() and utils.titleAvailable(title):
 			body = request.form["body"]
 			author = session["username"]
-			utils.submitPost(title, body, author)
+			utils.submitPost(title, body, author, datetime.datetime.now())
 			return redirect(url_for("home"))
 	else:
 		return error()
@@ -52,7 +53,7 @@ def submitComment(postTitle):
 		author = session["username"]
 	else:
 		author = None
-	utils.submitComment(postTitle, body, author)
+	utils.submitComment(postTitle, body, author, datetime.datetime.now())
 	return redirect(url_for("post", postTitle = postTitle))
 
 @app.route("/login", methods = ["GET", "POST"])
@@ -83,14 +84,34 @@ def register():
 		username = request.form["username"]
 		password = request.form["password"]
 		passRetype = request.form["passRetype"]
+		security = request.form["security"]
+        #answer = request.form["answer"]
 
-		if utils.register(username, password, passRetype):
+		if utils.register(username, password, passRetype, security, answer):
 			return redirect(url_for("home"))
 		else:
 			return error()
 	else:
 		return redirect(url_for("home"))
-	
+
+@app.route("/recover", methods=["GET", "POST"])
+def recover():
+    if request.method == "GET" :
+        return render_template("recover.html")
+    else:
+        username = request.form['username']
+        security = request.form['security']
+        answer = request.form['answer']
+        button = request.form['button']
+        if button == "Submit":
+            if (username == '' or answer == ''):
+                return render_template("recover.html", message = "Please fill empty fields")
+            else:   
+                return render_template("recover.html", message = utils.recover(username,security,answer))
+        elif button == "Cancel":
+            return render_template("recover.html")
+
+
 def error():
 	error = session["error"]
 	return render_template("error.html", error = error)
