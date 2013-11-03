@@ -1,0 +1,68 @@
+<html>
+    <head>
+	<title>{{genre}}</title>
+	{% if genre == "Humor"
+        <link href="../static/HumorStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+	{% elif genre == "Sports" %}
+        <link href="../static/SportsStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+	{% elif genre == "Opinion" %}
+        <link href="../static/OpinionStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+	{% elif genre == "Arts %}
+        <link href="../static/ArtsStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+	{% else %}
+        <link href="../static/AcademicsStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+	{% endif %}
+
+    </head>
+    <body>
+        <div id="NavigationMenu">
+            <nav>
+            <ul>
+                <li><a href="template.sports.html"><span>SPORTS</span></a></li>
+                <li><a href="template.arts.html"><span>ARTS/ENT</span></a></li>
+                <li><a href="template.opinion.html"><span>OPINION</span></a></li>
+                <li><a href="template.humor.html"><span>HUMOR</span></a></li>
+                <li><a href="template.academics.html"><span>ACADEMICS</span></a></li>
+                <li><a href="template.index.html"><span>HOME</span></a></li>
+                <br> <br> <br> <br> <br>
+                <a href="template.login.html" class="btn">Login</a>
+                <a href="template.register.html" class="btn">Register</a>
+                <a href="template.submit.html" class="btn">New Post<a>
+            </ul>
+            </nav>
+        </div>
+        <br>
+	<div id="Section">{{genre}}</div>
+        <div id="Line1">
+        <div id="Headline">
+            <a id="tit" href={{posts[0].link}}>{{posts[0].title}}</a>
+            <br>
+            <div id="Auth">By {{posts[0].author}}</div>
+        </div>
+        <div id="Post1">
+            <a id="Title" href={{posts[1].link}}>{{posts[1].title}}</a>
+            <br>
+            <div id="Author">By {{posts[1].username}}</div>
+        </div>
+        </div>
+        <div id="Line2">
+        <div id="Post2">
+            <a id="Title" href={{posts[2]._id}}>{{posts[2].title}}</a>
+            <br>
+            <div id="Author">By {{posts[2].username}}</div>
+        </div>
+
+        <div id="Post3">
+            <a id="Title" href={{posts[3]._id}}>{{posts[3].title}}</a>
+            <br>
+            <div id="Author">By {{posts[3].username}}</div>
+        </div>
+
+        <div id="Post4">
+            <a id="Title" href={{posts[4]._id}}>{{posts[4].title}}</a>
+            <br>
+            <div id="Author">By {{posts[4].username}}</div>
+        </div>
+    </div>
+    </body>
+</html>
