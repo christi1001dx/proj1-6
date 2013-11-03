@@ -62,6 +62,7 @@ def add_line(line, title, user):
     entry['user'] = user
     db.lines.insert(entry)
     increment_lines(title)
+    return True
 
 def return_all_lines(title):
     db = mongo_init()
