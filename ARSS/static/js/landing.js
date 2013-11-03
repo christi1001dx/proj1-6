@@ -51,7 +51,7 @@ $(function() {
 	}
 	
 	$(window).resize(blocks).scroll(blocks).resize();
-	setInterval(showBlocks, 200);
+	setInterval(showBlocks, 100);
 });
 
 function showBlocks() {
@@ -68,7 +68,7 @@ function showBlocks() {
 				opacity : 1
 			}, {
 				step:function(now, fx) {
-					$(this).css3({transform:"rotateZ("+(220+140*now)+"deg) scale("+(0.2+0.8*now)+")"});
+					$(this).css3({transform:"rotateY("+(220+140*now)+"deg) scale("+(0.2+0.8*now)+")"});
 				},
 				duration : 1000
 			});
