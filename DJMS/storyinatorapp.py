@@ -77,6 +77,8 @@ def make():
                else:
                    makeStory(title, story, author)
                    return redirect("/<title>")
+            elif button == "Cancel"
+                return render_template("createstory.html")
                     
 
                 
