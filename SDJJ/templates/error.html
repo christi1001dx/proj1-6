@@ -3,5 +3,14 @@
 Error
 {% endblock %}
 {% block content %}
-{{message}}
+{% if message == "RegisterFail" %}
+<p>Registration failed. <a href="{{ url_for('register') }}>Go back and
+try again.</a> </p>
+{% endif %}
+
+{% if message == "LoginFail" %}
+<p>Login failed. <a href="{{ url_for('login') }}>Go back and
+try again.</a> </p>
+{% endif %}
+
 {% endblock %}
