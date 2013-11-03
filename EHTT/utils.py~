@@ -3,10 +3,10 @@ from pymongo import MongoClient
 def login(username,password):
     c = MongoClient()
     db = c['blogdb']
-    try:
-        db.users.find({'username':username, 'password':password})
+    x = db.users.find({'username':username, 'password':password})
+    if x:
         return True
-    except:
+    else:
         return False
 
 def register(username,password):

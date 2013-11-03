@@ -3,13 +3,13 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
-  
+ <link rel="stylesheet" href="{{ url_for('static', filename='foundation.css') }}">
 
   <head>
-    <title>Herman's Blog | About Me</title>
+    <title>Herman's Blog</title>
   </head>
   <body>
-
+    
     <!--top navigation bar-->
     <div class="row">
       <div class="large-12 columns">
@@ -34,29 +34,32 @@
       </div>
     </div>
     
+    
+    <div class="row">
+      
+      <!-- Overview of the Blog -->
+      <div class="large-9 columns" role="content">
+	{% for x in posts %}
+	{{ x.name }}
+	{% endfor %}
+      </div>
+      
+      <!--sidebar-->
+      <aside class="large-3 columns">
 
-  <!-- Main Page Content and Sidebar -->
- 
-  <div class="row">
- 
-    <!-- Main Blog Content -->
-    <div class="large-9 columns" role="content">
-      <h1>About Me</h1>
-      <p>Beating up cheating spouses, saving relationshipos, performing therapy, there is nothing I can't do.</p>
-      <p><font size = 2px>Side note: This Herman is in no way affliated with real life Hermans. All stories are fictitious; any correspondence with actual events or people are purely coincidental.</font></p>
+	<div class="panel">
+
+        <div class="panel">
+
+          <h5>Featured Post</h5>
+          <p></p>
+          <a href="#">Read More &rarr;</a>
+      </div>
+        
+      </aside>
     </div>
     
-    <!-- End Main Content -->
- 
- 
-  </div>
- 
-  <!-- End Main Content and Sidebar -->
- 
- 
-  <!-- Footer -->
- 
-  <footer class="row">
+    <footer class="row">
     <div class="large-12 columns">
       <hr />
       <div class="row">
@@ -83,6 +86,5 @@
     </div>
   </footer>
 
-
- </body>
+  </body>
 </html>
