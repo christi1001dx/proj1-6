@@ -40,7 +40,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         confirmpassword = request.form['confirmpassword'].encode("ascii","ignore")
-        button = request.form['button']
+        button = request.form['submit']
         if button == "Submit":
             if (username == '' or password == '' or confirmpassword == ''):
                 return render_template("register.html", message = "Please fill empty fields")
