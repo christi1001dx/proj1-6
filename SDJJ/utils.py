@@ -18,9 +18,13 @@ def query(query):
 	# search all posts and all comments for matches
 	temp = db.posts.find({ "posts" : { '$regex':{'query':'posts'}}})
 	temp2 = db.users.find({"users" : {'$regex':{'query':'users'}}})
+	documentArray = temp.toArray();
+	documentArray2 = temp2.toArray();
+	String myDocument = documentArray[3];
+	String myDocument = documentArray[3];
 		# you want to use a regex - regular expressions; find patterns of words 
-	return "posts" + temp;
-	return "users" + temp2;
+	return "posts:" + temp;
+	return "users:" + temp2;
 	# returns dictionary with keys {"posts", "profiles", "comments"}
 	# values are arrays containing query results for each
 	# querying should be conducted with a regex match on the query string
