@@ -85,7 +85,7 @@ def register():
 		password = request.form["password"]
 		passRetype = request.form["passRetype"]
 		security = request.form["security"]
-        #answer = request.form["answer"]
+        answer = request.form["answer"]
 
 		if utils.register(username, password, passRetype, security, answer):
 			return redirect(url_for("home"))
@@ -115,14 +115,6 @@ def recover():
 def error():
 	error = session["error"]
 	return render_template("error.html", error = error)
-
-@app.errorhandler(404)
-def error400(error):
-    return render_template("errors/404.html"), 404
-
-@app.errorhandler(500)
-def error500(error):
-	return render_template("errors/500.html"), 500
 
 if __name__ == "__main__":
 	app.run(debug = True)
