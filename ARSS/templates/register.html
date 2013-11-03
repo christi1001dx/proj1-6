@@ -1,0 +1,25 @@
+<html>
+        <head>
+                <h1>Register</h1>
+                <style>* {font-family:fantasy;} </style>
+        </head>
+
+        <body>
+                {% if error=="already exists" %}Username already exists
+                {% elif error=="short password" %}Password must be at least 4 characters
+                {% elif error=="retype: passwords don't match" %}Passwords do not match
+                {% endif %}
+
+                <form method="POST">
+                Username: <input type="text" name="username"> </input> <br>
+                Password: <input type="password" name="password">
+                </input> <br>
+                Retype Password: <input type="password"
+                name="password2"> </input> <br>
+                <input type="submit" name="button" value="Submit"> </input>
+                </form>
+                <br>
+                <a href="/login">Go back to login</a>
+        </body>
+
+</html>

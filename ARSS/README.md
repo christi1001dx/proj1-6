@@ -5,7 +5,7 @@ Sweyn Venderbush
 ###Frontend
 Steve Zhu  
 Roger Li
-###Login
+###Middleend (Login, register)
 Arfan Rehab
 
 ##Project Description
@@ -19,3 +19,5 @@ All users will initially arrive at a homepage with a list of all the stories in 
 October 25, 2013: Webpage mock up done
 
 October 28, 2013: Backend done
+
+November 2, 2013: Tie in everything (middleend done)

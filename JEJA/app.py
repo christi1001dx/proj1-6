@@ -13,6 +13,18 @@ def home():
     recentposts = str(utils.getRecent())
     return render_template("index.html", recentposts = recentposts)
 
+@app.route("/register")
+def register():
+    if request.method=="POST":
+        #createUser will return a number
+        #0 if success, other numbers for various errors
+         status = utils.createUser(str(request.form["username"]),str(request.form["password"]))
+         if status == 0:
+            session['username'] = request.form['username']
+            return redirect(url_for("index"))
+        else:
+            return render_template("register.html",error = status)
+
 
 @app.route("/new-post", methods = ['GET', 'POST'])
 def newPost():

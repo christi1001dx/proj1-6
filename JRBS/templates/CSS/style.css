@@ -1,32 +1,11 @@
 body {
  font-family:"Times New Roman";
  color: black;
- background-image: -webkit-linear-gradient(top, #534AC5, #6086EF 100%);
-
 }
 
-ul.navigation{
-    list-style-type: none;
-    position: relative;
-    width:1100px;
-    height: 120 px;
-    top: 10 cm;
+div.content{
+    font-size: 20px;
 }
-a:link, a:visited{
-    display:block;
-    font-weight:bold;
-    color:#FFFFFF;
-    width:120px;
-    text-align:center;
-    padding: 4px;
-    background-color:#5B75DC;
-    text-decoration:none;
-}
-
-a:hover,a:active{
-background-color:#3E4D89;
-}
-
 ul.login{
     list-style-type:none;
     margin:0;
@@ -36,7 +15,6 @@ ul.login{
 
 
 #PostBox {
-    background-color: #6C5BDC;
     left: 10cm;
     position:relative;
     width: 700px;

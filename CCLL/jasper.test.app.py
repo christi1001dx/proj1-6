@@ -11,8 +11,10 @@ app.secret_key = 'maroon5'
 
 @app.route("/")
 def home():
-    return redirect("/login")
-#    return render_template("template.blogposts.html",posts=utils.getPosts('jasper',db.posts))
+    if 'username'  in session:
+        return render_template("template.index.html")
+    else: 
+        return redirect("/login")
 
 @app.route("/login",methods=['GET','POST'])
 def login():
@@ -76,24 +78,18 @@ def submit(name):
 
 @app.route("/post/<_id>")
 def post(_id):
-    return render_template("template.post.html", post = utils.getPost(_id, db.posts))
-
-@app.route("/logout")
-def logout():
-    return redirect(url_for('home'))
-
-@app.poute("/blogPost")
-def individualPostPage (title, comment, author, comments):
     if request.method=="GET":
-	return render_template("post.htm"l, title = title, author = author, comments = comments)
+        return render_template("template.post.html", post = utils.getPost(_id, db.posts))
     else:
         newcomment = request.form['comment'].encode ('ascii',"ignore")
         finalComments = comments.append (newcomment)
         name = session['username']
-        utils.addComments (name, comments)
-        
+        utils.addComments (_id,name, finalComments, db.posts)
+        return render_template("template.post.html", post = utils.getPost(_id, db.posts))
 
-        
+@app.route("/logout")
+def logout():
+    return redirect(url_for('home'))
 
 if __name__=="__main__":
     app.debug=True
