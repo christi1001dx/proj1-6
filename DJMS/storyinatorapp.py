@@ -81,7 +81,7 @@ def make():
     if request.method == "GET" :
         return render_template("createstory.html")
     else:
-        author = 
+        author =  request.form['password'].encode("ascii","ignore")
         password = request.form['password'].encode("ascii","ignore")
         title = request.form['title'].encode("ascii","ignore")
         summary = request.form['summary'].encode("ascii","ignore")
