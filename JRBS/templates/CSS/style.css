@@ -1,6 +1,12 @@
+html{
+height:100%;
+}
+
 body {
- font-family:"Times New Roman";
- color: black;
+    height:100%;
+    font-family:"Helvetica";
+    color: black;
+
 }
 
 div.content{
@@ -37,4 +43,14 @@ ul.login{
     position: fixed;
     bottom: 0;
     right: 1%;
+}
+
+.ui.form.segment{
+    position: absolute;
+    top: 5%
+}
+
+#login{
+    position: absolute;
+    top: 300px;
 }

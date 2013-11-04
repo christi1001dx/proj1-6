@@ -10,29 +10,38 @@
 <body>
   <div class="container">
     <!--Top Horizontal Menu-->
-    <div class="ui teal inverted fixed main menu">
+    <div class="ui transparent inverted fixed main menu">
       <div class="title item">
-      <b> Welcome to Bloginator!</b>
+	<b> Welcome to Bloginator!</b>
       </div>
       <div class="right menu">
+	{% if not username %}
 	<div class="item">
 	  <div class="ui small button">Login</div>
 	</div>
-	
 	<div class="item">
 	  <div class="ui blue small button">Sign up</div>
+	</div>
+	{%else %}
+	<div class="title item">
+	<b> Hello, {{ username }} </b>
 	</div>
 	<a class="large item">Help</a>
       </div>
     </div>
     <!--Vertical Menu-->
-    <div class="ui fixed vertical labeled icon menu">
-      <a class="black item">
+    <div class="ui fixed vertical labeled blue icon menu">
+      <a class="item">
 	<i class="red home icon"></i>Home
       </a>
-      <a class="black item">
+      <a class="item">
 	<i class="black pencil icon"></i>Post
       </a>  
+      {% if username %}
+      <a class="item">
+	<i class="blue off button icon link"></i>Logout
+      </a>
+      {% endif %}
     </div>
 
 

@@ -8,10 +8,27 @@
 </head>
 <body>
 
-  <div class="container"> 
-    <h1>Register Now</h1>
+  <div class="container"> <div class="container">
+    <!--Top Horizontal Menu-->
+    <div class="ui transparent inverted fixed main menu">
+      <div class="title item">
+	<b> Welcome to Bloginator!</b>
+      </div>
+      <div class="right menu">
+	{% if not username %}
+	<div class="item">
+	  <div class="ui small button">Login</div>
+	</div>
+	<div class="item">
+	  <div class="ui blue small button">Sign up</div>
+	</div>
+	{% endif %}
+	<a class="large item">Help</a>
+      </div>
+    </div>
 
-    <div class="ui form segment">  
+    <div class="ui form segment"> 
+    <h1>Register Now</h1> 
       <div class="two fields">
 	<div class="field">
 	  <label>First Name</label>

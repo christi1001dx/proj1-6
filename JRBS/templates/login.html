@@ -8,31 +8,48 @@
 
   <body>
     <div class="container">
-      <h1> Please Login</h1>
+      <!--Top Horizontal Menu-->
+      <div id="login" class="ui transparent inverted fixed main menu">
+	<div class="title item">
+	  <b> Welcome to Bloginator!</b>
+	</div>
+	<div class="right menu">
+	  {% if not username %}
+	  <div class="item">
+	    <div class="ui small button">Login</div>
+	  </div>
+	  <div class="item">
+	    <div class="ui blue small button">Sign up</div>
+	  </div>
+	  {% endif %}
+	  <a class="large item">Help</a>
+	</div>
+      </div>
 
       <div class="ui two column middle aligned relaxed grid basic segment">
+	<h1> Please Login</h1>
 	<div class="column">
 	  <div class="ui form segment">
 	    <div class="field">
-              <label>Username</label>
-              <div class="ui labeled icon input">
+	      <label>Username</label>
+	      <div class="ui labeled icon input">
 		<input type="text" placeholder="Username">
 		<i class="user icon"></i>
 		<div class="ui corner label">
 		  <i class="asterisk icon"></i>
 		</div>
-              </div>
+	      </div>
 	    </div>
 	    <div class="field">
-              <label>Password</label>
-              <div class="ui labeled icon input">
+	      <label>Password</label>
+	      <div class="ui labeled icon input">
 		<input type="password">
 		<i class="lock icon"></i>
 		<div class="ui corner label">
 		  <i class="asterisk icon"></i>
 		</div>
-              </div>
-	    </div>
+	      </div>
+		</div>
 	    <div class="ui blue submit button">Login</div>
 	  </div>
 	</div>
@@ -46,7 +63,7 @@
 	  </div>
 	</div>
       </div>
-      </div>
-</body>
+    </div>
+  </body>
 
 </html>
