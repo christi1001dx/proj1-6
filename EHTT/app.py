@@ -77,8 +77,8 @@ def createpost():
     else:
         name = request.form["title"]
         text = request.form["post"]
-        date = request.form["date"]
-        mangodb.newpost(name, text, date)
+       #date = request.form["date"]
+        mangodb.newpost(name, text, 0)
         return redirect("/", username = session["username"])
 
 @app.route("/removepost")
@@ -92,16 +92,19 @@ def removepost():
 
 @app.route("/posts/<post_name>")
 def posts(post_name):
- 
-    d = {'text' : mangodb.getpost(post_name).txt,
-         'name' : post_name,
-         'comments' : getpostcom(post_name),
-         'date': mangodb.getpost(post_name).date}
+    ap = mangodb.getpost(post_name)
+    if ap:
+        d = {'text' : ap['txt'],
+             'name' : post_name,
+             'comments' : getpostcom(post_name),
+             'date': ap['date']}
     
-    if 'username' in session:
-        return render_template("indipost.html",username = session["username"],d = d)
+        if 'username' in session:
+            return render_template("indipost.html",username = session["username"],d = d)
+        else:
+            return render_template("indipost.html",d = d)
     else:
-        return render_template("indipost.html",d = d)
+        return redirect("/")
 
 @app.route("/posts/<post_name>/comment")   
 def comment(post_name):
