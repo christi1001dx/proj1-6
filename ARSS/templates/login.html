@@ -1,17 +1,6 @@
-<script>
-	$(document).ready(function() {
-		$("#login-button").click(function() {
-			var user = $("#login-username").val(),
-				pass = $("#login-password").val();
-			login(user, pass, function(success) {
-				location.reload();
-			});
-		});
-	});
-</script>
 <div class="login-container">
 	<h3>Login</h3>
-	<form method="POST">
+	<form action="/login" method="POST">
 		<input id="login-username" type="text" name="username" placeholder="Username">
 		<input id="login-password" type="password" name="password" placeholder="Password">
 		<a id="login-button" class="button">Login</a>
