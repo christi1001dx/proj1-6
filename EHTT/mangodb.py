@@ -72,30 +72,30 @@ def getcom(clu):
     else:
         return found["coms"]
 
-def getpostcom(tron):
-    if not tron:
+def getpostcom(pname):
+    if not pname:
         errorch(0)
     else:
-        return getcom(getpostid(tron))
+        return getcom(getpostid(pname))
 
 def getallposts():
     l = [];
-    for x in postcol.find({"f":"toe"}):
+    for x in postcol.find({'name':{'$exists':True}}):
         l.insert(x)
     return l
 
 ###################################################################################
-def newpost(mcp, sark):
-    if not mcp or not sark:
+def newpost(title, txt, date):
+    if not title or not txt:
         errorch(0)
     else:
-        found = postcol.find_one({"name": mcp})
+        found = postcol.find_one({"name": title})
         if found:
             errorch(5)
         else:
             found = find_one({"num"})
-            postcol.insert({"name":mcp,"txt":sark, "id":found["num"]})
-            postcol.update({"num":found["num"]}, {"$set": {"num":found["num"]+1}})
+            postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':date})
+            postcol.update({"num":found["num"]}, {"$inc": {"num":1}})
             comcol.insert({"id" : found["num"], "coms":[]})
             return 1;
 

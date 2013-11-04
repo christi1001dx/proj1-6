@@ -44,7 +44,7 @@ def register():
             return render_template("register.html", message = "Please fill empty fields")
         elif password != confirmpassword:
             return render_template("register.html", message = "Please enter the same passwords.")
-        elif (checkuser(username) == True):
+        elif (auth.checkuser(username) == True):
             return render_template("register.html", message = "Username already taken. Please choose another username.")
         else:
             if(auth.register(username,password)):
@@ -63,10 +63,10 @@ def story(title = None):
         Addition = request.form['addition'].encode("ascii","ignore")
         button = request.form['button']
         if button == "Delete":
-            delStory(title)
+            auth.delStory(title)
             return redirect("/storylist")
         if button == "Submit":
-                editStory(title, addition)
+                auth.editStory(title, addition)
                 return render_template("story.html")
                 
 @app.route("/storylist", methods = ["GET", "POST"])
@@ -74,7 +74,7 @@ def storylist():
     if request.method == "GET":
         return render_template("home.html")
     else:
-        return printall()
+        return render_template("home.html", post = printall())
 
     
 @app.route("/createstory", methods = ["GET", "POST"])
@@ -94,7 +94,7 @@ def make():
             elif (auth.check(author,password) == False):
                 return render_template("createstory.html", message = "Username and Password do not match. Please try again")
             else:
-                makeStory(title, story, author)
+                auth.makeStory(title, story, author)
                 return redirect("/<title>")
         elif button == "Cancel":
             return render_template("createstory.html")

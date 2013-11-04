@@ -17,12 +17,12 @@
 	    <span class="icon-bar"> </span>
 	    <span class="icon-bar"> </span>
 	  </button>
-	  <a class="navbar-brand" href="0.0.0.0:5000/home" > Storyinator </a>
+	  <a class="navbar-brand" href="/home" > Storyinator </a>
 	 </div>
 	<div class="collapse navbar-collapse">
 	  <ul class="nav navbar-nav">
-	    <li class="active"> <a href="0.0.0.0:5000/story" > New Story </a> </li>
-	    <li class="active"> <a href="0.0.0.0:5000/login" > Logout </a> </li>
+	    <li class="active"> <a href="/createstory" > New Story </a> </li>
+	    <li class="active"> <a href="/login" > Logout </a> </li>
 	  </ul>
 	 </div>
 	</div>
@@ -39,7 +39,7 @@
 	    <h1> Storyinator </h1>
 	    <p> Start by clicking 'new story' in the navbar above! Don't quite feel like writing yet? Read one of the stories by our other members below! </p>
 		<ul>
-		 {% for title in printall() %}
+		 {% for title in post %}
                         <li>
                                 <a href="{{ title }}">{{ title }}</a>
                         </li>
