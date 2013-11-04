@@ -1,7 +1,7 @@
 #need: layout.html, login.html, register.html
 
 from flask import Flask, render_template, url_for, redirect, request, session
-
+import utils.py
 app = Flask(__name__)
 app.secret_key = 'MONGOLIA'
 
@@ -23,7 +23,7 @@ def login():
         if request.method == 'POST':
                 username = get_form_value('username')
                 password = get_form_value('password')
-                if validate_user(username, password):
+                if authenticate(username, password):
                     session['username'] = username
         else:
             error = 'Incorrect username or password.'
