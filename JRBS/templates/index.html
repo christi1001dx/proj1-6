@@ -1,75 +1,75 @@
 <!doctype html>
 <html>
-<head> 
-  <meta charset="utf-8">
-  <title> Bloginator! </title>
-  <link rel="stylesheet" type="text/css" class="ui" href="CSS/semantic.min.css">
-  <link rel="stylesheet" type="text/css" href="CSS/style.css">
-</head>
+  <head> 
+    <meta charset="utf-8">
+    <title> Bloginator! </title>
+    <link rel="stylesheet" type="text/css" class="ui" href="CSS/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+  </head>
 
-<body>
-  <div class="container">
-    <!--Top Horizontal Menu-->
-    <div class="ui transparent inverted fixed main menu">
-      <div class="title item">
-	<b> Welcome to Bloginator!</b>
-      </div>
-      <div class="right menu">
-	{% if not username %}
-	<div class="item">
-	  <div class="ui small button">Login</div>
-	</div>
-	<div class="item">
-	  <div class="ui blue small button">Sign up</div>
-	</div>
-	{%else %}
+  <body>
+    <div class="container">
+      <!--Top Horizontal Menu-->
+      <div class="ui transparent inverted fixed main menu">
 	<div class="title item">
-	<b> Hello, {{ username }} </b>
+	  <b> Welcome to Bloginator!</b>
 	</div>
-	<a class="large item">Help</a>
+	<div class="right menu">
+	  {% if not username %}
+	  <div class="item">
+	    <div class="ui small button">Login</div>
+	  </div>
+	  <div class="item">
+	    <div class="ui blue small button">Sign up</div>
+	  </div>
+	  {%else %}
+	  <div class="title item">
+	    <b> Hello, {{ username }} </b>
+	  </div>
+	  <a class="large item">Help</a>
+	</div>
       </div>
-    </div>
-    <!--Vertical Menu-->
-    <div class="ui fixed vertical labeled blue icon menu">
-      <a class="item">
-	<i class="red home icon"></i>Home
-      </a>
-      <a class="item">
-	<i class="black pencil icon"></i>Post
-      </a>  
-      {% if username %}
-      <a class="item">
-	<i class="blue off button icon link"></i>Logout
-      </a>
-      {% endif %}
-    </div>
-
-
-    <!-- Post Box-->
-    <div class="ui piled segment">
-      {% for post in posts %}
-      <div class="ui blue segment">
-	<h1>post.title</h1>
-	<h2> post.author </h2>
-	<p>post.content</p> 
-      </div>
-      {% endfor %}
-    </div>
-
-    <!--Bottom Menu-->
-    <div class="ui borderless pagination menu">
-      <div class="bottom menu">
+      <!--Vertical Menu-->
+      <div class="ui fixed vertical labeled blue icon menu">
 	<a class="item">
-	  <i class="icon left arrow"></i> Previous
+	  <i class="red home icon"></i>Home
 	</a>
-	<a class="item">1</a>
 	<a class="item">
-	  Next <i class="icon right arrow"></i>
+	  <i class="black pencil icon"></i>Post
+	</a>  
+	{% if username %}
+	<a class="item">
+	  <i class="blue off button icon link"></i>Logout
 	</a>
+	{% endif %}
       </div>
-    </div>
 
-  </div>
-</body>
+
+      <!-- Post Box-->
+      <div class="ui piled segment">
+	{% for post in posts %}
+	<div class="ui blue segment">
+	  <h1>post.title</h1>
+	  <h2> post.author </h2>
+	  <p>post.content</p> 
+	</div>
+	{% endfor %}
+      </div>
+
+      <!--Bottom Menu-->
+      <div class="ui borderless pagination menu">
+	<div class="bottom menu">
+	  <a class="item">
+	    <i class="icon left arrow"></i> Previous
+	  </a>
+	  <a class="item">1</a>
+	  <a class="item">
+	    Next <i class="icon right arrow"></i>
+	  </a>
+	</div>
+      </div>
+
+    </div>
+  </body>
 
 </html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>Post Page</title>
+
+  <link rel="stylesheet" link href="CSS/semantic.min.css" type="text/css"/>
+  <link rel="stylesheet" link href="CSS/style.css" type="text/css" />
+</head>
+<body>
+
+  <div class="container"> <div class="container">
+      <!--Top Horizontal Menu-->
+      <div class="ui transparent inverted fixed main menu">
+	<div class="title item">
+	  <b> Post Page</b>
+	</div>
+	<div class="right menu">
+	  {% if not username %}
+	  <div class="item">
+	    <div class="ui small button">Login</div>
+	  </div>
+	  <div class="item">
+	    <div class="ui blue small button">Sign up</div>
+	  </div>
+	  {% endif %}
+	  <a class="large item">Help</a>
+	</div>
+      </div>
+
+      <div class="ui form segment"> 
+	<h1>Create your own Post</h1> 
+	<div class="field">
+	  <label>Title</label>
+	  <textarea></textarea>
+	  <input placeholder="Title" type="text">
+	</div>
+	<div class="field">
+	  <label>Last Name</label>
+	  <input placeholder="Last Name" type="text">
+	</div>
+	<div class="field">
+	  <label for="Username">Username</label>
+	  <input id="Username" placeholder="Username" type="text">
+	</div>
+
+	<div class="field">
+	  <label for="Email">Email</label>
+	  <input id="Email" placeholder="Email" type="text">
+	</div>
+	
+	<div class="field">
+	  <label for="Password">Password</label>
+	  <input id="Password" type="password">
+	</div>
+
+	<div class="field">
+	  <label for="PasswordConfirm">Password Confirm</label>
+	  <input id="PasswordConfirm" type="password">
+	</div>
+
+	
+	
+	<div class="ui buttons">
+	  <div class="ui button">Cancel</div>
+	  <div class="or"></div>
+	  <div class="ui  button">Post</div>
+	</div> 
+      </div>
+    </div>
+
+</body>
+
+</html>
