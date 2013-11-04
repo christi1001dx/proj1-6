@@ -8,3 +8,25 @@ ul {
 li {
     border-bottom: 1px solid lightgrey
 }
+
+body {
+    background: #728eaa;
+    background: -moz-linear-gradient(top, #25303C 0%, #728EAA 100%); /* firefox */  
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%,#728EAA)); /* webkit */
+}
+body, div, h1, form, fieldset, input, textarea {
+    margin: 0; padding: 0; border: 0; outline: none;
+    font-color:white;
+    font-size:20px;
+}
+
+p {
+    font-family: Times, sans-serif; 
+    font-color:#FFFFFF;
+    font-size:200px;
+
+}
+
+html {
+    height: 100%;
+}

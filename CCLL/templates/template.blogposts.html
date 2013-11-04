@@ -2,16 +2,31 @@
     <head>
 	<meta charset="utf-8" />
 	<title>{{name}} | blog</title>
-	<link href="../static/blogpage.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="../static/Style.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="../static/PostStyle.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
     <body style = "text-align:center">
-	<a href = "/"> HOME </a>
+	<div id="NavigationMenu">
+	    <nav>
+	    <ul>
+		<li><a href="/"><span>HOME</span></a></li>
+		<li><a href="/genre/sports"><span>SPORTS</span></a></li>
+		<li><a href="/genre/sports"><span>ARTS/ENT</span></a></li>
+		<li><a href="/genre/opinion"><span>OPINION</span></a></li>
+		<li><a href="/genre/humor"><span>HUMOR</span></a></li>
+		<li><a href="/genre/academics"><span>ACADEMICS</span></a></li>
+		<br> <br> <br> <br> <br>
+	    </ul>
+	    </nav>
+	</div>
+	</br>
 	{% if mypage %}
-	<a href = "/blog/{{name}}/submit"> New Post? </a>
+		<a class = 'btn' href = "/blog/{{name}}/submit"> New Post? </a>
 	{% endif %}
 	<ul>
 	    {% for item in posts %}
 	    <li>
+	    </br>
 	    <h1><a href = "/post/{{item._id}}">{{item.title}}</a></h1>
 	    <h3>{{item.username}} | {{item.date}}</h3>
 	    <h5>{{item.genre}}</h5>
