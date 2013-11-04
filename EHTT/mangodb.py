@@ -94,7 +94,10 @@ def newpost(title, txt, date):
             errorch(5)
         else:
             found = find_one({"num"})
-            postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':date})
+            if !date:
+                postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':date})
+            else:
+                postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':datetime.utcnow()})
             postcol.update({"num":found["num"]}, {"$inc": {"num":1}})
             comcol.insert({"id" : found["num"], "coms":[]})
             return 1;
@@ -109,7 +112,7 @@ def newcomment(clu, comet, usr):
         else:
             comcol.update({"id":clu}, {'$push':{"coms":{"comment":comet,
                                                         "user":usr,
-                                                        "date":datetime.utcnow}}})
+                                                        "date":datetime.utcnow()}}})
             return 1
 
 #####################################################################################
