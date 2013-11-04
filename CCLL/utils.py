@@ -28,6 +28,7 @@ def getRandPost(coll):
 def addComment(_id, user, text, coll):
     comments = coll.find({'_id': ObjectId(_id)}).comments
     comments.append([user,text,coll])
+    coll.update({'_id':_id},{'comments':comments})
 
 def getComments(_id, coll):
     return [x for x in coll.find({'_id': ObjectId(_id)}).comments]
