@@ -83,7 +83,7 @@ def return_all_stories():
     for story in storynames:
         entry={}
         entry['author'] = story_author(story)
-        entry['lines'] = story_lines(story)
+        entry['numLines'] = story_lines(story)
         entry['title'] = story
         entry['lines'] = ""
         lines = return_all_lines(story)
