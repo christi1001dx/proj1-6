@@ -149,6 +149,10 @@ input {
   margin-bottom: 10px;
   cursor: pointer; }
 
+.error-message {
+  color: red;
+  font-size: 16px; }
+
 .login-container, .register-container {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -162,6 +166,8 @@ input {
     margin-bottom: 5px; }
   .login-container input, .register-container input {
     margin-bottom: 7px; }
+  .login-container form, .register-container form {
+    margin-top: 5px; }
 
 .story-container {
   max-width: 900px;
