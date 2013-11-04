@@ -3,11 +3,8 @@ from pymongo import MongoClient
 
 def work():
     client = MongoClient()
-    try:
-        db = clients["DJMSStory"]
-    except:
-        pass
-    return db;
+    db = client["DJMSStory"]       
+    return db
 
 #User Stuf ---------------------------------------------------------------------------
 def register(username, password):
@@ -33,10 +30,10 @@ def check(username,password):
 def checkuser(username):
     db = work()
     user = [x for x in db.DJMSStory.find({'username':username},fields={'_id':False})]
-    if (len(user) == 0):
+    if (len(user) != 0):
         return True
     else:
-        return "Username taken. Please pick new username"
+        return False
 
 
 #Story stuff -----------------------------------------------------------------------

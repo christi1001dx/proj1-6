@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> storyinator: home </title>
+    <link href= "CSS/homestyle.css" rel="stylesheet">
+    <link href= "CSS/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle"collapse" data-target=".navbar-collapse">
+	    <span class="icon-bar"> </span>
+	    <span class="icon-bar"> </span>
+	    <span class="icon-bar"> </span>
+	  </button>
+	  <a class="navbar-brand" href="/home" > Storyinator </a>
+	 </div>
+	<div class="collapse navbar-collapse">
+	  <ul class="nav navbar-nav">
+	    <li class="active"> <a href="/createstory" > New Story </a> </li>
+	    <li class="active"> <a href="/login" > Logout </a> </li>
+	  </ul>
+	 </div>
+	</div>
+      </div>
+
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-right">
+	<div class="col-xs-12 colo-sm-9">
+	  <p class="pull-right visible-xs">
+	    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"> Toggle nav </button>
+	  </p>
+
+	  <div class="jumbotron">
+	    <h1> Storyinator </h1>
+	    <p> Start by clicking 'new story' in the navbar above! Don't quite feel like writing yet? Read one of the stories by our other members below! </p>
+		<ul>
+		 {% for title in post %}
+                        <li>
+                                <a href="{{ title }}">{{ title }}</a>
+                        </li>
+                {% endfor %}
+        	</ul>
+	  </div>
+
+	  

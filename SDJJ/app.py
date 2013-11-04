@@ -61,15 +61,21 @@ def submitComment(postTitle):
 
 @app.route("/post/<postTitle>/delete_post", methods = ["GET","POST"])
 def deletepost(postTitle):
-        user = session["username"]
+        if utils.loggedIn():
+                user = session["username"]
+        else:
+            return redirect("post/" + postTitle)
         utils.deletePost(postTitle, user)
         return redirect(url_for("home"))
 
 @app.route("/post/<postTitle>/<commentDate>/delete_comment", methods = ["GET","POST"])
 def deletecomment(postTitle,commentDate):
-        user = session["username"]
+        if utils.loggedIn():
+                user = session["username"]
+        else:
+                return redirect("post/" + postTitle)
         utils.deleteComment(postTitle, commentDate, user)
-        return redirect(url_for("home"))
+        return redirect("post/" + postTitle)
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():

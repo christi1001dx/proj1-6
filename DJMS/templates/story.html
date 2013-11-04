@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content ="IE=edge">
+    <meta name="viewport" content ="width=device-width, initial-scale=1.0">
+    <title> storyinator:story </title>
+  </head>
+</html>
+
+
+
+  <body>
+    <div class="top">
+      <h1>{{storytitle}} </h1>
+      <br>
+      <h2>By: {{author}}</h2>
+    </div>
+      <div class="container">
+        <p>You must be logged in to edit</p>
+        <form class="form-signin" method="POST">
+          <p> {{message}} </p>
+          
+	  <h3> {{story}}</h3>
+          <label for="additional"> Add to the Story: </label>
+ <input type="edit"class="form-control" placeholder="Enter edits" required autofocus>
+          <br>
+        <button type="submit" class="btn btn-lg btn-primary btn-block"> Submit </button>
+        
+        <p>Click delete if you want to delete this story</p>
+        <button type="Delete" class="Submit"> Delete </button>
+        <p>
+          Do you want to contribute to the story?
+          <a href="http://0.0.0.0:5000/login"> Login now! </a>
+        </p>
+        </form>
+      </div>
+      <script src = "js/bootstrap.js"></script>
+
+  </body>
+       

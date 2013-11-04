@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content ="IE=edge">
+    <meta name="viewport" content ="width=device-width, initial-scale=1.0">
+    <title> storyinator:createstory </title>
+  </head>
+</html>
+
+
+
+  <body>
+    <div class="top">
+      <h1>Create Your Story Here! </h1>
+    </div>
+      <br>
+      <div class="container">
+        <p>Log in to create a story.</p>
+        <form class="form-signin" method="POST">
+          <p> {{message}} </p>
+           <label for="username"> Username </label>
+          <input type="username"class="form-control" placeholder="Enter username" required autofocus>
+          <div>
+          <label for="password"> Password  </label>
+          <input type="password" class="form-control" placeholder="Enter password" required>
+	  <br>
+          <label for="Summary"> Summary: </label>
+	  <input type="summary"class="form-control" placeholder="This is optional">
+	  <br>
+	  <label for="Story"> Type in the beginning of your story here: </label>
+	  <input type="story" class="form-control" placeholder= "Enter Story" required>
+          <br>
+        <button type="submit" class="btn btn-lg btn-primary btn-block"> Submit </button>
+        
+        <p>Click delete if you want to delete this story</p>
+        <button type="Delete" class="Submit"> Delete </button>
+        <p>
+          Do you want to contribute to the story?
+          <a href="http://0.0.0.0:5000/login"> Login now! </a>
+        </p>
+        </form>
+      </div>
+      <script src = "js/bootstrap.js"></script>
+
+  </body>

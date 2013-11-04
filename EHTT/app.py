@@ -8,10 +8,11 @@ app.secret_key = "abcd"
 
 @app.route("/")
 def index():
+    d = mangodb.getallposts();
     if 'username' in session:
-        return render_template("index.html",username = session["username"])
+        return render_template("index.html",username = session["username"],d=d)
     else:
-        return render_template("index.html")
+        return render_template("index.html",d=d)
 
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
@@ -28,7 +29,7 @@ def login():
             b = 1;
             return redirect("/")
         else:
-            return render_template("register.html",username = session["username"])
+            return redirect("/register")
 
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
@@ -45,11 +46,17 @@ def register():
             mangodb.dregister(username, password, 0)
             return redirect("/login")
         else:
-            return render_template("register.html",username = session["username"])
+            if 'username' in session:
+                return render_template("register.html",username = session["username"]) 
+            else:
+                return render_template("register.html")
 
 @app.route("/aboutme")
 def aboutme():
-    return render_template("aboutme.html",username = session["username"])
+    if 'username' in session:
+            return render_template("aboutme.html",username = session["username"]) 
+    else:
+            return render_template("aboutme.html")
 
 @app.route("/logout")
 def logout():
@@ -70,7 +77,8 @@ def createpost():
     else:
         name = request.form["title"]
         text = request.form["post"]
-        mangodb.newpost(name, text)
+        date = request.form["date"]
+        mangodb.newpost(name, text, date)
         return redirect("/", username = session["username"])
 
 @app.route("/removepost")
@@ -89,19 +97,33 @@ def posts(post_name):
          'name' : post_name,
          'comments' : getpostcom(post_name),
          'date': mangodb.getpost(post_name).date}
-    return render_template("indipost.html",username = session["username"],d = d)
+    
+    if 'username' in session:
+        return render_template("indipost.html",username = session["username"],d = d)
+    else:
+        return render_template("indipost.html",d = d)
 
 @app.route("/posts/<post_name>/comment")   
 def comment(post_name):
     if request.method == "GET":
-        return render_template("comment.html",username = session["username"])
-    else:
-        text = request.form["text"]
-        mangodb.newcomment(mangodb.getpostid(post_name), text, session["username"])
-        return redirect("/posts/<post_name>", username = session["username"])
-    
+        if 'username' in session:
+            return render_template("comment.html",username = session["username"]) 
+        else:
+            return render_template("comment.html")
+    else: 
+        if 'username' in session:
+            text = request.form["text"]
+            date = request.form["date"]
+            mangodb.newcomment(mangodb.getpostid(post_name), text, session["username"], date)
+            return redirect("/posts/<post_name>")
+        else:
+            text = request.form["text"]
+            date = request.form["date"]
+            mangodb.newcomment(mangodb.getpostid(post_name), text, "Anonymous", date)
+            return redirect("/posts/<post_name>")
 
 if __name__ == "__main__":
+    #mangodb.connect()
     app.debug = True
     app.run(host = "0.0.0.0", port = 5001)
-
+    
