@@ -76,6 +76,12 @@ class Database(object):
         r = self._execute("SELECT * FROM users WHERE user_name = ?", username)
         if r:
             return "exists"
+        r = self._execute("SELECT MAX(user_id) FROM users")
+        user_id = r[0][0] + 1 if r else 1
+        pwhash = hashlib.sha256(password).hexdigest()
+        self._execute("INSERT INTO users VALUES (?, ?, ?, ?)",
+                      user_id, username, display_name, pwhash)
+        return "ok"
 
     def get_posts(self, user=None, page=1):
         pass

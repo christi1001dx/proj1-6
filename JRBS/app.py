@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 from flask import Flask, request, render_template, redirect, session, url_for
 from database import User, Post, Comment, Database
 import sqlite3
@@ -48,24 +50,17 @@ def signup():
     return render_template("register.html", error=answer)
 
 @app.route("/posts")
-def posts():
-    posts = database.get_posts()
-    return render_template("posts.html", posts=posts)
-
 @app.route("/posts/<page>")
-def posts_page(page=1):
-    posts = database.get_posts(page=page)
-    return render_template("posts.html", posts=posts)
-
 @app.route("/posts/user/<user>")
-def posts_user(user):
-    posts = database.get_posts(user=user)
-    return render_template("posts.html", posts=posts)
-
 @app.route("/posts/user/<user>/<page>")
-def posts_user_page(user, page=1):
+def posts(user=None, page=1):
     posts = database.get_posts(user=user, page=page)
     return render_template("posts.html", posts=posts)
+
+@app.route("/post/<post_id>")
+@app.route("/post/<post_id>/<post_title>")
+def post(postid, title=None):
+    return render_template("post.html", post=database.get_post(postid))
 
 @app.route("/logout")
 def logout():
