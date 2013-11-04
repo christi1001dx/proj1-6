@@ -58,7 +58,21 @@
             </ul>
             </div> 
         </span>
-        <span id="RIGHT">
+        <span id="RIGHT"> 
+            {% if genre == "Humor" %}
+             <span id="Humor">
+            {% elif genre == "Sports" %}
+            <span id ="Sports">
+            {% elif genre == "Opinion" %}
+            <span id="Opinion">
+            {% elif genre == "Arts" %}
+            <span id="Arts">
+            {% else %}
+            <span id="Academics">
+            {% endif %}
+            {% for x in post.title} -->
+                {{post.title}} by {{post.author}} on {{post.date}} <br>
+            </span>
         </span>
     </body>
 </html>

@@ -142,6 +142,11 @@ nav ul li a:hover span {
   overflow:scroll;
 }
 
+#Others {
+  font-size:50px;
+  color:;
+}
+
 #Title {
   /*position:absolute;
   margin:left;*/
@@ -178,8 +183,9 @@ nav ul li a:hover span {
 
 }
 ul {
-  list-style;none;
+  list-style-type;none;
 }
+
 #Comment li {
   position:relative;
 }
