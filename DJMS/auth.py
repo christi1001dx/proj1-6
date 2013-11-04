@@ -7,7 +7,7 @@ def work():
         db = clients["DJMSStory"]
     except:
         pass
-    return db;
+    return db
 
 #User Stuf ---------------------------------------------------------------------------
 def register(username, password):
