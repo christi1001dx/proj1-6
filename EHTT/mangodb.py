@@ -3,12 +3,13 @@ from datetime import datetime
 
 
 
-def connect():
-    mango = MongoClient()
-    mangodb = mango.levenpoka 
-    logcol = mangodb.flynn #login collection
-    postcol = mangodb.tron #post collection
-    comcol = mangodb.clu #comment collection
+
+#def connect():
+mango = MongoClient()
+mangodb = mango.levenpoka 
+logcol = mangodb.flynn #login collection
+postcol = mangodb.tron #post collection
+comcol = mangodb.clu #comment collection
 
 
 def dlogin(username, password):
@@ -135,4 +136,4 @@ def reset():
     postcol.insert({"no":1})
 
 ######################################################################################
-connect()
+

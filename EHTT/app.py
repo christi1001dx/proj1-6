@@ -123,6 +123,7 @@ def comment(post_name):
             return redirect("/posts/<post_name>")
 
 if __name__ == "__main__":
+    #mangodb.connect()
     app.debug = True
     app.run(host = "0.0.0.0", port = 5001)
-
+    
