@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" class="ui" href="/static/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
   </head>
 
   <body>
@@ -16,6 +17,19 @@
       </div>
       <div class="ui two column middle aligned relaxed grid basic segment">
         <div class="column">
+        {% if error %}
+          <div class="ui error message"><div class="header">Error</div>
+          {% if error == "missing": %}
+            Missing one or more required fields.
+          {% elif error == "no user": %}
+            The given user does not exist.
+          {% elif error == "bad password": %}
+            The given password is incorrect.
+          {% else %}
+            {{error}}
+          {% endif %}
+          </div>
+        {% endif %}
         <form action="/login", method="post">
           <div class="ui form segment">
             <div class="field">
@@ -47,8 +61,7 @@
         </div>
         <div class="center aligned column">
           <a class="huge green ui labeled icon button" href="/signup">
-            <i class="signup icon"></i>
-            Sign Up
+            <i class="signup icon"></i>Sign Up
           </a>
         </div>
       </div>
