@@ -40,7 +40,8 @@
 			}
 			// if enter key
 			else if (e.keyCode == 13) {
-				e.preventDefault();
+				//e.preventDefault();
+				add_line($("#story-new-line"),$(".story-container h1").first().text());
 			}
 		}).on("paste", function(e) {
 			var clipboard = e.originalEvent.clipboardData.getData("Text");

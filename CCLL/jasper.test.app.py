@@ -87,10 +87,12 @@ def post(_id):
 	print utils.getPost(_id, db.posts)
         return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0], name = name)
     else:
-        newcomment = request.form['comment'].encode ('ascii',"ignore")
-        finalComments = comments.append (newcomment)
-        utils.addComments (_id,name, finalComments, db.posts)
-        return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
+        button = request.form['button']
+        if button == "submit":
+            newcomment = request.form['comment'].encode ('ascii',"ignore")
+            finalComments = comments.append (newcomment)
+            utils.addComments (_id,name, finalComments, db.posts)
+            return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
 
 @app.route("/genre/<genre>")
 def genre(genre):
