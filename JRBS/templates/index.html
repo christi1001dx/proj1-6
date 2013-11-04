@@ -10,8 +10,10 @@
 <body>
   <div class="container">
     <!--Top Horizontal Menu-->
-    <div id="top" class="ui teal inverted fixed main menu">
-
+    <div class="ui teal inverted fixed main menu">
+      <div class="title item">
+      <b> Welcome to Bloginator!</b>
+      </div>
       <div class="right menu">
 	<div class="item">
 	  <div class="ui small button">Login</div>
@@ -24,14 +26,16 @@
       </div>
     </div>
     <!--Vertical Menu-->
-    <div id="left" class="ui fixed vertical text menu">
-      <a class="item">
-	<i class="huge teal home icon"></i>Home<br>
+    <div class="ui fixed vertical labeled icon menu">
+      <a class="black item">
+	<i class="red home icon"></i>Home
       </a>
-      <a class="item">
-	<i class="huge black pencil icon"></i>Post
+      <a class="black item">
+	<i class="black pencil icon"></i>Post
       </a>  
     </div>
+
+
     <!-- Post Box-->
     <div class="ui piled segment">
       {% for post in posts %}

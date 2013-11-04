@@ -19,11 +19,11 @@ ul.login{
     position: fixed;
     align: center;
 }
-.ui.fixed.vertical.text.menu{ 
+.ui.fixed.vertical.labeled.icon.menu{ 
     position: fixed;
     left:5 px;
     top: 100px; 
-    font-size: large; 
+    width: 200px;
 }
 
 .ui.piled.segment{
