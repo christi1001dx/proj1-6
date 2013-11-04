@@ -17,7 +17,7 @@ class User(object):
 class Post(object):
     def __init__(self, postid, title, author, date, slug, text=None,
                  summary=None, comments=None):
-        self.postid
+        self.postid = postid
         self.title = title
         self.author = author
         self.date = date
@@ -84,7 +84,36 @@ class Database(object):
         return "ok"
 
     def get_posts(self, user=None, page=1):
-        pass
+        """Return a list of posts meeting the given conditions."""
+        if user:
+            query = "SELECT * FROM posts JOIN users ON post_user = user_id WHERE user_name = ?"
+            results = self._execute(query, user)
+        else:
+            query = "SELECT * FROM posts JOIN users ON post_user = user_id"
+            results = self._execute(query, user)
+        posts = []
+        for result in results:
+            query = "SELECT * FROM comments JOIN posts ON comment_post = post_id JOIN users ON comment_user = user_id WHERE post_id = ?"
+            cdata = self._execute(query, result[0])
+            comments = []
+            for comment in cdata:
+                comments.append(Comment(comment[0], comment[15], comment[3],
+                                        comment[4], comment[5], comment[6]))
+            posts.append(Post(result[0], result[1], result[8], result[3],
+                              result[6], result[4], result[5], comments))
+        return posts
 
     def get_post(self, postid):
-        pass
+        """Return an individual post."""
+        query = "SELECT * FROM posts JOIN users ON post_user = user_id WHERE post_id = ?"
+        results = self._execute(query, postid)
+        if not results:
+            return None
+        query = "SELECT * FROM comments JOIN posts ON comment_post = post_id JOIN users ON comment_user = user_id WHERE post_id = ?"
+        cdata = self._execute(query, result[0])
+        comments = []
+        for comment in cdata:
+            comments.append(Comment(comment[0], comment[15], comment[3],
+                                    comment[4], comment[5], comment[6]))
+        return Post(result[0], result[1], result[8], result[3],
+                          result[6], result[4], result[5], comments)
