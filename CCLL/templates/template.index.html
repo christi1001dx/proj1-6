@@ -24,14 +24,14 @@
     </div>
     <div id="SectionOne">
 	<span id="Featured">
-            <a id="Title" href={featured._id}>{{featured.title}}</a>
+	    <a id="Title" href="/post/{{featured._id}}">{{featured.title}}</a>
 	    <br>
 	    <span>{{featured.text}}</span>
             <span>By {{featured.username}}</span>
         </span>
         <span id="Sports">
             {% for post in sports %}
-            <a id="Title" href={{post.link}}>{{post.title}}</a>
+            <a id="Title" href="/post/{{post._id}}">{{post.title}}</a>
                 <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -39,7 +39,7 @@
         </span> 
         <span id="Arts-Ent">
             {% for post in arts %}
-            <a id="Title" href={{post.link}}>{{post.title}}</a>  
+            <a id="Title" href="/post/{{post._id}}">{{post.title}}</a>  
             <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -49,7 +49,7 @@
     <div id="SectionTwo">
         <span id="Opinion">
             {% for post in opinions %}
-            <a id="Title" href={{post.link}}>{{post.title}}</a> 
+            <a id="Title" href="/post/{{post._id}}">{{post.title}}</a> 
                 <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -57,7 +57,7 @@
         </span> 
         <span id="Humor">
             {% for post in humor %}
-            <a id="Title" href={{post.link}}>{{post.title}}</a>  
+            <a id="Title" href="/post/{{post._id}}">{{post.title}}</a>  
                 <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -65,7 +65,7 @@
         </span> 
         <span id="Academics">
             {% for post in academics %}
-            <a id="Title" href={{post.link}}>{{post.title}}</a>  
+            <a id="Title" href="/post/{{post._id}}">{{post.title}}</a>  
                 <br>
                 {{post.preview}}
                 by {{post.username}}

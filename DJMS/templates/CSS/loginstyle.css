@@ -1,6 +1,6 @@
 body
 {
-background-color: e0e0e0
+background-color:#e0e0e0;
 }
 
 h1
@@ -45,6 +45,6 @@ top:0;
 left:0;
 width:100%;
 height:40%;
-background-color: 000033;
+background-color:#000033;
 z-index:-1;
 }
