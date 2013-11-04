@@ -1,14 +1,15 @@
 from pymongo import MongoClient
 from datetime import datetime
 
-def connect():
-    mango = MongoClient("db.stuy.cs")
-    db = mango.admin
-    db.authenticate('softdev', 'softdev')
-    mangodb = mango.levenpoka
-    logcol = mangodb.flynn
-    postcol = mangodb.tron
-    comcol = mangodb.clu
+
+
+
+#def connect():
+mango = MongoClient()
+mangodb = mango.levenpoka 
+logcol = mangodb.flynn #login collection
+postcol = mangodb.tron #post collection
+comcol = mangodb.clu #comment collection
 
 
 def dlogin(username, password):
@@ -31,6 +32,7 @@ def dregister(username, password, stat):
     else:
         logcol.insert({"username":username, "password":password, "type": stat})
 
+#####################################################################################
 def getpost(name):
     if not name:
         error = 'err0'
@@ -61,6 +63,13 @@ def getpostcom(tron):
     else:
         return getcom(getpostid(tron))
 
+def getallposts():
+    l = [];
+    for x in postcol.find({"f":"toe"}):
+        l.insert(x)
+    return l
+
+###################################################################################
 def newpost(mcp, sark):
     if not mcp or not sark:
         error = 'err0'
@@ -73,6 +82,7 @@ def newpost(mcp, sark):
             postcol.insert({"name":mcp,"txt":sark, "id":found["num"]})
             postcol.update({"num":found["num"]}, {"$set": {"num":found["num"]+1}})
             comcol.insert({"id" : found["num"], "coms":[]})
+            return 1;
 
 def newcomment(clu, comet, usr):
     if not usr or not comet:
@@ -82,10 +92,12 @@ def newcomment(clu, comet, usr):
         if not found:
             error = 'err4'
         else:
-            comcol.update({"id":clu}, {'$push':{"comment":comet,
-                                              "user":usr,
-                                              "date":datetime.utcnow}})
+            comcol.update({"id":clu}, {'$push':{"coms":{"comment":comet,
+                                                        "user":usr,
+                                                        "date":datetime.utcnow}}})
+            return 1
 
+#####################################################################################
 def removepost(name):
     if not name:
         error = 'err0'
@@ -96,7 +108,24 @@ def removepost(name):
         else:
             comcol.remove({"id":found["id"]}, True)
             postcol.remove({"id":found["id"]}, True)
+            return 1
 
+def removecomment(clu, usr, comet):
+    if not usr or not comet or not clu:
+        error = 'err0'
+    else:
+        found = comcol.find_one({"id":clu})
+        if not found:
+            error = 'err4'
+        else:
+            x = found["coms"]
+            for y in x:
+                if (y["comment"] == comet) and (y["user"] == usr):
+                    x.remove(y)
+                    comcol.update({'id':clu}, {'$pull':{'coms':y}})
+                    return 1
+
+    
 def reset():
     mangodb.drop("levanpolka")
     mangodb = mango.levenpoka
@@ -106,5 +135,5 @@ def reset():
     comcol = mangodb.clu
     postcol.insert({"no":1})
 
+######################################################################################
 
-connect()

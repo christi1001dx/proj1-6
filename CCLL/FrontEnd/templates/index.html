@@ -1,0 +1,85 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>StuySpecBlog</title>
+    <meta charset="utf-8" />
+    <link href="../static/IndexStyle.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body>
+    <div id="NavigationMenu">
+        <nav>
+            <ul>
+                <li><a href="#"><span>SPORTS</span></a></li>
+                <li><a href="#"><span>ARTS/ENT</span></a></li>
+                <li><a href="#"><span>OPINION</span></a></li>
+                <li><a href="#"><span>HUMOR</span></a></li>
+                <li><a href="#"><span>ACADEMICS</span></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="LoginRegister">
+        <a href="Login.html" class="btn">Login</a>
+        <a href="#" class="btn">Register</a>
+    </div>
+        
+    </div>
+    <div id="Featured">
+        <a id="title" href={{featured.link}}>{{featured.title}}</a>
+        <br>
+        <span>{{featured.preview}}</span>
+        <br>
+        <span>By {{featured.author}}</span>
+    </div>
+    {{ for post in sports }}
+    <div id="Sports">
+        <a id="title" href={{post.link}}>{{post.title}}</a>
+        <br>
+        <span>
+            {{post.preview}}
+            <br>
+            by {{post.author}}
+        </span>
+        
+    </div> 
+    {{ endfor }}
+    {{ for post in opinions }}
+    <div id="Opinion">
+        <a id="title" href={{post.link}}>{{post.title}}</a> 
+        <br>
+        <span>
+            {{post.preview}}
+            <br>
+            by {{post.author}}
+        </span>
+        
+    </div> 
+    {{ endfor }}
+    {{ for post in humor }}
+    <div id="Humor">
+        <a id="title" href={{post.link}}>{{post.title}}</a>  
+        <br>
+        <span>
+            {{post.preview}}
+            <br>
+            by {{post.author}}
+        </span>
+        
+    </div> 
+    {{ endfor }}
+    {{ for post in artsent}}
+    <div id="Arts-Ent">
+        <a id="title" href={{post.link}}>{{post.title}}</a>  
+        <br>
+        <span>
+            {{post.preview}}
+            <br>
+            by {{post.author}}
+        </span>
+        
+    </div> 
+    {{ endfor }}
+</body>
+
+</html>

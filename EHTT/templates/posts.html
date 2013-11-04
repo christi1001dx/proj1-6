@@ -1,0 +1,89 @@
+<html>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='foundation.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='grid-5.css') }}">
+
+
+  <head>
+    <title>Herman's Blog</title>
+  </head>
+  <body>
+
+    <!--top navigation bar-->
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="nav-bar right">
+          <ul class="button-group">
+            <li><a href="/" class="button">Home</a></li>
+            <li><a href="/aboutme" class="button">About Me</a></li>
+            {% if not username %}
+            <li><a href="/login" class="button">Login</a></li>
+            <li><a href="/register" class="button">Register</a></li>
+            {% else %}
+            <li><a href="#" class="button">{{ username }}</a></li>
+                    {% if username == "Herman" %}
+                    <li><a href="/createpost" class="button">Create Post</a></li>
+                {% endif %}
+            <li><a href="/logout" class="button">Logout</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <h2>Herman's Blog <small>Herp Derp</small></h2>
+        <hr />
+      </div>
+    </div>
+    
+
+  <!-- Main Page Content and Sidebar -->
+ 
+  <div class="row">
+ 
+    <!-- Main Blog Content -->
+    <div class="large-9 columns" role="content">
+      
+
+
+    </div>
+    
+    <!-- End Main Content -->
+ 
+ 
+    
+  </div>
+ 
+  <!-- End Main Content and Sidebar -->
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>&copy; Copyright Stuyvesant High School Students</p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="/">Home</a></li>
+            <li><a href="/aboutme">About Me</a></li>
+            {% if not username %}
+            <li><a href="/login">Login</a></li>
+	    <li><a href="/register">Register</a></li>
+            {% else %}
+            <li><a href="#">{{ username }}</a></li>
+                    {% if username == "Herman" %}
+                    <li><a href="/createpost">Create Post</a></li>
+                {% endif %}
+            <li><a href="/logout">Logout</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+ </body>
+</html>

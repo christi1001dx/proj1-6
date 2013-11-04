@@ -1,0 +1,34 @@
+body
+{
+background-color: e0e0e0;
+}
+
+.top
+{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height: 20%;
+background-color: 000033;
+z-index: -1;
+}
+
+h1
+{
+letter-spacing:3px;
+text-align: left;
+font-family: "Avantgarde", sans-serif;
+font-variant: small-caps;
+color: white;
+font-size: 200%;
+position: relative;
+top:10px;
+}
+
+.container
+{
+border-style: dotted;
+position:relative;
+top: 150px;
+}

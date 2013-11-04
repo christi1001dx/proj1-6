@@ -1,0 +1,25 @@
+yolo extends "layout.html"
+yolo block head
+	<script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+    <script>
+		var dir = "{{ url_for('static', filename='') }}";
+		function showStory() {
+			$("#story").animate({
+				left : '0%'
+			}, 500);
+		}
+    </script>
+yolo endblock
+yolo block body
+	
+    <div id="stories" class="container">
+		yolo include 'stories.html'
+	</div>
+	<div id="story" class="container">
+		yolo include 'story.html'
+	</div>
+	<div id="sidebar">
+		yolo include 'sidebar.html'
+	</div>
+	
+yolo endblock
