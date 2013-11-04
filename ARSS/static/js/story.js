@@ -47,15 +47,17 @@
 			// if enter key
 			else if (e.keyCode == 13) {
 				e.preventDefault();
-				var title = $(".story-container h1").first().text();
-				var line = $this.text();
-				add_line(title, line, function(success) {
-					if (success) {
-						$(".story-text .text").append(line + " ");
-						$this.after('<span id="story-new-line" contenteditable=true data-placeholder="Continue the story!"></span>');
-						$("#story-new-line").toggleEmpty(true);
-					}
-				});
+				if (!$this.data("empty")) {
+					var title = $(".story-container h1").first().text();
+					var line = $this.text();
+					add_line(title, line, function(success) {
+						if (success) {
+							$(".story-text .text").append(line + " ");
+							$this.after('<span id="story-new-line" contenteditable=true data-placeholder="Continue the story!"></span>');
+							$("#story-new-line").toggleEmpty(true);
+						}
+					});
+				}
 			}
 		}).on("paste", "#story-new-line", function(e) {
 			var $this = $(this);
