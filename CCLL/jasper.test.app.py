@@ -17,13 +17,7 @@ def home():
     if 'username'  in session:
         username = session ['username']
 	print utils.getRandPost(db.posts)
-<<<<<<< HEAD
-
         return render_template("template.index.html", user = username, featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
-
-=======
->>>>>>> 869469a24f1f78de36ad70481d1c8e3713ddee16
-        return render_template("template.index.html", featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts), name = session['username'])
     else:
         return redirect("/login")
 
