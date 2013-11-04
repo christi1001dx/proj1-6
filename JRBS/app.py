@@ -56,7 +56,7 @@ def new():
     elif button1:
         return redirect(url_for('posts'))
     elif button2:
-        #add = Post() *****don't know how to do this...hmmmm....******
+        stuff.add(title, post)
         #possibly create a Post and add it to db? coming back to this later.
         return redirect(url_for('posts'))
 
@@ -68,8 +68,8 @@ def new():
 #@app.route("/admin") ******leaving this blank for now. saving for later.*****
 #def admin(): *****admin should be able to delete posts and stuff here****
 
-@app.route("/posts")
-def posts():
+@app.route("/posts", methods = ['GET', 'POST'])
+def posts(page_number):
     button = request.form["users"]
     page = request.form["pagenumber"]
     if request.method=="GET":
@@ -77,12 +77,12 @@ def posts():
     elif button:
         if 'username' in session:
             user_id = stuff.getUser()
-            return redirect(url_for('posts/user/{user_id}' % user_id))
+            return redirect(url_for('posts/user/<user_id>' % user_id))
         else
             page_number = page 
-            return redirect(url_for('posts/{page_number}' % page) #don't think this works, but putting it here anyway
+            return redirect(url_for('posts/<page_number>' % page) #don't think this works, but putting it here anyway
 
-@app.route("/posts/{page_number}")
+@app.route("/posts/<page_number>")
 def posts():
     button = request.form["home"]
     page = request.form["pagenumber"]
@@ -94,9 +94,9 @@ def posts():
         return redirect(url_for('posts')
     else
         page_number = page
-        return redirect(url_for('posts/{page_number}' % page)
+        return redirect(url_for('posts/<page_number>' % page)
     
-@app.route("/posts/user/{user_id}")
+@app.route("/posts/user/<user_id>")
 def posts():
     button = request.form["home"]
     page = request.form["pagenumber"]
@@ -106,9 +106,9 @@ def posts():
         return redirect(url_for('posts')
     else 
         page_number = page
-        return redirect(url_for('posts/user/{user_id}/{page_number}' % page))
+        return redirect(url_for('posts/user/<user_id>/<page_number>' % page))
 
-@app.route("/posts/user/{user_id}/{page_number}")
+@app.route("/posts/user/<user_id>/<page_number>")
 def posts():
     button = request.form["home"]
     page = request.form["pagenumber"]
@@ -118,7 +118,7 @@ def posts():
         return redirect(url_for('posts')
     else
         page_number = page
-        return redirect(url_for('posts/user/{user_id}/{page_number}'))
+        return redirect(url_for('posts/user/<user_id>/<page_number>'))
 
 @app.route("/logout")
 def logout():
