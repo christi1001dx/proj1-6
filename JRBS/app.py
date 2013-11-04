@@ -18,6 +18,8 @@ def login():
         return render_template("login.html")
     username = request.form["name"]
     password = request.form["password"]
+    if not username or not password:
+        return render_template("login.html", error="missing")
     answer = database.login(username, password)
     if answer == "ok":
         session["username"] = username
@@ -31,8 +33,10 @@ def signup():
     username = request.form["name"]
     password = request.form["password"]
     password_confirm = request.form["passwordConfirm"]
-    display_name = request.form["displayname"]
+    display_name = request.form["displayName"]
     box = request.form["acceptTerms"]
+    if not username or not password or not password_confirm or not display_name:
+        return render_template("register.html", error="missing")
     if not box:
         return render_template("register.html", error="accept terms")
     if password != password_confirm:
@@ -42,6 +46,31 @@ def signup():
         session["username"] = username
         return redirect("/posts")
     return render_template("register.html", error=answer)
+
+@app.route("/posts")
+def posts():
+    posts = database.get_posts()
+    return render_template("posts.html", posts=posts)
+
+@app.route("/posts/<page>")
+def posts_page(page=1):
+    posts = database.get_posts(page=page)
+    return render_template("posts.html", posts=posts)
+
+@app.route("/posts/user/<user>")
+def posts_user(user):
+    posts = database.get_posts(user=user)
+    return render_template("posts.html", posts=posts)
+
+@app.route("/posts/user/<user>/<page>")
+def posts_user_page(user, page=1):
+    posts = database.get_posts(user=user, page=page)
+    return render_template("posts.html", posts=posts)
+
+@app.route("/logout")
+def logout():
+    session.pop("username", None)
+    return redirect("/posts")
 
 # @app.route("/new")
 # def new():
@@ -57,28 +86,9 @@ def signup():
 #         stuff.add(title, post)
 #         return redirect(url_for('posts'))
 
-@app.route("/posts")
-def posts():
-    return render_template("posts.html", posts=database.get_posts())
-
-@app.route("/posts/<page>")
-def posts_page(page=1):
-    return render_template("posts.html", posts=database.get_posts(page=page))
-
-@app.route("/posts/user/<user>")
-def posts_user(user):
-    return render_template("posts.html", posts=database.get_posts(user=user))
-
-@app.route("/posts/user/<user>/<page>")
-def posts_user_page(user, page=1):
-    return render_template("posts.html",
-                           posts=database.get_posts(user=user, page=page))
-
-@app.route("/logout")
-def logout():
-    session.pop('username', None)
-    return redirect("/posts")
+# @app.route("/admin")
+# def admin():
+#     pass
 
 if __name__=="__main__":
-    app.debug=True
-    app.run()
+    app.run(debug=True)

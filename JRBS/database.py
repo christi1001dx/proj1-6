@@ -72,7 +72,10 @@ class Database(object):
         return "ok"
 
     def register(self, username, display_name, password):
-        pass
+        """Returns one of "exists", "ok"."""
+        r = self._execute("SELECT * FROM users WHERE user_name = ?", username)
+        if r:
+            return "exists"
 
     def get_posts(self, user=None, page=1):
         pass
