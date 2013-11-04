@@ -1,16 +1,16 @@
 <script>
 	var stories = [];
 	get_all_stories();
-	var rawstories = allstories
-	for(var i=0;i<rawstories.length;i++) {
-		var obj = rawstories[i]
-		stories.push({
-			edits : obj["numLines"],
-			title : obj["title"],
-			author : obj["author"],
-			text : obj["lines"]
-		});
-	}
+	var rawstories = allstories;
+	for (var i = 0; i < rawstories.length; i++) {
+    	var obj = rawstories[i];
+    	stories.push({
+	        edits: obj["numLines"],
+	        title: obj["title"],
+	        author: obj["author"],
+	        text: obj["lines"]
+    });
+}
 </script>
 <header class="">
 	<div class="middle t2">
