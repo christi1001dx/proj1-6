@@ -7,6 +7,7 @@ from pymongo import MongoClient
 import index
 import math
 
+
 c = MongoClient()
 
 # max posts per page

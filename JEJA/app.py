@@ -32,7 +32,11 @@ def home():
     posts = utils2.getRecent(page)
     nav = utils2.nav([["Home"]])
     for x in posts:
-        r += str(index.formatData(uid,x))
+        if request.args.get("highlight") == str(x["id"]):
+            x["highlight"] = " highlight"
+        else:
+            x["highlight"] = ""
+        r += str(index.formatData(uid,x,page))
 
 
     return render_template("index.html", data=r,head=h,type=request.args.get("type"),uid=uid,nav=nav,pages=utils2.pagination(page,utils2.indexMaxPages()))
@@ -86,7 +90,8 @@ def newPost():
         #utils.addPost will add the post to the database, and generate
         #and return an ID
         post = utils2.addPost(title, uid, content, datetime.datetime.now())
-        return redirect("/post?id="+str(post))
+#        return redirect("/post?id="+str(post))
+        return redirect("/?page=1&highlight="+str(post)+"#post"+str(post))
 
 @app.route("/comment", methods=['POST'])
 def addComment():
@@ -102,7 +107,8 @@ def getPost():
     h = index.getHeader(uid)
     pid = int(request.args.get("id"))
     post = utils2.getPost(pid)
-    postString = str(index.formatData(uid,post))
+    post["highlight"] = ""
+    postString = str(index.formatData(uid,post,0))
 
     nav = utils2.nav([["/","Home"],[post["title"]]])
     
@@ -116,6 +122,7 @@ def editPost():
 
     if request.method == "GET":
         pid = int(request.args.get("id"))
+
     
         post = utils2.getPost(pid)
         if uid == post["uid"]:
@@ -126,6 +133,9 @@ def editPost():
         if uid == post["uid"]:
             utils2.editPost(pid,request.form["title"],request.form["content"])
             return redirect("/post?id="+str(pid)+"&type=1")
+
+
+
 
 @app.route("/delete",methods=['GET','POST'])
 def delPost():
@@ -153,7 +163,12 @@ def likePost():
     # Of course you like your own post!
     if uid != -1 and uid != post["uid"]:
         utils2.likePost(uid,pid)
-    return redirect("post?id="+str(pid))
+    if request.args.get("page") == '0':
+        return redirect("post?id="+str(pid))
+    else:
+        return redirect("/?page="+request.args.get("page")+"&highlight="+str(pid)+"#post"+str(pid))
+
+
 
 if __name__ == "__main__":
     app.debug = True

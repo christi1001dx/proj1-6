@@ -1,5 +1,5 @@
 import utils2
-
+import cgi
 
 
 
@@ -31,12 +31,12 @@ def getHeader(uid):
 </nav>
 '''%(utils2.uidToUsername(uid))
 
-def formatData(uid, post):
+def formatData(uid, post,source):
     com = utils2.getComments(post["id"])
-    return formatData2(uid,post,com)
+    return formatData2(uid,post,com,str(source))
 
 
-def formatData2(uid, post, comments):
+def formatData2(uid, post, comments,source):
     r = ""
     for x in comments:
         if x["uid"] == -1:
@@ -49,13 +49,16 @@ def formatData2(uid, post, comments):
     post["comments"] = r
     post["date"] = post["date"].strftime("%m/%d/%y %H:%M:%S")
     post["likes"] = utils2.getLikes(post["id"])
+    
+    post["content"] = "<br />".join(cgi.escape(post["content"]).split("\n"))
+
 
     if uid == post["uid"]:
         post["ynlike"] = ""
     elif utils2.userLikesPost(uid,post["id"]):
-        post["ynlike"] = '<a href="like?id='+str(post["id"])+'" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>'
+        post["ynlike"] = '<a href="like?id='+str(post["id"])+'&page='+source+'" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>'
     else:
-        post["ynlike"] = '<a href="like?id='+str(post["id"])+'" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>'
+        post["ynlike"] = '<a href="like?id='+str(post["id"])+'&page='+source+'" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>'
 
     post["author"] = utils2.uidToUsername(post["uid"])
 
@@ -85,6 +88,7 @@ def formatComment(data):
     # data:
     # username = username
     # content = comment content
+    data["content"] = cgi.escape(data["content"])
     data["date"] = data["date"].strftime("%m/%d/%y %H:%M:%S")
     if data["uid"] == -1:
         user = "<em>Guest</em>"
@@ -102,8 +106,8 @@ def formatPost(data,guest):
     # comments = HTML comments (run each comment through formatComment() and put into one variable)
     # authorLinksHTML = if user == author display edit/delete links, call function authorLinksHTML()
     r = '''
-      <table class="table post">
-	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="post?id=%(id)s">%(title)s</a><div class="postAuthor">Posted by <strong>%(author)s</strong></div><div class="time">%(date)s</div></td></tr>
+      <table class="table post%(highlight)s" id="post%(id)s">
+	<tr class="active"><td class="postHeader" colspan="2"><a class="postTitle" href="post?id=%(id)s">%(title)s</a><div>Posted by <strong>%(author)s</strong> <span class="time">(%(date)s)</span></div></td></tr>
 	<tr class="active"><td colspan="2">%(content)s</td></tr>
 	<tr class="active">
 	  <td colspan="2" class="likes">
