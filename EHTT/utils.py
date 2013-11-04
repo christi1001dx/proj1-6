@@ -16,6 +16,7 @@ def register(username,password):
     if x:
         return False
     else:
+        db.users.insert({'username':username, 'password':password})
         return True
 
 def getAllPosts():
