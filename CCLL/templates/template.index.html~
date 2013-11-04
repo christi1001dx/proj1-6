@@ -18,7 +18,7 @@
                 <br> <br> <br> <br> <br>
                 <a href="/login" class="btn">Login</a>
                 <a href="/register" class="btn">Register</a>
-                <a href="/blog/{{user}}/submit" class="btn">New Post</a>
+                <a href="" class="btn">New Post</a>
             </ul>
         </nav>
     </div>
