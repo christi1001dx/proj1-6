@@ -5,16 +5,23 @@
 
 from pymongo import MongoClient
 import index
+import math
 
 c = MongoClient()
 
+# max posts per page
+MAX_POSTS = 5
 
-def getRecent():
+def getRecent(page):
     db = c.posts
-    posts = db.Collections.find()
-    posts.sort("date",-1)
+    posts = db.Collections.find().sort("date",-1)
     
-    return posts
+    r = []
+    for x in range(0,min(page*MAX_POSTS,posts.count())):
+        if x >= (page-1)*MAX_POSTS:
+            r.append(posts[x])
+
+    return r
 
 
 def addPost(title, uid, content, date):
@@ -86,3 +93,45 @@ def getComments(pid):
     com = db.Collections.find({"pid":str(pid)})
     com.sort("id",-1)
     return com
+
+def nav(stuff):
+    r = '<ol class="breadcrumb">'
+
+    for x in stuff:
+        if len(x) == 1:
+            r += '<li class="active">%s</li>'%(x[0])
+        else:
+            r += '<li><a href="%s">%s</a></li>'%(x[0],x[1])
+    
+    r += '</ol>'
+    return r
+
+
+def indexMaxPages():
+    db = c.posts
+    return math.floor((db.Collections.count()-1)/MAX_POSTS)+1
+
+def pagination(cur,n):
+    # n = max
+    r = '<ul class="pagination">'
+    
+    if cur == 1:
+        r += '<li class="disabled"><a href="/">&laquo;</a></li>'
+    else:
+        r += '<li><a href="/?page=%d">&laquo;</a></li>'%(cur-1)
+
+    for x in range(1,int(n)+1):
+        if x == cur:
+            r += '<li class="active"><a href="/?page=%d">%d</a></li>'%(x,x)
+        else:
+            r += '<li><a href="/?page=%d">%d</a></li>'%(x,x)
+
+    if cur == n:
+        r += '<li class="disabled"><a href="/">&raquo;</a></li>'
+    else:
+        r += '<li><a href="/?page=%d">&laquo;</a></li>'%(cur+1)
+
+    
+    r += '</ul>'
+
+    return r
