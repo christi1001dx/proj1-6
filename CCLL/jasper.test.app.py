@@ -95,8 +95,9 @@ def post(_id):
 @app.route("/genre/<genre>")
 def genre(genre):
     genre = genre.title()
+    name = session['username']
     print genre
-    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts), name = name)
+    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts), name = session['username'])
 
 @app.route("/logout")
 def logout():
@@ -104,4 +105,4 @@ def logout():
 
 if __name__=="__main__":
     app.debug=True
-    app.run(host='0.0.0.0',port=80)
+    app.run(host='0.0.0.0',port=5000)
