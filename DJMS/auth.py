@@ -3,10 +3,7 @@ from pymongo import MongoClient
 
 def work():
     client = MongoClient()
-    try:
-        db = clients["DJMSStory"]
-    except:
-        pass
+    db = client["DJMSStory"]       
     return db
 
 #User Stuf ---------------------------------------------------------------------------
