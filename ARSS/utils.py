@@ -50,6 +50,14 @@ def increment_lines(title):
     story['lines'] = story['lines'] + 1
     db.stories.save(story)
 
+def list_of_stories():
+    db = mongo_init()
+    stories = list(db.stories.find())
+    storieslist = []
+    for story in stories:
+        storieslist.append(story['title'])
+    return storieslist
+
 ######LINE FUNCTIONS######
 
 def add_line(line, title, user):
@@ -66,11 +74,25 @@ def add_line(line, title, user):
 
 def return_all_lines(title):
     db = mongo_init()
-    lineslist = list(db.lines.find({'title':title}))
+    lineslist = db.lines.find({'story':title})
     return lineslist
 
-#####LOGIN FUNCTIONS######
+def return_all_stories():
+    storynames = list_of_stories()
+    stories = []
+    for story in storynames:
+        entry={}
+        entry['author'] = story_author(story)
+        entry['lines'] = story_lines(story)
+        entry['title'] = story
+        entry['lines'] = ""
+        lines = return_all_lines(story)
+        for line in lines:
+            entry['lines'] += line['line'] + " "
+        stories.append(entry)
+    return stories
 
+#####LOGIN FUNCTIONS######
 
 # used for register
 # user must type password 2 times to make account
