@@ -10,6 +10,7 @@ app.debug = True
 
 env = app.jinja_env
 env.line_statement_prefix = 'yolo'
+env.globals.update(utils=utils)
 
 def get_form_value(key):
 	return request.form[key].encode("ascii", "ignore")
@@ -50,34 +51,28 @@ def make_story():
 	title = get_form_value('title')
 	return str(utils.make_story(title, author, False))
 
-@app.route('/login', methods = ['GET', 'POST'])
+@app.route('/login', methods = ['POST'])
 def login():
-	if (request.method == "GET"):
-		return render_template("login.html")
+	username = get_form_value('username')
+	password = get_form_value('password')
+	if (utils.account_exists(username, password)):
+		session["username"] = username
+		flash("Success!")
 	else:
-		username = get_form_value('username')
-		password = get_form_value('password')
-		if (utils.account_exists(username, password)):
-			session["username"] = username
-			flash("Success!")
-		else:
-			flash("Incorrect username or password.")
-		return redirect(url_for("index"))
+		flash("Incorrect username or password.")
+	return redirect(url_for("index"))
 
-@app.route('/register', methods = ['GET', 'POST'])
+@app.route('/register', methods = ['POST'])
 def register():
-	if (request.method == "GET"):
-		return render_template("register.html")
+	username = get_form_value('username')
+	password = get_form_value('password')
+	password2 = get_form_value('password2')
+	registertry = utils.add_user(username, password, password2)
+	if (registertry == "good job"):
+		flash("Success!")
 	else:
-		username = get_form_value('username')
-		password = get_form_value('password')
-		password2 = get_form_value('password2')
-		registertry = utils.add_user(username, password, password2)
-		if (registertry == "good job"):
-			flash("Success, "+username.decode("utf-8"))
-		else:
-			flash(registertry)
-        return redirect(url_for("index"))
+		flash(registertry)
+	return redirect(url_for("index"))
 
 @app.route("/logout")
 def logout():
