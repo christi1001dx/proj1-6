@@ -29,7 +29,6 @@ body {
 #story {
 	left:100%;
 	z-index:99;
-	background:#def;
 	display:none;
 }
 #sidebar {
