@@ -16,7 +16,7 @@ if db.posts.count() == 0:
 def home():
     if 'username'  in session:
 	print utils.getRandPost(db.posts)
-        return render_template("template.index.html", featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
+        return render_template("template.index.html", featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts), name = session['username'])
     else:
         return redirect("/login")
 
@@ -81,13 +81,13 @@ def submit(name):
 
 @app.route("/post/<_id>")
 def post(_id):
+    name = session['username']
     if request.method=="GET":
 	print utils.getPost(_id, db.posts)
-        return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
+        return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0], name = name)
     else:
         newcomment = request.form['comment'].encode ('ascii',"ignore")
         finalComments = comments.append (newcomment)
-        name = session['username']
         utils.addComments (_id,name, finalComments, db.posts)
         return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
 
@@ -95,7 +95,7 @@ def post(_id):
 def genre(genre):
     genre = genre.title()
     print genre
-    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts))
+    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts), name = name)
 
 @app.route("/logout")
 def logout():
