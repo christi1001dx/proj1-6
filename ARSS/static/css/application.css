@@ -77,6 +77,12 @@
   font-family: Oxygen;
   color: white; }
 
+.back-button {
+  display: block;
+  float: left;
+  margin-bottom: 10px;
+  cursor: pointer; }
+
 body {
   -webkit-transition: padding 0.5s;
   -moz-transition: padding 0.5s;
@@ -134,16 +140,24 @@ input {
 
 .button {
   display: block;
-  padding: 0.1em 0 0.2em;
+  width: 100%;
+  padding: 0.1em 0.4em 0.2em;
+  border: none;
   text-align: center;
+  font-family: Oxygen;
+  font-size: 22px;
   background-color: white;
   color: black;
   cursor: pointer; }
 
-.back-button {
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer; }
+.error-message {
+  clear: both;
+  color: red;
+  font-size: 16px; }
+
+.login-container {
+  clear: both;
+  margin-top: 10px; }
 
 .login-container, .register-container {
   -webkit-border-radius: 2px;
@@ -158,6 +172,8 @@ input {
     margin-bottom: 5px; }
   .login-container input, .register-container input {
     margin-bottom: 7px; }
+  .login-container form, .register-container form {
+    margin-top: 5px; }
 
 .story-container {
   max-width: 900px;

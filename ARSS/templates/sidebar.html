@@ -5,9 +5,23 @@
 	<div class="sidebar-body-wrapper">
 		<div class="sidebar-body">
 			<a class="back-button">←Back</a>
-			yolo include 'login.html'
-			<h3 style="text-align: center; margin: 10px 0">OR</h3>
-			yolo include 'register.html'
+			yolo if not utils.logged_in()
+				yolo with messages = get_flashed_messages()
+					yolo if messages
+						yolo for message in messages
+							<p class="error-message">{{ message }}</p>
+						yolo endfor
+					yolo endif
+				yolo endwith
+				yolo include 'login.html'
+				<h3 style="text-align: center; margin: 10px 0;">OR</h3>
+				yolo include 'register.html'
+			yolo else
+				<form style="float: right" action="/logout" method="POST">
+					<button type="submit" class="button">Logout</button>
+				</form>
+				<p style="text-align: center; margin-top: 5px; clear: both;">Welcome, {{ session['username'] }}</p>
+			yolo endif
 			<!--<p>
 				Lorizzle sizzle nizzle sit amizzle, break it down adipiscing elit. Nullizzle sapizzle velizzle, break it down volutpat, suscipizzle quizzle, gravida own yo', crazy. Pellentesque gangsta tortor. Sizzle erizzle. Fusce go to hizzle yo dapibizzle da bomb tempizzle sheezy. Maurizzle mah nizzle nizzle et turpizzle. Bow wow wow izzle ghetto. Pellentesque gangsta rhoncus check it out. In hac habitasse platea dictumst. Bow wow wow dapibizzle. Dope tellus get down get down, pretium eu, mattis ac, eleifend vitae, nunc. Own yo' suscipizzle. Brizzle fo shizzle my nizzle velit hizzle crackalackin.
 

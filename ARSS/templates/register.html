@@ -1,16 +1,9 @@
 <div class="register-container">
 	<h3>Register</h3>
-	{% if error=="already exists" %}
-		Username already exists
-	{% elif error=="short password" %}
-		Password must be at least 4 characters
-	{% elif error=="retype: passwords don't match" %}
-		Passwords do not match
-	{% endif %}
 	<form action="/register" method="POST">
 		<input type="text" name="username" placeholder="Username">
 		<input type="password" name="password" placeholder="Password">
 		<input type="password" name="password2" placeholder="Confirm Password">
-		<a class="button">Register</a>
+		<button type="submit" class="button">Register</button>
 	</form>
 </div>
