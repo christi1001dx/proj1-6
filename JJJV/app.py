@@ -1,13 +1,10 @@
 #need: layout.html, login.html, register.html
 
 from flask import Flask, render_template, url_for, redirect, request, session
-import utils.py
+import utils
 app = Flask(__name__)
 app.secret_key = 'MONGOLIA'
 
-@app.route('/')
-def home():
-    return redirect(url_for('login'))
 
 def get_form_value(key):
     return request.form[key].encode('ascii','ignore')
@@ -17,6 +14,9 @@ def logged_in():
 		session.pop('username', None)
 	return 'username' in session and session['username'] != None
 
+@app.route('/')
+def home():
+    return redirect(url_for('login'))
 @app.route('/login', methods=['GET', 'POST'])
 def login():
         error = None
