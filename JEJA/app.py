@@ -22,26 +22,34 @@ def getUID():
 def home():
     uid = getUID()
     h = index.getHeader(uid)
-    print(h)
+
+    if request.args.get("page"):
+        page = int(request.args.get("page"))
+    else:
+        page = 1
+
     r = ""
-    posts = utils2.getRecent()
+    posts = utils2.getRecent(page)
+    nav = utils2.nav([["Home"]])
     for x in posts:
         r += str(index.formatData(uid,x))
-    
-    return render_template("index.html", data=r,head=h,type=request.args.get("type"),uid=uid)
+
+
+    return render_template("index.html", data=r,head=h,type=request.args.get("type"),uid=uid,nav=nav,pages=utils2.pagination(page,utils2.indexMaxPages()))
 
 @app.route("/register",methods=['GET','POST'])
 def register():
+    nav = utils2.nav([["/","Home"],["Register"]])
     if request.method == "POST":
         if request.form["password"] == request.form["password2"]:
             if auth.createUser(str(request.form["username"]),str(request.form["password"])):
                 return redirect("/login?type=2")
             else:
-                return render_template("register.html",type=1)
+                return render_template("register.html",type=1,nav=nav)
         else:
-            return render_template("register.html",type=2)
+            return render_template("register.html",type=2,nav=nav)
     else:
-        return render_template("register.html")
+        return render_template("register.html",nav=nav)
 @app.route("/logout")
 def logout():
     session.pop("uid",None)
@@ -49,6 +57,7 @@ def logout():
     return redirect("/?type=3")
 @app.route("/login", methods=['GET','POST'])
 def login():
+    nav = utils2.nav([["/","Home"],["Login"]])
     if request.method == "POST":
         uu = auth.authorize(str(request.form["username"]), str(request.form["password"]))
         if uu:
@@ -57,17 +66,18 @@ def login():
             session["password"] = request.form["password"]
             return redirect("/?type=2")
         else:
-            return render_template("login.html",type='1')
+            return render_template("login.html",type='1',nav=nav)
     else:
-        return render_template("login.html",type=request.args.get("type"))
+        return render_template("login.html",type=request.args.get("type"),nav=nav)
 
 
 @app.route("/new-post", methods = ['GET', 'POST'])
 def newPost():
+    nav = utils2.nav([["/","Home"],["Create New Post"]])
     uid = getUID()
     h = index.getHeader(uid)
     if request.method == "GET":
-        return render_template("newPost.html",head=h)
+        return render_template("newPost.html",head=h,nav=nav)
     elif request.form["submit"] == "Cancel":
         return redirect("/")
     elif request.form["submit"] == "Create Post":
@@ -92,11 +102,15 @@ def getPost():
     h = index.getHeader(uid)
     pid = int(request.args.get("id"))
     post = utils2.getPost(pid)
-    post = str(index.formatData(uid,post))
-    return render_template("index.html",data=post,head=h,type=request.args.get("type"),uid=uid)
+    postString = str(index.formatData(uid,post))
+
+    nav = utils2.nav([["/","Home"],[post["title"]]])
+    
+    return render_template("index.html",data=postString,head=h,type=request.args.get("type"),uid=uid,nav=nav)
 
 @app.route("/edit",methods=['GET','POST'])
 def editPost():
+    nav = utils2.nav([["/","Home"],["Edit Post"]])
     uid = getUID()
     h = index.getHeader(uid)
 
@@ -105,7 +119,7 @@ def editPost():
     
         post = utils2.getPost(pid)
         if uid == post["uid"]:
-            return render_template("editPost.html",post=post,head=h)
+            return render_template("editPost.html",post=post,head=h,nav=nav)
     else:
         pid = int(request.form["pid"])
         post = utils2.getPost(pid)

@@ -16,9 +16,9 @@
 </div>
 </nav>
     <div style="width:400px;margin-left:auto;margin-right:auto;">
-
+      
       <h1 style="text-align:center">Register</h1>
-
+      {{nav|safe}}
       {% if type == 1 %}
       <div class="alert alert-danger"><strong>Error</strong>: Username is already in use</div>
       {% elif type == 2 %}
@@ -45,7 +45,7 @@
 	  </tr>
 	</table>
       </form>
-
+      {{nav|safe}}
     </div>
 
   </body>

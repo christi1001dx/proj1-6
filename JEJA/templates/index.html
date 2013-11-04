@@ -37,7 +37,7 @@
 
     <div class="col-md-2">&nbsp;</div>
     <div id="main" class="col-md-8">
-
+      {{nav|safe}}
       <div class="options">
 	{% if uid == -1 %}
 	<div class="alert alert-warning">Welcome <strong>Guest!</strong>  Please <a href="login">login</a> to create posts.  If you don't have an account then you can <a href="register">register</a> a new account.</div>
@@ -56,8 +56,10 @@
       <div class="alert alert-success"><strong>Success</strong>: Post deleted</div>
       {% endif %}
       
+      {{pages|safe}}
       {{data|safe}}
-
+      {{nav|safe}}
+      {{pages|safe}}
     </div>
     <div class="col-md-2">&nbsp;</div>
 	
