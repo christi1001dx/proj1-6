@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5000/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./localhost_files/application.css">
+		<link rel="stylesheet" type="text/css" href="./localhost_files/style.css">
+		<script src="./localhost_files/jquery.min.js"></script><style type="text/css"></style>
+		<script src="./localhost_files/jquery.resize-1.1.min.js"></script>
+		<script src="./localhost_files/jquery.scrollTo.min.js"></script>
+		<script src="./localhost_files/jquery.fittext.js"></script>
+		<script src="./localhost_files/sidebar.js"></script>
+		<script src="./localhost_files/story.js"></script>
+		<script src="./localhost_files/login.js"></script>
+	<script src="./localhost_files/landing.js"></script>
+    <script>
+		var dir = "/static/";
+		function showStory() {
+			$("#story").animate({
+				left : '0%'
+			}, 500);
+		}
+    </script>
+	</head>
+	<body style="">
+    <div id="stories" class="container" style="width: 1139px; left: 30px;">
+<script>
+	var stories = [];
+	get_all_stories(function(d) {
+		rawstories = JSON.parse(d);
+		for (var i = 0; i < rawstories.length; i++) {
+			var obj = rawstories[i];
+			stories.push({
+				edits: obj["numLines"],
+				title: obj["title"],
+				author: obj["author"],
+				text: obj["lines"]
+			});
+		}
+		init();
+	});
+	
+</script>
+<header class="" style="height: 400px; width: 1139px; left: 30px;">
+	<div class="middle t2">
+		<div class="title t2">
+			<h1 class="t2" style="font-size: 175px;">ARSS</h1>
+			<div class="sub t2" style="font-size: 40px; opacity: 1; display: block;">A collaborative story writing site.</div>
+		</div>
+	</div>
+</header>
+<div id="cards">
+	
+</div>	</div>
+	<div id="story" class="container" style="width: 1139px; left: 30px;">
+<div class="story-container">
+	<h1>Story Name</h1>
+	<p class="story-author">by Author</p>
+	<p class="story-text">
+		<span class="text">Lorem away dolizzle sizzle amet, fo shizzle adipiscing ass. Nullizzle for sure velizzle, that's the shizzle volutpat, suscipit quizzle, gravida vizzle, bling bling. Pellentesque yippiyo tortizzle. Sed eros. Crazy yippiyo dolor dapibizzle turpis tempizzle dizzle. Maurizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle nibh pot turpizzle. Vestibulum izzle check it out. Pellentesque things rhoncizzle stuff. In brizzle fizzle platea dictumst. Mah nizzle dapibus. Curabitur black urna, pretium break yo neck, yall, shiz ac, eleifend crazy, nunc. Uhuh ... yih! break yo neck, yall. Integizzle semper pizzle sizzle purizzle.
+		In sagittis gangsta sure nisi. Its fo rizzle rhoncus, arcu yo mamma yo ghetto, mammasay mammasa mamma oo sa nulla shizznit , nizzle auctor away felizzle a est. Suspendisse check it out augue. Its fo rizzle egestas check out this ut ma nizzle. Prizzle consectetuer blandit shizzle my nizzle crocodizzle. Etizzle ass, dizzle yo amet gangsta tincidunt, check out this sem ultrices sem, ac vestibulum that's the shizzle check it out sizzle amet purus. Maecenizzle break yo neck, yall tortizzle vizzle enim. Phasellus fo shizzle mah nizzle fo rizzle, mah home g-dizzle. Ma nizzle lectizzle phat, shizznit crackalackin, aliquet bling bling amizzle, pulvinizzle egestas, augue. Vivamizzle bizzle. Shizzle my nizzle crocodizzle for sure ipsum primizzle izzle pot orci fizzle ma nizzle ultricizzle boofron cubilia Curae; In eu rizzle eu phat condimentum. Fusce that's the shizzle crazy, fo shizzle mah nizzle fo rizzle, mah home g-dizzle vizzle, semper vel, doggy izzle, its fo rizzle. Dawg feugizzle, tortor egizzle vehicula break yo neck, yall, lorizzle justo its fo rizzle yo, id fo shizzle mi urna vitae erat.
+		In sagittis gangsta sure nisi. Its fo rizzle rhoncus, arcu yo mamma yo ghetto, mammasay mammasa mamma oo sa nulla shizznit , nizzle auctor away felizzle a est. Suspendisse check it out augue. Its fo rizzle egestas check out this ut ma nizzle. Prizzle consectetuer blandit shizzle my nizzle crocodizzle. Etizzle ass, dizzle yo amet gangsta tincidunt, check out this sem ultrices sem, ac vestibulum that's the shizzle check it out sizzle amet purus. Maecenizzle break yo neck, yall tortizzle vizzle enim. Phasellus fo shizzle mah nizzle fo rizzle, mah home g-dizzle. Ma nizzle lectizzle phat, shizznit crackalackin, aliquet bling bling amizzle, pulvinizzle egestas, augue. Vivamizzle bizzle. Shizzle my nizzle crocodizzle for sure ipsum primizzle izzle pot orci fizzle ma nizzle ultricizzle boofron cubilia Curae; In eu rizzle eu phat condimentum. Fusce that's the shizzle crazy, fo shizzle mah nizzle fo rizzle, mah home g-dizzle vizzle, semper vel, doggy izzle, its fo rizzle. Dawg feugizzle, tortor egizzle vehicula break yo neck, yall, lorizzle justo its fo rizzle yo, id fo shizzle mi urna vitae erat.</span>
+		<span id="story-new-line" contenteditable="true" data-placeholder="Continue the story!" style="color: gray;">Continue the story!</span>
+	</p>
+</div>	</div>
+	<div id="sidebar">
+<div class="sidebar">
+	<div class="sidebar-label">
+		<h1>A<br>R<br>S<br>S<br><br>B<br>A<br>R</h1>
+	</div>
+	<div class="sidebar-body-wrapper">
+		<div class="sidebar-body">
+			<a class="back-button">←Back</a>
+<div class="login-container">
+	<h3>Login</h3>
+	<form action="http://localhost:5000/login" method="POST">
+		<input type="text" name="username" placeholder="Username">
+		<input type="password" name="password" placeholder="Password">
+		<button type="submit" class="button">Login</button>
+	</form>
+</div>				<h3 style="text-align: center; margin: 10px 0;">OR</h3>
+<div class="register-container">
+	<h3>Register</h3>
+	<form action="http://localhost:5000/register" method="POST">
+		<input type="text" name="username" placeholder="Username">
+		<input type="password" name="password" placeholder="Password">
+		<input type="password" name="password2" placeholder="Confirm Password">
+		<button type="submit" class="button">Register</button>
+	</form>
+</div>			<!--<p>
+				Lorizzle sizzle nizzle sit amizzle, break it down adipiscing elit. Nullizzle sapizzle velizzle, break it down volutpat, suscipizzle quizzle, gravida own yo', crazy. Pellentesque gangsta tortor. Sizzle erizzle. Fusce go to hizzle yo dapibizzle da bomb tempizzle sheezy. Maurizzle mah nizzle nizzle et turpizzle. Bow wow wow izzle ghetto. Pellentesque gangsta rhoncus check it out. In hac habitasse platea dictumst. Bow wow wow dapibizzle. Dope tellus get down get down, pretium eu, mattis ac, eleifend vitae, nunc. Own yo' suscipizzle. Brizzle fo shizzle my nizzle velit hizzle crackalackin.
+
+				Praesent nec pimpin' leo go to hizzle molestie. Vivamizzle vestibulizzle tortor vizzle gangster. Quisque fo shizzle ornare magna. Morbi rizzle, nisl nec bibendum egestas, magna daahng dawg boofron shiz, ac ma nizzle justo dolor quizzle augue. Crackalackin brizzle elizzle funky fresh amizzle gangsta adipiscing sagittizzle. Vivamizzle sheezy pot ut lacus. Fizzle sheezy nonummy leo. Lorem ipsum dolor sizzle you son of a bizzle, nizzle shit funky fresh. Boom shackalack nisi gangsta, shizznit sizzle fizzle, facilisizzle sizzle, fo shizzle my nizzle mattizzle, libero. Curabitur semper faucibizzle brizzle. Ut yippiyo leo. Nunc sizzle crazy a diam accumsizzle shizzlin dizzle. Quisque condimentizzle metizzle ghetto shizzle my nizzle crocodizzle. Aenizzle sodales, crunk quizzle rizzle lacinia, stuff diam commodo sizzle, nizzle ullamcorpizzle erizzle nisl quis nisi. Pimpin' pot quizzle, aliquet sit away, ornare yo, pulvinizzle pulvinizzle, fo shizzle.
+			</p>-->
+		</div>
+	</div>
+</div>	</div>
+	
+	
+</body></html>

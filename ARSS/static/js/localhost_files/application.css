@@ -151,13 +151,8 @@ input {
   cursor: pointer; }
 
 .error-message {
-  clear: both;
   color: red;
   font-size: 16px; }
-
-.login-container {
-  clear: both;
-  margin-top: 10px; }
 
 .login-container, .register-container {
   -webkit-border-radius: 2px;
@@ -165,6 +160,7 @@ input {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
+  clear: both;
   padding: 10px;
   background-color: #2e2e2e;
   text-align: center; }

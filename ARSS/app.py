@@ -74,13 +74,11 @@ def register():
 		flash(registertry)
 	return redirect(url_for("index"))
 
-@app.route("/logout")
+@app.route("/logout", methods = ['POST'])
 def logout():
 	if "username" in session:
 		session.pop("username")
-		return "success"
-	else:
-		return "ok"
+	return redirect(url_for("index"))
 
 if __name__ == '__main__':
 	#utils.make_story('test1', 'me', False)
