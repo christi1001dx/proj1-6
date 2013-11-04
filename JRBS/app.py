@@ -78,7 +78,7 @@ def posts(page_number):
         if 'username' in session:
             user_id = stuff.getUser()
             return redirect(url_for('posts/user/<user_id>' % user_id))
-        else
+        else:
             page_number = page 
             return redirect(url_for('posts/<page_number>' % page) #don't think this works, but putting it here anyway
 
@@ -90,9 +90,9 @@ def posts():
         return render_template("posts") #so I'll just leave what I was trying to do below.
         #pg = Database(None, page)
         #return render_template("posts", posts = pg.get_posts()) ****get_posts() is from database.py******
-    elif button == "home"
+    elif button == "home":
         return redirect(url_for('posts')
-    else
+    else:
         page_number = page
         return redirect(url_for('posts/<page_number>' % page)
     
@@ -102,9 +102,9 @@ def posts():
     page = request.form["pagenumber"]
     if request.method=="GET":
         return render_template("posts") #same as above
-    elif button == "home"
+    elif button == "home":
         return redirect(url_for('posts')
-    else 
+    else:
         page_number = page
         return redirect(url_for('posts/user/<user_id>/<page_number>' % page))
 
@@ -114,9 +114,9 @@ def posts():
     page = request.form["pagenumber"]
     if request.method=="GET":
         return render_template("posts") # same as above
-    elif button == "home"
+    elif button == "home":
         return redirect(url_for('posts')
-    else
+    else:
         page_number = page
         return redirect(url_for('posts/user/<user_id>/<page_number>'))
 
