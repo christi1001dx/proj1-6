@@ -96,7 +96,7 @@ def post(_id):
 def genre(genre):
     genre = genre.title()
     print genre
-    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts), name = name)
+    return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts), name = session['username'])
 
 @app.route("/logout")
 def logout():
