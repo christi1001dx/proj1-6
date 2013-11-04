@@ -8,13 +8,15 @@ db = MongoClient().db
 
 app = Flask(__name__)
 app.secret_key = 'maroon5'
-utils.addPost("admin","WELCOME!","Other","Please make an account and begin blogging!",db.posts)
+
+if db.posts.count() == 0:
+    utils.addPost("admin","WELCOME!","Other","Please make an account and begin blogging!",db.posts)
 
 @app.route("/")
 def home():
     if 'username'  in session:
 	print utils.getRandPost(db.posts)
-        return render_template("template.index.html", featured = utils.getRandPost(db.posts)[0], sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
+        return render_template("template.index.html", featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
     else:
         return redirect("/login")
 
@@ -57,7 +59,7 @@ def blog(name):
     b = 0
     if session['username'] == name:
 	b = 1
-    return render_template("template.blogposts.html",posts = utils.getPosts(name,db.posts), mypage = b, name = name)
+	return render_template("template.blogposts.html",posts = utils.getPosts(name,db.posts), mypage = b, name = name)
 
 @app.route("/blog/<name>/submit", methods = ["GET","POST"])
 def submit(name):
@@ -90,7 +92,9 @@ def post(_id):
         return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
 
 @app.route("/genre/<genre>")
-def genre():
+def genre(genre):
+    genre = genre.title()
+    print genre
     return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts))
 
 @app.route("/logout")

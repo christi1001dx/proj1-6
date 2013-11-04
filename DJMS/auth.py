@@ -3,11 +3,8 @@ from pymongo import MongoClient
 
 def work():
     client = MongoClient()
-    try:
-        db = clients["DJMSStory"]
-    except:
-        pass
-    return db;
+    db = client["DJMSStory"]       
+    return db
 
 #User Stuf ---------------------------------------------------------------------------
 def register(username, password):

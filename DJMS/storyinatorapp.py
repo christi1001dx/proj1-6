@@ -63,7 +63,7 @@ def story(title = None):
         if button == "Delete":
             delStory(title)
             return redirect("/storylist")
-        if button == "Edit":
+        if button == "Submit":
                 editStory(title, addition)
                 return render_template("story.html")
                 
