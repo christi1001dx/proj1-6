@@ -33,7 +33,7 @@ def checkuser(username):
     if (len(user) == 0):
         return True
     else:
-        return "Username taken. Please pick new username"
+        return False
 
 
 #Story stuff -----------------------------------------------------------------------
