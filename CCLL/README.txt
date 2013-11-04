@@ -1,6 +1,6 @@
 TEAM NAME: RainbowTitans
 
-Goal: 1.Create a blogging website for the Stuyvesant Spectator. 
+Goal: 1.Create a blogging website. 
       2. Allow indepdent users to upload new content to the site, and create individual blogger profiles. 
       3. Create a community for the sharing information in our community
 

@@ -1,12 +1,40 @@
 /*body {
     background-image:url('background1.png');
 }*/
+ul {
+    list-style-type: none;
+    text-indent: 0px;
+    margin:0px;
+    padding: 0px;
+}
+
+li {
+    border-bottom: 1px solid lightgrey
+}
 
 p {
     font-family: Times, sans-serif; 
     font-color:#FFFFFF;
     font-size:200px;
 
+}
+
+a {
+    color:white;
+}
+a:visited {
+    color:white;
+}
+a:hover {
+    color:lightgrey;
+}
+
+h3 {
+    color:lightgrey
+}
+
+h5 {
+    color: lightgrey
 }
 
 body, div, h1, form, fieldset, input, textarea {

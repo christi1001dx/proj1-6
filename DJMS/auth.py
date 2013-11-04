@@ -60,7 +60,7 @@ def printAll():
     storylist = list(db.storyname.find())
     list = []
     for storyname in storlist:
-        list.append(story['title'])
+        list.append(story['storyname'])
     return list
 
 def chkStoryName(name):
