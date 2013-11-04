@@ -1,6 +1,7 @@
+import pymongo
 from pymongo import MongoClient
 
-client = MongoClient(host='localhost',port=27017)
+client = MongoClient()
 db = client.JJJV
 
 users= db.users
