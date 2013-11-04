@@ -51,12 +51,14 @@ def dchangepw(username, password, newpw):
 def getpost(name):
     if not name:
         errorch(0)
+        print(0)
     else:
         found = postcol.find_one({"name":name})
         if not found:
             errorch(4)
+            print(4)
         else:
-            return found["txt"]
+            return found
 
 def getpostid(name): 
     found = postcol.find_one({"name":name})
@@ -88,16 +90,20 @@ def getallposts():
 def newpost(title, txt, date):
     if not title or not txt:
         errorch(0)
+        print(0)
     else:
         found = postcol.find_one({"name": title})
         if found:
             errorch(5)
+            print(5)
         else:
             found = find_one({"num"})
             if not date:
                 postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':date})
+                print("good")
             else:
                 postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':datetime.utcnow()})
+                print("yes")
             postcol.update({"num":found["num"]}, {"$inc": {"num":1}})
             comcol.insert({"id" : found["num"], "coms":[]})
             return 1;
