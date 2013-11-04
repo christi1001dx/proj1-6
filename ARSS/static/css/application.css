@@ -134,8 +134,12 @@ input {
 
 .button {
   display: block;
+  width: 100%;
   padding: 0.1em 0 0.2em;
+  border: none;
   text-align: center;
+  font-family: Oxygen;
+  font-size: 22px;
   background-color: white;
   color: black;
   cursor: pointer; }
