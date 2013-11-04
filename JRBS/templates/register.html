@@ -15,6 +15,23 @@
       </div>
     </div>
 
+    {% if error %}
+      <div class="ui error message"><div class="header">Error</div>
+        {% if error == "missing": %}
+          Missing one or more required fields.
+        {% elif error == "accept terms": %}
+          You must agree to the terms and conditions to create an account.
+        {% elif error == "password mismatch": %}
+          The two passwords do not match.
+        {% elif error == "exists": %}
+          The given user already exists.
+        {% else %}
+          {{error}}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <form action="/signup", method="post">
     <div class="ui form segment">
       <div class="field">
         <label>Username</label>
@@ -38,7 +55,7 @@
       <div class="inline field">
         <div class="ui checkbox">
           <input name="acceptTerms" type="checkbox" id="terms">
-          <label for="terms">I agree to the terms and conditions</label>
+          <label for="terms">I agree to the terms and conditions.</label>
         </div>
       </div>
 
@@ -48,7 +65,8 @@
         <input type="submit" class="ui positive button" value="Create">
       </div>
     </div>
-  </div>
+  </form>
+</div>
 
 </body>
 </html>

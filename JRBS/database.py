@@ -77,7 +77,7 @@ class Database(object):
         if r:
             return "exists"
         r = self._execute("SELECT MAX(user_id) FROM users")
-        user_id = r[0][0] + 1 if r else 1
+        user_id = r[0][0] + 1 if r[0][0] else 1
         pwhash = hashlib.sha256(password).hexdigest()
         self._execute("INSERT INTO users VALUES (?, ?, ?, ?)",
                       user_id, username, display_name, pwhash)

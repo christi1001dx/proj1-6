@@ -36,7 +36,7 @@ def signup():
     password = request.form["password"]
     password_confirm = request.form["passwordConfirm"]
     display_name = request.form["displayName"]
-    box = request.form["acceptTerms"]
+    box = request.form.get("acceptTerms")
     if not username or not password or not password_confirm or not display_name:
         return render_template("register.html", error="missing")
     if not box:

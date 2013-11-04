@@ -18,24 +18,24 @@
     <div class="ui two column middle aligned relaxed grid basic segment">
       <div class="column">
         {% if error %}
-        <div class="ui error message"><div class="header">Error</div>
-        {% if error == "missing": %}
-        Missing one or more required fields.
-        {% elif error == "no user": %}
-        The given user does not exist.
-        {% elif error == "bad password": %}
-        The given password is incorrect.
-        {% else %}
-        {{error}}
+          <div class="ui error message"><div class="header">Error</div>
+            {% if error == "missing": %}
+              Missing one or more required fields.
+            {% elif error == "no user": %}
+              The given user does not exist.
+            {% elif error == "bad password": %}
+              The given password is incorrect.
+            {% else %}
+              {{error}}
+            {% endif %}
+          </div>
         {% endif %}
-      </div>
-      {% endif %}
       <form action="/login", method="post">
         <div class="ui form segment">
           <div class="field">
             <label>Username</label>
             <div class="ui labeled icon input">
-              <input name="name" type="text" placeholder="Username">
+              <input name="name" type="text">
               <i class="user icon"></i>
               <div class="ui corner label">
                 <i class="asterisk icon"></i>
