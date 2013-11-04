@@ -4,9 +4,10 @@ Goal: 1.Create a blogging website for the Stuyvesant Spectator.
       2. Allow indepdent users to upload new content to the site, and create individual blogger profiles. 
       3. Create a community for the sharing information in our community
 
-Roles: 1. Team Leader + Flask Implementation: David Cahn
-       2. Front-end: Jing Lin and Aaron Copa
+Roles: 1. Team Leader + Front End: Jing Lin
+       2. Front-end: Jing Lin and Aaron Coppa
        3. MongoDB/Flask Implementation: Jasper Lu
+       4. Flask Implementation: David Cahn 
 
 PROPOSAL:
 	1. Input Page: HTML Template for text input (title, text, drop down menu for genre, submit buttom, clear button). DATE: 10/24
