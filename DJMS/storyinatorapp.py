@@ -44,6 +44,8 @@ def register():
             return render_template("register.html", message = "Please fill empty fields")
         elif password != confirmpassword:
             return render_template("register.html", message = "Please enter the same passwords.")
+        elif (checkuser(username) == True):
+            return render_template("register.html", message = "Username already taken. Please choose another username.")
         else:
             if(auth.register(username,password)):
                 session["name"] = username    
@@ -79,7 +81,7 @@ def make():
     if request.method == "GET" :
         return render_template("createstory.html")
     else:
-        author = request.form['username'].encode("ascii","ignore")
+        author = 
         password = request.form['password'].encode("ascii","ignore")
         title = request.form['title'].encode("ascii","ignore")
         summary = request.form['summary'].encode("ascii","ignore")
