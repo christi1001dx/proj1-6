@@ -9,10 +9,10 @@
 <body>
 
   <div class="container"> <div class="container">
-      <!--Top Horizontal Menu-->
+       <!--Top Horizontal Menu-->
       <div class="ui transparent inverted fixed main menu">
 	<div class="title item">
-	  <b> Post Page</b>
+	  <b> Welcome to Bloginator!</b>
 	</div>
 	<div class="right menu">
 	  {% if not username %}
@@ -22,7 +22,10 @@
 	  <div class="item">
 	    <div class="ui blue small button">Sign up</div>
 	  </div>
-	  {% endif %}
+	  {%else %}
+	  <div class="title item">
+	    <b> Hello, {{ username }} </b>
+	  </div>
 	  <a class="large item">Help</a>
 	</div>
       </div>
