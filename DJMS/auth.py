@@ -56,6 +56,7 @@ def editStory(name, addition):
 
 def printAll():
     db = work()
+    #storylist = list(db.storyname)
     storylist = list(db.storyname.find())
     list = []
     for storyname in storlist:
