@@ -49,7 +49,10 @@ def make_story():
 		return "login"
 	author = session["username"]
 	title = get_form_value('title')
-	return str(utils.make_story(title, author, False))
+	value = str(utils.make_story(title, author, False))
+	return redirect(url_for("index"))
+
+
 
 @app.route('/login', methods = ['POST'])
 def login():

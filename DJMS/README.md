@@ -25,4 +25,6 @@
 
 ##**3. Timeline**
 
-       Our timeline is still undecided
+       Finish template by 11/2/13(done?)
+       Finish flask stuff by 11/3/13(done?)
+       Add mystory page
