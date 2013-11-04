@@ -80,7 +80,7 @@ def submit(name):
 	else:
 	    return render_template("template.submit.html")
 
-@app.route("/post/<_id>")
+@app.route("/post/<_id>", methods = ["GET","POST"])
 def post(_id):
     name = session['username']
     if request.method=="GET":
@@ -90,8 +90,13 @@ def post(_id):
         button = request.form['button']
         if button == "submit":
             newcomment = request.form['comment'].encode ('ascii',"ignore")
-            finalComments = comments.append (newcomment)
-            utils.addComments (_id,name, finalComments, db.posts)
+            post = utils.getPost(_id, db.posts)[0]
+            try: 
+                currentComments = post.comments
+                finalComments = currentComments.append (newcomment)
+            except:
+                finalComments = newcomment
+            utils.addComment (_id,name, finalComments, db.posts)
             return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
 
 @app.route("/genre/<genre>")
