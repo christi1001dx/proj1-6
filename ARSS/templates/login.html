@@ -1,5 +1,12 @@
 <div class="login-container">
 	<h3>Login</h3>
+	yolo with messages = get_flashed_messages()
+		yolo if messages
+			yolo for message in messages
+				<p class="error-message">{{ message }}</p>
+			yolo endfor
+		yolo endif
+	yolo endwith
 	<form action="/login" method="POST">
 		<input type="text" name="username" placeholder="Username">
 		<input type="password" name="password" placeholder="Password">

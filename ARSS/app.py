@@ -1,10 +1,8 @@
 #!/usr/bin/python
 
-from flask import Flask
-from flask import request, render_template, redirect, session, url_for
+from flask import Flask, request, render_template, redirect, session, url_for, flash
 from bson import json_util
-import utils
-import json
+import utils, json
 
 app = Flask(__name__)
 app.secret_key = "abcd"
@@ -61,9 +59,10 @@ def login():
 		password = get_form_value('password')
 		if (utils.account_exists(username, password)):
 			session["username"] = username
-			return "success,"+username.decode("utf-8")
+			flash("Success!")
 		else:
-			return "fail,"
+			flash("Incorrect username or password.")
+		return redirect(url_for("index"))
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -75,9 +74,10 @@ def register():
 		password2 = get_form_value('password2')
 		registertry = utils.add_user(username, password, password2)
 		if (registertry == "good job"):
-			return "success,"+username.decode("utf-8")
+			flash("Success, "+username.decode("utf-8"))
 		else:
-			return registertry
+			flash(registertry)
+        return redirect(url_for("index"))
 
 @app.route("/logout")
 def logout():
@@ -90,4 +90,5 @@ def logout():
 if __name__ == '__main__':
 	#utils.make_story('test1', 'me', False)
 	#utils.add_line("test line", 'test1', 'me')
+	app.debug = True
 	app.run(host='0.0.0.0')
