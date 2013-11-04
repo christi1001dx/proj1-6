@@ -1,5 +1,3 @@
-#need: layout.html, login.html, register.html
-
 from flask import Flask, render_template, url_for, redirect, request, session
 import utils
 app = Flask(__name__)
@@ -9,6 +7,7 @@ app.secret_key = 'MONGOLIA'
 def get_form_value(key):
     return request.form[key].encode('ascii','ignore')
 
+<<<<<<< HEAD
 def logged_in():
 	if 'username' in session and not username_exists(session['username']):
 		session.pop('username', None)
@@ -17,20 +16,22 @@ def logged_in():
 @app.route('/')
 def home():
     return redirect(url_for('login'))
+=======
+>>>>>>> 68ef7325997e88fb0ddf089ba497bea551febd8b
 @app.route('/login', methods=['GET', 'POST'])
 def login():
         error = None
         if request.method == 'POST':
                 username = get_form_value('username')
                 password = get_form_value('password')
-                if authenticate(username, password):
-                    session['username'] = username
-        else:
-            error = 'Incorrect username or password.'
-            if logged_in():
+                if validate_user(username, password):
+                        session['username'] = username
+                else:
+                        error = 'Incorrect username or password.'
+        if logged_in():
                 return redirect(url_for('blog'))
         return render_template('login.html', title='Login', error=error)
-                
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
@@ -43,12 +44,12 @@ def register():
                 username = get_form_value('username')
                 password = get_form_value('password')
                 password_confirm = get_form_value('password-confirm')
-                if checkUser(username):
+                if username_exists(username):
                         error = 'An account already exists with that username.'
                 elif password != password_confirm:
                         error = 'The two passwords are not equal.'
                 else:
-                        register(username, password)
+                        create_user(username, password)
                         session['username'] = username
         if logged_in():
                 return redirect(url_for('blog'))
@@ -56,7 +57,8 @@ def register():
 
 @app.route('/blog')
 def blog():
-        return render_template('index.html', title='Blog',error=error)
+        if not logged_in():
+                return redirect(url_for('login'))
 
 @app.route('/accounts')
 def accounts():
@@ -67,7 +69,10 @@ def accounts():
         return a
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run(host='0.0.0.0',port=5000)
-    
+        init_auth(app)
+        
+        app.jinja_env.line_statement_prefix = '='
+        app.debug = True
+        app.run(host='0.0.0.0')
+
 

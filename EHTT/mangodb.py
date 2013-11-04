@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from datetime import datetime
-
-
+from erutil import errorch
+from erutil import errorlook
 
 
 #def connect():
@@ -11,55 +11,70 @@ logcol = mangodb.flynn #login collection
 postcol = mangodb.tron #post collection
 comcol = mangodb.clu #comment collection
 
-
 def dlogin(username, password):
     if not username or not password:
-        error = 'err0'
+        errorch(0)
     found = logcol.find_one({"username":username, "password":password}, fields = {'_id':0})
     if not found:
-        error = 'err1'
+        errorch(1)
     elif password != found["password"]:
-        error = 'err2'
+        errorch(2)
     else:
         return found
 
 def dregister(username, password, stat):
     if not username or not password:
-        error = 'err0'
+        errorch(0)
+        print(errorlook())
+        return 0
     found = logcol.find_one({"username":username})
     if found:
-        error = 'err3'
+        errorch(3)
     else:
         logcol.insert({"username":username, "password":password, "type": stat})
+        return 1
+
+def dchangepw(username, password, newpw):
+    if not username or not password or not newpw:
+        errorch(0)
+        return 0
+    found = logcol.find_one({"username":username})
+    if not found:
+        errorch(1)
+    elif password != found["password"]:
+        errorch(2)
+    else:
+        logcol.update({"username":username}, {"password":newpw})
+        return 1
 
 #####################################################################################
 def getpost(name):
     if not name:
-        error = 'err0'
+        errorch(0)
     else:
         found = postcol.find_one({"name":name})
         if not found:
-            error = 'err4'
+            errorch(4)
         else:
             return found["txt"]
 
 def getpostid(name): 
     found = postcol.find_one({"name":name})
     if not found:
-        error = err4
+        errorch(4)
     else:
         return name["id"]
 
 def getcom(clu):
     found = comcol.find_one({"id":clu})
     if not found:
-        error = 'err4'
+        errorch(4)
     else:
         return found["coms"]
 
 def getpostcom(tron):
     if not tron:
-        error = 'err0'
+        errorch(0)
     else:
         return getcom(getpostid(tron))
 
@@ -72,11 +87,11 @@ def getallposts():
 ###################################################################################
 def newpost(mcp, sark):
     if not mcp or not sark:
-        error = 'err0'
+        errorch(0)
     else:
         found = postcol.find_one({"name": mcp})
         if found:
-            error = 'err5'
+            errorch(5)
         else:
             found = find_one({"num"})
             postcol.insert({"name":mcp,"txt":sark, "id":found["num"]})
@@ -86,11 +101,11 @@ def newpost(mcp, sark):
 
 def newcomment(clu, comet, usr):
     if not usr or not comet:
-        error = 'err0'
+        errorch(0)
     else:
         found = comcol.find_one({"id":clu})
         if not found:
-            error = 'err4'
+            errorch(4)
         else:
             comcol.update({"id":clu}, {'$push':{"coms":{"comment":comet,
                                                         "user":usr,
@@ -100,11 +115,11 @@ def newcomment(clu, comet, usr):
 #####################################################################################
 def removepost(name):
     if not name:
-        error = 'err0'
+        errorch(0)
     else:
         found = postcol.find_one({"name": mcp})
         if not found:
-            error = 'err4'
+            errorch(4)
         else:
             comcol.remove({"id":found["id"]}, True)
             postcol.remove({"id":found["id"]}, True)
@@ -112,11 +127,11 @@ def removepost(name):
 
 def removecomment(clu, usr, comet):
     if not usr or not comet or not clu:
-        error = 'err0'
+        errorch(0)
     else:
         found = comcol.find_one({"id":clu})
         if not found:
-            error = 'err4'
+            errorch(4)
         else:
             x = found["coms"]
             for y in x:
