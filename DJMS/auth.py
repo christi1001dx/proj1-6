@@ -30,7 +30,7 @@ def check(username,password):
 def checkuser(username):
     db = work()
     user = [x for x in db.DJMSStory.find({'username':username},fields={'_id':False})]
-    if (len(user) == 0):
+    if (len(user) != 0):
         return True
     else:
         return False
