@@ -43,8 +43,18 @@ body {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    border: 1px white solid;
+}
+
+
 nav ul {
-    list-style: none; overflow: hidden; position: relative;
+    list-style-type: none; overflow: hidden; position: relative;
 }
 
     nav ul li {

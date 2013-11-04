@@ -44,14 +44,16 @@
             </form>  
           
 <div id="Comment">
+		Comments:
             <ul>
+		{% for x in post.comments %}
                 <li>
                 <div>
-		  Comments:
-		{{post.comments}}
+		    <b> {{x[0]}} : </b> {{x[1]}}
                 <br>
                 </div>
                 </li>
+		{% endfor %}
                 <br>
             </ul>
             </div> 

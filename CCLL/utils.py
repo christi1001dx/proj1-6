@@ -10,7 +10,7 @@ def addUser (user, passwd, coll):
     coll.insert({'username': user, 'password': passwd})
 
 def addPost (user, title, genre, text, coll):
-    coll.insert({'username': user, 'date': strftime("%Y-%M-%d %H:%M:%S"), 'title': title, 'genre': genre, 'text': text, 'comments': [ ]})
+    coll.insert({'username': user, 'date': strftime("%Y-%M-%d %H:%M:%S"), 'title': title, 'genre': genre, 'text': text, 'comments': []})
 
 def getPosts (user, coll):
     return [x for x in coll.find({'username':user}).sort([('date',-1)])]
@@ -26,12 +26,11 @@ def getRandPost(coll):
     return r[int(random.random() * coll.count())]
 
 def addComment(_id, user, text, coll):
-    coll.update ( {'_id': ObjectId(_id) }, {"$set": {'comments' : text} } )
-
-def addComment_old(_id, user, text, coll):
-    comments = coll.find({'_id': ObjectId(_id)}).comments
-    comments.append([user,text,coll])
+    comments = getPost(_id, coll)[0]['comments'];
+    comments.insert(0,[user,text])
     coll.update({'_id':ObjectId(_id)},{'$set': {'comments':comments}})
 
 def getComments(_id, coll):
-    getPost (_id, coll)[0].comments
+    l = getPost (_id, coll)[0].comments
+    l.reverse()
+    return l

@@ -90,13 +90,7 @@ def post(_id):
         button = request.form['button']
         if button == "submit":
             newcomment = request.form['comment'].encode ('ascii',"ignore")
-            post = utils.getPost(_id, db.posts)[0]
-            try: 
-                currentComments = post.comments
-                finalComments = currentComments.append (newcomment)
-            except:
-                finalComments = newcomment
-            utils.addComment (_id,name, finalComments, db.posts)
+            utils.addComment (_id, session['username'], newcomment, db.posts)
             return render_template("template.post.html", post = utils.getPost(_id, db.posts)[0])
 
 @app.route("/genre/<genre>")
