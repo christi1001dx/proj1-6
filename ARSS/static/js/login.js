@@ -62,7 +62,7 @@ function add_line(title, line, callback) {
 
 function get_all_stories() {
 	$.get("allstories", function(d) {
-    var allstories = JSON.parse(d);
+    	var allstories = JSON.parse(d);
 	});
 }
 
