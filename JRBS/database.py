@@ -59,7 +59,7 @@ class Database(object):
                     self._create(conn)
             except sqlite3.OperationalError:
                 self._create(conn)
-            return conn.execute(query, *args).fetchall()
+            return conn.execute(query, args).fetchall()
 
     def login(self, username, password):
         """Returns one of "no user", "bad password", "ok"."""
