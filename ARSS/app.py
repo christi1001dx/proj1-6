@@ -18,10 +18,6 @@ env.globals.update(helpers=helpers)
 def get_form_value(key):
 	return request.form[key].encode("ascii", "ignore")
 
-@app.route('/test')
-def test():
-	return render_template('test.html')
-
 @app.route('/story')
 def story_test():
 	return render_template('story_test.html')
@@ -94,6 +90,6 @@ def logout():
 		return "ok"
 
 if __name__ == '__main__':
-	#utils.make_story('test', 'me', False)
-	#utils.add_line("test line", 'test', 'me')
+	#utils.make_story('test1', 'me', False)
+	#utils.add_line("test line", 'test1', 'me')
 	app.run(host='0.0.0.0')
