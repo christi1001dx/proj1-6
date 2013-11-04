@@ -4,7 +4,6 @@ from flask import Flask
 from flask import request, render_template, redirect, session, url_for
 from bson import json_util
 import utils
-import helpers
 import json
 
 app = Flask(__name__)
@@ -17,10 +16,6 @@ env.globals.update(helpers=helpers)
 
 def get_form_value(key):
 	return request.form[key].encode("ascii", "ignore")
-
-@app.route('/test')
-def test():
-	return render_template('test.html')
 
 @app.route('/story')
 def story_test():
@@ -94,6 +89,6 @@ def logout():
 		return "ok"
 
 if __name__ == '__main__':
-	#utils.make_story('test', 'me', False)
-	#utils.add_line("test line", 'test', 'me')
+	#utils.make_story('test1', 'me', False)
+	#utils.add_line("test line", 'test1', 'me')
 	app.run(host='0.0.0.0')

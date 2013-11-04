@@ -82,13 +82,13 @@ def return_all_stories():
     stories = []
     for story in storynames:
         entry={}
-        entry['author'] = story_author(story)
-        entry['numLines'] = story_lines(story)
-        entry['title'] = story
+        entry['author'] = str(story_author(story))
+        entry['numLines'] = str(story_lines(story))
+        entry['title'] = str(story)
         entry['lines'] = ""
         lines = return_all_lines(story)
         for line in lines:
-            entry['lines'] += line['line'] + " "
+            entry['lines'] += line['line'].decode('utf-8') + " "
         stories.append(entry)
     return stories
 

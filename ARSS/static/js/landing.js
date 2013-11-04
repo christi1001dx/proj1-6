@@ -79,7 +79,7 @@ function calcheader() {
 }
 
 var pre = ["","-moz-","-o-","-webkit-","-ms-"];
-$(function() {
+function init() {
 	$.fn.extend({
 		css3 : function(obj) {
 			for(var i in obj) {
@@ -112,7 +112,7 @@ $(function() {
 	
 	$(window).resize(blocks).scroll(blocks).resize();
 	setInterval(showBlocks, 100);
-});
+}
 
 var isopen = false;
 function hideStory() {
