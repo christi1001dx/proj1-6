@@ -38,6 +38,13 @@
 	  <div class="jumbotron">
 	    <h1> Storyinator </h1>
 	    <p> Start by clicking 'new story' in the navbar above! Don't quite feel like writing yet? Read one of the stories by our other members below! </p>
+		<ul>
+		 {% for title in printall() %}
+                        <li>
+                                <a href="{{ title }}">{{ title }}</a>
+                        </li>
+                {% endfor %}
+        	</ul>
 	  </div>
 
 	  
