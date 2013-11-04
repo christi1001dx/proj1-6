@@ -26,13 +26,12 @@ def getRandPost(coll):
     return r[int(random.random() * coll.count())]
 
 def addComment(_id, user, text, coll):
-<<<<<<< HEAD
     coll.update ( {'_id': ObjectId(_id) }, {"$set": {'comments' : text} } )
-=======
+
+def addComment_old(_id, user, text, coll):
     comments = coll.find({'_id': ObjectId(_id)}).comments
     comments.append([user,text,coll])
     coll.update({'_id':ObjectId(_id)},{'$set': {'comments':comments}})
->>>>>>> 861f8f5e1aa8df4ef311ee64f7fae2cd43dc5a07
 
 def getComments(_id, coll):
     getPost (_id, coll)[0].comments
