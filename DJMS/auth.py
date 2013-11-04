@@ -56,8 +56,12 @@ def editStory(name, addition):
 
 def printAll():
     db = work()
-    storylist = list(db.storynames)
-    return storylist
+    #storylist = list(db.storyname)
+    storylist = list(db.storyname.find())
+    list = []
+    for storyname in storlist:
+        list.append(story['title'])
+    return list
 
 def chkStoryName(name):
     db = work()
@@ -76,15 +80,15 @@ def returnAuthor(name):
     data = [x for x in db.DJMSStory.find({'storyname':name},fields={'_id':False})]
     return data['author']
 
-def returnAuthor(name):
+def returnSummary(name):
     db = work()
     data = [x for x in db.DJMSStory.find({'storyname':name},fields={'_id':False})]
     return data['summary']
     
 def returnStory(name):
-    db = work(name)
-    story = db.story.find({'story':story},fields={'_id':False})
-    return story
+    db = work()
+    story = db.story.find({'storyname':name},fields={'_id':False})
+    return story['story']
 
 
            

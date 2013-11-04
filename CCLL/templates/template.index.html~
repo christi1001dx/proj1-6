@@ -18,7 +18,7 @@
                 <br> <br> <br> <br> <br>
                 <a href="/login" class="btn">Login</a>
                 <a href="/register" class="btn">Register</a>
-		<a href="/blog/{{name}}/submit" class="btn">New Post</a>
+                <a href="" class="btn">New Post</a>
             </ul>
         </nav>
     </div>
@@ -34,7 +34,7 @@
             <a id="Title" href={{post.link}}>{{post.title}}</a>
                 <br>
                 {{post.preview}}
-                by {{post.username}}
+                by {{post.author}}
                 {% endfor %}
         </span> 
         <span id="Arts-Ent">
@@ -42,7 +42,7 @@
             <a id="Title" href={{post.link}}>{{post.title}}</a>  
             <br>
                 {{post.preview}}
-                by {{post.username}}
+                by {{post.author}}
                 {% endfor %}
         </span>
     </div>
@@ -52,7 +52,7 @@
             <a id="Title" href={{post.link}}>{{post.title}}</a> 
                 <br>
                 {{post.preview}}
-                by {{post.username}}
+                by {{post.author}}
                 {% endfor %}
         </span> 
         <span id="Humor">
@@ -60,7 +60,7 @@
             <a id="Title" href={{post.link}}>{{post.title}}</a>  
                 <br>
                 {{post.preview}}
-                by {{post.username}}
+                by {{post.author}}
                 {% endfor %}
         </span> 
         <span id="Academics">
@@ -68,7 +68,7 @@
             <a id="Title" href={{post.link}}>{{post.title}}</a>  
                 <br>
                 {{post.preview}}
-                by {{post.username}}
+                by {{post.author}}
                 {% endfor %}
         </span> 
     </div>
