@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, redirect, session, url_for
 from database import User, Post, Comment, Database
 import sqlite3
 
+import database
+
 app = Flask(__name__)
 app.secret_key="JRBS"
 
@@ -60,8 +62,8 @@ def new():
         #possibly create a Post and add it to db? coming back to this later.
         return redirect(url_for('posts'))
 
-@app.route("/posts", methods = ['GET', 'POST'])
-def posts(page_number):
+@app.route("/posts", methods=['GET', 'POST'])
+def posts():
     button = request.form["users"]
     page = request.form["pagenumber"]
     if request.method=="GET":
@@ -75,7 +77,7 @@ def posts(page_number):
             return redirect(url_for('posts/%s' % page)) #don't think this works, but putting it here anyway
 
 @app.route("/posts/<page_number>")
-def posts():
+def posts_page(page_number=1):
     button = request.form["home"]
     page = request.form["pagenumber"]
     if request.method=="GET":           #don't know how to make the page based on pg # here....
@@ -89,7 +91,7 @@ def posts():
         return redirect(url_for('posts/%s' % page))
 
 @app.route("/posts/user/<user_id>")
-def posts():
+def posts_user(user_id):
     button = request.form["home"]
     page = request.form["pagenumber"]
     if request.method=="GET":
@@ -101,7 +103,7 @@ def posts():
         return redirect(url_for('posts/user/%s/%s' % (user, page)))
 
 @app.route("/posts/user/<user_id>/<page_number>")
-def posts():
+def posts_user_page(user_id, page_number=1):
     button = request.form["home"]
     page = request.form["pagenumber"]
     if request.method=="GET":
