@@ -90,7 +90,7 @@ class Database(object):
             results = self._execute(query, user)
         else:
             query = "SELECT * FROM posts JOIN users ON post_user = user_id"
-            results = self._execute(query, user)
+            results = self._execute(query)
         posts = []
         for result in results:
             query = "SELECT * FROM comments JOIN posts ON comment_post = post_id JOIN users ON comment_user = user_id WHERE post_id = ?"

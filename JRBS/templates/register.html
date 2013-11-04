@@ -2,80 +2,53 @@
 <head>
   <meta charset="utf-8">
   <title>Registration</title>
-
-  <link rel="stylesheet" link href="CSS/semantic.min.css" type="text/css"/>
-  <link rel="stylesheet" link href="CSS/style.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" class="ui" href="/static/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
 
   <div class="container"> <div class="container">
     <!--Top Horizontal Menu-->
-    <div class="ui transparent inverted fixed main menu">
+    <div class="ui transparent inverted main menu">
       <div class="title item">
-	<b> Welcome to Bloginator!</b>
-      </div>
-      <div class="right menu">
-	{% if not username %}
-	<div class="item">
-	  <div class="ui small button">Login</div>
-	</div>
-	<div class="item">
-	  <div class="ui blue small button">Sign up</div>
-	</div>
-	{% endif %}
-	<a class="large item">Help</a>
+        <b> Welcome to Bloginator!</b>
       </div>
     </div>
 
-    <div class="ui form segment"> 
-    <h1>Register Now</h1> 
-      <div class="two fields">
-	<div class="field">
-	  <label>First Name</label>
-	  <input placeholder="First Name" type="text">
-	</div>
-	<div class="field">
-	  <label>Last Name</label>
-	  <input placeholder="Last Name" type="text">
-	</div>
+    <div class="ui form segment">
+      <div class="field">
+        <label>Username</label>
+        <input name="name" type="text">
       </div>
       <div class="field">
-	<label for="Username">Username</label>
-	<input id="Username" placeholder="Username" type="text">
+        <label>Display Name</label>
+        <input name="displayName" type="text">
       </div>
 
       <div class="field">
-	<label for="Email">Email</label>
-	<input id="Email" placeholder="Email" type="text">
-      </div>
-      
-      <div class="field">
-	<label for="Password">Password</label>
-	<input id="Password" type="password">
+        <label>Password</label>
+        <input name="password" type="password">
       </div>
 
       <div class="field">
-	<label for="PasswordConfirm">Password Confirm</label>
-	<input id="PasswordConfirm" type="password">
+        <label>Confirm Password</label>
+        <input name="passwordConfirm" type="password">
       </div>
 
-      
       <div class="inline field">
         <div class="ui checkbox">
-          <input type="checkbox" id="terms">
-          <label for="terms"></label>
+          <input name="acceptTerms" type="checkbox" id="terms">
+          <label for="terms">I agree to the terms and conditions</label>
         </div>
-        <label>I agree to the terms and conditions</label>
       </div>
-      
+
       <div class="ui buttons">
-	<div class="ui button">Cancel</div>
-	<div class="or"></div>
-	<div class="ui positive button">Submit</div>
-      </div> 
+        <a class="ui button" href="/signup">Cancel</a>
+        <div class="or"></div>
+        <input type="submit" class="ui positive button" value="Create">
+      </div>
     </div>
   </div>
 
 </body>
-
 </html>
