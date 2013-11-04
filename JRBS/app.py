@@ -6,46 +6,42 @@ import database
 
 app = Flask(__name__)
 app.secret_key="JRBS"
+database = Database("database.db")
 
 @app.route("/")
 def home():
-    return redirect(url_for('posts'))
+    return redirect("/posts")
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method=="GET":
+    if request.method == "GET":
         return render_template("login.html")
-    else:
-        username = request.form["name"].encode("ascii", "ignore")
-        password = request.form["password"].encode("ascii", "ignore")
-        verify = Database(name, password) #not sure if this is the correct way of calling Database
-        answer = verify.login() #http://stackoverflow.com/questions/7965114/calling-a-function-from-class-in-python-different-way
-        if not answer == "ok": #used ^^^^^^ to try and help with this.
-            return render_template("login.html", message = "Username does not exist or incorrect user/pw combination.")
-        else:
-            redirect(url_for('posts'))
+    username = request.form["name"]
+    password = request.form["password"]
+    answer = database.login(username, password)
+    if answer == "ok":
+        session["username"] = username
+        return redirect("/posts")
+    return render_template("login.html", error=answer)
 
-@app.route("/signup")
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
-    if request.method=="GET":
+    if request.method == "GET":
         return render_template("register.html")
-    else:
-        username = request.form["name"].encode("ascii", "ignore")
-        password1 = request.form["password1"].encode("ascii", "ignore")
-        password2 = request.form["password2"].encode("ascii", "ignore")
-        displayname = request.form["displayname"].encode("ascii","ignore")
-        button = request.form["button"]
-        box = request.form["acceptTerms"]
-        if button == "Register":
-            if not box:
-                return render_template("register.html", message = "Please accept the terms and conditions.")
-            elif not password1 == password2:
-                return render_template("register.html", message = "Your passwords do not match!")
-            elif stuff.check(username) : #check should return true if  username is not found, false otherwise
-                session["name"] = username
-                add = Database(username, displayname, password) #same problem as with login; don't know if this
-                add.register()  #is the correct way of calling Database, so I'll just leave this in place for now.
-                return redirect(url_for('posts'))
+    username = request.form["name"]
+    password = request.form["password"]
+    password_confirm = request.form["passwordConfirm"]
+    display_name = request.form["displayname"]
+    box = request.form["acceptTerms"]
+    if not box:
+        return render_template("register.html", error="accept terms")
+    if password != password_confirm:
+        return render_template("register.html", error="password mismatch")
+    answer = database.register(username, display_name, password)
+    if answer == "ok":
+        session["username"] = username
+        return redirect("/posts")
+    return render_template("register.html", error=answer)
 
 @app.route("/new")
 def new():
@@ -62,7 +58,7 @@ def new():
         #possibly create a Post and add it to db? coming back to this later.
         return redirect(url_for('posts'))
 
-@app.route("/posts", methods=['GET', 'POST'])
+@app.route("/posts")
 def posts():
     button = request.form["users"]
     page = request.form["pagenumber"]
