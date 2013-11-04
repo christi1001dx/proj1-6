@@ -19,11 +19,11 @@
       <div class="column">
         {% if error %}
           <div class="ui error message"><div class="header">Error</div>
-            {% if error == "missing": %}
+            {% if error == "missing" %}
               Missing one or more required fields.
-            {% elif error == "no user": %}
+            {% elif error == "no user" %}
               The given user does not exist.
-            {% elif error == "bad password": %}
+            {% elif error == "bad password" %}
               The given password is incorrect.
             {% else %}
               {{error}}

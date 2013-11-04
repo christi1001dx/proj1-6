@@ -17,13 +17,13 @@
 
     {% if error %}
       <div class="ui error message"><div class="header">Error</div>
-        {% if error == "missing": %}
+        {% if error == "missing" %}
           Missing one or more required fields.
-        {% elif error == "accept terms": %}
+        {% elif error == "accept terms" %}
           You must agree to the terms and conditions to create an account.
-        {% elif error == "password mismatch": %}
+        {% elif error == "password mismatch" %}
           The two passwords do not match.
-        {% elif error == "exists": %}
+        {% elif error == "exists" %}
           The given user already exists.
         {% else %}
           {{error}}
