@@ -17,7 +17,7 @@ def home():
     if 'username'  in session:
         username = session ['username']
 	print utils.getRandPost(db.posts)
-        return render_template("template.index.html", featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts), name = session['username'])
+        return render_template("template.index.html", user = username, featured = utils.getRandPost(db.posts), sports = utils.getPostsGenre("Sports",db.posts), arts = utils.getPostsGenre("Arts",db.posts),opinions= utils.getPostsGenre("Opinion",db.posts),humor = utils.getPostsGenre("Humor",db.posts),academics = utils.getPostsGenre("Academics",db.posts))
     else:
         return redirect("/login")
 
@@ -95,6 +95,7 @@ def post(_id):
 @app.route("/genre/<genre>")
 def genre(genre):
     genre = genre.title()
+    name = session['username']
     print genre
     return render_template("template.genre.html", genre = genre, posts = utils.getPostsGenre(genre, db.posts), name = session['username'])
 
@@ -104,4 +105,4 @@ def logout():
 
 if __name__=="__main__":
     app.debug=True
-    app.run(host='0.0.0.0',port=80)
+    app.run(host='0.0.0.0',port=5000)
