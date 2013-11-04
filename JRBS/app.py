@@ -35,7 +35,7 @@ def signup():
         button = request.form["button"]
         box = request.form["acceptTerms"]
         if button == "Register":
-            if not box:                
+            if not box:
                 return render_template("register.html", message = "Please accept the terms and conditions.")
             elif not password1 == password2:
                 return render_template("register.html", message = "Your passwords do not match!")
@@ -44,7 +44,7 @@ def signup():
                 add = Database(username, displayname, password) #same problem as with login; don't know if this
                 add.register()  #is the correct way of calling Database, so I'll just leave this in place for now.
                 return redirect(url_for('posts'))
-        
+
 @app.route("/new")
 def new():
     button1 = request.form["cancel"]
@@ -60,14 +60,6 @@ def new():
         #possibly create a Post and add it to db? coming back to this later.
         return redirect(url_for('posts'))
 
-#@app.route("/archive")
-#def archive():                     ****don't really see the difference b/w this and /posts, so will
-#    if request.method=="GET":        comment this out for now******
-#        return render_template
-
-#@app.route("/admin") ******leaving this blank for now. saving for later.*****
-#def admin(): *****admin should be able to delete posts and stuff here****
-
 @app.route("/posts", methods = ['GET', 'POST'])
 def posts(page_number):
     button = request.form["users"]
@@ -77,10 +69,10 @@ def posts(page_number):
     elif button:
         if 'username' in session:
             user_id = stuff.getUser()
-            return redirect(url_for('posts/user/<user_id>' % user_id))
+            return redirect(url_for('posts/user/%s' % user_id))
         else:
-            page_number = page 
-            return redirect(url_for('posts/<page_number>' % page) #don't think this works, but putting it here anyway
+            page_number = page
+            return redirect(url_for('posts/%s' % page)) #don't think this works, but putting it here anyway
 
 @app.route("/posts/<page_number>")
 def posts():
@@ -91,11 +83,11 @@ def posts():
         #pg = Database(None, page)
         #return render_template("posts", posts = pg.get_posts()) ****get_posts() is from database.py******
     elif button == "home":
-        return redirect(url_for('posts')
+        return redirect(url_for('posts'))
     else:
         page_number = page
-        return redirect(url_for('posts/<page_number>' % page)
-    
+        return redirect(url_for('posts/%s' % page))
+
 @app.route("/posts/user/<user_id>")
 def posts():
     button = request.form["home"]
@@ -103,10 +95,10 @@ def posts():
     if request.method=="GET":
         return render_template("posts") #same as above
     elif button == "home":
-        return redirect(url_for('posts')
+        return redirect(url_for('posts'))
     else:
         page_number = page
-        return redirect(url_for('posts/user/<user_id>/<page_number>' % page))
+        return redirect(url_for('posts/user/%s/%s' % (user, page)))
 
 @app.route("/posts/user/<user_id>/<page_number>")
 def posts():
@@ -115,17 +107,17 @@ def posts():
     if request.method=="GET":
         return render_template("posts") # same as above
     elif button == "home":
-        return redirect(url_for('posts')
+        return redirect(url_for('posts'))
     else:
         page_number = page
-        return redirect(url_for('posts/user/<user_id>/<page_number>'))
+        return redirect(url_for('posts/user/%s/%s' % (user, page)))
 
 @app.route("/logout")
 def logout():
     if 'username' in session:
         session.pop('username', None)
     return redirect('posts')
-    
+
 if __name__=="__main__":
     app.debug=True
     app.run()
