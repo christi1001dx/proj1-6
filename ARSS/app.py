@@ -4,7 +4,6 @@ from flask import Flask
 from flask import request, render_template, redirect, session, url_for
 from bson import json_util
 import utils
-import helpers
 import json
 
 app = Flask(__name__)
