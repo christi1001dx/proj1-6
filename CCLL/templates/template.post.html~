@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>{{post.title}}</title>
+        <link href="../static/PostStyle.css" rel="stylesheet" type="text/css" media="screen"/>
+    </head>
+    <body>
+    <div id="NavigationMenu">
+        <nav>
+            <ul>
+                <li><a href="/genre/sports"><span>SPORTS</span></a></li>
+                <li><a href="/genre/sports"><span>ARTS/ENT</span></a></li>
+                <li><a href="/genre/opinion"><span>OPINION</span></a></li>
+                <li><a href="/genre/humor"><span>HUMOR</span></a></li>
+                <li><a href="/genre/academics"><span>ACADEMICS</span></a></li>
+		<li><a href="/"><span>HOME</span></a></li>
+                <br> <br> <br> <br> <br>
+                <a href="/login" class="btn">Login</a>
+                <a href="/register" class="btn">Register</a>
+		<a href="/blog/{{name}}/submit" class="btn">New Post</a>
+            </ul>
+        </nav>
+    </div>
+        <br> <br>
+        <span id="LEFT">
+            <span id="Title">
+                {{post.title}}
+            </span>
+            <br>
+            <span id="Post">
+                <span id="Content">
+                    {{post.text}}
+                </span>
+                <br>
+                <span id="Author">
+                    By {{post.username}}
+                </span>
+            </span>
+            
+            
+            <form method="POST" id="Sub">
+                <span>Enter your comment below</span>
+                <textarea name="comment"></textarea>
+                <input type="submit" name="button" value="submit"></input>
+            </form>
+            <div id="Comment">
+            <ul>
+                <li>
+                <div> 
+                <br>
+                </div>
+                </li>
+                <br>
+            </ul>
+            </div> 
+        </span>
+        <span id="RIGHT">
+        </span>
+    </body>
+</html>
