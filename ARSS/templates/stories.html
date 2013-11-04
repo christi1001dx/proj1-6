@@ -1,15 +1,19 @@
 <script>
 	var stories = [];
-	for(var i=0;i<23;i++) {
-		var li = loremipsum[Math.floor(Math.random()*loremipsum.length)];
-		var ind = Math.floor(Math.random()*50);
-		stories.push({
-			edits : 1 + Math.floor(Math.random()*30),
-			title : li.substring(ind, ind+25),
-			author : authors[Math.floor(Math.random()*authors.length)],
-			text : li
-		});
-	}
+	get_all_stories(function(d) {
+		rawstories = JSON.parse(d);
+		for (var i = 0; i < rawstories.length; i++) {
+			var obj = rawstories[i];
+			stories.push({
+				edits: obj["numLines"],
+				title: obj["title"],
+				author: obj["author"],
+				text: obj["lines"]
+			});
+		}
+		init();
+	});
+	
 </script>
 <header class="">
 	<div class="middle t2">

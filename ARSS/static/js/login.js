@@ -61,4 +61,9 @@ function add_line(title, line, callback) {
 }
 
 
+function get_all_stories(callback) {
+    $.get("allstories", callback);
+}
+
+
 
