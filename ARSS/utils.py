@@ -74,7 +74,7 @@ def add_line(line, title, user):
 
 def return_all_lines(title):
     db = mongo_init()
-    lineslist = db.lines.find({'story':title})
+    lineslist = list(db.lines.find({'story':title}))
     return lineslist
 
 def return_all_stories():

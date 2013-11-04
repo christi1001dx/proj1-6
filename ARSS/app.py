@@ -31,7 +31,7 @@ def index():
 
 @app.route('/story/<name>', methods = ['GET'])
 def get_story(name):
-    print json.dumps(utils.return_all_lines(name))
+    print json.dumps(list((utils.return_all_lines(name))))
     return 'hi'
 
 @app.route('/addline', methods=['POST'])
