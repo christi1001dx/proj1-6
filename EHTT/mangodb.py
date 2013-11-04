@@ -94,7 +94,7 @@ def newpost(title, txt, date):
             errorch(5)
         else:
             found = find_one({"num"})
-            if !date:
+            if not date:
                 postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':date})
             else:
                 postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':datetime.utcnow()})
