@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 def work():
     client = MongoClient()
-    db = clients["DJMSStory"]       
+    db = client["DJMSStory"]       
     return db
 
 #User Stuf ---------------------------------------------------------------------------
