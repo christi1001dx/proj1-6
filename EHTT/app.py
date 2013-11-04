@@ -8,10 +8,11 @@ app.secret_key = "abcd"
 
 @app.route("/")
 def index():
+    d = mangodb.getallposts();
     if 'username' in session:
-        return render_template("index.html",username = session["username"])
+        return render_template("index.html",username = session["username"],d=d)
     else:
-        return render_template("index.html")
+        return render_template("index.html",d=d)
 
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
@@ -76,7 +77,8 @@ def createpost():
     else:
         name = request.form["title"]
         text = request.form["post"]
-        mangodb.newpost(name, text)
+        date = request.form["date"]
+        mangodb.newpost(name, text, date)
         return redirect("/", username = session["username"])
 
 @app.route("/removepost")
@@ -111,11 +113,13 @@ def comment(post_name):
     else: 
         if 'username' in session:
             text = request.form["text"]
-            mangodb.newcomment(mangodb.getpostid(post_name), text, session["username"])
+            date = request.form["date"]
+            mangodb.newcomment(mangodb.getpostid(post_name), text, session["username"], date)
             return redirect("/posts/<post_name>")
         else:
             text = request.form["text"]
-            mangodb.newcomment(mangodb.getpostid(post_name), text, "Anonymous")
+            date = request.form["date"]
+            mangodb.newcomment(mangodb.getpostid(post_name), text, "Anonymous", date)
             return redirect("/posts/<post_name>")
 
 if __name__ == "__main__":
