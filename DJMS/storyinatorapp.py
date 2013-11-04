@@ -74,8 +74,7 @@ def storylist():
     if request.method == "GET":
         return render_template("home.html")
     else:
-        return for i in len(printall()):
-                printall.pop()
+        return printall()
 
     
 @app.route("/createstory", methods = ["GET", "POST"])
