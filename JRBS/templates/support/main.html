@@ -4,8 +4,9 @@
     <div class="ui one column page grid">
         <!-- Main Menu -->
         <div class="ui inverted menu">
-            <a class="title item" href="/"><b>Bloginator</b></a>
-            <div class="right menu">
+            <a class="item" href="/"><i class="home icon"></i> <b>Bloginator</b></a>
+            <div style="float: right;">
+                <div class="item"></div>
                 {% if "username" not in session %}
                     <div class="item">
                         <a class="ui black button" href="/login">Login</a>
@@ -14,8 +15,8 @@
                         <a class="ui button blue" href="/signup">Sign up</a>
                     </div>
                 {% else %}
-                    <div class="title item">
-                        <b>Hello, {{session["username"]}}!</b>
+                    <div class="item">
+                        Hello, {{session["username"]}}!
                     </div>
                     <div class="item">
                         <a class="ui black button" href="/logout">Logout</a>
