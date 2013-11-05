@@ -30,23 +30,23 @@ def login():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "GET":
-        return render_template("register.html")
+        return render_template("signup.html")
     username = request.form["name"]
     password = request.form["password"]
     confirm = request.form["passwordConfirm"]
     display_name = request.form["displayName"]
     box = request.form.get("acceptTerms")
     if not username or not password or not confirm or not display_name:
-        return render_template("register.html", error="missing")
+        return render_template("signup.html", error="missing")
     if not box:
-        return render_template("register.html", error="accept terms")
+        return render_template("signup.html", error="accept terms")
     if password != confirm:
-        return render_template("register.html", error="password mismatch")
+        return render_template("signup.html", error="password mismatch")
     answer = database.register(username, display_name, password)
     if answer == "ok":
         session["username"] = username
         return redirect("/posts")
-    return render_template("register.html", error=answer)
+    return render_template("signup.html", error=answer)
 
 @app.route("/posts")
 @app.route("/posts/<page>")

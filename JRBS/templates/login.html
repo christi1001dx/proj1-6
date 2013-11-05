@@ -1,71 +1,66 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Login</title>
-  <link rel="stylesheet" type="text/css" class="ui" href="/static/semantic.min.css">
-  <link rel="stylesheet" type="text/css" href="/static/style.css">
-</head>
+{% extends "support/base.html" %}
+{% block title %} Login {% endblock %}
+{% block content %}
 
-<body>
-  <div class="container">
-    <!--Top Horizontal Menu-->
+    <!-- Main Menu -->
     <div class="ui transparent inverted main menu">
-      <div class="title item">
-        <b> Welcome to Bloginator!</b>
-      </div>
-    </div>
-    <div class="ui two column middle aligned relaxed grid basic segment">
-      <div class="column">
-        {% if error %}
-          <div class="ui error message"><div class="header">Error</div>
-            {% if error == "missing" %}
-              Missing one or more required fields.
-            {% elif error == "no user" %}
-              The given user does not exist.
-            {% elif error == "bad password" %}
-              The given password is incorrect.
-            {% else %}
-              {{error}}
-            {% endif %}
-          </div>
-        {% endif %}
-      <form action="/login", method="post">
-        <div class="ui form segment">
-          <div class="field">
-            <label>Username</label>
-            <div class="ui labeled icon input">
-              <input name="name" type="text">
-              <i class="user icon"></i>
-              <div class="ui corner label">
-                <i class="asterisk icon"></i>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <div class="ui labeled icon input">
-              <input name="password" type="password">
-              <i class="lock icon"></i>
-              <div class="ui corner label">
-                <i class="asterisk icon"></i>
-              </div>
-            </div>
-          </div>
-          <input type="submit" class="ui blue submit button" value="Login">
+        <div class="title item">
+            <b>Bloginator</b>
         </div>
-      </form>
     </div>
-    <div class="ui vertical divider">
-      Or
-    </div>
-    <div class="center aligned column">
-      <a class="huge green ui labeled icon button" href="/signup">
-        <i class="signup icon"></i>Sign Up
-      </a>
-    </div>
-  </div>
-</div>
-</body>
 
-</html>
+    <div class="ui two column middle aligned relaxed grid basic segment">
+        <div class="column">
+            {% if error %}
+                <!-- Error Box -->
+                <div class="ui error message">
+                    <div class="header">Error</div>
+                    {% if error == "missing" %}
+                        Missing one or more required fields.
+                    {% elif error == "no user" %}
+                        The given user does not exist.
+                    {% elif error == "bad password" %}
+                        The given password is incorrect.
+                    {% else %}
+                        {{error}}
+                    {% endif %}
+                </div>
+            {% endif %}
+            <!-- Login Form -->
+            <form action="/login", method="post">
+                <div class="ui form segment">
+                    <div class="field">
+                        <label>Username</label>
+                        <div class="ui labeled icon input">
+                            <input name="name" type="text" />
+                            <i class="user icon"></i>
+                            <div class="ui corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <div class="ui labeled icon input">
+                            <input name="password" type="password" />
+                            <i class="lock icon"></i>
+                            <div class="ui corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="ui blue submit button" value="Login" />
+                </div>
+            </form>
+        </div>
+        <div class="ui vertical divider">
+            Or
+        </div>
+        <div class="center aligned column">
+            <a class="huge green ui labeled icon button" href="/signup">
+                <i class="signup icon"></i> Sign Up
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

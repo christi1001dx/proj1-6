@@ -1,66 +1,37 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>New Post</title>
-  <link rel="stylesheet" type="text/css" class="ui" href="/static/semantic.min.css">
-  <link rel="stylesheet" type="text/css" href="/static/style.css">
-</head>
-<body>
-  <div class="container">
-     <!--Top Horizontal Menu-->
-      <div class="ui transparent inverted main menu">
-         <div class="title item">
-           <b> Welcome to Bloginator!</b>
-       </div>
-       <div class="right menu">
-           {% if "username" not in session %}
-           <div class="item">
-             <a class="ui button black" href="/login">Login</a>
-         </div>
-         <div class="item">
-             <a class="ui blue button" href="/signup">Sign up</a>
-         </div>
-         {% else %}
-         <div class="title item">
-             <b> Hello, {{ session["username"] }} </b>
-         </div>
-         <div class="item">
-             <a class="ui button blue" href="/logout">Logout</a>
-         </div>
-         {% endif %}
-     </div>
- </div>
+{% extends "support/main.html" %}
+{% block title %} Posts {% endblock %}
+{% block content %}
 
+    {{ super() }}
     {% if error %}
-      <div class="ui error message"><div class="header">Error</div>
-        {% if error == "incomplete" %}
-          Missing one or more required fields.
-        {% else %}
-          {{error}}
-        {% endif %}
-      </div>
+        <!-- Error Box -->
+        <div class="ui error message">
+            <div class="header">Error</div>
+            {% if error == "incomplete" %}
+                Missing one or more required fields.
+            {% else %}
+                {{error}}
+            {% endif %}
+        </div>
     {% endif %}
 
-<form action="/new", method="post">
-<div class="ui form segment">
-    <h1>New Post</h1>
-    <div class="field">
-      <label>Title</label>
-      <input name="title" type="text">
-  </div>
-  <div class="field">
-      <label>Content</label>
-      <textarea name="content"></textarea>
-  </div>
-  <div class="ui buttons">
-    <a class="ui button" href="/new">Cancel</a>
-    <div class="or"></div>
-    <input type="submit" class="ui positive button" value="Create">
-  </div>
-</form>
-</div>
+    <form action="/new", method="post">
+        <div class="ui form segment">
+            <h1>New Post</h1>
+            <div class="field">
+                <label>Title</label>
+                <input name="title" type="text" />
+            </div>
+            <div class="field">
+                <label>Content</label>
+                <textarea name="content"></textarea>
+            </div>
+            <div class="ui buttons">
+                <a class="ui button" href="/new">Cancel</a>
+                <div class="or"></div>
+                <input type="submit" class="ui positive button" value="Create" />
+            </div>
+        </div>
+    </form>
 
-</body>
-
-</html>
+{% endblock %}

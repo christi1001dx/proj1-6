@@ -114,7 +114,7 @@ class Database(object):
         posts = []
         for result in results:
             comments = self._get_comments_for_post(result[0])
-            posts.append(Post(result[0], result[1], result[8], result[3],
+            posts.append(Post(result[0], result[1], result[9], result[3],
                               result[6], result[4], result[5], comments))
         return posts
 
@@ -126,7 +126,7 @@ class Database(object):
             return None
         result = results[0]
         comments = self._get_comments_for_post(result[0])
-        return Post(result[0], result[1], result[8], result[3],
+        return Post(result[0], result[1], result[9], result[3],
                           result[6], result[4], result[5], comments)
 
     def create_post(self, title, content, author):
