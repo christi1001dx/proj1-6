@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 
 from flask import Flask, request, render_template, redirect, session, url_for
-from database import User, Post, Comment, Database
 import sqlite3
 
-import database
+from database import Database
 
 app = Flask(__name__)
 app.secret_key="JRBS"
@@ -67,19 +66,20 @@ def logout():
     session.pop("username", None)
     return redirect("/posts")
 
-# @app.route("/new")
-# def new():
-#     button1 = request.form["cancel"]
-#     button2 = request.form["submit"]
-#     title = request.form["title"]
-#     post = request.form["post"]
-#     if request.method=="GET":
-#         return render_template("new.html")
-#     elif button1:
-#         return redirect(url_for('posts'))
-#     elif button2:
-#         stuff.add(title, post)
-#         return redirect(url_for('posts'))
+@app.route("/new", methods=["GET", "POST"])
+def new():
+    if "username" not in session:
+        return redirect("/login")
+    if request.method == "GET":
+        return render_template("new.html")
+    title = request.form["title"]
+    content = request.form["content"]
+    if not title or not content:
+        return render_template("new.html", error="incomplete")
+    answer = database.create_post(title, content, session["username"])
+    if answer == "ok":
+        return redirect("/posts")
+    return render_template("new.html", error=answer)
 
 # @app.route("/admin")
 # def admin():
