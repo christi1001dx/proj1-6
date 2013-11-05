@@ -124,6 +124,7 @@ class Database(object):
         results = self._execute(query, postid)
         if not results:
             return None
+        result = results[0]
         comments = self._get_comments_for_post(result[0])
         return Post(result[0], result[1], result[8], result[3],
                           result[6], result[4], result[5], comments)
@@ -138,3 +139,4 @@ class Database(object):
         slug = re.sub(r"[\W_]", "-", title.lower(), flags=re.UNICODE)[:50]
         self._execute("INSERT INTO posts VALUES (?, ?, ?, ?, ?, ?, ?)", postid,
                       title, user, date, content, summary, slug)
+        return "ok"

@@ -58,8 +58,10 @@ def posts(user=None, page=1):
 
 @app.route("/post/<post_id>")
 @app.route("/post/<post_id>/<post_title>")
-def post(postid, title=None):
-    return render_template("post.html", post=database.get_post(postid))
+def post(post_id=None, post_title=None):
+    if not post_id:
+        return redirect("/posts")
+    return render_template("post.html", post=database.get_post(post_id))
 
 @app.route("/logout")
 def logout():

@@ -35,26 +35,11 @@
 
 <!-- Post Box-->
 <div class="ui piled segment">
-	{% for post in posts %}
-	<div class="ui blue segment">
-       <h1><a href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h1>
+    <div class="ui blue segment">
+       <h1>{{post.title}}</h1>
        <h2>{{post.author}}</h2>
        <p>{{post.content}}</p>
    </div>
-   {% endfor %}
-</div>
-
-<!--Bottom Menu-->
-<div class="ui borderless pagination menu">
-	<div class="bottom menu">
-       <a class="item">
-         <i class="icon left arrow"></i> Previous
-     </a>
-     <a class="item">1</a>
-     <a class="item">
-         Next <i class="icon right arrow"></i>
-     </a>
- </div>
 </div>
 
 </div>
