@@ -24,9 +24,8 @@ def _find_story(title):
 def _get_field(title, key):
 	return _find_story(title)[key]
 
-
 def story_exists(title):
-	return db.stories.find({'title': title}).limit(1).count(True) > 0
+	return db.stories.find({'title': title}, limit=1).count(True) > 0
 
 def story_author(title):
 	return _get_field(title, 'author')
@@ -37,17 +36,17 @@ def story_anonymous(title):
 def story_lines(title):
 	return _get_field(title, 'lines')
 
-
 def make_story(title, author=None):
-	if not story_exists(title):
-		db.stories.insert({
+	exists = story_exists(title)
+	if not exists:
+		story = {
 			'_id': _get_next_seq('story_id'),
 			'title': title,
 			'author': author,
 			'lines': 0
-		})
-		return True
-	return False
+		}
+		db.stories.insert(story)
+	return exists
 
 def delete_story(title):
 	return db.stories.remove({'title': title})['n'] > 0
@@ -56,11 +55,7 @@ def increment_lines(title):
 	db.stories.update({'title': title}, {'$inc': {'lines': 1}})
 
 def list_of_stories():
-	stories = list(db.stories.find())
-	storieslist = []
-	for story in stories:
-		storieslist.append(story['title'])
-	return storieslist
+	return [story['title'] for story in db.stories.find()]
 
 ###### LINE FUNCTIONS ######
 
@@ -178,3 +173,4 @@ if __name__ == '__main__':
 		print '\t' + str(x)
 	print '\t' + str(db.counters.find_one({'_id': 'story_id'}))
 
+	print list_of_stories()
