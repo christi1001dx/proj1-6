@@ -2,8 +2,8 @@
 {% block title %} New Post {% endblock %}
 {% block content %}
 
+    <!-- Error Box -->
     {% if error %}
-        <!-- Error Box -->
         <div class="ui error message">
             <div class="header">Error</div>
             {% if error == "incomplete" %}
@@ -13,24 +13,30 @@
             {% endif %}
         </div>
     {% endif %}
-
-    <form action="/new", method="post">
-        <div class="ui form segment">
-            <div class="ui header">New Post</div>
+    <div class="ui form segment">
+        <form action="/new", method="post">
+            <h2 class="ui header">New Post</h2>
             <div class="field">
                 <label>Title</label>
-                <input name="title" type="text" />
+                <div class="ui left labeled icon input">
+                    <input name="title" type="text" />
+                    <i class="text file outline icon"></i>
+                    <div class="ui corner label"><i class="asterisk icon"></i></div>
+                </div>
             </div>
             <div class="field">
                 <label>Content</label>
-                <textarea name="content"></textarea>
-            </div>
-                <div class="ui buttons">
-                    <input type="submit" class="ui positive button" value="Create" />
-                    <div class="or"></div>
-                    <a class="ui button" href="/">Cancel</a>
+                <div class="ui labeled input">
+                    <textarea name="content"></textarea>
+                    <div class="ui corner label"><i class="asterisk icon"></i></div>
                 </div>
-        </div>
-    </form>
+            </div>
+            <div class="ui buttons">
+                <input type="submit" class="ui positive button" value="Create" />
+                <div class="or"></div>
+                <a class="ui button" href="/">Cancel</a>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}
