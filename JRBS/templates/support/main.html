@@ -1,0 +1,28 @@
+{% extends "support/base.html" %}
+{% block content %}
+
+    <!-- Main Menu -->
+    <div class="ui transparent inverted main menu">
+        <div class="title item">
+            <b>Bloginator</b>
+        </div>
+        <div class="right menu">
+            {% if "username" not in session %}
+                <div class="item">
+                    <a class="ui button" href="/login">Login</a>
+                </div>
+                <div class="item">
+                    <a class="ui button blue" href="/signup">Sign up</a>
+                </div>
+            {% else %}
+                <div class="title item">
+                    <b>Hello, {{session["username"]}}!</b>
+                </div>
+                <div class="item">
+                    <a class="ui button" href="/logout">Logout</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

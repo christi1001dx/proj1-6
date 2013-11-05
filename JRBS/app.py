@@ -56,7 +56,7 @@ def posts(user=None, page=1):
     if page < 1:
         page = 1
     posts = database.get_posts(user=user, page=page)
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", page=page, posts=posts)
 
 @app.route("/post/<postid>")
 @app.route("/post/<postid>/<title>")

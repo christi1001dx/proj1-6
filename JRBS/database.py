@@ -106,7 +106,7 @@ class Database(object):
     def get_posts(self, user=None, page=1):
         """Return a list of posts meeting the given conditions."""
         if user:
-            query = "SELECT * FROM posts JOIN users ON post_user = user_id WHERE user_name = ?"
+            query = "SELECT * FROM posts JOIN users ON post_user = user_id WHERE user_id = ?"
             results = self._execute(query, user)
         else:
             query = "SELECT * FROM posts JOIN users ON post_user = user_id"

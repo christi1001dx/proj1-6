@@ -1,63 +1,32 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title> Bloginator! </title>
-    <link rel="stylesheet" type="text/css" class="ui" href="/static/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
-</head>
+{% extends "support/main.html" %}
+{% block title %} Posts {% endblock %}
+{% block content %}
 
-<body>
-    <div class="container">
-      <!--Top Horizontal Menu-->
-      <div class="ui transparent inverted main menu">
-         <div class="title item">
-           <b> Welcome to Bloginator!</b>
-       </div>
-       <div class="right menu">
-           {% if "username" not in session %}
-           <div class="item">
-             <a class="ui button black" href="/login">Login</a>
-         </div>
-         <div class="item">
-             <a class="ui blue button" href="/signup">Sign up</a>
-         </div>
-         {% else %}
-         <div class="title item">
-             <b> Hello, {{ session["username"] }} </b>
-         </div>
-         <div class="item">
-             <a class="ui button blue" href="/logout">Logout</a>
-         </div>
-         {% endif %}
-     </div>
- </div>
+    {{ super() }}
+    <!-- Post Box-->
+    <div class="ui piled segment">
+        {% for post in posts %}
+            <div class="ui blue segment">
+                <h1><a href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h1>
+                <h2>{{post.author}}</h2>
+                <p>{{post.content}}</p>
+            </div>
+        {% endfor %}
+    </div>
 
-<!-- Post Box-->
-<div class="ui piled segment">
-	{% for post in posts %}
-	<div class="ui blue segment">
-       <h1><a href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h1>
-       <h2>{{post.author}}</h2>
-       <p>{{post.content}}</p>
-   </div>
-   {% endfor %}
-</div>
+    <!--Bottom Menu-->
+    <div class="ui borderless pagination menu">
+        <div class="bottom menu">
+        <a class="item">
+            <i class="icon left arrow"></i> Previous
+        </a>
+        <a class="item">
+            {{page}}
+        </a>
+        <a class="item">
+            Next <i class="icon right arrow"></i>
+        </a>
+        </div>
+    </div>
 
-<!--Bottom Menu-->
-<div class="ui borderless pagination menu">
-	<div class="bottom menu">
-       <a class="item">
-         <i class="icon left arrow"></i> Previous
-     </a>
-     <a class="item">1</a>
-     <a class="item">
-         Next <i class="icon right arrow"></i>
-     </a>
- </div>
-</div>
-
-</div>
-</body>
-
-</html>
+{% endblock %}

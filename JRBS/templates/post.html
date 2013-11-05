@@ -1,60 +1,29 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title> Bloginator! </title>
-    <link rel="stylesheet" type="text/css" class="ui" href="/static/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
-</head>
+{% extends "support/main.html" %}
+{% block title %} {{post.title}} {% endblock %}
+{% block content %}
 
-<body>
-    <div class="container">
-      <!--Top Horizontal Menu-->
-      <div class="ui transparent inverted main menu">
-         <div class="title item">
-           <b> Welcome to Bloginator!</b>
-       </div>
-       <div class="right menu">
-           {% if "username" not in session %}
-           <div class="item">
-             <a class="ui button black" href="/login">Login</a>
-         </div>
-         <div class="item">
-             <a class="ui blue button" href="/signup">Sign up</a>
-         </div>
-         {% else %}
-         <div class="title item">
-             <b> Hello, {{ session["username"] }} </b>
-         </div>
-         <div class="item">
-             <a class="ui button blue" href="/logout">Logout</a>
-         </div>
-         {% endif %}
-     </div>
- </div>
-
-{% if error %}
-  <div class="ui error message"><div class="header">Error</div>
-    {% if error == "missing" %}
-      Post not found.
-    {% else %}
-      {{error}}
+    {{ super() }}
+    {% if error %}
+        <!-- Error Box -->
+        <div class="ui error message">
+            <div class="header">Error</div>
+            {% if error == "missing" %}
+                Post not found.
+            {% else %}
+                {{error}}
+            {% endif %}
+        </div>
     {% endif %}
-  </div>
-{% endif %}
 
-{% if post %}
-  <!-- Post Box-->
-  <div class="ui piled segment">
-      <div class="ui blue segment">
-         <h1>{{post.title}}</h1>
-         <h2>{{post.author}}</h2>
-         <p>{{post.content}}</p>
-     </div>
-  </div>
-{% endif %}
+    {% if post %}
+        <!-- Post Box-->
+        <div class="ui piled segment">
+            <div class="ui blue segment">
+                <h1>{{post.title}}</h1>
+                <h2>{{post.author}}</h2>
+                <p>{{post.content}}</p>
+            </div>
+        </div>
+    {% endif %}
 
-</div>
-</body>
-
-</html>
+{% endblock %}
