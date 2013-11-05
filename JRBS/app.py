@@ -33,14 +33,14 @@ def signup():
         return render_template("register.html")
     username = request.form["name"]
     password = request.form["password"]
-    password_confirm = request.form["passwordConfirm"]
+    confirm = request.form["passwordConfirm"]
     display_name = request.form["displayName"]
     box = request.form.get("acceptTerms")
-    if not username or not password or not password_confirm or not display_name:
+    if not username or not password or not confirm or not display_name:
         return render_template("register.html", error="missing")
     if not box:
         return render_template("register.html", error="accept terms")
-    if password != password_confirm:
+    if password != confirm:
         return render_template("register.html", error="password mismatch")
     answer = database.register(username, display_name, password)
     if answer == "ok":
@@ -53,15 +53,20 @@ def signup():
 @app.route("/posts/user/<user>")
 @app.route("/posts/user/<user>/<page>")
 def posts(user=None, page=1):
+    if page < 1:
+        page = 1
     posts = database.get_posts(user=user, page=page)
     return render_template("posts.html", posts=posts)
 
-@app.route("/post/<post_id>")
-@app.route("/post/<post_id>/<post_title>")
-def post(post_id=None, post_title=None):
-    if not post_id:
+@app.route("/post/<postid>")
+@app.route("/post/<postid>/<title>")
+def post(postid=None, title=None):
+    if not postid:
         return redirect("/posts")
-    return render_template("post.html", post=database.get_post(post_id))
+    post = database.get_post(postid)
+    if not post:
+        return render_template("post.html", error="missing")
+    return render_template("post.html", post=post)
 
 @app.route("/logout")
 def logout():

@@ -33,14 +33,26 @@
      </div>
  </div>
 
-<!-- Post Box-->
-<div class="ui piled segment">
-    <div class="ui blue segment">
-       <h1>{{post.title}}</h1>
-       <h2>{{post.author}}</h2>
-       <p>{{post.content}}</p>
-   </div>
-</div>
+{% if error %}
+  <div class="ui error message"><div class="header">Error</div>
+    {% if error == "missing" %}
+      Post not found.
+    {% else %}
+      {{error}}
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if post %}
+  <!-- Post Box-->
+  <div class="ui piled segment">
+      <div class="ui blue segment">
+         <h1>{{post.title}}</h1>
+         <h2>{{post.author}}</h2>
+         <p>{{post.content}}</p>
+     </div>
+  </div>
+{% endif %}
 
 </div>
 </body>
