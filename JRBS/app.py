@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from flask import Flask, request, render_template, redirect, session, url_for
+from flask import Flask, request, render_template, redirect, session
 import sqlite3
 
 from database import Database
@@ -48,15 +48,26 @@ def signup():
         return redirect("/posts")
     return render_template("signup.html", error=answer)
 
+@app.route("/register")
+def register():
+    return redirect("/signup")
+
 @app.route("/posts")
 @app.route("/posts/<page>")
 @app.route("/posts/user/<user>")
 @app.route("/posts/user/<user>/<page>")
 def posts(user=None, page=1):
+    try:
+        page = int(page)
+    except ValueError:
+        return redirect("/posts")
     if page < 1:
-        page = 1
+        return redirect("/posts")
     posts, pages = database.get_posts(user=user, page=page)
-    return render_template("posts.html", page=page, pages=pages, posts=posts)
+    if page > pages:
+        return redirect("/posts")
+    return render_template("posts.html", user=user, page=page, pages=pages,
+                           posts=posts)
 
 @app.route("/post/<postid>")
 @app.route("/post/<postid>/<title>")
@@ -92,5 +103,5 @@ def new():
 # def admin():
 #     pass
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run(debug=True)

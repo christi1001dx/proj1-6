@@ -6,6 +6,8 @@ import math
 import re
 import sqlite3
 
+PAGE_SIZE = 5
+
 SCHEMA_FILE = "schema.sql"
 SCHEMA_VERSION = 1
 
@@ -121,13 +123,13 @@ class Database(object):
             results = self._execute(query)
 
         posts = []
-        for result in results[10 * (page - 1):10 * page]:
+        for result in results[PAGE_SIZE * (page - 1):PAGE_SIZE * page]:
             user = self._get_user(result[2])
             d = datetime.strptime(result[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
             comments = self._get_comments_for_post(result[0])
             posts.append(Post(result[0], result[1], user, d, result[6],
                               result[4], result[5], comments))
-        pages = int(math.ceil(len(results) / 10))
+        pages = int(math.ceil(len(results) / PAGE_SIZE))
         return posts, pages
 
     def get_post(self, postid):

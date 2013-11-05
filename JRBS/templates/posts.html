@@ -30,9 +30,21 @@
         <div class="center aligned column">
             <div class="ui borderless pagination menu">
                 <div class="bottom menu">
-                <a class="item"><i class="icon left arrow"></i> Previous</a>
+                {% if page > 1 %}
+                    {% if user %}
+                        <a class="item" href="/posts/user/{{user}}/{{page + 1}}"><i class="icon left arrow"></i> Previous</a>
+                    {% else %}
+                        <a class="item" href="/posts/{{page + 1}}"><i class="icon left arrow"></i> Previous</a>
+                    {% endif %}
+                {% endif %}
                 <a class="active item">{{page}}</a>
-                <a class="item">Next <i class="icon right arrow"></i></a>
+                {% if page < pages %}
+                    {% if user %}
+                        <a class="item" href="/posts/user/{{user}}/{{page + 1}}">Next <i class="icon right arrow"></i></a>
+                    {% else %}
+                        <a class="item" href="/posts/{{page + 1}}">Next <i class="icon right arrow"></i></a>
+                    {% endif %}
+                {% endif %}
                 </div>
             </div>
         </div>
