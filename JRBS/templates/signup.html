@@ -1,63 +1,79 @@
 {% extends "support/base.html" %}
 {% block title %} Sign Up {% endblock %}
-{% block content %}
+{% block body %}
 
-    <!-- Main Menu -->
-    <div class="ui transparent inverted main menu">
-        <div class="title item">
-            <b>Bloginator</b>
+    <div class="ui one column page grid">
+        <!-- Main Menu -->
+        <div class="ui inverted menu">
+            <a class="title item" href="/"><b>Bloginator</b></a>
+        </div>
+        <div class="column">
+            <!-- Error Box -->
+            {% if error %}
+                <div class="ui error message">
+                    <div class="header">Error</div>
+                    {% if error == "missing" %}
+                        Missing one or more required fields.
+                    {% elif error == "accept terms" %}
+                        You must agree to the terms and conditions to create an account.
+                    {% elif error == "password mismatch" %}
+                        The two passwords do not match.
+                    {% elif error == "exists" %}
+                        The given user already exists.
+                    {% else %}
+                        {{error}}
+                    {% endif %}
+                </div>
+            {% endif %}
+            <!-- Signup Form -->
+            <div class="ui form segment">
+                <form action="/signup", method="post">
+                    <div class="field">
+                        <label>Username</label>
+                        <div class="ui left labeled icon input">
+                            <input name="name" type="text" />
+                            <i class="user icon"></i>
+                            <div class="ui corner label"><i class="asterisk icon"></i></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Display Name</label>
+                        <div class="ui left labeled icon input">
+                            <input name="displayName" type="text" />
+                            <i class="user icon"></i>
+                            <div class="ui corner label"><i class="asterisk icon"></i></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <div class="ui left labeled icon input">
+                            <input name="password" type="password" />
+                            <i class="lock icon"></i>
+                            <div class="ui corner label"><i class="asterisk icon"></i></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Confirm Password</label>
+                        <div class="ui left labeled icon input">
+                            <input name="passwordConfirm" type="password" />
+                            <i class="lock icon"></i>
+                            <div class="ui corner label"><i class="asterisk icon"></i></div>
+                        </div>
+                    </div>
+                    <div class="inline field">
+                        <div class="ui checkbox">
+                            <input name="acceptTerms" type="checkbox" id="terms" />
+                            <label for="terms">I agree to the terms and conditions.</label>
+                        </div>
+                    </div>
+                    <div class="ui buttons">
+                        <input type="submit" class="ui positive button" value="Create" />
+                        <div class="or"></div>
+                        <a class="ui button" href="/">Cancel</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
-    {% if error %}
-        <!-- Error Box -->
-        <div class="ui error message">
-            <div class="header">Error</div>
-            {% if error == "missing" %}
-                Missing one or more required fields.
-            {% elif error == "accept terms" %}
-                You must agree to the terms and conditions to create an account.
-            {% elif error == "password mismatch" %}
-                The two passwords do not match.
-            {% elif error == "exists" %}
-                The given user already exists.
-            {% else %}
-                {{error}}
-            {% endif %}
-        </div>
-    {% endif %}
-
-    <!-- Signup Form -->
-    <form action="/signup", method="post">
-        <div class="ui form segment">
-            <div class="field">
-                <label>Username</label>
-                <input name="name" type="text" />
-            </div>
-            <div class="field">
-                <label>Display Name</label>
-                <input name="displayName" type="text" />
-            </div>
-            <div class="field">
-                <label>Password</label>
-                <input name="password" type="password" />
-            </div>
-            <div class="field">
-                <label>Confirm Password</label>
-                <input name="passwordConfirm" type="password" />
-            </div>
-            <div class="inline field">
-                <div class="ui checkbox">
-                    <input name="acceptTerms" type="checkbox" id="terms" />
-                    <label for="terms">I agree to the terms and conditions.</label>
-                </div>
-            </div>
-            <div class="ui buttons">
-                <a class="ui button" href="/signup">Cancel</a>
-                <div class="or"></div>
-                <input type="submit" class="ui positive button" value="Create" />
-            </div>
-        </div>
-    </form>
 
 {% endblock %}
