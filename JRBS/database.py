@@ -2,6 +2,7 @@
 
 from datetime import datetime
 import hashlib
+import math
 import re
 import sqlite3
 
@@ -111,12 +112,14 @@ class Database(object):
         else:
             query = "SELECT * FROM posts JOIN users ON post_user = user_id"
             results = self._execute(query)
+
         posts = []
-        for result in results:
+        for result in results[10 * (page - 1):10 * page]:
             comments = self._get_comments_for_post(result[0])
             posts.append(Post(result[0], result[1], result[9], result[3],
                               result[6], result[4], result[5], comments))
-        return posts
+        pages = int(math.ceil(len(results) / 10))
+        return posts, pages
 
     def get_post(self, postid):
         """Return an individual post."""

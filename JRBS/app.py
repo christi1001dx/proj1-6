@@ -55,8 +55,8 @@ def signup():
 def posts(user=None, page=1):
     if page < 1:
         page = 1
-    posts = database.get_posts(user=user, page=page)
-    return render_template("posts.html", page=page, posts=posts)
+    posts, pages = database.get_posts(user=user, page=page)
+    return render_template("posts.html", page=page, pages=pages, posts=posts)
 
 @app.route("/post/<postid>")
 @app.route("/post/<postid>/<title>")

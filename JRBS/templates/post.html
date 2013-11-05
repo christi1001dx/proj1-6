@@ -1,8 +1,13 @@
 {% extends "support/main.html" %}
-{% block title %} {{post.title}} {% endblock %}
+{% block title %}
+    {% if post %}
+        {{post.title}}
+    {% else %}
+        Error
+    {% endif %}
+{% endblock %}
 {% block content %}
 
-    {{ super() }}
     {% if error %}
         <!-- Error Box -->
         <div class="ui error message">
