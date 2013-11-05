@@ -70,11 +70,8 @@ def register():
 	username = get_form_value('username')
 	password = get_form_value('password')
 	password2 = get_form_value('password2')
-	registertry = utils.add_user(username, password, password2)
-	if (registertry == "good job"):
-		flash("Success!")
-	else:
-		flash(registertry)
+	registertry = utils.register_user(username, password, password2)
+	flash(registertry)
 	return redirect(url_for("index"))
 
 @app.route("/logout", methods = ['POST'])

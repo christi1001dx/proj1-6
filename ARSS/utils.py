@@ -3,8 +3,20 @@ from flask import session
 
 client = MongoClient()
 db = client.ARSS
+#db.stories.drop_index('title_1')
+db.stories.ensure_index('title', unique=True)
 
 ##### STORY FUNCTIONS ######
+
+def _get_next_seq(key):
+	query = {'_id': key}
+	# create if does not exist
+	db.counters.update(query, {'$setOnInsert': {'seq': 0}}, upsert=True)
+	return db.counters.find_and_modify(
+		query=query,
+		update={'$inc': {'seq': 1}},
+		upsert=True
+	)['seq']
 
 def _find_story(title):
 	return db.stories.find_one({'title': title})
@@ -28,17 +40,17 @@ def story_lines(title):
 
 def make_story(title, author=None):
 	if not story_exists(title):
-		story = {
-		'title': title,
-		'author': author,
-		'lines': 0
-		}
-		db.stories.insert(story)
+		db.stories.insert({
+			'_id': _get_next_seq('story_id'),
+			'title': title,
+			'author': author,
+			'lines': 0
+		})
 		return True
 	return False
 
 def delete_story(title):
-	return db.stories.remove({'title': title}, safe=True)['n'] > 0
+	return db.stories.remove({'title': title})['n'] > 0
 
 def increment_lines(title):
 	db.stories.update({'title': title}, {'$inc': {'lines': 1}})
@@ -84,24 +96,25 @@ def return_all_stories():
 
 ##### LOGIN FUNCTIONS ######
 
+def user_exists(username):
+	db.users.find({'username': username}).limit(1).count(True) > 0
+
+def create_user(username, password):
+	if not user_exists(username):
+		db.users.insert({'username': username,'password': password})
+
 # used for register
 # user must type password 2 times to make account
-def add_user(username, password, password2):
-	if (db.users.find_one({'username': username}, fields = {'_id': False})):
+def register_user(username, password, confirm_password):
+	if (user_exists(username)):
 		return "User Already Exists."
-	elif (password.__len__() < 4):
+	elif (len(password) < 4):
 		return "Password too short."
-	elif (password != password2):
+	elif (password != confirm_password):
 		return "Passwords do not match."
 	else:
 		db.users.insert({'username': username, 'password': password})
-		return "good job"
-
-def user_exists(username):
-	for x in db.users.find({'username': username}):
-		return True
-	else:
-		return False
+		return "Success!"
 
 # used to validate login
 def account_exists(username, password):
@@ -112,10 +125,10 @@ def account_exists(username, password):
 
 # used to change password
 # type in new password two times
-def change_password(username, password, password2):
+def change_password(username, password, confirm_password):
 	if (password.__len__() < 5):
 		return False
-	elif (password != password2):
+	elif (password != confirm_password):
 		return False
 	else:
 		db.users.update({'username': username}, {'$set':{'password': password}})
@@ -138,14 +151,30 @@ def logged_in():
 	return 'username' in session and session['username'] != None
 
 if __name__ == '__main__':
-	make_story('test1')
-	print "Story exists? " + str(story_exists('test1'))
-	print "Is story anonymous? " + str(story_anonymous('test1'))
-	print "Story exists, Delete story: " + str(delete_story('test1'))
-	print "Story just deleted, Delete story: " + str(delete_story('test1'))
+	db = client.test
+	db.counters.remove()
+	db.stories.remove()
 
+	print "Testing story"
+	print "\tMaking story: " + str(make_story('test1'))
+	print "\tMaking existing story: " + str(make_story('test1'))
+	print "\tStory: " + str(_find_story('test1'))
+	print "\tStory exists? " + str(story_exists('test1'))
+	print "\tIs story anonymous? " + str(story_anonymous('test1'))
+	db.stories.update({'title': 'test1'}, {'$set': {'author': 'AuthorName'}})
+	print "\tAdded author, is story anonymous? " + str(story_anonymous('test1'))
+	print "\tStory lines: " + str(story_lines('test1'))
+	increment_lines('test1')
+	increment_lines('test1')
+	print "\tAfter 2 increments: " + str(_find_story('test1'))
+	print "\tStory exists, Delete story: " + str(delete_story('test1'))
+	print "\tStory just deleted, Delete again: " + str(delete_story('test1'))
+	print "\tDelete unexisting story: " + str(delete_story('tasdasd'))
+
+	print "Testing _get_next_seq"
 	make_story('test1')
-	print "Lines: " + str(story_lines('test1'))
-	increment_lines('test1')
-	increment_lines('test1')
-	print "After 2 increments, Lines: " + str(story_lines('test1'))
+	make_story('test2')
+	for x in db.stories.find():
+		print '\t' + str(x)
+	print '\t' + str(db.counters.find_one({'_id': 'story_id'}))
+
