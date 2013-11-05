@@ -70,6 +70,7 @@
             {% else %}
             <span id="Academics">
             {% endif %}
+            {% for x in post.title} -->
                 {{post.title}} by {{post.author}} on {{post.date}} <br>
             </span>
         </span>

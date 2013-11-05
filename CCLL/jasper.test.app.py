@@ -102,6 +102,7 @@ def genre(genre):
 
 @app.route("/logout")
 def logout():
+    session.pop('username',None)
     return redirect(url_for('home'))
 
 if __name__=="__main__":
