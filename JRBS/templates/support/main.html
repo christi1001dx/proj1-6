@@ -5,24 +5,28 @@
         <!-- Main Menu -->
         <div class="ui inverted menu">
             <a class="item" href="/"><i class="home icon"></i> <b>Bloginator</b></a>
-            <div style="float: right;">
-                <div class="item"></div>
-                {% if "username" not in session %}
-                    <div class="item">
-                        <a class="ui black button" href="/login">Login</a>
-                    </div>
-                    <div class="item">
-                        <a class="ui button blue" href="/signup">Sign up</a>
-                    </div>
-                {% else %}
+            {% if "username" in session %}
+                <a class="item" href="/new"><i class="add icon"></i> New Post</a>
+                <div style="float: right;">
+                    <div class="item"></div>
                     <div class="item">
                         Hello, {{session["username"]}}!
                     </div>
                     <div class="item">
                         <a class="ui black button" href="/logout">Logout</a>
                     </div>
-                {% endif %}
-            </div>
+                </div>
+            {% else %}
+                <div style="float: right;">
+                    <div class="item"></div>
+                    <div class="item">
+                        <a class="ui black button" href="/login">Login</a>
+                    </div>
+                    <div class="item">
+                        <a class="ui button blue" href="/signup">Sign up</a>
+                    </div>
+                </div>
+            {% endif %}
         </div>
         <div class="column">
             {% block content %}{% endblock %}
