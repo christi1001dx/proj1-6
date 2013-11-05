@@ -95,7 +95,7 @@ class Database(object):
 
     def register(self, username, display_name, password):
         """Returns one of "exists", "ok"."""
-        r = self._execute("SELECT * FROM users WHERE user_name = ?", username)
+        r = self._execute("SELECT * FROM users WHERE user_name = ? OR user_display_name = ?", username, display_name)
         if r:
             return "exists"
         user_id = self._get_next_userid()

@@ -6,7 +6,7 @@ import sqlite3
 from database import Database
 
 app = Flask(__name__)
-app.secret_key="JRBS"
+app.secret_key = "JRBS"
 database = Database("database.db")
 
 @app.route("/")
