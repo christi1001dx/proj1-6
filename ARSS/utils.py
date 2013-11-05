@@ -6,41 +6,42 @@ db = client.ARSS
 
 ##### STORY FUNCTIONS ######
 
+def _find_story(title):
+	return db.stories.find_one({'title': title})
+
+def _get_field(title, key):
+	return _find_story(title)[key]
+
+
 def story_exists(title):
-	return db.stories.find({'title':title}).limit(1).count(True) > 0
-
-def make_story(title, author, anonymous):
-	ans = False
-	if not story_exists(title):
-		story = {}
-		story['title'] = title
-		story['lines'] = 0
-		story['author'] = author
-		story['anonymous'] = anonymous #boolean
-		db.stories.insert(story)
-		ans = True
-	return ans
-
-def delete_story(title):
-	ans = False
-	if story_exists(title):
-		db.stories.remove({'title':title})
-		ans = True
-	return ans
+	return db.stories.find({'title': title}).limit(1).count(True) > 0
 
 def story_author(title):
-	return db.stories.find_one({'title':title})['author']
+	return _get_field(title, 'author')
 
 def story_anonymous(title):
-	return db.stories.find_one({'title':title})['anonymous']
+	return story_author(title) == None
 
 def story_lines(title):
-	return db.stories.find_one({'title':title})['lines']
+	return _get_field(title, 'lines')
+
+
+def make_story(title, author=None):
+	if not story_exists(title):
+		story = {
+		'title': title,
+		'author': author,
+		'lines': 0
+		}
+		db.stories.insert(story)
+		return True
+	return False
+
+def delete_story(title):
+	return db.stories.remove({'title': title}, safe=True)['n'] > 0
 
 def increment_lines(title):
-	story = db.stories.find_one({'title':title})
-	story['lines'] = story['lines'] + 1
-	db.stories.save(story)
+	db.stories.update({'title': title}, {'$inc': {'lines': 1}})
 
 def list_of_stories():
 	stories = list(db.stories.find())
@@ -137,4 +138,14 @@ def logged_in():
 	return 'username' in session and session['username'] != None
 
 if __name__ == '__main__':
-	print story_exists('test')
+	make_story('test1')
+	print "Story exists? " + str(story_exists('test1'))
+	print "Is story anonymous? " + str(story_anonymous('test1'))
+	print "Story exists, Delete story: " + str(delete_story('test1'))
+	print "Story just deleted, Delete story: " + str(delete_story('test1'))
+
+	make_story('test1')
+	print "Lines: " + str(story_lines('test1'))
+	increment_lines('test1')
+	increment_lines('test1')
+	print "After 2 increments, Lines: " + str(story_lines('test1'))
