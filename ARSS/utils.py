@@ -52,7 +52,12 @@ def delete_story(title):
 	return db.stories.remove({'title': title})['n'] > 0
 
 def increment_lines(title):
-	db.stories.update({'title': title}, {'$inc': {'lines': 1}})
+	# returns the new value after increment
+	return db.stories.find_and_modify(
+		query={'title': title},
+		update={'$inc': {'lines': 1}},
+		new=True
+	)['lines']
 
 def list_of_stories():
 	return [story['title'] for story in db.stories.find()]
@@ -60,14 +65,13 @@ def list_of_stories():
 ###### LINE FUNCTIONS ######
 
 def add_line(line, title, user):
-	storylines = story_lines(title)
-	entry = {}
-	entry['line'] = line
-	entry['number'] = storylines + 1
-	entry['story'] = title
-	entry['user'] = user
+	entry = {
+	'line': line,
+	'number': increment_lines(title),
+	'story': title,
+	'user': user
+	}
 	db.lines.insert(entry)
-	increment_lines(title)
 	return True
 
 def return_all_lines(title):
