@@ -179,7 +179,6 @@ nav ul li a:hover span {
  font-size:16px;
  color:white;
  padding:2px;
- overflow:scroll;
 
 }
 ul {
@@ -198,7 +197,6 @@ ul {
   height:400px;
   font-size:16px;
   margin-left:25px;
-  overflow:scroll;
   min-width:600px;
 }
 
