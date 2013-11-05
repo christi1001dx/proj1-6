@@ -1,19 +1,15 @@
 from pymongo import MongoClient
 from flask import session
 
-def mongo_init():
-	client = MongoClient()
-	db=client.ARSS
-	return db
+client = MongoClient()
+db = client.ARSS
 
-#####STORY FUNCTIONS######
+##### STORY FUNCTIONS ######
 
 def story_exists(title):
-	db = mongo_init()
-	return db.stories.find_one({'title':title})
+	return db.stories.find({'title':title}).limit(1).count(True) > 0
 
 def make_story(title, author, anonymous):
-	db = mongo_init()
 	ans = False
 	if not story_exists(title):
 		story = {}
@@ -26,7 +22,6 @@ def make_story(title, author, anonymous):
 	return ans
 
 def delete_story(title):
-	db = mongo_init()
 	ans = False
 	if story_exists(title):
 		db.stories.remove({'title':title})
@@ -34,35 +29,29 @@ def delete_story(title):
 	return ans
 
 def story_author(title):
-	db = mongo_init()
 	return db.stories.find_one({'title':title})['author']
 
 def story_anonymous(title):
-	db = mongo_init()
 	return db.stories.find_one({'title':title})['anonymous']
 
 def story_lines(title):
-	db = mongo_init()
 	return db.stories.find_one({'title':title})['lines']
 
 def increment_lines(title):
-	db = mongo_init()
 	story = db.stories.find_one({'title':title})
 	story['lines'] = story['lines'] + 1
 	db.stories.save(story)
 
 def list_of_stories():
-	db = mongo_init()
 	stories = list(db.stories.find())
 	storieslist = []
 	for story in stories:
 		storieslist.append(story['title'])
 	return storieslist
 
-######LINE FUNCTIONS######
+###### LINE FUNCTIONS ######
 
 def add_line(line, title, user):
-	db = mongo_init()
 	storylines = story_lines(title)
 	entry = {}
 	entry['line'] = line
@@ -74,7 +63,6 @@ def add_line(line, title, user):
 	return True
 
 def return_all_lines(title):
-	db = mongo_init()
 	lineslist = list(db.lines.find({'story':title}))
 	return lineslist
 
@@ -93,12 +81,11 @@ def return_all_stories():
 		stories.append(entry)
 	return stories
 
-#####LOGIN FUNCTIONS######
+##### LOGIN FUNCTIONS ######
 
 # used for register
 # user must type password 2 times to make account
 def add_user(username, password, password2):
-	db = mongo_init()
 	if (db.users.find_one({'username': username}, fields = {'_id': False})):
 		return "User Already Exists."
 	elif (password.__len__() < 4):
@@ -110,7 +97,6 @@ def add_user(username, password, password2):
 		return "good job"
 
 def user_exists(username):
-	db = mongo_init()
 	for x in db.users.find({'username': username}):
 		return True
 	else:
@@ -118,16 +104,14 @@ def user_exists(username):
 
 # used to validate login
 def account_exists(username, password):
-	db = mongo_init()
 	for x in db.users.find({'username': username, 'password': password}):
 		return True
 	else:
 		return False
 
-# used to change password 
+# used to change password
 # type in new password two times
 def change_password(username, password, password2):
-	db = mongo_init()
 	if (password.__len__() < 5):
 		return False
 	elif (password != password2):
@@ -136,10 +120,9 @@ def change_password(username, password, password2):
 		db.users.update({'username': username}, {'$set':{'password': password}})
 		return True
 
-# used to change username 
+# used to change username
 # type in new username two times
 def change_username(username, username2, password):
-	db = mongo_init()
 	if (username.__len__() < 5):
 		return False
 	elif (username != username2):
@@ -152,3 +135,6 @@ def logged_in():
 	if 'username' in session and not user_exists(session['username']):
 		session.pop('username', None)
 	return 'username' in session and session['username'] != None
+
+if __name__ == '__main__':
+	print story_exists('test')
