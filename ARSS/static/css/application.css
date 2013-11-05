@@ -1,10 +1,73 @@
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,800,300");
-@import url("http://fonts.googleapis.com/css?family=EB+Garamond");
-@import url("http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic");
-@import url("http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,900italic,400,700,900");
-@import url("http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic");
-@import url("http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Libre+Baskerville:400,700,400italic");
-@import url("http://fonts.googleapis.com/css?family=ABeeZee:400,400italic|Gudea:400,700,400italic|Oxygen:400,700,300|Sintony:400,700");
+/** EB GARAMOND ** */
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 400;
+  src: local("EB Garamond"), local("EBGaramond"), url(../fonts/eb_garamond.woff) format("woff"); }
+
+/** LORA ** */
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lora"), url(../fonts/lora.woff) format("woff"); }
+
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Lora Bold"), local("Lora-Bold"), url(../fonts/lora_bold.woff) format("woff"); }
+
+@font-face {
+  font-family: "Lora";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Lora Italic"), local("Lora-Italic"), url(../fonts/lora_italic.woff) format("woff"); }
+
+@font-face {
+  font-family: "Lora";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Lora Bold Italic"), local("Lora-BoldItalic"), url(../fonts/lora_bold_italic.woff) format("woff"); }
+
+/** GUDEA ** */
+@font-face {
+  font-family: "Gudea";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Gudea"), url(../fonts/gudea.woff) format("woff"); }
+
+@font-face {
+  font-family: "Gudea";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Gudea Bold"), local("Gudea-Bold"), url(../fonts/gudea_bold.woff) format("woff"); }
+
+@font-face {
+  font-family: "Gudea";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Gudea Italic"), local("Gudea-Italic"), url(../fonts/gudea_italic.woff) format("woff"); }
+
+/** OXYGEN ** */
+@font-face {
+  font-family: "Oxygen";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Oxygen Light"), local("Oxygen-Light"), url(../fonts/oxygen_light.woff) format("woff"); }
+
+@font-face {
+  font-family: "Oxygen";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Oxygen"), local("Oxygen-Regular"), url(../fonts/oxygen.woff) format("woff"); }
+
+@font-face {
+  font-family: "Oxygen";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Oxygen Bold"), local("Oxygen-Bold"), url(../fonts/oxygen_bold.woff) format("woff"); }
+
 .sidebar {
   *zoom: 1;
   -webkit-transition: width 0.5s;
