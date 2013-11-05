@@ -5,20 +5,34 @@
     <!-- Post Box-->
     <div class="ui piled segment">
         {% for post in posts %}
+            <!-- Post -->
             <div class="ui blue segment">
-                <h1><a href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h1>
-                <h2>{{post.author}}</h2>
-                <p>{{post.content}}</p>
+                <h2 class="ui header"><a class="incognito" href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h2>
+                <p><i class="icon user"></i> {{post.author}}</p>
+                <p><i class="icon calendar"></i> {{post.date}}</p>
+                <p>{{post.summary}}</p>
+                <p>
+                    <a href="/post/{{post.postid}}/{{post.slug}}">Read more...</a><br />
+                    <a href="/post/{{post.postid}}/{{post.slug}}#comments"><i class="icon comment"></i>{{post.comments | length}} comments</a>
+                </p>
             </div>
+            <!-- Divider -->
+            {% if loop.index < loop.length %}
+                <div class="ui section divider"></div>
+            {% endif %}
         {% endfor %}
     </div>
 
-    <!--Bottom Menu-->
-    <div class="ui borderless pagination menu">
-        <div class="bottom menu">
-        <a class="item"><i class="icon left arrow"></i> Previous</a>
-        <a class="item">{{page}}</a>
-        <a class="item">Next <i class="icon right arrow"></i></a>
+    <!-- Bottom Menu -->
+    <div class="row">
+        <div class="center aligned column">
+            <div class="ui borderless pagination menu">
+                <div class="bottom menu">
+                <a class="item"><i class="icon left arrow"></i> Previous</a>
+                <a class="active item">{{page}}</a>
+                <a class="item">Next <i class="icon right arrow"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 

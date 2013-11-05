@@ -8,8 +8,8 @@
 {% endblock %}
 {% block content %}
 
+    <!-- Error Box -->
     {% if error %}
-        <!-- Error Box -->
         <div class="ui error message">
             <div class="header">Error</div>
             {% if error == "missing" %}
@@ -19,14 +19,21 @@
             {% endif %}
         </div>
     {% endif %}
-
     {% if post %}
-        <!-- Post Box-->
-        <div class="ui piled segment">
+        <!-- Post Box -->
+        <div class="ui segment">
+            <div class="ui breadcrumb">
+                <a href="/posts" class="section">Bloginator</a>
+                <i class="right arrow icon divider"></i>
+                <div class="active section">{{post.title}}</div>
+            </div>
             <div class="ui blue segment">
-                <h1>{{post.title}}</h1>
-                <h2>{{post.author}}</h2>
-                <p>{{post.content}}</p>
+                <h2 class="ui header">{{post.title}}</h1>
+                <p><i class="icon user"></i> {{post.author}}</p>
+                <p><i class="icon calendar"></i> {{post.date}}</p>
+                {% for paragraph in post.content.split("\n\n") %}
+                    <p>{{paragraph}}</p>
+                {% endfor %}
             </div>
         </div>
     {% endif %}

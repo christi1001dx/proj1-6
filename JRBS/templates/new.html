@@ -8,6 +8,8 @@
             <div class="header">Error</div>
             {% if error == "incomplete" %}
                 Missing one or more required fields.
+            {% elif error == "bad title" %}
+                Your title must contain some alphanumeric characters.
             {% else %}
                 {{error}}
             {% endif %}

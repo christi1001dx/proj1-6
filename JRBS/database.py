@@ -18,7 +18,7 @@ class User(object):
 
 
 class Post(object):
-    def __init__(self, postid, title, author, date, slug, text=None,
+    def __init__(self, postid, title, author, date, slug, content=None,
                  summary=None, comments=None):
         self.postid = postid
         self.title = title
@@ -26,7 +26,7 @@ class Post(object):
         self.date = date
         self.slug = slug
 
-        self.text = text
+        self.content = content
         self.summary = summary
         self.comments = comments
 
@@ -110,7 +110,7 @@ class Database(object):
             query = "SELECT * FROM posts JOIN users ON post_user = user_id WHERE user_id = ?"
             results = self._execute(query, user)
         else:
-            query = "SELECT * FROM posts JOIN users ON post_user = user_id"
+            query = "SELECT * FROM posts JOIN users ON post_user = user_id ORDER BY post_date DESC"
             results = self._execute(query)
 
         posts = []
@@ -138,8 +138,12 @@ class Database(object):
         user_query = "SELECT user_id FROM users WHERE user_name = ?"
         user = self._execute(user_query, author)[0][0]
         date = datetime.now()
+        content = content.replace("\r\n", "\n")
         summary = content.split("\n\n")[0]
         slug = re.sub(r"[\W_]", "-", title.lower(), flags=re.UNICODE)[:50]
+        slug = slug.rstrip("-")
+        if not slug:
+            return "bad title"
         self._execute("INSERT INTO posts VALUES (?, ?, ?, ?, ?, ?, ?)", postid,
                       title, user, date, content, summary, slug)
         return "ok"
