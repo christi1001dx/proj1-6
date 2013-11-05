@@ -32,9 +32,9 @@
                 <div class="bottom menu">
                 {% if page > 1 %}
                     {% if user %}
-                        <a class="item" href="/posts/user/{{user}}/{{page + 1}}"><i class="icon left arrow"></i> Previous</a>
+                        <a class="item" href="/posts/user/{{user}}/{{page - 1}}"><i class="icon left arrow"></i> Previous</a>
                     {% else %}
-                        <a class="item" href="/posts/{{page + 1}}"><i class="icon left arrow"></i> Previous</a>
+                        <a class="item" href="/posts/{{page - 1}}"><i class="icon left arrow"></i> Previous</a>
                     {% endif %}
                 {% endif %}
                 <a class="active item">{{page}}</a>
