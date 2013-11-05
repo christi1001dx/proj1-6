@@ -8,7 +8,7 @@
             <!-- Post -->
             <div class="ui blue segment">
                 <h2 class="ui header"><a class="incognito" href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h2>
-                <p><i class="icon user"></i> {{post.author}}</p>
+                <p><i class="icon user"></i> <a href="/posts/user/{{post.author.userid}}">{{post.author.display_name}}</a></p>
                 <p><i class="icon calendar"></i> {{post.date}}</p>
                 <p>{{post.summary}}</p>
                 <p>

@@ -73,6 +73,12 @@ class Database(object):
         r = self._execute("SELECT MAX(post_id) FROM posts")
         return r[0][0] + 1 if r[0][0] else 1
 
+    def _get_user(self, userid):
+        """Return the user with the given user ID."""
+        query = "SELECT * FROM users WHERE user_id = ?"
+        result = self._execute(query, userid)[0]
+        return User(result[0], result[1], result[2], result[3])
+
     def _get_comments_for_post(self, postid):
         """Get all the comments corresponding to a certain post."""
         query = "SELECT * FROM comments JOIN posts ON comment_post = post_id JOIN users ON comment_user = user_id WHERE post_id = ?"
@@ -107,29 +113,31 @@ class Database(object):
     def get_posts(self, user=None, page=1):
         """Return a list of posts meeting the given conditions."""
         if user:
-            query = "SELECT * FROM posts JOIN users ON post_user = user_id WHERE user_id = ?"
+            query = "SELECT * FROM posts WHERE post_user = ? ORDER BY post_date DESC"
             results = self._execute(query, user)
         else:
-            query = "SELECT * FROM posts JOIN users ON post_user = user_id ORDER BY post_date DESC"
+            query = "SELECT * FROM posts ORDER BY post_date DESC"
             results = self._execute(query)
 
         posts = []
         for result in results[10 * (page - 1):10 * page]:
+            user = self._get_user(result[2])
             comments = self._get_comments_for_post(result[0])
-            posts.append(Post(result[0], result[1], result[9], result[3],
+            posts.append(Post(result[0], result[1], user, result[3],
                               result[6], result[4], result[5], comments))
         pages = int(math.ceil(len(results) / 10))
         return posts, pages
 
     def get_post(self, postid):
         """Return an individual post."""
-        query = "SELECT * FROM posts JOIN users ON post_user = user_id WHERE post_id = ?"
+        query = "SELECT * FROM posts WHERE post_id = ?"
         results = self._execute(query, postid)
         if not results:
             return None
         result = results[0]
+        user = self._get_user(result[2])
         comments = self._get_comments_for_post(result[0])
-        return Post(result[0], result[1], result[9], result[3],
+        return Post(result[0], result[1], user, result[3],
                           result[6], result[4], result[5], comments)
 
     def create_post(self, title, content, author):

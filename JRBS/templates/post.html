@@ -29,7 +29,7 @@
             </div>
             <div class="ui blue segment">
                 <h2 class="ui header">{{post.title}}</h1>
-                <p><i class="icon user"></i> {{post.author}}</p>
+                <p><i class="icon user"></i> <a href="/posts/user/{{post.author.userid}}">{{post.author.display_name}}</a></p>
                 <p><i class="icon calendar"></i> {{post.date}}</p>
                 {% for paragraph in post.content.split("\n\n") %}
                     <p>{{paragraph}}</p>
