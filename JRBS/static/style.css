@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5 {
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
+span.post-links-divider {
+    color: #666;
+}
+
 a {
     color: #009FDA;
     text-decoration: none;

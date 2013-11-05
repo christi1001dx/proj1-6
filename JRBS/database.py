@@ -65,13 +65,13 @@ class Database(object):
 
     def _get_next_userid(self):
         """Return the next user ID in sequence."""
-        r = self._execute("SELECT MAX(user_id) FROM users")
-        return r[0][0] + 1 if r[0][0] else 1
+        result = self._execute("SELECT MAX(user_id) FROM users")
+        return result[0][0] + 1 if result[0][0] else 1
 
     def _get_next_postid(self):
         """Return the next post ID in sequence."""
-        r = self._execute("SELECT MAX(post_id) FROM posts")
-        return r[0][0] + 1 if r[0][0] else 1
+        result = self._execute("SELECT MAX(post_id) FROM posts")
+        return result[0][0] + 1 if result[0][0] else 1
 
     def _get_user(self, userid):
         """Return the user with the given user ID."""
@@ -101,8 +101,9 @@ class Database(object):
 
     def register(self, username, display_name, password):
         """Returns one of "exists", "ok"."""
-        r = self._execute("SELECT * FROM users WHERE user_name = ? OR user_display_name = ?", username, display_name)
-        if r:
+        q = "SELECT * FROM users WHERE user_name = ? OR user_display_name = ?"
+        result = self._execute(q, username, display_name)
+        if result:
             return "exists"
         user_id = self._get_next_userid()
         pwhash = hashlib.sha256(password).hexdigest()
@@ -122,9 +123,10 @@ class Database(object):
         posts = []
         for result in results[10 * (page - 1):10 * page]:
             user = self._get_user(result[2])
+            d = datetime.strptime(result[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
             comments = self._get_comments_for_post(result[0])
-            posts.append(Post(result[0], result[1], user, result[3],
-                              result[6], result[4], result[5], comments))
+            posts.append(Post(result[0], result[1], user, d, result[6],
+                              result[4], result[5], comments))
         pages = int(math.ceil(len(results) / 10))
         return posts, pages
 
@@ -136,9 +138,10 @@ class Database(object):
             return None
         result = results[0]
         user = self._get_user(result[2])
+        date = datetime.strptime(result[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
         comments = self._get_comments_for_post(result[0])
-        return Post(result[0], result[1], user, result[3],
-                          result[6], result[4], result[5], comments)
+        return Post(result[0], result[1], user, date, result[6], result[4],
+                    result[5], comments)
 
     def create_post(self, title, content, author):
         """Creates a post. Returns one of "ok"."""
@@ -147,7 +150,7 @@ class Database(object):
         user = self._execute(user_query, author)[0][0]
         date = datetime.now()
         content = content.replace("\r\n", "\n")
-        summary = content.split("\n\n")[0]
+        summary = "\n\n".join(content.split("\n\n")[:2])
         slug = re.sub(r"[\W_]", "-", title.lower(), flags=re.UNICODE)[:50]
         slug = slug.rstrip("-")
         if not slug:
