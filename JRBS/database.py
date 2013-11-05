@@ -129,7 +129,7 @@ class Database(object):
             comments = self._get_comments_for_post(result[0])
             posts.append(Post(result[0], result[1], user, d, result[6],
                               result[4], result[5], comments))
-        pages = int(math.ceil(len(results) / PAGE_SIZE))
+        pages = int(math.ceil(len(results) / float(PAGE_SIZE)))
         return posts, pages
 
     def get_post(self, postid):
