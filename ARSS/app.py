@@ -45,11 +45,10 @@ def add_line():
 
 @app.route('/makestory', methods=['POST'])
 def make_story():
-	if not 'username' in session:
-		return 'login'
-	author = session['username']
-	title = get_form_value('title')
-	value = str(utils.make_story(title, author, False))
+	if utils.logged_in():
+		author = session['username']
+		title = get_form_value('title')
+		value = str(utils.make_story(title, author))
 	return redirect(url_for('index'))
 
 @app.route('/login', methods = ['POST'])
