@@ -89,8 +89,9 @@ class Database(object):
             return "exists"
         user_id = self._get_next_userid()
         pwhash = hashlib.sha256(password).hexdigest()
+        is_admin = user_id == 1  # The first account to be created is the admin
         self._execute("INSERT INTO users VALUES (?, ?, ?, ?, ?)", user_id,
-                      username, display_name, pwhash, user_id == 1)
+                      username, display_name, pwhash, is_admin)
         return "ok"
 
     def get_posts(self, user=None, page=1):
