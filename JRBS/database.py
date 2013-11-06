@@ -6,42 +6,12 @@ import math
 import re
 import sqlite3
 
+from objects import User, Post, Comment
+
 PAGE_SIZE = 5
 
 SCHEMA_FILE = "schema.sql"
 SCHEMA_VERSION = 1
-
-class User(object):
-    def __init__(self, userid, name, display_name, password_hash=None):
-        self.userid = userid
-        self.name = name
-        self.display_name = display_name
-        self.password_hash = password_hash
-
-
-class Post(object):
-    def __init__(self, postid, title, author, date, slug, content=None,
-                 summary=None, comments=None):
-        self.postid = postid
-        self.title = title
-        self.author = author
-        self.date = date
-        self.slug = slug
-
-        self.content = content
-        self.summary = summary
-        self.comments = comments
-
-
-class Comment(object):
-    def __init__(self, cid, user, date, text, anon_name=None, anon_email=None):
-        self.cid = cid
-        self.user = user
-        self.date = date
-        self.text = text
-        self.anon_name = anon_name
-        self.anon_email = anon_email
-
 
 class Database(object):
     """Represents a single database."""
@@ -75,6 +45,11 @@ class Database(object):
         result = self._execute("SELECT MAX(post_id) FROM posts")
         return result[0][0] + 1 if result[0][0] else 1
 
+    def _get_next_commentid(self):
+        """Return the next comment ID in sequence."""
+        result = self._execute("SELECT MAX(comment_id) FROM comments")
+        return result[0][0] + 1 if result[0][0] else 1
+
     def _get_user(self, userid):
         """Return the user with the given user ID."""
         query = "SELECT * FROM users WHERE user_id = ?"
@@ -83,12 +58,14 @@ class Database(object):
 
     def _get_comments_for_post(self, postid):
         """Get all the comments corresponding to a certain post."""
-        query = "SELECT * FROM comments JOIN posts ON comment_post = post_id JOIN users ON comment_user = user_id WHERE post_id = ?"
+        query = "SELECT * FROM comments JOIN posts ON comment_post = post_id WHERE post_id = ?"
         data = self._execute(query, postid)
         comments = []
         for comment in data:
-            comments.append(Comment(comment[0], comment[15], comment[3],
-                                    comment[4], comment[5], comment[6]))
+            user = self._get_user(comment[2])
+            date = datetime.strptime(comment[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
+            comments.append(Comment(comment[0], user, date, comment[4],
+                                    comment[5], comment[6]))
         return comments
 
     def login(self, username, password):
@@ -159,4 +136,14 @@ class Database(object):
             return "bad title"
         self._execute("INSERT INTO posts VALUES (?, ?, ?, ?, ?, ?, ?)", postid,
                       title, user, date, content, summary, slug)
+        return "ok"
+
+    def add_comment(self, postid, author, text):
+        """Add a comment to a post."""
+        cid = self._get_next_commentid()
+        user_query = "SELECT user_id FROM users WHERE user_name = ?"
+        user = self._execute(user_query, author)[0][0]
+        date = datetime.now()
+        self._execute("INSERT INTO comments VALUES (?, ?, ?, ?, ?, ?, ?)", cid,
+                      postid, user, date, text, None, None)
         return "ok"

@@ -1,13 +1,22 @@
 #! /usr/bin/env python
 
-from flask import Flask, request, render_template, redirect, session
 import sqlite3
 
+from flask import Flask, request, render_template, redirect, session
+from jinja2 import Environment
+
 from database import Database
+from objects import User, Post, Comment
 
 app = Flask(__name__)
 app.secret_key = "JRBS"
+
 database = Database("database.db")
+
+# For pluralization code
+app.jinja_options["extensions"].append("jinja2.ext.i18n")
+app.create_jinja_environment()
+app.jinja_env.install_null_translations()
 
 @app.route("/")
 def home():
@@ -52,6 +61,11 @@ def signup():
 def register():
     return redirect("/signup")
 
+@app.route("/logout")
+def logout():
+    session.pop("username", None)
+    return redirect("/posts")
+
 @app.route("/posts")
 @app.route("/posts/<page>")
 @app.route("/posts/user/<user>")
@@ -69,20 +83,23 @@ def posts(user=None, page=1):
     return render_template("posts.html", user=user, page=page, pages=pages,
                            posts=posts)
 
-@app.route("/post/<postid>")
-@app.route("/post/<postid>/<title>")
+@app.route("/post/<postid>", methods=["GET", "POST"])
+@app.route("/post/<postid>/<title>", methods=["GET", "POST"])
 def post(postid=None, title=None):
     if not postid:
         return redirect("/posts")
     post = database.get_post(postid)
     if not post:
         return render_template("post.html", error="missing")
+    if request.method == "POST":
+        text = request.form["text"]
+        if not text:
+            return render_template("post.html", post=post, error="incomplete")
+        answer = database.add_comment(postid, session["username"], text)
+        if answer != "ok":
+            return render_template("post.html", post=post, error=answer)
+        post = database.get_post(postid)
     return render_template("post.html", post=post)
-
-@app.route("/logout")
-def logout():
-    session.pop("username", None)
-    return redirect("/posts")
 
 @app.route("/new", methods=["GET", "POST"])
 def new():

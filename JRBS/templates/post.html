@@ -14,6 +14,8 @@
             <div class="header">Error</div>
             {% if error == "missing" %}
                 Post not found.
+            {% elif error == "incomplete" %}
+                Missing one or more required fields.
             {% else %}
                 {{error}}
             {% endif %}
@@ -28,12 +30,43 @@
                 <div class="active section">{{post.title}}</div>
             </div>
             <div class="ui blue segment">
-                <h2 class="ui header">{{post.title}}</h1>
+                <h2 class="ui header"><a class="incognito" href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h2>
                 <p><i class="icon user"></i> <a href="/posts/user/{{post.author.userid}}">{{post.author.display_name}}</a></p>
-                <p><i class="icon calendar"></i> {{post.date.strftime("%B %d, %Y")}} <i class="icon time"></i>{{post.date.strftime("%I:%M %p")}}</p>
+                <p><i class="icon calendar"></i> {{post.date.strftime("%B %d, %Y")}}&nbsp;&nbsp;<i class="icon time"></i>{{post.date.strftime("%I:%M %p")}}</p>
                 {% for paragraph in post.content.split("\n\n") %}
                     <p>{{paragraph}}</p>
                 {% endfor %}
+            </div>
+            <!-- Comments Box -->
+            <div id="comments" class="ui gray segment">
+                <h3 class="ui header">{{post.comments | length}}
+                {% trans count=post.comments | length -%}
+                    comment
+                {%- pluralize -%}
+                    comments
+                {%- endtrans %}
+                </h3>
+                <div class="ui divider"></div>
+                {% for comment in post.comments %}
+                    <div class="ui segment">
+                        <p>{{comment.user.display_name}}</p>
+                        <p>{{comment.date}}</p>
+                        <p>{{comment.text}}</p>
+                    </div>
+                {% endfor %}
+                <!-- New Comment Box -->
+                <div class="ui form segment">
+                    <h4 class="ui header">Leave a comment</h4>
+                    <form action="/post/{{post.postid}}/{{post.slug}}", method="post">
+                        <div class="field">
+                            <div class="ui labeled input">
+                                <textarea name="text"></textarea>
+                                <div class="ui corner label"><i class="asterisk icon"></i></div>
+                            </div>
+                        </div>
+                        <input type="submit" class="ui small submit button" value="Add" />
+                    </form>
+                </div>
             </div>
         </div>
     {% endif %}
