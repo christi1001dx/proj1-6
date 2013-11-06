@@ -7,7 +7,7 @@ db = client.ARSS
 db.stories.ensure_index('title', unique=True)
 
 def record_exists(collection, query, limit=1):
-	collection.find(query).count(True) > 0
+	return collection.find(query, limit=1).count(True) > 0
 
 ##### STORY FUNCTIONS ######
 
@@ -28,7 +28,7 @@ def _get_field(title, key):
 	return _find_story(title)[key]
 
 def story_exists(title):
-	return record_exists(db.stories, title)
+	return record_exists(db.stories, {'title': title})
 
 def story_author(title):
 	return _get_field(title, 'author')
@@ -40,8 +40,7 @@ def story_lines(title):
 	return _get_field(title, 'lines')
 
 def make_story(title, author=None):
-	exists = story_exists(title)
-	if not exists:
+	if not story_exists(title):
 		story = {
 			'_id': _get_next_seq('story_id'),
 			'title': title,
@@ -49,7 +48,8 @@ def make_story(title, author=None):
 			'lines': 0
 		}
 		db.stories.insert(story)
-	return exists
+		return True
+	return False
 
 def delete_story(title):
 	return db.stories.remove({'title': title})['n'] > 0
@@ -154,12 +154,6 @@ if __name__ == '__main__':
 	db.counters.remove()
 	db.stories.remove()
 
-	db.stories.update({'title': 'test1'}, {'$set': {'author': 'AuthorName'}})
-	increment_lines('test1')
-	increment_lines('test1')
-	
-	make_story('test1')
-	make_story('test2')
 	print('Testing story')
 	print('\tMaking story: ' + str(make_story('test1')))
 	print('\tMaking existing story: ' + str(make_story('test1')))
@@ -184,5 +178,3 @@ if __name__ == '__main__':
 	print('\t' + str(db.counters.find_one({'_id': 'story_id'})))
 
 	print('Stories: ' + str(list_of_stories()))
-
-	add_line('Test line 1.', 'test1', user)
