@@ -1,6 +1,5 @@
 var blockw = BLOCK = 300, PAD = 20, contw, bw, bh;
 var HEADSIZE = [60, 400], s = [];
-
 var sideneg = 30, sideopen = 0;
 
 $(function() {
