@@ -5,6 +5,7 @@ var s = [];
 var sideneg = 30, sideopen = 0;
 
 $(function() {
+	
 	$(window).resize(calcheader).scroll(calcheader).resize();
 	
 	$("#sidebar .label").mouseover(function() {
