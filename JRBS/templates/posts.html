@@ -9,13 +9,18 @@
             <div class="ui blue segment">
                 <h2 class="ui header"><a class="incognito" href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></h2>
                 <p><i class="icon user"></i> <a href="/posts/user/{{post.author.userid}}">{{post.author.display_name}}</a></p>
-                <p><i class="icon calendar"></i> {{post.date.strftime("%B %d, %Y")}} <i class="icon time"></i>{{post.date.strftime("%I:%M %p")}}</p>
+                <p><i class="icon calendar"></i> {{post.date.strftime("%B %d, %Y")}}&nbsp;&nbsp;<i class="icon time"></i>{{post.date.strftime("%I:%M %p")}}</p>
                 {% for paragraph in post.summary.split("\n\n") %}
                     <p>{{paragraph}}</p>
                 {% endfor %}
                 <p>
                     <a href="/post/{{post.postid}}/{{post.slug}}">Read more...</a>&nbsp;&nbsp;<span class="post-links-divider">&bull;</span>&nbsp;
-                    <a href="/post/{{post.postid}}/{{post.slug}}#comments"><i class="icon comment"></i>{{post.comments | length}} comments</a>
+                    <a href="/post/{{post.postid}}/{{post.slug}}#comments"><i class="icon comment"></i>
+                    {%- trans count=post.comments | length -%}
+                        {{count}} comment
+                    {%- pluralize -%}
+                        {{count}} comments
+                    {%- endtrans %}</a>
                 </p>
             </div>
             <!-- Divider -->
@@ -37,7 +42,15 @@
                         <a class="item" href="/posts/{{page - 1}}"><i class="icon left arrow"></i> Previous</a>
                     {% endif %}
                 {% endif %}
-                <a class="active item">{{page}}</a>
+                {% for num in range(1, pages + 1) %}
+                    {% if num == page %}
+                        <a class="active item">{{num}}</a>
+                    {% elif user %}
+                        <a class="item" href="/posts/user/{{user}}/{{num}}">{{num}}</a>
+                    {% else %}
+                        <a class="item" href="/posts/{{num}}">{{num}}</a>
+                    {% endif %}
+                {% endfor %}
                 {% if page < pages %}
                     {% if user %}
                         <a class="item" href="/posts/user/{{user}}/{{page + 1}}">Next <i class="icon right arrow"></i></a>
