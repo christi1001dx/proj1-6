@@ -154,14 +154,12 @@ if __name__ == '__main__':
 	db.counters.remove()
 	db.stories.remove()
 
-<<<<<<< HEAD
 	db.stories.update({'title': 'test1'}, {'$set': {'author': 'AuthorName'}})
 	increment_lines('test1')
 	increment_lines('test1')
 	
 	make_story('test1')
 	make_story('test2')
-=======
 	print('Testing story')
 	print('\tMaking story: ' + str(make_story('test1')))
 	print('\tMaking existing story: ' + str(make_story('test1')))
@@ -188,4 +186,3 @@ if __name__ == '__main__':
 	print('Stories: ' + str(list_of_stories()))
 
 	add_line('Test line 1.', 'test1', user)
->>>>>>> ae6d4b43504dd1a0c15b145b8eef7103f12ed330
