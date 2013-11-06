@@ -6,6 +6,9 @@ db = client.ARSS
 #db.stories.drop_index('title_1')
 db.stories.ensure_index('title', unique=True)
 
+def record_exists(collection, query, limit=1):
+	collection.find(query).count(True) > 0
+
 ##### STORY FUNCTIONS ######
 
 def _get_next_seq(key):
@@ -25,7 +28,7 @@ def _get_field(title, key):
 	return _find_story(title)[key]
 
 def story_exists(title):
-	return db.stories.find({'title': title}, limit=1).count(True) > 0
+	return record_exists(db.stories, title)
 
 def story_author(title):
 	return _get_field(title, 'author')
@@ -96,7 +99,7 @@ def return_all_stories():
 ##### LOGIN FUNCTIONS ######
 
 def user_exists(username):
-	db.users.find({'username': username}).limit(1).count(True) > 0
+	return record_exists(db.users, {'username': username})
 
 def create_user(username, password):
 	if not user_exists(username):
@@ -117,10 +120,7 @@ def register_user(username, password, confirm_password):
 
 # used to validate login
 def account_exists(username, password):
-	for x in db.users.find({'username': username, 'password': password}):
-		return True
-	else:
-		return False
+	return record_exists(db.users, {'username': username, 'password': password})
 
 # used to change password
 # type in new password two times
