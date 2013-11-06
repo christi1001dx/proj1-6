@@ -3,8 +3,6 @@ from flask import session
 
 client = MongoClient()
 db = client.ARSS
-#db.stories.drop_index('title_1')
-db.stories.ensure_index('title', unique=True)
 
 def record_exists(collection, query, limit=1):
 	return collection.find(query, limit=1).count(True) > 0

@@ -140,7 +140,8 @@ def new():
 @app.route("/archive")
 def archive():
     posts, pages = database.get_posts(page=None)
-    return render_template("archive.html", posts=posts)
+    top_posters = database.get_top_posters(posts)
+    return render_template("archive.html", posts=posts, top=top_posters)
 
 # @app.route("/admin")
 # def admin():

@@ -161,3 +161,13 @@ class Database(object):
         """Return whether an email address is valid."""
         # Ideally, this would send a confirmation email to the user.
         return re.match(r"[^@]+@[^@]+\.[^@]+$", email)
+
+    def get_top_posters(self, posts):
+        """Return a list of top posters as (User, count) tuples."""
+        counts = {}
+        for post in posts:
+            if post.author.userid in counts:
+                counts[post.author.userid][1] += 1
+            else:
+                counts[post.author.userid] = [post.author, 1]
+        return sorted(counts.values(), key=lambda pair: pair[1], reverse=True)
