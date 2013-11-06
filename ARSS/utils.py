@@ -102,7 +102,7 @@ def user_exists(username):
 	return record_exists(db.users, {'username': username})
 
 # used to validate login
-def account_exists(username, password):
+def validate_user(username, password):
 	return record_exists(db.users, {'username': username, 'password': password})
 
 def upsert_user(username, password):
@@ -111,6 +111,16 @@ def upsert_user(username, password):
 		{'password': password},
 		upsert=True
 	)
+
+def login_user(username, password):
+	if validate_user(username, password):
+		session['username'] = username
+		return 'Success!'
+	else:
+		return 'Incorrect username or password.'
+
+def logout_user():
+	session.pop('username', None)
 
 # used for register
 # user must type password 2 times to make account
@@ -141,9 +151,9 @@ def change_username(username, new_username):
 	db.users.update({'username': username}, {'username': new_username})
 
 def logged_in():
-	if 'username' in session and not user_exists(session['username']):
+	if not user_exists(get('username', None)):
 		session.pop('username', None)
-	return 'username' in session and session['username'] != None
+	return get('username', None) != None
 
 if __name__ == '__main__':
 	db = client.test
