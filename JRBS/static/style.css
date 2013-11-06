@@ -19,6 +19,10 @@ div.gray {
     border-top: .2em solid #BBB;
 }
 
+span.gray {
+    color: #999;
+}
+
 span.post-links-divider {
     color: #666;
 }
