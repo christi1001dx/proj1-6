@@ -37,7 +37,7 @@ def add_line():
 		author = session['username']
 		title = get_form_value('title')
 		line = get_form_value('line')
-		utils.add_line(line, title, author):
+		utils.add_line(line, title, author);
 
 @app.route('/makestory', methods=['POST'])
 def make_story():
