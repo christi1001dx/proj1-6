@@ -1,0 +1,102 @@
+{% extends "support/main.html" %}
+{% block title %} Admin {% endblock %}
+{% block content %}
+
+    <!-- Error Box -->
+    {% if error %}
+        <div class="ui error message">
+            <div class="header">Error</div>
+            <p>
+                {% if error == "bad action" %}
+                    Unknown action or actor. Use one of the links; don't try to manufacture your own!
+                {% elif error == "no post" %}
+                    Post not found.
+                {% elif error == "no user" %}
+                    User not found.
+                {% endif %}
+            </p>
+        </div>
+    {% endif %}
+
+    <!-- Success Box -->
+    {% if success %}
+        <div class="ui success message">
+            <div class="header">Success</div>
+            <p>
+                {% if success == "delete post" %}
+                    Post deleted.
+                {% elif success == "delete user" %}
+                    User deleted.
+                {% elif success == "promote user" %}
+                    User promoted to admin.
+                {% elif success == "demote user" %}
+                    User demoted from admin.
+                {% else %}
+                    {{success}}
+                {% endif %}
+            </p>
+        </div>
+    {% endif %}
+
+    <!-- Admin Box -->
+    <div class="ui segment">
+        <h2 class="ui header">Admin Panel</h2>
+        <h3 class="ui header">Posts</h2>
+        <table class="ui table segment">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{post.postid}}</td>
+                    <td><a href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a></td>
+                    <td>{{post.author.name}} (<a href="/posts/user/{{post.author.userid}}">{{post.author.display_name}}</a>)</td>
+                    <td>{{post.date.strftime("%Y-%m-%d %H:%M:%S")}}</td>
+                    <td>{{post.comments | length}}</td>
+                    <td><a href="/admin/delete/post/{{post.postid}}"><i class="red remove icon"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h3 class="ui header">Users</h2>
+        <table class="ui table segment">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Display Name</th>
+                    <th>Admin?</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{user.userid}}</td>
+                    <td>{{user.name}}</td>
+                    <td><a href="/posts/user/{{user.userid}}">{{user.display_name}}</a></td>
+                    <td>{{"Yes" if user.is_admin else "No"}}</td>
+                    {% if user.name == session["username"] %}
+                        <td><i class="empty black star icon"></i> <i class="black remove icon"></i></td>
+                    {% else %}
+                        {% if user.is_admin %}
+                            <td><a href="/admin/demote/user/{{user.userid}}"><i class="empty green star icon"></i></a> <a href="/admin/delete/user/{{user.userid}}"><i class="red remove icon"></i></a></td>
+                        {% else %}
+                            <td><a href="/admin/promote/user/{{user.userid}}"><i class="green star icon"></i></a> <a href="/admin/delete/user/{{user.userid}}"><i class="red remove icon"></i></a></td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

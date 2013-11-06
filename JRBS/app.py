@@ -12,6 +12,7 @@ app = Flask(__name__)
 app.secret_key = "JRBS"
 
 database = Database("database.db")
+app.before_request(lambda: setattr(session, "database", database))
 
 # For pluralization code
 app.jinja_options["extensions"].append("jinja2.ext.i18n")
@@ -119,7 +120,7 @@ def post(postid=None, title=None):
         answer = database.add_comment(postid, username, text, anon_name, email)
         if answer != "ok":
             return render_template("post.html", post=post, error2=answer)
-        post = database.get_post(postid)
+        post = database.get_post(postid)  # Reload
     return render_template("post.html", post=post)
 
 @app.route("/new", methods=["GET", "POST"])
@@ -143,9 +144,37 @@ def archive():
     top_posters = database.get_top_posters(posts)
     return render_template("archive.html", posts=posts, top=top_posters)
 
-# @app.route("/admin")
-# def admin():
-#     pass
+@app.route("/admin")
+@app.route("/admin/<verb>/<actor>/<objectid>")
+def admin(verb=None, actor=None, objectid=None):
+    if "username" not in session:
+        return redirect("/login")
+    if not database.is_admin(session["username"]):
+        return redirect("/posts")
+    posts, pages = database.get_posts(page=None)
+    posts.sort(key=lambda post: post.postid)
+    users = database.get_users()
+    if not verb or not actor or not objectid:
+        return render_template("admin.html", posts=posts, users=users)
+    if verb == "delete" and actor == "post":
+        answer = database.delete_post(objectid)
+    elif verb == "delete" and actor == "user":
+        answer = database.delete_user(objectid)
+    elif verb == "promote" and actor == "user":
+        answer = database.promote_user(objectid)
+    elif verb == "demote" and actor == "user":
+        answer = database.demote_user(objectid)
+    else:
+        return render_template("admin.html", posts=posts, users=users,
+                               error="bad action")
+    if answer == "ok":
+        posts, pages = database.get_posts(page=None)  # Reload
+        posts.sort(key=lambda post: post.postid)
+        users = database.get_users()
+        return render_template("admin.html", posts=posts, users=users,
+                               success=verb + " " + actor)
+    return render_template("admin.html", posts=posts, users=users,
+                           error=answer)
 
 if __name__ == "__main__":
     app.run(debug=True)
