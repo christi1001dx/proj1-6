@@ -1,5 +1,10 @@
-var blockw = BLOCK = 300, PAD = 20, contw, bw, bh;
+// constants for spacing and block size
+var blockw = BLOCK = 300, PAD = 20;
+// browser size variables
+var contw, bw, bh;
+// header stuff
 var HEADSIZE = [60, 400], s = [];
+// sidebar stuff
 var sideneg = 30, sideopen = 0;
 
 $(function() {
@@ -57,6 +62,7 @@ $(function() {
 	});
 });
 
+// fits the header according to scroll and browser size
 function calcheader() {
 	bw = $(window).width(); bh = $(window).height();
 	var st = $(window).scrollTop();
@@ -76,8 +82,10 @@ function calcheader() {
 	});
 }
 
+// array of vendor prefixes
 var pre = ["","-moz-","-o-","-webkit-","-ms-"];
 function init() {
+	// extending jQuery for vendor prefixes
 	$.fn.extend({
 		css3 : function(obj) {
 			for(var i in obj) {
@@ -121,11 +129,11 @@ function hideStory() {
 	},500,function() {
 		$(this).css("display","none");
 	});
-	$("#stories").css("display","block").css("left",-$(window).width()).animate({
-		left : sideneg
-	},500);
 	$("header").animate({
 		top : 0
+	},500);
+	$("#stories").css("display","block").css("left",-$(window).width()).animate({
+		left : sideneg
 	},500);
 }
 function openStory(i) {
@@ -136,14 +144,14 @@ function openStory(i) {
 	.animate({
 		left : sideneg
 	},500);
+	$("header").animate({
+		top : -400
+	},500);
 	$("#stories").animate({
 		left : -bw
 	},500,function() {
 		$(this).css("display","none");
 	});
-	$("header").animate({
-		top : -400
-	},500);
 	var s = stories[i];
 	$(".story-author").html("by "+s.author);
 	$(".story-container h1").html(s.title);
