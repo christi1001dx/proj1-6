@@ -143,6 +143,7 @@ class Database(object):
         cid = self._get_next_commentid()
         user_query = "SELECT user_id FROM users WHERE user_name = ?"
         user = self._execute(user_query, author)[0][0]
+        text = text.replace("\r\n", "\n")
         date = datetime.now()
         self._execute("INSERT INTO comments VALUES (?, ?, ?, ?, ?, ?, ?)", cid,
                       postid, user, date, text, None, None)

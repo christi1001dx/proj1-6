@@ -3,12 +3,16 @@ html, body {
 }
 
 body {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  background-color: #FAFAFA;
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background-color: #FAFAFA;
 }
 
 h1, h2, h3, h4, h5 {
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+div#comments {
+    background-color: #F5F5F5 !important;
 }
 
 div.gray {

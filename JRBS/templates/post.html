@@ -49,15 +49,16 @@
                 <div class="ui divider"></div>
                 {% for comment in post.comments %}
                     <div class="ui segment">
-                        <p>{{comment.user.display_name}}</p>
-                        <p>{{comment.date}}</p>
-                        <p>{{comment.text}}</p>
+                        <p><i class="icon user"></i> <a href="/posts/user/{{comment.user.userid}}">{{comment.user.display_name}}</a>&nbsp;&nbsp;<i class="icon calendar"></i> {{comment.date.strftime("%B %d, %Y")}}&nbsp;<i class="icon time"></i>{{comment.date.strftime("%I:%M %p")}}</p>
+                        {% for paragraph in comment.text.split("\n\n") %}
+                            <p>{{paragraph}}</p>
+                        {% endfor %}
                     </div>
                 {% endfor %}
                 <!-- New Comment Box -->
                 <div class="ui form segment">
                     <h4 class="ui header">Leave a comment</h4>
-                    <form action="/post/{{post.postid}}/{{post.slug}}", method="post">
+                    <form action="/post/{{post.postid}}/{{post.slug}}#comments", method="post">
                         <div class="field">
                             <div class="ui labeled input">
                                 <textarea name="text"></textarea>
