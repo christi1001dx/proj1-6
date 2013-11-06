@@ -176,7 +176,10 @@ class Database(object):
     def is_admin(self, username):
         """Return whether the given user is an admin."""
         user_query = "SELECT user_id FROM users WHERE user_name = ?"
-        userid = self._execute(user_query, username)[0][0]
+        try:
+            userid = self._execute(user_query, username)[0][0]
+        except IndexError:
+            return False
         user = self.get_user(userid)
         return user.is_admin
 
