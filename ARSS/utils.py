@@ -101,9 +101,16 @@ def return_all_stories():
 def user_exists(username):
 	return record_exists(db.users, {'username': username})
 
-def create_user(username, password):
-	if not user_exists(username):
-		db.users.insert({'username': username,'password': password})
+# used to validate login
+def account_exists(username, password):
+	return record_exists(db.users, {'username': username, 'password': password})
+
+def upsert_user(username, password):
+	db.users.update(
+		{'username': username},
+		{'password': password},
+		upsert=True
+	)
 
 # used for register
 # user must type password 2 times to make account
@@ -113,36 +120,25 @@ def register_user(username, password, confirm_password):
 	elif (len(password) < 4):
 		return 'Password too short.'
 	elif (password != confirm_password):
-		return 'Passwords do not match.'
+		return 'Password does not match confirmation.'
 	else:
-		db.users.insert({'username': username, 'password': password})
+		upsert_user(username, password)
 		return 'Success!'
-
-# used to validate login
-def account_exists(username, password):
-	return record_exists(db.users, {'username': username, 'password': password})
 
 # used to change password
 # type in new password two times
 def change_password(username, password, confirm_password):
-	if (password.__len__() < 5):
-		return False
+	if (len(password) < 4):
+		return 'Password too short.'
 	elif (password != confirm_password):
-		return False
+		return 'Password does not match confirmation.'
 	else:
-		db.users.update({'username': username}, {'$set':{'password': password}})
-		return True
+		upsert_user(username, password)
+		return 'Success!'
 
 # used to change username
-# type in new username two times
-def change_username(username, username2, password):
-	if (username.__len__() < 5):
-		return False
-	elif (username != username2):
-		return False
-	else:
-		db.users.update({'username': username}, {'$set':{'password': password}})
-		return True
+def change_username(username, new_username):
+	db.users.update({'username': username}, {'username': new_username})
 
 def logged_in():
 	if 'username' in session and not user_exists(session['username']):
