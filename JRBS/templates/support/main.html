@@ -7,6 +7,7 @@
             <a class="item" href="/"><i class="home icon"></i> <b>Bloginator</b></a>
             {% if "username" in session %}
                 <a class="item" href="/new"><i class="edit icon"></i> New Post</a>
+                <a class="item" href="/archive"><i class="archive icon"></i> Archive</a>
                 <div style="float: right;">
                     <div class="item"></div>
                     <div class="item">
@@ -17,6 +18,7 @@
                     </div>
                 </div>
             {% else %}
+                <a class="item" href="/archive"><i class="archive icon"></i> Archive</a>
                 <div style="float: right;">
                     <div class="item"></div>
                     <div class="item">

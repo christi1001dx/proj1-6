@@ -137,6 +137,11 @@ def new():
         return redirect("/posts")
     return render_template("new.html", error=answer)
 
+@app.route("/archive")
+def archive():
+    posts, pages = database.get_posts(page=None)
+    return render_template("archive.html", posts=posts)
+
 # @app.route("/admin")
 # def admin():
 #     pass

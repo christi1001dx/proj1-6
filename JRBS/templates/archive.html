@@ -1,0 +1,20 @@
+{% extends "support/main.html" %}
+{% block title %} Archive {% endblock %}
+{% block content %}
+
+    <!-- Archive Box -->
+    <div class="ui segment">
+        <h2 class="ui header">Post Archive</h2>
+        <ol class="ui list">
+            {% for post in posts %}
+                <li><a href="/post/{{post.postid}}/{{post.slug}}">{{post.title}}</a> by <a href="/posts/user/{{post.author.userid}}">{{post.author.display_name}}</a> on {{post.date.strftime("%B %d, %Y")}} at {{post.date.strftime("%I:%M %p")}} (<a href="/post/{{post.postid}}/{{post.slug}}#comments">
+                    {%- trans count=post.comments | length -%}
+                        {{count}} comment
+                    {%- pluralize -%}
+                        {{count}} comments
+                    {%- endtrans %}</a>)</li>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -79,7 +79,7 @@
                     <h4 class="ui header">Leave a comment</h4>
                     <form action="/post/{{post.postid}}/{{post.slug}}#comments", method="post">
                         {% if "username" not in session %}
-                            <div class="ui message"><p><a href="/login">Login</a> or <a href="/signup">register</a> to avoid leaving an anonymous comment!</p></div>
+                            <div class="ui message"><p><a href="/login">Login</a> or <a href="/signup">register</a> to avoid revealing your email address!</p></div>
                             <div class="field">
                                 <label>Name</label>
                                 <div class="ui left labeled icon input">

@@ -103,13 +103,15 @@ class Database(object):
             results = self._execute(query)
 
         posts = []
-        for result in results[PAGE_SIZE * (page - 1):PAGE_SIZE * page]:
+        pages = int(math.ceil(len(results) / float(PAGE_SIZE)))
+        if page:
+            results = results[PAGE_SIZE * (page - 1):PAGE_SIZE * page]
+        for result in results:
             user = self.get_user(result[2])
             d = datetime.strptime(result[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
             comments = self._get_comments_for_post(result[0])
             posts.append(Post(result[0], result[1], user, d, result[6],
                               result[4], result[5], comments))
-        pages = int(math.ceil(len(results) / float(PAGE_SIZE)))
         return posts, pages
 
     def get_post(self, postid):
@@ -157,4 +159,5 @@ class Database(object):
 
     def validate_email(self, email):
         """Return whether an email address is valid."""
+        # Ideally, this would send a confirmation email to the user.
         return re.match(r"[^@]+@[^@]+\.[^@]+$", email)
