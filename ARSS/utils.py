@@ -151,9 +151,9 @@ def change_username(username, new_username):
 	db.users.update({'username': username}, {'username': new_username})
 
 def logged_in():
-	if not user_exists(get('username', None)):
+	if not user_exists(session.get('username', None)):
 		session.pop('username', None)
-	return get('username', None) != None
+	return session.get('username', None) != None
 
 if __name__ == '__main__':
 	db = client.test

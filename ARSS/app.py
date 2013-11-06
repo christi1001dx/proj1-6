@@ -52,8 +52,6 @@ def make_story():
 	value = str(utils.make_story(title, author, False))
 	return redirect(url_for('index'))
 
-
-
 @app.route('/login', methods = ['POST'])
 def login():
 	username = get_form_value('username')
