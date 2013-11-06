@@ -69,7 +69,7 @@ def register():
 
 @app.route('/logout', methods = ['POST'])
 def logout():
-	logout_user(username)
+	utils.logout_user()
 	return redirect(url_for('index'))
 
 if __name__ == '__main__':
