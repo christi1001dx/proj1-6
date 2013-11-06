@@ -77,7 +77,17 @@ def posts(user=None, page=1):
         return redirect("/posts")
     if page < 1:
         return redirect("/posts")
+    if user:
+        try:
+            user = int(user)
+        except ValueError:
+            return redirect("/posts")
+        user = database.get_user(user)
+        if not user:
+            return redirect("/posts")
     posts, pages = database.get_posts(user=user, page=page)
+    if not pages:
+        pages = 1
     if page > pages:
         return redirect("/posts")
     return render_template("posts.html", user=user, page=page, pages=pages,
@@ -90,14 +100,25 @@ def post(postid=None, title=None):
         return redirect("/posts")
     post = database.get_post(postid)
     if not post:
-        return render_template("post.html", error="missing")
+        return render_template("post.html", error1="missing")
     if request.method == "POST":
         text = request.form["text"]
-        if not text:
-            return render_template("post.html", post=post, error="incomplete")
-        answer = database.add_comment(postid, session["username"], text)
+        required = [text]
+        if "username" in session:
+            username = session["username"]
+            anon_name = email = None
+        else:
+            username = None
+            anon_name = request.form["anonName"]
+            email = request.form["anonEmail"]
+            required.extend([anon_name, email])
+        if not all(required):
+            return render_template("post.html", post=post, error2="incomplete")
+        if email and not database.validate_email(email):
+            return render_template("post.html", post=post, error2="bad email")
+        answer = database.add_comment(postid, username, text, anon_name, email)
         if answer != "ok":
-            return render_template("post.html", post=post, error=answer)
+            return render_template("post.html", post=post, error2=answer)
         post = database.get_post(postid)
     return render_template("post.html", post=post)
 

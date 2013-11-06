@@ -9,16 +9,16 @@
 {% block content %}
 
     <!-- Error Box -->
-    {% if error %}
+    {% if error1 %}
         <div class="ui error message">
             <div class="header">Error</div>
-            {% if error == "missing" %}
-                Post not found.
-            {% elif error == "incomplete" %}
-                Missing one or more required fields.
-            {% else %}
-                {{error}}
-            {% endif %}
+            <p>
+                {% if error1 == "missing" %}
+                    Post not found.
+                {% else %}
+                    {{error1}}
+                {% endif %}
+            </p>
         </div>
     {% endif %}
     {% if post %}
@@ -49,22 +49,68 @@
                 <div class="ui divider"></div>
                 {% for comment in post.comments %}
                     <div class="ui segment">
-                        <p><i class="icon user"></i> <a href="/posts/user/{{comment.user.userid}}">{{comment.user.display_name}}</a>&nbsp;&nbsp;<i class="icon calendar"></i> {{comment.date.strftime("%B %d, %Y")}}&nbsp;<i class="icon time"></i>{{comment.date.strftime("%I:%M %p")}}</p>
+                        {% if comment.user %}
+                            <p><i class="icon user"></i> <a href="/posts/user/{{comment.user.userid}}">{{comment.user.display_name}}</a>&nbsp;&nbsp;<i class="icon calendar"></i> {{comment.date.strftime("%B %d, %Y")}}&nbsp;<i class="icon time"></i>{{comment.date.strftime("%I:%M %p")}}</p>
+                        {% else %}
+                            <p><i class="icon user"></i>{{comment.anon_name}}&nbsp;&nbsp;<i class="icon mail outline"></i><a href="mailto:{{comment.anon_email}}">{{comment.anon_email}}</a>&nbsp;&nbsp;<i class="icon calendar"></i> {{comment.date.strftime("%B %d, %Y")}}&nbsp;<i class="icon time"></i>{{comment.date.strftime("%I:%M %p")}}</p>
+                        {% endif %}
                         {% for paragraph in comment.text.split("\n\n") %}
                             <p>{{paragraph}}</p>
                         {% endfor %}
                     </div>
                 {% endfor %}
+                <!-- New Comment Error Box -->
+                {% if error2 %}
+                    <div class="ui error message">
+                        <div class="header">Error</div>
+                        <p>
+                            {% if error2 == "incomplete" %}
+                                Missing one or more required fields.
+                            {% elif error2 == "bad email" %}
+                                Invalid email address.
+                            {% else %}
+                                {{error2}}
+                            {% endif %}
+                        </p>
+                    </div>
+                {% endif %}
                 <!-- New Comment Box -->
                 <div class="ui form segment">
                     <h4 class="ui header">Leave a comment</h4>
                     <form action="/post/{{post.postid}}/{{post.slug}}#comments", method="post">
-                        <div class="field">
-                            <div class="ui labeled input">
-                                <textarea name="text"></textarea>
-                                <div class="ui corner label"><i class="asterisk icon"></i></div>
+                        {% if "username" not in session %}
+                            <div class="ui message"><p><a href="/login">Login</a> or <a href="/signup">register</a> to avoid leaving an anonymous comment!</p></div>
+                            <div class="field">
+                                <label>Name</label>
+                                <div class="ui left labeled icon input">
+                                    <input name="anonName" type="text" />
+                                    <i class="user icon"></i>
+                                    <div class="ui corner label"><i class="asterisk icon"></i></div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="field">
+                                <label>Email</label>
+                                <div class="ui left labeled icon input">
+                                    <input name="anonEmail" type="text" />
+                                    <i class="mail icon"></i>
+                                    <div class="ui corner label"><i class="asterisk icon"></i></div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Comment</label>
+                                <div class="ui labeled input">
+                                    <textarea name="text"></textarea>
+                                    <div class="ui corner label"><i class="asterisk icon"></i></div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="field">
+                                <div class="ui labeled input">
+                                    <textarea name="text"></textarea>
+                                    <div class="ui corner label"><i class="asterisk icon"></i></div>
+                                </div>
+                            </div>
+                        {% endif %}
                         <input type="submit" class="ui small submit button" value="Add" />
                     </form>
                 </div>

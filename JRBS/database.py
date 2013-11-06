@@ -50,19 +50,13 @@ class Database(object):
         result = self._execute("SELECT MAX(comment_id) FROM comments")
         return result[0][0] + 1 if result[0][0] else 1
 
-    def _get_user(self, userid):
-        """Return the user with the given user ID."""
-        query = "SELECT * FROM users WHERE user_id = ?"
-        result = self._execute(query, userid)[0]
-        return User(result[0], result[1], result[2], result[3])
-
     def _get_comments_for_post(self, postid):
         """Get all the comments corresponding to a certain post."""
         query = "SELECT * FROM comments JOIN posts ON comment_post = post_id WHERE post_id = ?"
         data = self._execute(query, postid)
         comments = []
         for comment in data:
-            user = self._get_user(comment[2])
+            user = self.get_user(comment[2]) if comment[2] else None
             date = datetime.strptime(comment[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
             comments.append(Comment(comment[0], user, date, comment[4],
                                     comment[5], comment[6]))
@@ -77,6 +71,15 @@ class Database(object):
         if user.password_hash != hashlib.sha256(password).hexdigest():
             return "bad password"
         return "ok"
+
+    def get_user(self, userid):
+        """Return the user with the given user ID."""
+        query = "SELECT * FROM users WHERE user_id = ?"
+        results = self._execute(query, userid)
+        if not results:
+            return None
+        result = results[0]
+        return User(result[0], result[1], result[2], result[3])
 
     def register(self, username, display_name, password):
         """Returns one of "exists", "ok"."""
@@ -94,14 +97,14 @@ class Database(object):
         """Return a list of posts meeting the given conditions."""
         if user:
             query = "SELECT * FROM posts WHERE post_user = ? ORDER BY post_date DESC"
-            results = self._execute(query, user)
+            results = self._execute(query, user.userid)
         else:
             query = "SELECT * FROM posts ORDER BY post_date DESC"
             results = self._execute(query)
 
         posts = []
         for result in results[PAGE_SIZE * (page - 1):PAGE_SIZE * page]:
-            user = self._get_user(result[2])
+            user = self.get_user(result[2])
             d = datetime.strptime(result[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
             comments = self._get_comments_for_post(result[0])
             posts.append(Post(result[0], result[1], user, d, result[6],
@@ -116,7 +119,7 @@ class Database(object):
         if not results:
             return None
         result = results[0]
-        user = self._get_user(result[2])
+        user = self.get_user(result[2])
         date = datetime.strptime(result[3].split(".")[0], "%Y-%m-%d %H:%M:%S")
         comments = self._get_comments_for_post(result[0])
         return Post(result[0], result[1], user, date, result[6], result[4],
@@ -138,13 +141,20 @@ class Database(object):
                       title, user, date, content, summary, slug)
         return "ok"
 
-    def add_comment(self, postid, author, text):
+    def add_comment(self, postid, author, text, anon_name, anon_email):
         """Add a comment to a post."""
         cid = self._get_next_commentid()
-        user_query = "SELECT user_id FROM users WHERE user_name = ?"
-        user = self._execute(user_query, author)[0][0]
+        if author:
+            user_query = "SELECT user_id FROM users WHERE user_name = ?"
+            user = self._execute(user_query, author)[0][0]
+        else:
+            user = None
         text = text.replace("\r\n", "\n")
         date = datetime.now()
         self._execute("INSERT INTO comments VALUES (?, ?, ?, ?, ?, ?, ?)", cid,
-                      postid, user, date, text, None, None)
+                      postid, user, date, text, anon_name, anon_email)
         return "ok"
+
+    def validate_email(self, email):
+        """Return whether an email address is valid."""
+        return True

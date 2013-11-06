@@ -2,7 +2,16 @@
 {% block title %} Posts {% endblock %}
 {% block content %}
 
-    <!-- Post Box-->
+    <!-- "Showing posts by <user>" Box -->
+    {% if user %}
+        <div class="ui floating message">
+            <div class="header">
+                Showing posts by <b>{{user.display_name}}</b>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Posts Box-->
     <div class="ui piled segment">
         {% for post in posts %}
             <!-- Post -->
@@ -37,7 +46,7 @@
                 <div class="bottom menu">
                 {% if page > 1 %}
                     {% if user %}
-                        <a class="item" href="/posts/user/{{user}}/{{page - 1}}"><i class="icon left arrow"></i> Previous</a>
+                        <a class="item" href="/posts/user/{{user.userid}}/{{page - 1}}"><i class="icon left arrow"></i> Previous</a>
                     {% else %}
                         <a class="item" href="/posts/{{page - 1}}"><i class="icon left arrow"></i> Previous</a>
                     {% endif %}
@@ -46,14 +55,14 @@
                     {% if num == page %}
                         <a class="active item">{{num}}</a>
                     {% elif user %}
-                        <a class="item" href="/posts/user/{{user}}/{{num}}">{{num}}</a>
+                        <a class="item" href="/posts/user/{{user.userid}}/{{num}}">{{num}}</a>
                     {% else %}
                         <a class="item" href="/posts/{{num}}">{{num}}</a>
                     {% endif %}
                 {% endfor %}
                 {% if page < pages %}
                     {% if user %}
-                        <a class="item" href="/posts/user/{{user}}/{{page + 1}}">Next <i class="icon right arrow"></i></a>
+                        <a class="item" href="/posts/user/{{user.userid}}/{{page + 1}}">Next <i class="icon right arrow"></i></a>
                     {% else %}
                         <a class="item" href="/posts/{{page + 1}}">Next <i class="icon right arrow"></i></a>
                     {% endif %}
