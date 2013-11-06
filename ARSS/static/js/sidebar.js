@@ -21,22 +21,22 @@
 			sidebarWidth = add("px", labelWidth, bodyTotalWidth);
 
 		function open() {
+			$sidebarBody.css("opacity", "1");
 			$bodyWrapper.css({
 				width: bodyTotalWidth,
 				"padding-left": bodyPadding,
 				"padding-right": bodyPadding
 			});
 			$body.css("padding-left", sidebarWidth);
-			$sidebarBody.css("opacity", "1");
 		}
 		function close() {
+			$sidebarBody.css("opacity", "0");
 			$bodyWrapper.css({
 				width: "",
 				"padding-left": "0",
 				"padding-right": "0"
 			});
 			$body.css("padding-left", "");
-			$sidebarBody.css("opacity", "0");
 		}
 		$labelText.mouseenter(open);
 		$sidebar.mouseleave(close);
