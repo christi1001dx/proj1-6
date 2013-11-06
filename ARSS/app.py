@@ -58,11 +58,7 @@ def make_story():
 def login():
 	username = get_form_value('username')
 	password = get_form_value('password')
-	if (utils.account_exists(username, password)):
-		session['username'] = username
-		flash('Success!')
-	else:
-		flash('Incorrect username or password.')
+	flash(utils.login_user(username, password))
 	return redirect(url_for('index'))
 
 @app.route('/register', methods = ['POST'])
@@ -70,14 +66,12 @@ def register():
 	username = get_form_value('username')
 	password = get_form_value('password')
 	password2 = get_form_value('password2')
-	registertry = utils.register_user(username, password, password2)
-	flash(registertry)
+	flash(utils.register_user(username, password, password2))
 	return redirect(url_for('index'))
 
 @app.route('/logout', methods = ['POST'])
 def logout():
-	if 'username' in session:
-		session.pop('username')
+	logout_user(username)
 	return redirect(url_for('index'))
 
 if __name__ == '__main__':
