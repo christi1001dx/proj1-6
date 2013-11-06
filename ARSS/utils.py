@@ -1,4 +1,4 @@
-from pymongo import MongoClient, ASCENDING, DESCENDING
+from pymongo import MongoClient
 from flask import session
 
 client = MongoClient()
@@ -86,10 +86,10 @@ def return_all_stories():
 		entry['author'] = str(story_author(story))
 		entry['numLines'] = str(story_lines(story))
 		entry['title'] = str(story)
-		entry['lines'] = ""
+		entry['lines'] = ''
 		lines = return_all_lines(story)
 		for line in lines:
-			entry['lines'] += line['line'].decode('utf-8') + " "
+			entry['lines'] += line['line'].decode('utf-8') + ' '
 		stories.append(entry)
 	return stories
 
@@ -106,14 +106,14 @@ def create_user(username, password):
 # user must type password 2 times to make account
 def register_user(username, password, confirm_password):
 	if (user_exists(username)):
-		return "User Already Exists."
+		return 'User Already Exists.'
 	elif (len(password) < 4):
-		return "Password too short."
+		return 'Password too short.'
 	elif (password != confirm_password):
-		return "Passwords do not match."
+		return 'Passwords do not match.'
 	else:
 		db.users.insert({'username': username, 'password': password})
-		return "Success!"
+		return 'Success!'
 
 # used to validate login
 def account_exists(username, password):
@@ -154,9 +154,38 @@ if __name__ == '__main__':
 	db.counters.remove()
 	db.stories.remove()
 
+<<<<<<< HEAD
 	db.stories.update({'title': 'test1'}, {'$set': {'author': 'AuthorName'}})
 	increment_lines('test1')
 	increment_lines('test1')
 	
 	make_story('test1')
 	make_story('test2')
+=======
+	print('Testing story')
+	print('\tMaking story: ' + str(make_story('test1')))
+	print('\tMaking existing story: ' + str(make_story('test1')))
+	print('\tStory: ' + str(_find_story('test1')))
+	print('\tStory exists? ' + str(story_exists('test1')))
+	print('\tIs story anonymous? ' + str(story_anonymous('test1')))
+	db.stories.update({'title': 'test1'}, {'$set': {'author': 'AuthorName'}})
+	print('\tAdded author, is story anonymous? ' + str(story_anonymous('test1')))
+	print('\tStory lines: ' + str(story_lines('test1')))
+	increment_lines('test1')
+	increment_lines('test1')
+	print('\tAfter 2 increments: ' + str(_find_story('test1')))
+	print('\tStory exists, Delete story: ' + str(delete_story('test1')))
+	print('\tStory just deleted, Delete again: ' + str(delete_story('test1')))
+	print('\tDelete unexisting story: ' + str(delete_story('tasdasd')))
+
+	print('Testing _get_next_seq')
+	make_story('test1')
+	make_story('test2')
+	for x in db.stories.find():
+		print('\t' + str(x))
+	print('\t' + str(db.counters.find_one({'_id': 'story_id'})))
+
+	print('Stories: ' + str(list_of_stories()))
+
+	add_line('Test line 1.', 'test1', user)
+>>>>>>> ae6d4b43504dd1a0c15b145b8eef7103f12ed330
