@@ -109,10 +109,6 @@ a:link {
     text-decoration:none;
 }
 
-a:hover {
-    color:#00ffff;
-}
-
 a {
     color:white;
     cursor:text;
@@ -230,3 +226,42 @@ a {
     font-size:15px;
 }
 
+#AcTitle {
+    color:orange;
+}
+#AcTitle:hover {
+    color:#00ffff;
+
+}
+#ATitle {
+    color:green;
+}
+#ATitle:hover {
+    color:#00ffff;
+
+}
+#HTitle {
+    color:yellow;
+}
+#HTitle:hover {
+    color:#00ffff;
+
+}
+#STitle {
+    color:blue;
+}
+#STitle:hover {
+    color:#00ffff;
+}
+#OTitle {
+    color:red;
+}
+#OTitle:hover {
+    color:#00ffff;
+}
+#FTitle {
+    color:black;
+}
+#FTitle:hover {
+    color:#00ffff;
+}
