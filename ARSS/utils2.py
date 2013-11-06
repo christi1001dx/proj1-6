@@ -154,9 +154,27 @@ if __name__ == '__main__':
 	db.counters.remove()
 	db.stories.remove()
 
+	print "Testing story"
+	print "\tMaking story: " + str(make_story('test1'))
+	print "\tMaking existing story: " + str(make_story('test1'))
+	print "\tStory: " + str(_find_story('test1'))
+	print "\tStory exists? " + str(story_exists('test1'))
+	print "\tIs story anonymous? " + str(story_anonymous('test1'))
 	db.stories.update({'title': 'test1'}, {'$set': {'author': 'AuthorName'}})
+	print "\tAdded author, is story anonymous? " + str(story_anonymous('test1'))
+	print "\tStory lines: " + str(story_lines('test1'))
 	increment_lines('test1')
 	increment_lines('test1')
-	
+	print "\tAfter 2 increments: " + str(_find_story('test1'))
+	print "\tStory exists, Delete story: " + str(delete_story('test1'))
+	print "\tStory just deleted, Delete again: " + str(delete_story('test1'))
+	print "\tDelete unexisting story: " + str(delete_story('tasdasd'))
+
+	print "Testing _get_next_seq"
 	make_story('test1')
 	make_story('test2')
+	for x in db.stories.find():
+		print '\t' + str(x)
+	print '\t' + str(db.counters.find_one({'_id': 'story_id'}))
+
+	print list_of_stories()
