@@ -157,4 +157,4 @@ class Database(object):
 
     def validate_email(self, email):
         """Return whether an email address is valid."""
-        return True
+        return re.match(r"[^@]+@[^@]+\.[^@]+$", email)

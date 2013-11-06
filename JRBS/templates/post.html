@@ -52,7 +52,7 @@
                         {% if comment.user %}
                             <p><i class="icon user"></i> <a href="/posts/user/{{comment.user.userid}}">{{comment.user.display_name}}</a>&nbsp;&nbsp;<i class="icon calendar"></i> {{comment.date.strftime("%B %d, %Y")}}&nbsp;<i class="icon time"></i>{{comment.date.strftime("%I:%M %p")}}</p>
                         {% else %}
-                            <p><i class="icon user"></i>{{comment.anon_name}}&nbsp;&nbsp;<i class="icon mail outline"></i><a href="mailto:{{comment.anon_email}}">{{comment.anon_email}}</a>&nbsp;&nbsp;<i class="icon calendar"></i> {{comment.date.strftime("%B %d, %Y")}}&nbsp;<i class="icon time"></i>{{comment.date.strftime("%I:%M %p")}}</p>
+                            <p><i class="icon question"></i>{{comment.anon_name}}&nbsp;&nbsp;<i class="icon mail outline"></i><a href="mailto:{{comment.anon_email}}">{{comment.anon_email}}</a>&nbsp;&nbsp;<i class="icon calendar"></i> {{comment.date.strftime("%B %d, %Y")}}&nbsp;<i class="icon time"></i>{{comment.date.strftime("%I:%M %p")}}</p>
                         {% endif %}
                         {% for paragraph in comment.text.split("\n\n") %}
                             <p>{{paragraph}}</p>
