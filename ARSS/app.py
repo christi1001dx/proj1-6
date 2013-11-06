@@ -33,15 +33,11 @@ def get_all_story():
 
 @app.route('/addline', methods=['POST'])
 def add_line():
-	if not 'username' in session:
-		return 'login'
-	author = session['username']
-	title = get_form_value('title')
-	line = get_form_value('line')
-	if utils.add_line(line, title, author):
-		return 'success'
-	else:
-		return 'error'
+	if utils.logged_in():
+		author = session['username']
+		title = get_form_value('title')
+		line = get_form_value('line')
+		utils.add_line(line, title, author);
 
 @app.route('/makestory', methods=['POST'])
 def make_story():

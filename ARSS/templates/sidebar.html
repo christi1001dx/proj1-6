@@ -22,7 +22,8 @@
 				</form>
 				<p style="text-align: center; margin-top: 5px; clear: both;">Welcome, {{ session['username'] }}</p>
 				<div class="new-story-container panel">
-					<h3>New Story</h3>
+					<br>
+					<h4>New Story</h4>
 					<form action="/makestory" method="POST">
 						<input type="text" name="title" placeholder="Title">
 						<button type="submit" class="button">Make Story</button>
