@@ -2,7 +2,7 @@
 	font-family: "OratorStd"
 	src: url("../fonts/OratorStd.otf"), url("../fonts/OratorStd.ttf")
 
-
+$backgroundColor: #383838
 
 body
 	font-family: OratorStd
@@ -22,7 +22,6 @@ body
 	height: 100%
 
 #stories
-	background: #fff
 
 #story
 	left: 100%
@@ -64,9 +63,10 @@ $ns: 1, 2, 3, 6, 9
 		@include vendor(transition, all #{$n/10}s ease-out)
 
 .box
-	@include vendor(box-shadow, 3px 3px 0px 0px #666)
+	@include vendor(box-shadow, 1px 1px 6px -1px #666)
+	@include vendor(border-radius, 2px)
 	position: absolute
-	background: #def
+	background: white
 	width: 300px
 	height: 300px
 	overflow: hidden
@@ -82,6 +82,9 @@ header
 	height: 400px
 	background: #acf
 	z-index: 999
+
+	background-color: $backgroundColor
+	color: #FFF
 
 	& > div
 		width: 100%
@@ -109,16 +112,16 @@ header
 		position: absolute
 		width: 100%
 		height: 35px
-		background: #9cf
+		background: $backgroundColor
+		color: white
 
 		.text
-			margin: 7px 0 0 11px
+			margin: 9px 0 0 11px
 			font-size: 16px
 			font-weight: bold
-			color: #039
 
 	.author
-		color: #048
+		color: black
 		position: absolute
 		right: 7px
 		top: 39px
@@ -146,22 +149,27 @@ header
 		font-size: 12px
 
 	.goto
+		@include vendor(transition, (background-color 0.5s))
 		position: absolute
 		bottom: 0
 		width: 100%
 		height: 23px
-		background: #adf
+		background: $backgroundColor
 		cursor: pointer
 		z-index: 500
 
 		&:hover
-			background: #ccc
-
-			.text
-				color: #246
+			background: #1CAAFA
 
 		.text
+			color: white
 			position: absolute
 			right: 12px
-			top: 3px
+			top: 6px
 			font-size: 12px
+
+	.swag
+		position: absolute
+		z-index: -1
+		width: 50px
+		height: 20px
