@@ -121,6 +121,7 @@ function init() {
 }
 
 var isopen = false;
+var curopen = -1;
 function hideStory() {
 	if (!isopen) return;
 	isopen = false;
@@ -152,7 +153,7 @@ function openStory(i) {
 	},500,function() {
 		$(this).css("display","none");
 	});
-	var s = stories[i];
+	var s = stories[curopen=i];
 	$(".story-author").html("by "+s.author);
 	$(".story-container h1").html(s.title);
 	$(".story-text .text").html(s.text);

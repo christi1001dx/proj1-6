@@ -52,6 +52,8 @@
 					var line = $this.text();
 					add_line(title, line, function(success) {
 						if (success) {
+							stories[curopen].text += " "+line;
+							$("#box"+curopen+" .story").append(" "+line);
 							$(".story-text .text").append(line + " ");
 							$this.after('<span id="story-new-line" contenteditable=true data-placeholder="Continue the story!"></span>');
 							$("#story-new-line").toggleEmpty(true);
