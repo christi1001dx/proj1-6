@@ -29,7 +29,7 @@ def get_story(name):
 
 @app.route('/allstories', methods = ['GET'])
 def get_all_story():
-    return json.dumps((utils.return_all_stories()))
+	return json.dumps((utils.return_all_stories()))
 
 @app.route('/addline', methods=['POST'])
 def add_line():

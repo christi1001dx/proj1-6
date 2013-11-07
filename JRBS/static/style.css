@@ -11,6 +11,12 @@ h1, h2, h3, h4, h5 {
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
+div#footer {
+    margin-top: 2.5em;
+    text-align: center;
+    font-size: small;
+}
+
 div#comments {
     background-color: #FAFAFA !important;
 }

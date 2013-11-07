@@ -79,7 +79,7 @@ class Database(object):
         if not results:
             return None
         result = results[0]
-        return User(result[0], result[1], result[2], result[3])
+        return User(*result)
 
     def register(self, username, display_name, password):
         """Returns one of "exists", "ok"."""
@@ -89,8 +89,9 @@ class Database(object):
             return "exists"
         user_id = self._get_next_userid()
         pwhash = hashlib.sha256(password).hexdigest()
-        self._execute("INSERT INTO users VALUES (?, ?, ?, ?)", user_id,
-                      username, display_name, pwhash)
+        is_admin = user_id == 1  # The first account to be created is the admin
+        self._execute("INSERT INTO users VALUES (?, ?, ?, ?, ?)", user_id,
+                      username, display_name, pwhash, is_admin)
         return "ok"
 
     def get_posts(self, user=None, page=1):
@@ -170,4 +171,64 @@ class Database(object):
                 counts[post.author.userid][1] += 1
             else:
                 counts[post.author.userid] = [post.author, 1]
-        return sorted(counts.values(), key=lambda pair: pair[1], reverse=True)
+        return sorted(counts.values(), key=lambda x: x[1], reverse=True)[:5]
+
+    def is_admin(self, username):
+        """Return whether the given user is an admin."""
+        user_query = "SELECT user_id FROM users WHERE user_name = ?"
+        try:
+            userid = self._execute(user_query, username)[0][0]
+        except IndexError:
+            return False
+        user = self.get_user(userid)
+        return user.is_admin
+
+    def get_users(self):
+        """Return a list of all users in the database."""
+        results = self._execute("SELECT * FROM users ORDER BY user_id ASC")
+        users = []
+        for result in results:
+            users.append(User(*result))
+        return users
+
+    def delete_post(self, postid):
+        """Delete a post in the database."""
+        query = "SELECT 1 FROM posts WHERE post_id = ?"
+        if not self._execute(query, postid):
+            return "no post"
+        query1 = "DELETE FROM posts WHERE post_id = ?"
+        query2 = "DELETE FROM comments WHERE comment_post = ?"
+        self._execute(query1, postid)
+        self._execute(query2, postid)
+        return "ok"
+
+    def delete_user(self, userid):
+        """Delete a user in the database."""
+        query = "SELECT 1 FROM users WHERE user_id = ?"
+        if not self._execute(query, userid):
+            return "no user"
+        query1 = "DELETE FROM users WHERE user_id = ?"
+        query2 = "DELETE FROM posts WHERE post_user = ?"
+        query3 = "DELETE FROM comments WHERE comment_user = ?"
+        self._execute(query1, userid)
+        self._execute(query2, userid)
+        self._execute(query3, userid)
+        return "ok"
+
+    def promote_user(self, userid):
+        """Promote a user to admin in the database."""
+        query = "SELECT 1 FROM users WHERE user_id = ?"
+        if not self._execute(query, userid):
+            return "no user"
+        query = "UPDATE users SET user_is_admin = 1 WHERE user_id = ?"
+        self._execute(query, userid)
+        return "ok"
+
+    def demote_user(self, userid):
+        """Demote a user from admin in the database."""
+        query = "SELECT 1 FROM users WHERE user_id = ?"
+        if not self._execute(query, userid):
+            return "no user"
+        query = "UPDATE users SET user_is_admin = 0 WHERE user_id = ?"
+        self._execute(query, userid)
+        return "ok"

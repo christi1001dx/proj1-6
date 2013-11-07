@@ -12,7 +12,8 @@ CREATE TABLE users (
     user_id INTEGER PRIMARY KEY,
     user_name TEXT,
     user_display_name TEXT,
-    user_password_hash BLOB
+    user_password_hash BLOB,
+    user_is_admin INTEGER
 );
 
 DROP TABLE IF EXISTS posts;

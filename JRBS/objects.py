@@ -1,9 +1,11 @@
 class User(object):
-    def __init__(self, userid, name, display_name, password_hash=None):
+    def __init__(self, userid, name, display_name, password_hash=None,
+                 is_admin=False):
         self.userid = userid
         self.name = name
         self.display_name = display_name
         self.password_hash = password_hash
+        self.is_admin = is_admin
 
 
 class Post(object):
