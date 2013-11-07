@@ -26,12 +26,12 @@
 	<span id="Featured">
 	    <a id="FTitle" href="/post/{{featured._id}}">{{featured.title}}</a>
 	    <br>
-	    <span>{{featured.text}}</span>
+	    <span>{{featured.preview}}</span>
             <span>By {{featured.username}}</span>
         </span>
         <span id="Sports">
             {% for post in sports %}
-            <a id="STitle" href="/post/{{post._id}}">{{post.title}}</a>
+            <a id="STitle" href="/post/{{post._id}}"><span style="font-size:30px;">{{post.title}}</span></a>
                 <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -40,7 +40,7 @@
         </span> 
         <span id="Arts-Ent">
             {% for post in arts %}
-            <a id="ATitle" href="/post/{{post._id}}">{{post.title}}</a>  
+            <a id="ATitle" href="/post/{{post._id}}"><span style="font-size:30px;">{{post.title}}</span></a>  
             <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -51,7 +51,7 @@
     <div id="SectionTwo">
         <span id="Opinion">
             {% for post in opinions %}
-            <a id="OTitle" href="/post/{{post._id}}">{{post.title}}</a> 
+            <a id="OTitle" href="/post/{{post._id}}"><span style="font-size:30px;">{{post.title}}</span></a> 
                 <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -60,7 +60,7 @@
         </span> 
         <span id="Humor">
             {% for post in humor %}
-            <a id="HTitle" href="/post/{{post._id}}">{{post.title}}</a>  
+            <a id="HTitle" href="/post/{{post._id}}"><span style="font-size:30px;">{{post.title}}</span></a>  
                 <br>
                 {{post.preview}}
                 by {{post.username}}
@@ -69,7 +69,7 @@
         </span> 
         <span id="Academics">
             {% for post in academics %}
-            <a id="AcTitle" href="/post/{{post._id}}">{{post.title}}</a>  
+            <a id="AcTitle" href="/post/{{post._id}}"><span style="font-size:30px;">{{post.title}}</span></a>  
                 <br>
                 {{post.preview}}
                 by {{post.username}}

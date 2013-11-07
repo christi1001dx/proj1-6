@@ -3,7 +3,6 @@
 }
 
 body {
-    overflow:hidden;
     background: #728eaa;
     background: -moz-linear-gradient(top, #25303C, 0%, #728EAA, 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#25303C), color-stop(100%, #728EAA));
@@ -203,7 +202,7 @@ a {
     width:415px;
     font-size:25px;
     color:white;
-    border:5px solid yellow;
+    border:5px solid orange;
     float:left;
 
 }
@@ -216,9 +215,9 @@ a {
     position:relative;
     height:200px;
     width:415px;
-    font-size:25px;
+    font-size:15px;
     color:white;
-    border:5px solid orange;
+    border:5px solid #00ffff;
     float:left;
 }
 
