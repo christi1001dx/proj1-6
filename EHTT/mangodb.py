@@ -90,20 +90,21 @@ def getallposts():
 def newpost(title, txt, date):
     if not title or not txt:
         errorch(0)
-        print(0)
+        print("No title nor txt")
     else:
         found = postcol.find_one({"name": title})
         if found:
             errorch(5)
-            print(5)
+            print("post found")
         else:
             found = find_one({"num"})
+            x = "successful insert with date = %s: %s \n"
             if not date:
                 postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':date})
-                print("good")
+                print(x, %("stated",title))
             else:
                 postcol.insert({"name":title,"txt":txt, "id":found["num"], 'date':datetime.utcnow()})
-                print("yes")
+                print(x, %("now",title))
             postcol.update({"num":found["num"]}, {"$inc": {"num":1}})
             comcol.insert({"id" : found["num"], "coms":[]})
             return 1;
