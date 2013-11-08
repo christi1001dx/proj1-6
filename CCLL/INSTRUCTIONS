@@ -1,10 +1,7 @@
 You need to have mongo installed to run this. 
 
-If you don't have mongo
-pip install pymongo
-and
-install mongo through a package manager of your choice
+If you don't have mongo pip install pymongo and install mongo through a package manager of your choice.
 
-And then before running jaspar.test blah blah .py in different terminal window run mongod
+Before running jasper.test.app.py in different terminal window run mongod
 
-This exists due to Jason's incompitence; he didn't understand that mongo was needed.
+This exists due to Jason's incompetence; he didn't understand that mongo was needed.
