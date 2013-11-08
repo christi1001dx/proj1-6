@@ -2,17 +2,18 @@ from flask import Flask
 from flask import session,url_for, request, redirect, render_template
 from pymongo import MongoClient
 import mangodb
+import utils
 
 app = Flask(__name__)
 app.secret_key = "abcd"
 
 @app.route("/")
 def index():
-    d = mangodb.getallposts();
+    posts = utils.getAllPosts();
     if 'username' in session:
-        return render_template("index.html",username = session["username"],d=d)
+        return render_template("index.html",username = session["username"],posts=posts)
     else:
-        return render_template("index.html",d=d)
+        return render_template("index.html",posts=posts)
 
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
@@ -70,15 +71,17 @@ def logout():
  #   if request.method == "GET"
     
         
-@app.route("/createpost")
+@app.route("/createpost", methods = ['GET', 'POST'])
 def createpost():
     if request.method == "GET":
         return render_template("createpost.html",username = session["username"])
     else:
-        name = request.form["title"]
-        text = request.form["post"]
+        name = request.form["title"].encode("ascii", "ignore")
+        text = request.form["post"].encode("ascii", "ignore")
        #date = request.form["date"]
-        mangodb.newpost(name, text, 0)
+        utils.newPost(name, text, 1)
+        print(name)
+        print(text)
         return redirect("/", username = session["username"])
 
 @app.route("/removepost")
@@ -88,16 +91,16 @@ def removepost():
     else:
         name = request.form["name"]
         mangodb.removepost(name)
-        return redirect("/", username = session["username"])
+        return redirect("/")
 
 @app.route("/posts/<post_name>")
 def posts(post_name):
-    ap = mangodb.getpost(post_name)
+    ap = utils.getPostText(post_name)
     if ap:
-        d = {'text' : ap['txt'],
+        d = {'text' : ap['text'],
              'name' : post_name,
-             'comments' : getpostcom(post_name),
-             'date': ap['date']}
+             'comments' : utils.getAllComments(post_name),
+             'date': 1}
     
         if 'username' in session:
             return render_template("indipost.html",username = session["username"],d = d)
@@ -106,7 +109,7 @@ def posts(post_name):
     else:
         return redirect("/")
 
-@app.route("/posts/<post_name>/comment")   
+@app.route("/posts/<post_name>/comment", methods = ['GET', 'POST'])   
 def comment(post_name):
     if request.method == "GET":
         if 'username' in session:
@@ -116,13 +119,13 @@ def comment(post_name):
     else: 
         if 'username' in session:
             text = request.form["text"]
-            date = request.form["date"]
-            mangodb.newcomment(mangodb.getpostid(post_name), text, session["username"], date)
+            
+            utils.newcomment(session["username"],text, 1, post_name)
             return redirect("/posts/<post_name>")
         else:
             text = request.form["text"]
-            date = request.form["date"]
-            mangodb.newcomment(mangodb.getpostid(post_name), text, "Anonymous", date)
+            utils.newcomment("anon",text, 1, post_name)
+           
             return redirect("/posts/<post_name>")
 
 if __name__ == "__main__":

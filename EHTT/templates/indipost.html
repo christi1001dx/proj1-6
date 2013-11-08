@@ -23,9 +23,9 @@
 	    <li><a href="/register" class="button">Register</a></li>
             {% else %}
             <li><a href="#" class="button">{{ username }}</a></li>
-                {% if username == "Herman" %}
-                    <li><a href="/createpost" class="button">Create Post</a></li>
-                {% endif %}
+
+            <li><a href="/createpost" class="button">Create Post</a></li>
+            
             <li><a href="/logout" class="button">Logout</a></li>
             {% endif %}
           </ul>
@@ -89,9 +89,9 @@
 	    <li><a href="/register">Register</a></li>
             {% else %}
             <li><a href="#">{{ username }}</a></li>
-                {% if username == "Herman" %}
-                    <li><a href="/createpost">Create Post</a></li>
-                {% endif %}
+              
+            <li><a href="/createpost">Create Post</a></li>
+            
             <li><a href="/logout">Logout</a></li>
             {% endif %}
           </ul>

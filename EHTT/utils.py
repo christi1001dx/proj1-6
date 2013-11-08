@@ -2,8 +2,8 @@ from pymongo import MongoClient
 
 def login(username,password):
     c = MongoClient()
-    db = c['blogdb']
-    x = db.users.find({'username':username, 'password':password})
+    data = c['blogdb']
+    x = data.users.find({'username':username, 'password':password})
     if x:
         return True
     else:
@@ -11,54 +11,54 @@ def login(username,password):
 
 def register(username,password):
     c = MongoClient()
-    db = c['blogdb']
-    x = db.users.find({'username':username})
+    data = c['blogdb']
+    x = data.users.find({'username':username})
     if x:
         return False
     else:
-        db.users.insert({'username':username, 'password':password})
+        data.users.insert({'username':username, 'password':password})
         return True
 
 def getAllPosts():
     c = MongoClient()
-    db = c['blogdb']
+    data = c['blogdb']
     l = []
-    for post in db.posts.find():
-        l.insert(post['name'])
+    for post in data.posts.find():
+        l.append(post['title'])
     return l
 
-def newPost(name,text,date):
+def newPost(title,text,date):
     c = MongoClient()
-    db = c['blogdb']
-    c.posts.insert({'name':name, 'text':text, 'date':date})
+    data = c['blogdb']
+    data.posts.insert({'title':title, 'text':text, 'date':date})
 
 def newComment(username,text,date,post):
     c = MongoClient()
-    db = c['blogdb']
-    c.comments.insert({'username':username, 'text':text, 'date':date, 'post':post})
+    data = c['blogdb']
+    data.comments.insert({'username':username, 'text':text, 'date':date, 'post':post})
 
 def getAllComments(post):
     c = MongoClient()
-    db = c['blogdb']
+    data = c['blogdb']
     username = []
     text = []
     date = []
-    for comment in db.comments.find({'post':post}):
-        username.insert(comment['username'])
-        text.insert(comment['text'])
-        date.insert(comment['date'])
+    for comment in data.comments.find({'post':post}):
+        username.append(comment['username'])
+        text.append(comment['text'])
+        date.append(comment['date'])
     comments = [username,text,date]
     return comments
     
-def getPostText(name):
+def getPostText(title):
     c = MongoClient()
-    db = c['blogdb']
-    post = db.posts.find({'name':name}).date
+    data = c['blogdb']
+    post = data.posts.find_one({'title':title}, fields = {'_id': False, 'text' : True})
     return post
 
-def getPostDate(name):
+def getPostDate(title):
     c = MongoClient()
-    db = c['blogdb']
-    post = db.posts.find({'name':name}).date
+    data = c['blogdb']
+    post = data.posts.find({'title':title}).date
     return post
 
