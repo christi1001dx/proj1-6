@@ -110,6 +110,12 @@ def upsert_user(username, password):
 		upsert=True
 	)
 
+def insert_user(username, password):
+	db.users.insert(
+		{'username': username,
+		'password': password}
+	)
+
 def login_user(username, password):
 	if validate_user(username, password):
 		session['username'] = username
@@ -130,7 +136,7 @@ def register_user(username, password, confirm_password):
 	elif (password != confirm_password):
 		return 'Password does not match confirmation.'
 	else:
-		upsert_user(username, password)
+		insert_user(username, password)
 		return 'Success!'
 
 # used to change password
